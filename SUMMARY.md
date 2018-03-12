@@ -34,8 +34,8 @@
   * Netty
 * [数据库](shu-ju-ku.md)
   * [MySQL](shu-ju-ku/mysql.md)
-    * 基本配置
-    * SQL语句调优
+    * [基本配置](shu-ju-ku/mysql/ji-ben-pei-zhi.md)
+    * [SQL语句调优](shu-ju-ku/mysql/sqlyu-ju-diao-you.md)
     * 索引
   * [Redis](shu-ju-ku/redis.md)
 * [系统设计](xi-tong-she-ji.md)
