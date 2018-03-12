@@ -1,13 +1,23 @@
 # Summary
 
 * [Introduction](README.md)
-* [Java语言基础](javayu-yan-ji-chu.md)
+* [Java语言](javayu-yan-ji-chu.md)
+  * [Java关键字](javayu-yan-ji-chu/javaguan-jian-zi.md)
   * [集合](javayu-yan-ji-chu/ji-he.md)
-  * [异常](javayu-yan-ji-chu/yi-chang.md)
   * [线程](javayu-yan-ji-chu/xian-cheng.md)
+  * [异常](javayu-yan-ji-chu/yi-chang.md)
+    * [try catch finally 与reture](javayu-yan-ji-chu/yi-chang/try-catch-finally-yu-reture.md)
+    * [多catch的执行情况](javayu-yan-ji-chu/yi-chang/duo-catch-de-zhi-xing-qing-kuang.md)
   * [IO](javayu-yan-ji-chu/io.md)
   * [注解](javayu-yan-ji-chu/zhu-jie.md)
   * [反射](javayu-yan-ji-chu/fan-she.md)
+  * [JVM](javayu-yan-ji-chu/jvm.md)
+    * [Java内存模型](javayu-yan-ji-chu/jvm/javanei-cun-mo-xing.md)
+    * [类初始化顺序](javayu-yan-ji-chu/jvm/lei-jia-zai-shun-xu.md)
+    * [类加载机制](javayu-yan-ji-chu/jvm/lei-jia-zai-ji-zhi.md)
+    * [垃圾回收算法](javayu-yan-ji-chu/jvm/la-ji-hui-shou-suan-fa.md)
+    * [垃圾收集器](javayu-yan-ji-chu/jvm/la-ji-shou-ji-qi.md)
+    * [四种引用类型区别及何时回收](javayu-yan-ji-chu/jvm/si-zhong-yin-yong-lei-xing-qu-bie-ji-he-shi-hui-shou.md)
 * [算法](suan-fa.md)
   * [准备思路](suan-fa/zhun-bei-si-lu.md)
   * [基本排序](suan-fa/ji-ben-pai-xu.md)
@@ -15,11 +25,12 @@
   * [树](suan-fa/shu.md)
 * [框架或工具](kuang-jia.md)
   * [Spring](spring.md)
-  * SpringMVC
+  * [SpringMVC](springmvc.md)
   * Zookeeper
   * Dubbo
-  * Shiro
-  * Maven
+  * [Shiro](shiro.md)
+  * [Maven](maven.md)
+  * Netty
 * [数据库](shu-ju-ku.md)
   * [MySQL](shu-ju-ku/mysql.md)
   * [Redis](shu-ju-ku/redis.md)
