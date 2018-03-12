@@ -36,7 +36,7 @@
   * [MySQL](shu-ju-ku/mysql.md)
     * [基本配置](shu-ju-ku/mysql/ji-ben-pei-zhi.md)
     * [SQL语句调优](shu-ju-ku/mysql/sqlyu-ju-diao-you.md)
-    * 索引
+    * [索引](shu-ju-ku/mysql/suo-yin.md)
   * [Redis](shu-ju-ku/redis.md)
 * [系统设计](xi-tong-she-ji.md)
 * 版本控制
