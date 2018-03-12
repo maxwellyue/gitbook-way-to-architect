@@ -38,4 +38,6 @@
 * [系统设计](xi-tong-she-ji.md)
 * 版本控制
 * [操作系统](cao-zuo-xi-tong.md)
+  * Linux
+* 设计模式
 
