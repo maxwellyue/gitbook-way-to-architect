@@ -4,6 +4,7 @@
 * [Java语言](javayu-yan-ji-chu.md)
   * [Java关键字](javayu-yan-ji-chu/javaguan-jian-zi.md)
   * [集合](javayu-yan-ji-chu/ji-he.md)
+    * 一个ArrayList在循环过程中删除，会不会出问题，为什么？
   * [线程](javayu-yan-ji-chu/xian-cheng.md)
   * [异常](javayu-yan-ji-chu/yi-chang.md)
     * [try catch finally 与reture](javayu-yan-ji-chu/yi-chang/try-catch-finally-yu-reture.md)
