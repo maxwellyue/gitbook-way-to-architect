@@ -28,6 +28,8 @@
     * 值传递还是引用传递？
     * [接口和抽象类的区别](javayu-yan-ji-chu/mian-xiang-dui-xiang/jie-kou-he-chou-xiang-lei-de-qu-bie.md)
   * [其他](javayu-yan-ji-chu/qi-ta.md)
+  * [序列化](javayu-yan-ji-chu/xu-lie-hua.md)
+    * Java序列化的方式有哪些？
 * [算法](suan-fa.md)
   * [准备思路](suan-fa/zhun-bei-si-lu.md)
   * [基本排序](suan-fa/ji-ben-pai-xu.md)
