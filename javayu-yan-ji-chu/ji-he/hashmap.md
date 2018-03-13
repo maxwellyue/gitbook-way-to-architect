@@ -50,7 +50,15 @@ TODO：为什么？这种位运算的神奇之处在哪？
 
 ---
 
-## 
+①put后可能导致get死循环，具体表现为CPU使用率100%：
+
+②put的时候可能导致元素丢失：执行addEntry(hash, key, value, i)，如果有产生哈希碰撞，导致两个线程得到同样的bucketIndex去存储，就可能会出现覆盖丢失的情况：
 
 
+TODO：具体的代码解释
+
+
+内容参考：
+
+[HashMap在并发下可能出现的问题分析](http://www.cnblogs.com/binyue/p/3726403.html)
 
