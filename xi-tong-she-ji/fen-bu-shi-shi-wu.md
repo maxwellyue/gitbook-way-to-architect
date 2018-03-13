@@ -42,8 +42,6 @@ TCC（try-commit-cancel） 其实就是采用的补偿机制，其核心思想�
 
 ![](/assets/640 %281%29.webp)
 
-
-
 它分为三个阶段：
 
 * Try 阶段：主要是对业务系统做检测及资源预留
@@ -61,8 +59,6 @@ TCC（try-commit-cancel） 其实就是采用的补偿机制，其核心思想�
 > 优点： 跟2PC比起来，实现以及流程相对简单了一些，但数据的一致性比2PC也要差一些
 >
 > 缺点： 缺点还是比较明显的，在2,3步中都有可能失败。TCC属于应用层的一种补偿方式，所以需要程序员在实现的时候多写很多补偿的代码，在一些场景中，一些业务流程可能用TCC不太好定义及处理。
-
-
 
 事务开始时，业务应用会向事务协调器注册启动事务。之后业务应用会调用所有服务的try接口，完成一阶段准备。之后事务协调器会根据try接口返回情况，决定调用confirm接口或者cancel接口。如果接口调用失败，会进行重试。
 
@@ -88,10 +84,6 @@ TCC方案让应用自己定义数据库操作的粒度，使得降低锁冲突�
 
 ![](/assets/640 %282%29.webp)
 
-
-
-
-
 消息方案从本质上讲是将分布式事务转换为两个本地事务，然后依靠下游业务的重试机制达到最终一致性。基于消息的最终一致性方案对应用侵入性也很高，应用需要进行大量业务改造，成本较高。
 
 这种方式又可以根据消息中间件支持/不支持事务消息两种。
@@ -113,9 +105,6 @@ public void transfer(){
         //③数据库回滚
         rollback();
     }
-
-
-
 }
 ```
 
@@ -146,18 +135,20 @@ RocketMQ第一阶段发送Prepared消息时，会拿到消息的地址，第二�
 
 ![](/assets/006.png)
 
-
-
 各大知名的电商平台和互联网公司，几乎都是采用类似的设计思路来实现“最终一致性”的。这种方式适合的业务场景广泛，而且比较可靠。
 
+---
 
+内容来源：
 
-
-
-内容来源：  
+  
 [聊聊分布式事务，再说说解决方案](https://www.cnblogs.com/savorboard/p/distributed-system-transaction-consistency.html)
 
 [Spring Boot学习笔记\(二三\) - 使用JTA处理分布式事务](http://www.hifreud.com/2017/07/12/spring-boot-23-jta-handle-distribute-transaction/)
 
+[分布式系统事务一致性解决方案](http://www.infoq.com/cn/articles/solution-of-distributed-system-transaction-consistency)
 
+[GTS来了！阿里微服务架构下的分布式事务解决方案](https://mp.weixin.qq.com/s/bUtu2nTs0bybnTvk-iLt6Q)
+
+[RocketMQ实战（三）：分布式事务](https://www.jianshu.com/p/53324ea2df92)
 
