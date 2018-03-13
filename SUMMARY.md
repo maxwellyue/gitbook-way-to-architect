@@ -17,6 +17,7 @@
   * [反射](javayu-yan-ji-chu/fan-she.md)
   * [流程控制](javayu-yan-ji-chu/liu-cheng-kong-zhi.md)
   * [JVM](javayu-yan-ji-chu/jvm.md)
+    * [JVM内存结构](javayu-yan-ji-chu/jvm/jvmnei-cun-jie-gou.md)
     * [Java内存模型](javayu-yan-ji-chu/jvm/javanei-cun-mo-xing.md)
     * [类初始化顺序](javayu-yan-ji-chu/jvm/lei-jia-zai-shun-xu.md)
     * [类加载机制](javayu-yan-ji-chu/jvm/lei-jia-zai-ji-zhi.md)
