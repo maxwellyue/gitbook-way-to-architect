@@ -96,6 +96,7 @@ this.getClass().getMethods();//获得此类实现的所有公有方法
 
 ---
 内容来源：
+
 [详解 equals() 方法和 hashCode() 方法](http://www.importnew.com/25783.html)
 
 [什么时候需要重写equals方法？为什么重写equals方法，一定要重写HashCode方法？](http://blog.csdn.net/championhengyi/article/details/53490549)
@@ -105,3 +106,5 @@ this.getClass().getMethods();//获得此类实现的所有公有方法
 [详解Java中的clone方法 -- 原型模式](http://blog.csdn.net/zhangjg_blog/article/details/18369201)
 
 [理解getClass()](http://blog.csdn.net/expect521/article/details/79139829)
+
+[设计模式：对象的克隆——原型模式](http://tracylihui.github.io/2015/07/24/designPattern/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9A%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%8B%E9%9A%86%E2%80%94%E2%80%94%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/)
