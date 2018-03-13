@@ -9,6 +9,7 @@
     * 一个ArrayList在循环过程中删除，会不会出问题，为什么？
     * [HashMap](javayu-yan-ji-chu/ji-he/hashmap.md)
   * [线程](javayu-yan-ji-chu/xian-cheng.md)
+    * ThreadLocal
   * [异常](javayu-yan-ji-chu/yi-chang.md)
     * [try catch finally 与reture](javayu-yan-ji-chu/yi-chang/try-catch-finally-yu-reture.md)
     * [多catch的执行情况](javayu-yan-ji-chu/yi-chang/duo-catch-de-zhi-xing-qing-kuang.md)
@@ -54,6 +55,8 @@
     * [索引](shu-ju-ku/mysql/suo-yin.md)
   * [Redis](shu-ju-ku/redis.md)
 * [系统设计](xi-tong-she-ji.md)
+  * [分布式事务](xi-tong-she-ji/fen-bu-shi-shi-wu.md)
+  * 如何设计分布式锁
 * 版本控制
 * [操作系统](cao-zuo-xi-tong.md)
   * Linux
