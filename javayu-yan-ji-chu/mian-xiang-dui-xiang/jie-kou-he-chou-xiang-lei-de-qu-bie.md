@@ -117,5 +117,6 @@ public interface MyInterf {
 
 内容来源：
 
-\[Java抽象类与接口的区别\]\([http://www.importnew.com/12399.html\](http://www.importnew.com/12399.html\)\)
+[Java抽象类与接口的区别](http://www.importnew.com/12399.html)
+[Java8的默认方法和静态接口方法](http://blog.csdn.net/l_sail/article/details/70951419)
 
