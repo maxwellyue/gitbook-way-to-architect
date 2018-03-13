@@ -50,12 +50,24 @@ protected void finalize() throws Throwable   这里会引出垃圾回收
 
   * 获取该Object对象的运行时类对象
 
+  * 获取class之后可以利用反射特性进行操作：
+  ```
+this.getClass().newInstance(); //用缺省构造函数创建一个该类的对象
+this.getClass().getInterfaces(); //获得此类实现的接口信息
+this.getClass().getMethods();//获得此类实现的所有公有方法
+```
+  * 除此之外，还有另外两种获取Class对象的方法：①类.class；②Class类的静态方法Class.forName("包名.类路径")。
+  
 
 * 对象输出格式：toString\(\)
 
 * 对象复制：clone\(\)
 
-  * 会涉及到浅拷贝和深拷贝：
+  * new可以创建一个对象，但该对象的属性都会是初始值；假如现在已经有一个对象Person，且此时Person对象的name属性和age属性都已被赋值，此时，想要得到一个与该对象的拷贝，就可以使用clone方法。
+  
+  * 假如对象Person中有一个集合属性List<Pet> petList，petList中有两个元素Dog和Cat，那使用clone方法会不会将petList中的元素Dog和Cat也复制一份，还是仅仅复制元素的引用：这就是浅拷贝和深拷贝的问题。默认是浅拷贝，即只会复制petList中的元素Dog和Cat的引用。
+  
+  * 如果想要深拷贝一个对象， 这个对象必须要实现Cloneable接口，实现clone方法，并且在clone方法内部，把该对象引用的其他对象也要clone一份，这就要求这个被引用的对象必须也要实现Cloneable接口并且实现clone方法。
 
 * 其他：registerNatives\(\)
   * 其主要作用是将C/C++中的方法映射到Java中的native方法，实现方法命名的解耦。
@@ -69,3 +81,5 @@ protected void finalize() throws Throwable   这里会引出垃圾回收
 [什么时候需要重写equals方法？为什么重写equals方法，一定要重写HashCode方法？](http://blog.csdn.net/championhengyi/article/details/53490549)
 
 [Java总结篇系列：java.lang.Object](https://www.cnblogs.com/lwbqqyumidi/p/3693015.html)
+
+[详解Java中的clone方法 -- 原型模式](http://blog.csdn.net/zhangjg_blog/article/details/18369201)
