@@ -22,8 +22,6 @@
 | 速度 | 它比接口速度要快 | 接口是稍微有点慢的，因为它需要时间去寻找在类中实现的方法。 |
 | 添加新方法 | 如果你往抽象类中添加新的方法，你可以给它提供默认的实现。因此你不需要改变你现在的代码。 | 如果你往接口中添加方法，那么你必须改变实现该接口的类。 |
 
-
-
 ## 什么时候使用抽象类和接口
 
 ---
@@ -38,13 +36,80 @@
 
 JDK1.8中向接口中引入默认方法和静态方法，以此来减少抽象类和接口之间的差异。
 
-默认方法
+##### 默认方法
+
+意义：可以为接口添加新的默认方法，而不会破坏接口的实现
+
+示例：
+
+```
+public interface vehicle {
+   default void print(){
+      System.out.println("我是一辆车!");
+   }
+}
+```
+
+假如一个类实现了多个接口，且这些接口有相同的默认方法，那这个类该怎么选择，有两种方案：
+
+①**创建自己的默认方法，来覆盖重写接口的默认方法**
+
+②**使用 super 来调用指定接口的默认方法**
+
+比如，有两个接口：
+
+```
+public interface vehicle {
+   default void print(){
+      System.out.println("我是一辆车!");
+   }
+}
+
+public interface fourWheeler {
+   default void print(){
+      System.out.println("我是一辆四轮车!");
+   }
+}
+```
+
+使用第一种方案：
+
+```
+public class car implements vehicle, fourWheeler {
+   default void print(){
+      System.out.println("我是一辆四轮汽车!");
+   }
+}
+```
+
+使用第二种方案：
+
+```
+public class car implements vehicle, fourWheeler {
+   default void print(){
+      vehicle.super.print();
+   }
+}
+```
 
 
 
-静态方法
+##### 静态方法
 
+意义：可以从接口直接调用和它相关的辅助方法（Helper method），而不是从其它的类中调用（之前这样的类往往以对应接口的复数命名，例如Collections）。
 
+示例：
+
+```
+public interface MyInterf {
+
+    String m1();
+
+    static String m2() {
+        return "Hello，I am an static method in Interface!";
+    }
+}
+```
 
 
 
@@ -52,7 +117,5 @@ JDK1.8中向接口中引入默认方法和静态方法，以此来减少抽象�
 
 内容来源：
 
-\[Java抽象类与接口的区别\]\(http://www.importnew.com/12399.html\)
-
-
+\[Java抽象类与接口的区别\]\([http://www.importnew.com/12399.html\](http://www.importnew.com/12399.html\)\)
 
