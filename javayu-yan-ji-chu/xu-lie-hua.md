@@ -9,11 +9,10 @@ Java序列化（即实现Serializable接口）的目的主要有两个：
 * 网络传输
 * 对象持久化（即文件存储）
 
-
-
 ##### 序列化方式有哪些
 
 * **Java自带的序列化方式**：实现Serializable接口
+
   * 缺点：
     * ①无法跨语言；
     * ②序列化后的码流太大；
@@ -32,13 +31,21 @@ Java序列化（即实现Serializable接口）的目的主要有两个：
 
 * **Facebook的Thrift**
 
-    //todo
+  //todo
 
 * **JBoss Marshalling**
 
-    //todo
+  //todo
 
-*  **Json**
+* **Json**
 
-    //todo
+  //todo
+
+
+
+---
+
+内容来源：
+
+《Netty权威指南》
 
