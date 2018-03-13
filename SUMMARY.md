@@ -57,6 +57,8 @@
 * [系统设计](xi-tong-she-ji.md)
   * [分布式事务](xi-tong-she-ji/fen-bu-shi-shi-wu.md)
   * [如何设计分布式锁](xi-tong-she-ji/ru-he-she-ji-fen-bu-shi-suo.md)
+    * [基于zookeeper](xi-tong-she-ji/ru-he-she-ji-fen-bu-shi-suo/ji-yu-zookeeper.md)
+    * [基于Redis](xi-tong-she-ji/ru-he-she-ji-fen-bu-shi-suo/ji-yu-redis.md)
 * 版本控制
 * [操作系统](cao-zuo-xi-tong.md)
   * Linux
