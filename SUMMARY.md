@@ -23,7 +23,7 @@
   * [面向对象](javayu-yan-ji-chu/mian-xiang-dui-xiang.md)
     * [Object类中的方法](javayu-yan-ji-chu/mian-xiang-dui-xiang/objectlei-zhong-de-fang-fa.md)
     * 值传递还是引用传递？
-  * 其他
+  * [其他](javayu-yan-ji-chu/qi-ta.md)
 * [算法](suan-fa.md)
   * [准备思路](suan-fa/zhun-bei-si-lu.md)
   * [基本排序](suan-fa/ji-ben-pai-xu.md)
@@ -32,6 +32,7 @@
 * [框架或工具](kuang-jia.md)
   * [Spring](spring.md)
     * [@transactional注解在什么情况下会失效](spring/transactionalzhu-jie-zai-shi-yao-qing-kuang-xia-hui-shi-xiao.md)
+    * AOP动态代理的两种方式，以及区别
   * [SpringMVC](springmvc.md)
   * Zookeeper
   * Dubbo
