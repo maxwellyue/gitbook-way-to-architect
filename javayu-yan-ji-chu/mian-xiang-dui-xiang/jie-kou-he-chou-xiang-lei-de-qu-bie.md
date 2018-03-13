@@ -21,6 +21,11 @@
 | 多继承 | 抽象方法可以继承一个类和实现多个接口 | 接口只可以继承一个或多个其它接口 |
 | 速度 | 它比接口速度要快 | 接口是稍微有点慢的，因为它需要时间去寻找在类中实现的方法。 |
 | 添加新方法 | 如果你往抽象类中添加新的方法，你可以给它提供默认的实现。因此你不需要改变你现在的代码。 | 如果你往接口中添加方法，那么你必须改变实现该接口的类。 |
+| 成员变量 | 成员变量可以是**public**、**protected、private**和**default** | 成员变量必须是**public static finally**的 |
+
+
+
+## 
 
 ## 什么时候使用抽象类和接口
 
@@ -92,8 +97,6 @@ public class car implements vehicle, fourWheeler {
 }
 ```
 
-
-
 ##### 静态方法
 
 意义：可以从接口直接调用和它相关的辅助方法（Helper method），而不是从其它的类中调用（之前这样的类往往以对应接口的复数命名，例如Collections）。
@@ -111,12 +114,10 @@ public interface MyInterf {
 }
 ```
 
-
-
 ---
 
 内容来源：
 
-[Java抽象类与接口的区别](http://www.importnew.com/12399.html)
+[Java抽象类与接口的区别](http://www.importnew.com/12399.html)  
 [Java8的默认方法和静态接口方法](http://blog.csdn.net/l_sail/article/details/70951419)
 
