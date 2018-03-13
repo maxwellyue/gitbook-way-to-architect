@@ -42,9 +42,8 @@ TCP 的连接的拆除需要发送四个包，因此称为四次挥手\(Four-way
   服务器端接收到这个确认包之后，关闭连接，进入 CLOSED 状态。  
   客户端等待了某个固定时间（两个最大段生命周期，2MSL，2 Maximum Segment Lifetime）之后，没有收到服务器端的 ACK ，认为服务器端已经正常关闭连接，于是自己也关闭连接，进入 CLOSED 状态。
 
-
-
 ---
 
-内容来自：
+内容来自：  
 [网络基础：协议分层、TCP](https://www.jianshu.com/p/820b6ecd25df)
+
