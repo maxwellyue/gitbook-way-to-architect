@@ -20,6 +20,8 @@
     * [垃圾回收算法](javayu-yan-ji-chu/jvm/la-ji-hui-shou-suan-fa.md)
     * [垃圾收集器](javayu-yan-ji-chu/jvm/la-ji-shou-ji-qi.md)
     * [四种引用类型区别及何时回收](javayu-yan-ji-chu/jvm/si-zhong-yin-yong-lei-xing-qu-bie-ji-he-shi-hui-shou.md)
+  * [面向对象](javayu-yan-ji-chu/mian-xiang-dui-xiang.md)
+    * [Object类中的方法](javayu-yan-ji-chu/mian-xiang-dui-xiang/objectlei-zhong-de-fang-fa.md)
 * [算法](suan-fa.md)
   * [准备思路](suan-fa/zhun-bei-si-lu.md)
   * [基本排序](suan-fa/ji-ben-pai-xu.md)
