@@ -8,6 +8,7 @@
   * [集合](javayu-yan-ji-chu/ji-he.md)
     * 一个ArrayList在循环过程中删除，会不会出问题，为什么？
     * [HashMap](javayu-yan-ji-chu/ji-he/hashmap.md)
+    * [给出场景，问数据结构？](javayu-yan-ji-chu/ji-he/gei-chu-chang-jing-ff0c-wen-shu-ju-jie-gou-ff1f.md)
   * [线程](javayu-yan-ji-chu/xian-cheng.md)
     * [ThreadLocal](javayu-yan-ji-chu/xian-cheng/threadlocal.md)
   * [异常](javayu-yan-ji-chu/yi-chang.md)
@@ -59,6 +60,7 @@
   * [如何设计分布式锁](xi-tong-she-ji/ru-he-she-ji-fen-bu-shi-suo.md)
     * [基于zookeeper](xi-tong-she-ji/ru-he-she-ji-fen-bu-shi-suo/ji-yu-zookeeper.md)
     * [基于Redis](xi-tong-she-ji/ru-he-she-ji-fen-bu-shi-suo/ji-yu-redis.md)
+  * [一致性Hash算法](xi-tong-she-ji/yi-zhi-xing-hash-suan-fa.md)
 * 版本控制
 * [操作系统](cao-zuo-xi-tong.md)
   * Linux
