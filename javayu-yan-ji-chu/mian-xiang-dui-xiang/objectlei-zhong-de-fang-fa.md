@@ -50,5 +50,8 @@ protected void finalize() throws Throwable   这里会引出垃圾回收
 
 
 
+---
+内容来源：
+[详解 equals() 方法和 hashCode() 方法](http://www.importnew.com/25783.html)
 
-
+[什么时候需要重写equals方法？为什么重写equals方法，一定要重写HashCode方法？](http://blog.csdn.net/championhengyi/article/details/53490549)
