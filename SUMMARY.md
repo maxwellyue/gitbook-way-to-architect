@@ -50,7 +50,7 @@
     * [@transactional注解在什么情况下会失效](spring/transactionalzhu-jie-zai-shi-yao-qing-kuang-xia-hui-shi-xiao.md)
     * AOP动态代理的两种方式，以及区别
     * [Spring中定时任务的原理](spring/springzhong-ding-shi-ren-wu-de-yuan-li.md)
-    * Spring中的设计模式
+    * [Spring中的设计模式](spring/springzhong-de-she-ji-mo-shi.md)
     * Spring如何维护beans
   * [SpringMVC](springmvc.md)
     * [Controller是如何将参数和前端传来的数据一一对应的](springmvc/controllershi-ru-he-jiang-can-shu-he-qian-duan-chuan-lai-de-shu-ju-yi-yi-dui-ying-de.md)
