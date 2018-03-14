@@ -29,6 +29,7 @@
     * [逃逸分析](javayu-yan-ji-chu/jvm/tao-yi-fen-xi.md)
     * [JVM常用配置](javayu-yan-ji-chu/jvm/jvmchang-yong-pei-zhi.md)
     * [GC日志分析](javayu-yan-ji-chu/jvm/gcri-zhi-fen-xi.md)
+    * [垃圾回收其他问题](javayu-yan-ji-chu/jvm/la-ji-hui-shou-qi-ta-wen-ti.md)
   * [面向对象](javayu-yan-ji-chu/mian-xiang-dui-xiang.md)
     * [Object类中的方法](javayu-yan-ji-chu/mian-xiang-dui-xiang/objectlei-zhong-de-fang-fa.md)
     * 值传递还是引用传递？
