@@ -54,7 +54,7 @@
 
 * JDK1.6中才开始提供该收集器。在此之前，新生代如果选择了Parallel Scavenge收集器，老年代只能选择Serial Old收集器。Parallel Old收集器的出现，使得“吞吐量优先收集器”有了比较名副其实的组合：`Parallel Scavenge + Parallel Old`。
 
-**CMS收集器**
+**CMS收集器（重点）**
 
 * 老年代收集器
 
