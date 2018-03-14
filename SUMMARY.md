@@ -69,6 +69,7 @@
 * [操作系统](cao-zuo-xi-tong.md)
   * [Linux](cao-zuo-xi-tong/linux.md)
     * [常用命令](cao-zuo-xi-tong/linux/chang-yong-ming-ling.md)
+    * [权限管理](cao-zuo-xi-tong/linux/quan-xian-guan-li.md)
 * [网络](wang-luo.md)
   * [TCP三次握手和四次挥手](wang-luo/tcpsan-ci-wo-shou-he-si-ci-hui-shou.md)
 
