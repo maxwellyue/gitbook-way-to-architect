@@ -59,6 +59,8 @@
     * [SQL语句调优](shu-ju-ku/mysql/sqlyu-ju-diao-you.md)
     * [索引](shu-ju-ku/mysql/suo-yin.md)
   * [Redis](shu-ju-ku/redis.md)
+  * [druid](shu-ju-ku/druid.md)
+  * [连接池](shu-ju-ku/lian-jie-chi.md)
 * [系统设计](xi-tong-she-ji.md)
   * [分布式事务](xi-tong-she-ji/fen-bu-shi-shi-wu.md)
   * [如何设计分布式锁](xi-tong-she-ji/ru-he-she-ji-fen-bu-shi-suo.md)
