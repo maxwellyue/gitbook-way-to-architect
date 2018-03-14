@@ -30,6 +30,7 @@
     * [JVM常用配置](javayu-yan-ji-chu/jvm/jvmchang-yong-pei-zhi.md)
     * [GC日志分析](javayu-yan-ji-chu/jvm/gcri-zhi-fen-xi.md)
     * [垃圾回收其他问题](javayu-yan-ji-chu/jvm/la-ji-hui-shou-qi-ta-wen-ti.md)
+    * dump文件的分析
   * [面向对象](javayu-yan-ji-chu/mian-xiang-dui-xiang.md)
     * [Object类中的方法](javayu-yan-ji-chu/mian-xiang-dui-xiang/objectlei-zhong-de-fang-fa.md)
     * 值传递还是引用传递？
@@ -67,6 +68,7 @@
 * [版本控制](ban-ben-kong-zhi.md)
 * [操作系统](cao-zuo-xi-tong.md)
   * [Linux](cao-zuo-xi-tong/linux.md)
+    * [常用命令](cao-zuo-xi-tong/linux/chang-yong-ming-ling.md)
 * [网络](wang-luo.md)
   * [TCP三次握手和四次挥手](wang-luo/tcpsan-ci-wo-shou-he-si-ci-hui-shou.md)
 
