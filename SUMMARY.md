@@ -38,6 +38,8 @@
   * [其他](javayu-yan-ji-chu/qi-ta.md)
   * [序列化](javayu-yan-ji-chu/xu-lie-hua.md)
     * Java序列化的方式有哪些？
+  * [新特性](javayu-yan-ji-chu/xin-te-xing.md)
+    * 流的概念、优势及使用
 * [算法](suan-fa.md)
   * [准备思路](suan-fa/zhun-bei-si-lu.md)
   * [基本排序](suan-fa/ji-ben-pai-xu.md)
