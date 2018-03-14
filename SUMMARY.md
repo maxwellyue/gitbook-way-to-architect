@@ -27,6 +27,8 @@
     * [垃圾收集器](javayu-yan-ji-chu/jvm/la-ji-shou-ji-qi.md)
     * [四种引用类型区别及何时回收](javayu-yan-ji-chu/jvm/si-zhong-yin-yong-lei-xing-qu-bie-ji-he-shi-hui-shou.md)
     * [逃逸分析](javayu-yan-ji-chu/jvm/tao-yi-fen-xi.md)
+    * [JVM常用配置](javayu-yan-ji-chu/jvm/jvmchang-yong-pei-zhi.md)
+    * [GC日志分析](javayu-yan-ji-chu/jvm/gcri-zhi-fen-xi.md)
   * [面向对象](javayu-yan-ji-chu/mian-xiang-dui-xiang.md)
     * [Object类中的方法](javayu-yan-ji-chu/mian-xiang-dui-xiang/objectlei-zhong-de-fang-fa.md)
     * 值传递还是引用传递？
@@ -61,9 +63,9 @@
     * [基于zookeeper](xi-tong-she-ji/ru-he-she-ji-fen-bu-shi-suo/ji-yu-zookeeper.md)
     * [基于Redis](xi-tong-she-ji/ru-he-she-ji-fen-bu-shi-suo/ji-yu-redis.md)
   * [一致性Hash算法](xi-tong-she-ji/yi-zhi-xing-hash-suan-fa.md)
-* 版本控制
+* [版本控制](ban-ben-kong-zhi.md)
 * [操作系统](cao-zuo-xi-tong.md)
-  * Linux
+  * [Linux](cao-zuo-xi-tong/linux.md)
 * [网络](wang-luo.md)
   * [TCP三次握手和四次挥手](wang-luo/tcpsan-ci-wo-shou-he-si-ci-hui-shou.md)
 
