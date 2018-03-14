@@ -2,9 +2,7 @@
 
 ---
 
-最常用的配置：name、url、username、password、initialSize、maxActive
-
-
+最常用的配置：name、url、username、password、initialSize、maxActive、minldle、filters\(stat，wall\)。
 
 主要配置如下：
 
@@ -36,5 +34,9 @@
 | filters |  | 属性类型是字符串，通过别名的方式配置扩展插件，常用的插件有： 监控统计用的filter:stat 日志用的filter:log4j 防御sql注入的filter:wall |
 | proxyFilters |  | 类型是List&lt;com.alibaba.druid.filter.Filter&gt;，如果同时配置了filters和proxyFilters，是组合关系，并非替换关系 |
 
+---
 
+内容来源：
+
+[DruidDataSource配置属性列表](https://github.com/alibaba/druid/wiki/DruidDataSource配置属性列表)
 
