@@ -35,6 +35,7 @@
     * [Object类中的方法](javayu-yan-ji-chu/mian-xiang-dui-xiang/objectlei-zhong-de-fang-fa.md)
     * 值传递还是引用传递？
     * [接口和抽象类的区别](javayu-yan-ji-chu/mian-xiang-dui-xiang/jie-kou-he-chou-xiang-lei-de-qu-bie.md)
+    * [关于字符串](javayu-yan-ji-chu/mian-xiang-dui-xiang/guan-yu-zi-fu-chuan.md)
   * [其他](javayu-yan-ji-chu/qi-ta.md)
   * [序列化](javayu-yan-ji-chu/xu-lie-hua.md)
     * Java序列化的方式有哪些？
