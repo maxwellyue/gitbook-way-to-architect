@@ -88,6 +88,6 @@
 * 服务器
   * Tomcat
     * [Tomcat生产环境中的配置](tomcatsheng-chan-huan-jing-zhong-de-pei-zhi.md)
-    * Tomcat工作原理
+    * [Tomcat组成与工作原理](tomcatgong-zuo-yuan-li.md)
   * Nginx
 
