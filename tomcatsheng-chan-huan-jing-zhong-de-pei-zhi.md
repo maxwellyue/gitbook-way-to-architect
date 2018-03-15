@@ -37,30 +37,28 @@ Tomcat首先跑在JVM之上的，首先我们需要对这个JVM实例进行调�
 ```
 <Connector port="8080" protocol="HTTP/1.1"
 
-          URIEncoding="UTF-8"  
-          
-          minSpareThreads="25" 
-          
-          maxSpareThreads="75"
+          URIEncoding="UTF-8"    使tomcat解析含有中文名的文件的url
 
-          enableLookups="false" 
-          
-          disableUploadTimeout="true" 
-          
-          connectionTimeout="20000"
+          minSpareThreads="25"   如果空闲状态的线程数多于该值，则将这些线程中止，减少这个池中的线程总数。
 
-          acceptCount="300"  
-          
-          maxThreads="300" 
-          
+          maxSpareThreads="75"   最小备用线程数，tomcat启动时的初始化的线程数
+
+          enableLookups="false"  是否反查域名。为了提高处理能力，应设置为 false
+
+          connectionTimeout="30000"  网络连接超时时间毫秒数，设置为0表示永不超时，但这样设置有隐患的。
+
+          acceptCount="300"  当线程数达到maxThreads后，后续请求会被放入一个等待队列，这个acceptCount是这个队列的大小，如果这个队列也满了，就直接refuse connection
+
+          maxThreads="300"   
+
           maxProcessors="1000" 
-          
+
           minProcessors="5"
 
           useURIValidationHack="false" 
-          
-          compression="on" 
-          
+
+          compression="on" 配置gzip压缩(HTTP压缩)功能
+
           compressionMinSize="2048"
 
           compressableMimeType="text/html,text/xml,text/JavaScript,text/css,text/plain"
