@@ -40,3 +40,27 @@
 
 
 
+**注意：**
+
+在JDK7及之前JDK版本中，堆内存 = 年轻代 + 老年代 + 永久代；如果永久内存不够，就会得到如下错误：
+
+```
+java.lang.OutOfMemoryError: PermGen
+```
+
+在JDK8中将永久内存从堆内存中移到了本地内存\(native memory\)中，这样永久内存就不再占用堆内存，它可以通过自动增长。
+
+可以通过设置Matespace的大小：
+
+```
+-XX:MaxMetaspaceSize=128m  设置Matespace最大为128M
+```
+
+如果不设置JVM将会根据一定的策略自动增加。如果你设置的元内存空间过小，你的应用程序可能得到以下错误：
+
+```
+java.lang.OutOfMemoryError: Metadata space
+```
+
+
+
