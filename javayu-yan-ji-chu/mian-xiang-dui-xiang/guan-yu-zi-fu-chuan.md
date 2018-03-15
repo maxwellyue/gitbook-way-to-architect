@@ -4,6 +4,8 @@
 
 * **使用双引号直接创建。**使用这种方式时，JVM去字符串池找有没有值相等字符串，如果有，则返回找到的字符串引用。否则创建一个新的字符串对象并存储在字符串池。
 
+TODO 系统地整理String的性质。
+
 理解下面的题目：
 
 ```
@@ -62,9 +64,9 @@ equals:
     String s2 = "abc";
     String s3 = s1 + "c";                    
     System.out.println(s3 == s2);    
-    
+
     String相加的时候，底层是通过StringBuiler的append和toString来完成的，而toString是通过构造函数来实现的 
-    也就是相当于是一个new的操作，所以为false。但是append操作的时候是在同一个对象上面操作的，因此引用所指向的地址是会发生改变的         
+    也就是相当于是一个new的操作，所以为false。但是append操作的时候是在同一个对象上面操作的，因此引用所指向的地址是会发生改变的
 ```
 
 ---
@@ -74,3 +76,4 @@ equals:
 [Java中String类的常见面试题](https://www.jianshu.com/p/44224e650520)
 
 [【java】String类常见面试题](http://blog.csdn.net/lzm18064126848/article/details/53839535)
+
