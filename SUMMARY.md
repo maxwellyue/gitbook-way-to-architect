@@ -67,6 +67,7 @@
     * [基本配置](shu-ju-ku/mysql/ji-ben-pei-zhi.md)
     * [SQL语句调优](shu-ju-ku/mysql/sqlyu-ju-diao-you.md)
     * [索引](shu-ju-ku/mysql/suo-yin.md)
+    * [分组内排序](shu-ju-ku/mysql/fen-zu-nei-pai-xu.md)
   * [Redis](shu-ju-ku/redis.md)
   * [druid](shu-ju-ku/druid.md)
   * [连接池](shu-ju-ku/lian-jie-chi.md)
