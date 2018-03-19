@@ -103,9 +103,10 @@
   * [TCP三次握手和四次挥手](wang-luo/tcpsan-ci-wo-shou-he-si-ci-hui-shou.md)
 * [设计模式](she-ji-mo-shi.md)
   * [单例模式](dan-li-mo-shi.md)
-* 服务器
+* [服务器](fu-wu-qi.md)
   * Tomcat
     * [Tomcat生产环境中的配置](tomcatsheng-chan-huan-jing-zhong-de-pei-zhi.md)
     * [Tomcat组成与工作原理](tomcatgong-zuo-yuan-li.md)
-  * Nginx
+  * [Nginx](nginx.md)
+    * nginx常用配置
 
