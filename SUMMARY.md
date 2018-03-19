@@ -66,9 +66,10 @@
     * [Spring中定时任务的原理](spring/springzhong-ding-shi-ren-wu-de-yuan-li.md)
     * [Spring中的设计模式](spring/springzhong-de-she-ji-mo-shi.md)
     * Spring如何维护beans
+    * [IOC的理解](spring/iocde-li-jie.md)
   * [SpringMVC](springmvc.md)
     * [Controller是如何将参数和前端传来的数据一一对应的](springmvc/controllershi-ru-he-jiang-can-shu-he-qian-duan-chuan-lai-de-shu-ju-yi-yi-dui-ying-de.md)
-    * 请求处理流程
+    * [请求处理流程](springmvc/qing-qiu-chu-li-liu-cheng.md)
   * [Zookeeper](zookeeper.md)
     * [Zookeeper是什么](zookeeper/zookeepershi-shi-yao.md)
     * [Zookeeper能干啥](zookeeper/zookeeperneng-gan-sha.md)
