@@ -81,6 +81,8 @@
     * [基于Redis](xi-tong-she-ji/ru-he-she-ji-fen-bu-shi-suo/ji-yu-redis.md)
   * [一致性Hash算法](xi-tong-she-ji/yi-zhi-xing-hash-suan-fa.md)
 * [版本控制](ban-ben-kong-zhi.md)
+  * Git
+  * Svn
 * [操作系统](cao-zuo-xi-tong.md)
   * [Linux](cao-zuo-xi-tong/linux.md)
     * [常用命令](cao-zuo-xi-tong/linux/chang-yong-ming-ling.md)
