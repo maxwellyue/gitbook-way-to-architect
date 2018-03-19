@@ -11,9 +11,20 @@
     * [给出场景，问数据结构？](javayu-yan-ji-chu/ji-he/gei-chu-chang-jing-ff0c-wen-shu-ju-jie-gou-ff1f.md)
   * [线程](javayu-yan-ji-chu/xian-cheng.md)
     * [ThreadLocal](javayu-yan-ji-chu/xian-cheng/threadlocal.md)
+    * 线程中断的理解
+    * [线程状态](javayu-yan-ji-chu/xian-cheng/xian-cheng-zhuang-tai.md)
+    * [线程池类型及工作原理](javayu-yan-ji-chu/xian-cheng/xian-cheng-chi-lei-xing-ji-gong-zuo-yuan-li.md)
+    * [同步与锁](javayu-yan-ji-chu/xian-cheng/tong-bu-yu-suo.md)
+      * synchronize关键字
+      * Lock及实现类
+      * volatile关键字
+      * 各种锁的概念
+      * CAS的理解
+    * [fork/join的理解](javayu-yan-ji-chu/xian-cheng/forkjoinde-li-jie.md)
   * [异常](javayu-yan-ji-chu/yi-chang.md)
-    * [try catch finally 与reture](javayu-yan-ji-chu/yi-chang/try-catch-finally-yu-reture.md)
+    * [异常体系及为什么要有这种异常设计](javayu-yan-ji-chu/yi-chang/yi-chang-ti-xi-ji-wei-shi-yao-yao-you-zhe-zhong-yi-chang-she-ji.md)
     * [多catch的执行情况](javayu-yan-ji-chu/yi-chang/duo-catch-de-zhi-xing-qing-kuang.md)
+    * [try catch finally 与reture](javayu-yan-ji-chu/yi-chang/try-catch-finally-yu-reture.md)
   * [IO](javayu-yan-ji-chu/io.md)
   * [注解](javayu-yan-ji-chu/zhu-jie.md)
   * [反射](javayu-yan-ji-chu/fan-she.md)
