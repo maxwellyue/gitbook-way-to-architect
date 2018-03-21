@@ -15,11 +15,11 @@
     * [线程状态](javayu-yan-ji-chu/xian-cheng/xian-cheng-zhuang-tai.md)
     * [线程池类型及工作原理](javayu-yan-ji-chu/xian-cheng/xian-cheng-chi-lei-xing-ji-gong-zuo-yuan-li.md)
     * [同步与锁](javayu-yan-ji-chu/xian-cheng/tong-bu-yu-suo.md)
-      * synchronize关键字
-      * Lock及实现类
+      * [synchronize关键字](javayu-yan-ji-chu/xian-cheng/tong-bu-yu-suo/synchronizeguan-jian-zi.md)
+      * [Lock及实现类](javayu-yan-ji-chu/xian-cheng/tong-bu-yu-suo/lockji-shi-xian-lei.md)
       * volatile关键字
-      * 各种锁的概念
-      * CAS的理解
+      * [各种锁的概念](javayu-yan-ji-chu/xian-cheng/tong-bu-yu-suo/ge-zhong-suo-de-gai-nian.md)
+      * [CAS的理解](javayu-yan-ji-chu/xian-cheng/tong-bu-yu-suo/casde-li-jie.md)
     * [fork/join的理解](javayu-yan-ji-chu/xian-cheng/forkjoinde-li-jie.md)
   * [异常](javayu-yan-ji-chu/yi-chang.md)
     * [异常体系及为什么要有这种异常设计](javayu-yan-ji-chu/yi-chang/yi-chang-ti-xi-ji-wei-shi-yao-yao-you-zhe-zhong-yi-chang-she-ji.md)
@@ -32,6 +32,8 @@
   * [JVM](javayu-yan-ji-chu/jvm.md)
     * [JVM内存结构](javayu-yan-ji-chu/jvm/jvmnei-cun-jie-gou.md)
     * [Java内存模型](javayu-yan-ji-chu/jvm/javanei-cun-mo-xing.md)
+    * [类文件结构](javayu-yan-ji-chu/jvm/lei-wen-jian-jie-gou.md)
+    * [类文件结构](javayu-yan-ji-chu/jvm/lei-wen-jian-jie-gou.md)
     * [类初始化顺序](javayu-yan-ji-chu/jvm/lei-jia-zai-shun-xu.md)
     * [类加载机制](javayu-yan-ji-chu/jvm/lei-jia-zai-ji-zhi.md)
     * [垃圾回收算法](javayu-yan-ji-chu/jvm/la-ji-hui-shou-suan-fa.md)
@@ -40,8 +42,7 @@
     * [逃逸分析](javayu-yan-ji-chu/jvm/tao-yi-fen-xi.md)
     * [JVM常用配置](javayu-yan-ji-chu/jvm/jvmchang-yong-pei-zhi.md)
     * [GC日志分析](javayu-yan-ji-chu/jvm/gcri-zhi-fen-xi.md)
-    * [垃圾回收其他问题](javayu-yan-ji-chu/jvm/la-ji-hui-shou-qi-ta-wen-ti.md)
-    * dump文件的分析
+    * [类文件结构](javayu-yan-ji-chu/jvm/lei-wen-jian-jie-gou.md)
   * [面向对象](javayu-yan-ji-chu/mian-xiang-dui-xiang.md)
     * [Object类中的方法](javayu-yan-ji-chu/mian-xiang-dui-xiang/objectlei-zhong-de-fang-fa.md)
     * 值传递还是引用传递？
