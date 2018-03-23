@@ -1,7 +1,7 @@
 # Summary
 
 * [前言](README.md)
-* [Java语言](javayu-yan-ji-chu.md)
+* [Java](javayu-yan-ji-chu.md)
   * [Java关键字](javayu-yan-ji-chu/javaguan-jian-zi.md)
     * [Java中四种修饰符的限制范围](javayu-yan-ji-chu/javaguan-jian-zi/javazhong-si-zhong-xiu-shi-fu-de-xian-zhi-fan-wei.md)
     * [static和final](javayu-yan-ji-chu/javaguan-jian-zi/statiche-final.md)
@@ -55,6 +55,7 @@
   * [常见方法的理解](javayu-yan-ji-chu/chang-jian-fang-fa-de-li-jie.md)
     * hashCode\(\)与equal\(\)
     * [Integer.parseInt\(\)与Interger.valueof\(\)](javayu-yan-ji-chu/chang-jian-fang-fa-de-li-jie/integerparseintyu-intergervalueof.md)
+* [Go语言](goyu-yan.md)
 * [算法](suan-fa.md)
   * [准备思路](suan-fa/zhun-bei-si-lu.md)
   * [基本排序](suan-fa/ji-ben-pai-xu.md)
@@ -104,10 +105,5 @@
   * [TCP三次握手和四次挥手](wang-luo/tcpsan-ci-wo-shou-he-si-ci-hui-shou.md)
 * [设计模式](she-ji-mo-shi.md)
   * [单例模式](dan-li-mo-shi.md)
-* [服务器](fu-wu-qi.md)
-  * Tomcat
-    * [Tomcat生产环境中的配置](tomcatsheng-chan-huan-jing-zhong-de-pei-zhi.md)
-    * [Tomcat组成与工作原理](tomcatgong-zuo-yuan-li.md)
-  * [Nginx](nginx.md)
-    * nginx常用配置
+* Go语言
 
