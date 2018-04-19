@@ -1,6 +1,8 @@
+# 权限管理
+
 先看输出样式：
 
-```
+```text
 [root@www /]# ls -l
 total 64
 dr-xr-xr-x   2 root root 4096 Dec 14  2012 bin
@@ -46,7 +48,7 @@ r-x\|r-x\|r-x
 
 **更改文件属主**
 
-```
+```text
 chown [–R] 属主名 文件名
 chown [-R] 属主名：属组名 文件名
 ```
@@ -57,7 +59,7 @@ chown [-R] 属主名：属组名 文件名
 
 如果要将权限变成_-rwxr-xr--，_那么权限的分数就成为 \[4+2+1\]\[4+0+1\]\[4+0+0\]=754，可以执行：
 
-```
+```text
 chmod 754 aa.txt
 ```
 
@@ -65,9 +67,7 @@ chmod 754 aa.txt
 
 还有一种方式是u, g, o来代表\(1\)user \(2\)group \(3\)others三种身份，按下面这种格式进行修改文件权限
 
-```
+```text
 chmod u=rwx,g=rx,o=r  aa.txt
 ```
-
-
 

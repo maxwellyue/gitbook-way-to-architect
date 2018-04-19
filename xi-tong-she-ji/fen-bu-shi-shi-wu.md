@@ -1,6 +1,6 @@
-## 分布式事务解决方案
+# 分布式事务
 
----
+## 分布式事务解决方案
 
 一个简单操作，在服务端非常可能是由多个服务和数据库实例协同完成的。
 
@@ -16,15 +16,12 @@
 
 ### 1、**基于XA协议的两阶段提交方案**
 
----
-
 交易中间件与数据库通过 XA 接口规范，使用两阶段提交来完成一个全局事务， XA 规范的基础是两阶段提交协议。
 
 * 第一阶段是表决阶段，所有参与者都将本事务能否成功的信息反馈发给协调者；
-
 * 第二阶段是执行阶段，协调者根据所有参与者的反馈，通知所有参与者，步调一致地在所有分支上提交或者回滚。
 
-![](/assets/640.webp)
+![](../.gitbook/assets/640.webp)
 
 两阶段提交这种解决方案属于牺牲了一部分可用性来换取的一致性。
 
@@ -32,22 +29,18 @@
 
 SpringBoot中使用JTA处理分布式事务：
 
-Spring Boot通过[Atomkos](http://www.atomikos.com/)或[Bitronix](https://github.com/bitronix/btm)的内嵌事务管理器支持跨多个XA资源的分布式JTA事务，当部署到恰当的J2EE应用服务器时也会支持JTA事务。当发现JTA环境时，Spring Boot将使用Spring的`JtaTransactionManager`来管理事务。自动配置的JMS，DataSource和JPA　beans将被升级以支持XA事务。可以使用标准的Spring idioms，比如`@Transactional`，来参与到一个分布式事务中。如果处于JTA环境，但仍想使用本地事务，你可以将`spring.jta.enabled`属性设置为`false`来禁用JTA自动配置功能。
+Spring Boot通过[Atomkos](http://www.atomikos.com/)或[Bitronix](https://github.com/bitronix/btm)的内嵌事务管理器支持跨多个XA资源的分布式JTA事务，当部署到恰当的J2EE应用服务器时也会支持JTA事务。当发现JTA环境时，Spring Boot将使用Spring的`JtaTransactionManager`来管理事务。自动配置的JMS，DataSource和JPA beans将被升级以支持XA事务。可以使用标准的Spring idioms，比如`@Transactional`，来参与到一个分布式事务中。如果处于JTA环境，但仍想使用本地事务，你可以将`spring.jta.enabled`属性设置为`false`来禁用JTA自动配置功能。
 
 ## 2、补偿事务（TCC）
 
----
-
 TCC（try-commit-cancel） 其实就是采用的补偿机制，其核心思想是：针对每个操作，都要注册一个与其对应的确认和补偿（撤销）操作。
 
-![](/assets/640 %281%29.webp)
+![](../.gitbook/assets/640-1.webp)
 
 它分为三个阶段：
 
 * Try 阶段：主要是对业务系统做检测及资源预留
-
 * Confirm 阶段：主要是对业务系统做确认提交，Try阶段执行成功并开始执行 Confirm阶段时，默认 Confirm阶段是不会出错的。即：只要Try成功，Confirm一定成功。
-
 * Cancel 阶段主要是在业务执行错误，需要回滚的状态下执行的业务取消，预留资源释放。
 
 > 举个例子，假入 Bob 要向 Smith 转账，思路大概是：  
@@ -65,14 +58,11 @@ TCC（try-commit-cancel） 其实就是采用的补偿机制，其核心思想�
 TCC方案让应用自己定义数据库操作的粒度，使得降低锁冲突、提高吞吐量成为可能。 当然TCC方案也有不足之处，集中表现在以下两个方面：
 
 * 对应用的侵入性强。业务逻辑的每个分支都需要实现try、confirm、cancel三个操作，应用侵入性较强，改造成本高。
-
 * 实现难度较大。需要按照网络状态、系统故障等不同的失败原因实现不同的回滚策略。为了满足一致性的要求，confirm和cancel接口必须实现幂等。
 
 上述原因导致TCC方案大多被研发实力较强、有迫切需求的大公司所采用。微服务倡导服务的轻量化、易部署，而TCC方案中很多事务的处理逻辑需要应用自己编码实现，复杂且开发量大。
 
 ## 3、基于消息的最终一致性方案
-
----
 
 消息一致性方案是通过消息中间件保证上、下游应用数据操作的一致性。
 
@@ -82,7 +72,7 @@ TCC方案让应用自己定义数据库操作的粒度，使得降低锁冲突�
 
 ②下游应用向消息系统订阅该消息，收到消息后执行相应操作。
 
-![](/assets/640 %282%29.webp)
+![](../.gitbook/assets/640-2.webp)
 
 消息方案从本质上讲是将分布式事务转换为两个本地事务，然后依靠下游业务的重试机制达到最终一致性。基于消息的最终一致性方案对应用侵入性也很高，应用需要进行大量业务改造，成本较高。
 
@@ -92,7 +82,7 @@ TCC方案让应用自己定义数据库操作的粒度，使得降低锁冲突�
 
 消息生产者：
 
-```
+```text
 public void transfer(){
     try{
         //①操作数据库
@@ -133,15 +123,12 @@ public void transfer(){
 **假如消息中间件支持事务消息：（以**RocketMQ为例**）**  
 RocketMQ第一阶段发送Prepared消息时，会拿到消息的地址，第二阶段执行本地事物，第三阶段通过第一阶段拿到的地址去访问消息，并修改状态。细心的读者可能又发现问题了，如果确认消息发送失败了怎么办？RocketMQ会定期扫描消息集群中的事物消息，这时候发现了Prepared消息，它会向消息发送者确认，Bob的钱到底是减了还是没减呢？如果减了是回滚还是继续发送确认消息呢？RocketMQ会根据发送端设置的策略来决定是回滚还是继续发送确认消息。这样就保证了消息发送与本地事务同时成功或同时失败。
 
-![](/assets/006.png)
+![](../.gitbook/assets/006.png)
 
 各大知名的电商平台和互联网公司，几乎都是采用类似的设计思路来实现“最终一致性”的。这种方式适合的业务场景广泛，而且比较可靠。
 
----
-
 内容来源：
 
-  
 [聊聊分布式事务，再说说解决方案](https://www.cnblogs.com/savorboard/p/distributed-system-transaction-consistency.html)
 
 [Spring Boot学习笔记\(二三\) - 使用JTA处理分布式事务](http://www.hifreud.com/2017/07/12/spring-boot-23-jta-handle-distribute-transaction/)
@@ -153,5 +140,4 @@ RocketMQ第一阶段发送Prepared消息时，会拿到消息的地址，第二�
 [RocketMQ实战（三）：分布式事务](https://www.jianshu.com/p/53324ea2df92)
 
 [Spring Cloud分布式事务终极解决方案探讨](https://segmentfault.com/a/1190000012762869)
-
 

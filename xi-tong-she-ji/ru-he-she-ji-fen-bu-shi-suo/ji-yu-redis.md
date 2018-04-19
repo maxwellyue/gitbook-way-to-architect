@@ -1,8 +1,6 @@
-# 使用Redis实现分布式锁
+# 基于Redis
 
----
-
-#### 思路
+## 思路
 
 ①获取锁：从客户端向redis中`set（lockKey, value, "NX", "PX", expireTime）`，键为`lockKey`如果设置成功，说明其他客户端没有设置过该`lockKey`，获取锁成功；如果失败，说明该`lockKey`已经被其他客户端设置（即锁被其他客户端获取到）；
 
@@ -10,9 +8,9 @@
 
 ③死锁的解决：死锁发生的情况是，某客户端获取到了锁，但与redis失去了连接，此时，其他客户端因为之前获取到锁的客户端失去连接而无法解锁，所以就无法获取到锁，造成死锁。解决的办法是，在set的时候，设置超时时间：即第①中的`set（lockKey, value, "NX", "PX", expireTime）`中最后一个参数`expireTime`。
 
-#### 参考实现
+## 参考实现
 
-```
+```text
 public class SimpleRedisDistributedLock implements Lock {
 
     private Jedis jedis;
@@ -79,6 +77,4 @@ public class SimpleRedisDistributedLock implements Lock {
 
 }
 ```
-
-
 

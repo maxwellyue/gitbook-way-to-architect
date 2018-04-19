@@ -1,6 +1,4 @@
-# Way to Architect
-
----
+# 前言
 
 
 

@@ -1,8 +1,8 @@
-# 使用Zookeeper实现分布式锁
+# 基于zookeeper
 
----
+## 使用Zookeeper实现分布式锁
 
-#### 思路
+### 思路
 
 ①建立一个节点，假如名为：lock 。节点类型为持久节点（PERSISTENT）
 
@@ -14,11 +14,11 @@
 
 ⑤当调用完共享资源后，调用unlock（）方法，关闭zk，进而可以引发监听事件，释放该锁。
 
- 这种分布式锁是严格的按照顺序访问的并发锁。
+这种分布式锁是严格的按照顺序访问的并发锁。
 
-#### 参考实现
+### 参考实现
 
-```
+```text
 public class SimpleDistributedLock implements Lock, Watcher {
 
     private ZooKeeper zk;
@@ -230,17 +230,13 @@ public class SimpleDistributedLock implements Lock, Watcher {
 }
 ```
 
-
-
-# Curator对Zookeeper的封装
-
----
+## Curator对Zookeeper的封装
 
 虽然zookeeper原生客户端暴露的API已经非常简洁了，但是实现一个分布式锁还是比较麻烦的
 
 所以，我们可以直接使用curator这个开源项目提供的zookeeper分布式锁实现。
 
-```
+```text
 public class CuratorDistributedLockSample {
 
     @Test
@@ -290,6 +286,4 @@ public class CuratorDistributedLockSample {
 
 }
 ```
-
-
 
