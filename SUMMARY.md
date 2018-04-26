@@ -55,7 +55,8 @@
   * [常见方法的理解](java-yu-yan/chang-jian-fang-fa-de-li-jie/README.md)
     * hashCode\(\)与equal\(\)
     * [Integer.parseInt\(\)与Interger.valueof\(\)](java-yu-yan/chang-jian-fang-fa-de-li-jie/integer.parseint-yu-interger.valueof.md)
-  * [SPI](java-yu-yan/spi.md)
+  * [SPI](java-yu-yan/spi/README.md)
+    * SPI是什么
 * [Go语言](go-yu-yan.md)
 * [算法](suan-fa/README.md)
   * [准备思路](suan-fa/zhun-bei-si-lu.md)
