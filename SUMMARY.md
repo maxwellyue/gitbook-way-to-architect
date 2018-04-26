@@ -109,4 +109,10 @@
 * [设计模式](she-ji-mo-shi/README.md)
   * [单例模式](she-ji-mo-shi/dan-li-mo-shi.md)
 * 构建工具
+  * Maven
+  * Gradle
+* 大数据
+  * Hadoop
+  * Storm
+  * Spark
 
