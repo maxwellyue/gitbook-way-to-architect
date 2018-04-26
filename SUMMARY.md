@@ -96,8 +96,8 @@
     * [基于Redis](xi-tong-she-ji/ru-he-she-ji-fen-bu-shi-suo/ji-yu-redis.md)
   * [一致性Hash算法](xi-tong-she-ji/yi-zhi-xing-hash-suan-fa.md)
 * [版本控制](ban-ben-kong-zhi/README.md)
-  * [Git](ban-ben-kong-zhi/git/README.md)
-    * Git常用命令
+  * Git
+    * [Git常用命令](ban-ben-kong-zhi/und/git-chang-yong-ming-ling.md)
   * Svn
 * [操作系统](cao-zuo-xi-tong/README.md)
   * [Linux](cao-zuo-xi-tong/linux/README.md)

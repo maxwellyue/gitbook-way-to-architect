@@ -1,8 +1,4 @@
----
-description: Git常用命令
----
-
-# Git
+# Git常用命令
 
 Git常用命令
 
