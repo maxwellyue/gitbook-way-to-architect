@@ -8,7 +8,7 @@ Git常用命令
 
 一般来说，日常使用只要记住下图6个命令，就可以了。但是熟练使用，恐怕要记住60～100个命令。
 
-![](../.gitbook/assets/image.png)
+![](../../.gitbook/assets/image.png)
 
 Git中几个专用名词的译名如下：
 
