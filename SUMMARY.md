@@ -79,7 +79,6 @@
     * [Zookeeper能干啥](kuang-jia-huo-gong-ju/zookeeper/zookeeper-neng-gan-sha.md)
   * Dubbo
   * [Shiro](kuang-jia-huo-gong-ju/shiro.md)
-  * [Maven](kuang-jia-huo-gong-ju/maven.md)
   * Netty
 * [数据库](shu-ju-ku/README.md)
   * [MySQL](shu-ju-ku/mysql/README.md)
