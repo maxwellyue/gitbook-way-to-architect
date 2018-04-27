@@ -1,3 +1,7 @@
+---
+description: 开发常用的Nginx命令
+---
+
 # 常用命令
 
 ```bash
@@ -11,10 +15,7 @@
 检查配置文件有没有错误：
 nginx -t 或者 nginx -t -c /etc/nginx/nginx.conf (-c 用来指定配置文件路径)
 
-
-
-
-
+修改了配置后，重新加载：nginx -s reload (不必重启nginx，即可生效)
 ```
 
 
