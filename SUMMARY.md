@@ -89,10 +89,6 @@
   * [druid](shu-ju-ku/druid.md)
   * [连接池](shu-ju-ku/lian-jie-chi.md)
 * [系统设计](xi-tong-she-ji/README.md)
-  * [分布式事务](xi-tong-she-ji/fen-bu-shi-shi-wu.md)
-  * [如何设计分布式锁](xi-tong-she-ji/ru-he-she-ji-fen-bu-shi-suo/README.md)
-    * [基于zookeeper](xi-tong-she-ji/ru-he-she-ji-fen-bu-shi-suo/ji-yu-zookeeper.md)
-    * [基于Redis](xi-tong-she-ji/ru-he-she-ji-fen-bu-shi-suo/ji-yu-redis.md)
   * [一致性Hash算法](xi-tong-she-ji/yi-zhi-xing-hash-suan-fa.md)
 * [版本控制](ban-ben-kong-zhi/README.md)
   * Git
@@ -129,6 +125,11 @@
 * 中间件
   * 任务调度
   * 消息队列
+  * [分布式事务](zhong-jian-jian/fen-bu-shi-shi-wu.md)
   * 服务治理
     * Dubbo
+  * 分布式锁
+    * [如何设计分布式锁](zhong-jian-jian/fen-bu-shi-suo/ru-he-she-ji-fen-bu-shi-suo/README.md)
+      * [基于zookeeper](zhong-jian-jian/fen-bu-shi-suo/ru-he-she-ji-fen-bu-shi-suo/ji-yu-zookeeper.md)
+      * [基于Redis](zhong-jian-jian/fen-bu-shi-suo/ru-he-she-ji-fen-bu-shi-suo/ji-yu-redis.md)
 
