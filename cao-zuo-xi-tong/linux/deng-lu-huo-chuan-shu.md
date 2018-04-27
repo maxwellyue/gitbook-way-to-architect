@@ -14,11 +14,14 @@ ssh -p 5000 xiaoming@192.168.12.211
 ```bash
 # 将文件/Users/yue/xxxx/dist/index.html传输到远程主机192.168.12.21
 # 以用户xiaoming登录
-scp /Users/yue/xxxx/dist/index.html xiaoming@192.168.12.21:/home/edu-web
+scp -r /Users/yue/xxxx/dist/index.html xiaoming@192.168.12.21:/home/edu-web
 
 # 将/Users/yue/xxxx/dist/static目录及该目录下的所有文件或子目录传输到远程主机192.168.12.21
 # 以用户xiaoming登录，并指定免密私钥在本地的存放地址为/Users/yue/educloud_server
 scp -i /Users/yue/educloud_server -r /Users/yue/xxxx/dist/static root@192.168.12.21:/home/edu-web
+
+# 从远程主机向本地传输文件时，只需要将上面的scp后面的定位文件的字符的前后位置倒置即可，如
+scp -r xiaoming@192.168.12.21:/home/remotefile.txt /Users/yue/Desktop
 ```
 
 远程执行命令
