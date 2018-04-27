@@ -127,7 +127,7 @@
   * Nginx
     * [常用命令](fu-wu-qi/nginx/chang-yong-ming-ling.md)
   * Tengine
-* 消息队列
-* 任务调度
 * 中间件
+  * 任务调度
+  * 消息队列
 
