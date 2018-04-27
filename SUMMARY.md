@@ -77,7 +77,6 @@
   * [Zookeeper](kuang-jia-huo-gong-ju/zookeeper/README.md)
     * [Zookeeper是什么](kuang-jia-huo-gong-ju/zookeeper/zookeeper-shi-shi-mo.md)
     * [Zookeeper能干啥](kuang-jia-huo-gong-ju/zookeeper/zookeeper-neng-gan-sha.md)
-  * Dubbo
   * [Shiro](kuang-jia-huo-gong-ju/shiro.md)
   * Netty
 * [数据库](shu-ju-ku/README.md)
@@ -131,4 +130,5 @@
   * 任务调度
   * 消息队列
   * 服务治理
+    * Dubbo
 
