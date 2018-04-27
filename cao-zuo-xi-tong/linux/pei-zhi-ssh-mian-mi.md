@@ -55,5 +55,5 @@ scp －i /root/.ssh/id_rsa ./xxx 192.168.12.21:/home/wwy/bak
 
 ## 参考
 
-[https://blog.csdn.net/syani/article/details/52618840](https://blog.csdn.net/syani/article/details/52618840)
+\[Linux免密登录\]\(https://blog.csdn.net/syani/article/details/52618840\)
 
