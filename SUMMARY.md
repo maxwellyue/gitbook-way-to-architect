@@ -79,6 +79,7 @@
     * [Zookeeper是什么](kuang-jia-huo-gong-ju/zookeeper/zookeeper-shi-shi-mo.md)
     * [Zookeeper能干啥](kuang-jia-huo-gong-ju/zookeeper/zookeeper-neng-gan-sha.md)
   * [Shiro](kuang-jia-huo-gong-ju/shiro.md)
+  * [druid](kuang-jia-huo-gong-ju/druid.md)
   * Netty
 * [数据库](shu-ju-ku/README.md)
   * [MySQL](shu-ju-ku/mysql/README.md)
@@ -87,7 +88,10 @@
     * [索引](shu-ju-ku/mysql/suo-yin.md)
     * [分组内排序](shu-ju-ku/mysql/fen-zu-nei-pai-xu.md)
   * [Redis](shu-ju-ku/redis.md)
-  * [druid](shu-ju-ku/druid.md)
+  * Hbase
+  * OpenTSDB
+  * rrd
+  * MongoDB
   * [连接池](shu-ju-ku/lian-jie-chi.md)
 * [系统设计](xi-tong-she-ji/README.md)
   * [一致性Hash算法](xi-tong-she-ji/yi-zhi-xing-hash-suan-fa.md)
