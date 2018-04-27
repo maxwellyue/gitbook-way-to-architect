@@ -44,6 +44,7 @@ less filename （在查看之前不会加载整个文件）
 ```text
 显示文件最后10行内容：tail -n 10 filename 
 如果filename中的内容正在改变，加上-f会不断刷新，可以看到最新的文件内容：tail -f filename 
+查看最后10行，并不断刷新：tail -fn 10 filename 
 ```
 
 ### head：显示文件前n行内容
