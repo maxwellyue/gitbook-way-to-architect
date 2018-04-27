@@ -117,7 +117,8 @@
   * Storm
   * Spark
 * 服务器
+  * Tomcat
   * Nginx
-    * Tomcat
-      * Tengine
+    * [常用命令](fu-wu-qi/nginx/chang-yong-ming-ling.md)
+  * Tengine
 
