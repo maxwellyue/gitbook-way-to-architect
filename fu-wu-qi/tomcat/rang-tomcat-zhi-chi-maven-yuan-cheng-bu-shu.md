@@ -51,5 +51,11 @@
 </plugin>
 ```
 
+OK，现在可以部署了：
+
+```text
+mvn tomcat7:redeploy -Ptest
+```
+
 
 
