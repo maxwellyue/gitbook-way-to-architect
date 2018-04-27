@@ -104,7 +104,7 @@
     * [常用命令](cao-zuo-xi-tong/linux/chang-yong-ming-ling.md)
     * [查看日志](cao-zuo-xi-tong/linux/cha-kan-ri-zhi.md)
     * [权限管理](cao-zuo-xi-tong/linux/quan-xian-guan-li.md)
-    * 登录或传输
+    * [登录或传输](cao-zuo-xi-tong/linux/deng-lu-huo-chuan-shu.md)
 * [网络](wang-luo/README.md)
   * [TCP三次握手和四次挥手](wang-luo/tcp-san-ci-wo-shou-he-si-ci-hui-shou.md)
 * [设计模式](she-ji-mo-shi/README.md)
