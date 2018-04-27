@@ -94,3 +94,28 @@ hahahahah
 2017年 12月 12日 星期二 11:11:49 CST
 ```
 
+## 以某一个用户的身份执行某一个命令
+
+在控制台中以某个用户的身份运行一条命令可以用 
+
+```bash
+# 命令格式
+su -c "command" user
+# 当前登录用户是xiaohong，现在要以xiaoming的身份执行/home/www/test.sh 这个脚本
+su -c “/home/www/test.sh” xiaoming
+(前提是，xiaoming对/home/www/test.sh这个脚本文件有执行权限)
+```
+
+## 切换用户身份
+
+```bash
+# 当前用户为小明，需要切换到root用户
+sudo su -
+# 从root用户切换到xiaoming用户
+su - xiaoming
+```
+
+> 注意：- 与 -l 是一样的，都表示要切换到后面指定的用户（未指定，则默认为root），并加载其对应的环境变量
+
+
+
