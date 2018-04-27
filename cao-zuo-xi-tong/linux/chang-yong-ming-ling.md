@@ -2,7 +2,7 @@
 
 ## 根据端口查看进程并杀死
 
-```text
+```bash
 # 查看某端口的进程
 lsof -i:端口号
 # 杀死进程
@@ -32,7 +32,7 @@ kill -9 PID
 
 ## 找出占用空间最大的文件
 
-```text
+```bash
 $ cd/path/to/some/where
 $ du -hsx * | sort -rh | head -10
 //命令解释
@@ -55,7 +55,7 @@ TODO
 ②创建一个新文件`cat > filename`只能创建新文件,不能编辑已有文件.  
 ③将几个文件合并为一个文件`cat file1 file2 > file`
 
-```text
+```bash
 -A, --show-all           等价于 -vET
 -b, --number-nonblank    对非空输出行编号
 -e                       等价于 -vE
@@ -72,7 +72,7 @@ TODO
 
 ①输出字符串
 
-```text
+```bash
 [root@iZ2zeap997asuc4yr0bw77Z /]
 # echo hahhahah
 hahhahah
@@ -80,7 +80,7 @@ hahhahah
 
 ②将字符串写到文件中\(使用&gt;&gt;表示在原有内容基础上追加，使用&gt;表示清空原来内容，替换\)
 
-```text
+```bash
 [root@iZ2zeap997asuc4yr0bw77Z /]# touch aa.txt
 [root@iZ2zeap997asuc4yr0bw77Z /]# echo hahahahah >>aa.txt
 [root@iZ2zeap997asuc4yr0bw77Z /]# cat aa.txt
@@ -89,7 +89,7 @@ hahahahah
 
 ③显示命令的结果
 
-```text
+```bash
 [root@iZ2zeap997asuc4yr0bw77Z /]# echo`date`
 2017年 12月 12日 星期二 11:11:49 CST
 ```
@@ -116,6 +116,15 @@ su - xiaoming
 ```
 
 > 注意：- 与 -l 是一样的，都表示要切换到后面指定的用户（未指定，则默认为root），并加载其对应的环境变量
+
+## 远程主机或特定端口是否可达
+
+```bash
+# 查看192.168.12.21是否可达
+ping 192.168.12.21
+# 查看192.168.12.21的6379端口是否可达
+telnet 192.168.12.21 6379
+```
 
 
 
