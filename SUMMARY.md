@@ -1,6 +1,7 @@
 # Table of contents
 
 * [前言](README.md)
+* 前言
 * [Java语言](java-yu-yan/README.md)
   * [Java关键字](java-yu-yan/java-guan-jian-zi/README.md)
     * [Java中四种修饰符的限制范围](java-yu-yan/java-guan-jian-zi/java-zhong-si-zhong-xiu-shi-fu-de-xian-zhi-fan-wei.md)
