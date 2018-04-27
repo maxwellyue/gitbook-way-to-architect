@@ -127,7 +127,9 @@
     * 为什么需要任务调度
   * 消息队列
     * 为什么需要消息队列
-  * [分布式事务](zhong-jian-jian/fen-bu-shi-shi-wu.md)
+  * [分布式事务](zhong-jian-jian/fen-bu-shi-shi-wu/README.md)
+    * 什么是分布式事务
+    * [解决方案](zhong-jian-jian/fen-bu-shi-shi-wu/jie-jue-fang-an.md)
   * 服务治理
     * Dubbo
   * 分布式锁
