@@ -117,7 +117,11 @@ find ~/.m2  -name "*.lastUpdated" -exec grep -q "Could not transfer" {} \; -prin
 
 7、新到公司，配置私服地址？
 
-假如
+假如公司私服为：`https://mvn.maxwell.com/nexus/#welcome`
+
+提取关键词：`maxwell.com`
+
+按照如下修改即可。
 
 ```text
 <?xml version="1.0" encoding="UTF-8"?>
