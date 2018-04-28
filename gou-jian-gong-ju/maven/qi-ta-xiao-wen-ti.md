@@ -26,11 +26,23 @@
 </plugin>
 ```
 
+如果只有少量的jar，也可以通过如下方式解决。
 
+```text
+<dependency> 
+    <groupId>org.apache</groupId> 
+    <artifactId>test</artifactId> 
+    <version>1.0</version> 
+    <scope>system</scope> 
+    <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/xxxxxxxxx.jar</systemPath> 
+</dependency> 
+```
 
 ## 参考
 
 [Where is Maven' settings.xml located on mac os?](https://stackoverflow.com/questions/3792842/where-is-maven-settings-xml-located-on-mac-os)
+
+\[既使用maven编译，又使用lib下的Jar包\]\([https://blog.csdn.net/catoop/article/details/48489365](https://blog.csdn.net/catoop/article/details/48489365)\)
 
   
 
