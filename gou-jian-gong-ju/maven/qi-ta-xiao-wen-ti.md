@@ -1,4 +1,4 @@
-# 其他小问题
+# 其他问题
 
 #### 1、Mac中Maven的setting.xml文件在哪？
 
@@ -102,7 +102,18 @@ find ~/.m2  -name "*.lastUpdated" -exec grep -q "Could not transfer" {} \; -prin
 </build>
 ```
 
+#### 6、maven下载慢的解决方法
 
+修改`${maven.home}/conf`或者`${user.home}/.m2`文件夹下的`settings.xml`文件，在`<mirrors>`标签下加入如下内容即可。
+
+```text
+<mirror>
+     <id>alimaven</id>
+     <mirrorOf>central</mirrorOf>
+     <name>aliyun maven</name>
+     <url>http://maven.aliyun.com/nexus/content/repositories/central/</url>
+</mirror>
+```
 
 
 
