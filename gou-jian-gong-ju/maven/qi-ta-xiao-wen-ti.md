@@ -120,6 +120,9 @@ find ~/.m2  -name "*.lastUpdated" -exec grep -q "Could not transfer" {} \; -prin
 
 [maven如何过滤占位符](http://www.cnblogs.com/xiohao/p/5080327.html)
 
+\[使用Maven filter和profile隔离不同环境的配置文件  
+\]\([https://my.oschina.net/jackieyeah/blog/716503](https://my.oschina.net/jackieyeah/blog/716503)\)
+
   
 
 
