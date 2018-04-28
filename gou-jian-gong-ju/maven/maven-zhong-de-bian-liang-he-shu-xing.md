@@ -33,11 +33,19 @@ ${project.version}                 表示项目版本,与${version}相同;
 
 是指在pom.xml文件的&lt;properties&gt;标签下定义的Maven属性
 
-| &lt;project&gt;  &lt;properties&gt;    &lt;my.pro&gt;abc&lt;/my.pro&gt;  &lt;/properties&gt;&lt;/project&gt; |
-| --- |
+```markup
+<project> 
+    ...
+    <properties> 
+        <my.pro>abc</my.pro> 
+    </properties>
+    ...
+</project>
+```
+
+这样就可以在其他地方用`${my.pro}`使用该属性值。
 
 
-在其他地方使用${my.pro}使用该属性值。
 
 **settings.xml文件属性**\(与pom属性同理,用户使用以settings.开头的属性引用settings.xml文件中的XML元素值\)
 
