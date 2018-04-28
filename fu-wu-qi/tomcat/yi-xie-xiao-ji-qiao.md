@@ -32,5 +32,9 @@ Windows下安装好了tomcat了以后，可以直接进如 `bin` 目录双击 `s
 
 [Why are my JSP changes are not reflected without restarting Tomcat?](https://stackoverflow.com/questions/2004676/why-are-my-jsp-changes-are-not-reflected-without-restarting-tomcat)
 
+[Installing Tomcat 7 as Service on Windows Server 2008](https://stackoverflow.com/questions/5920051/installing-tomcat-7-as-service-on-windows-server-2008)
+
+\[Java Web之tomcat开机后台启动\]\([https://www.jianshu.com/p/a2bd0ed9e513](https://www.jianshu.com/p/a2bd0ed9e513)\)
+
 
 
