@@ -118,6 +118,8 @@ find ~/.m2  -name "*.lastUpdated" -exec grep -q "Could not transfer" {} \; -prin
 
 \[清空仓库中lastUpdated文件\]\([https://my.oschina.net/lhplj/blog/201832](https://my.oschina.net/lhplj/blog/201832)\)
 
+[maven如何过滤占位符](http://www.cnblogs.com/xiohao/p/5080327.html)
+
   
 
 
