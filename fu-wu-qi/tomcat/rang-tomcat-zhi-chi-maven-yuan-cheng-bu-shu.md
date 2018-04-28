@@ -57,5 +57,7 @@ OK，现在可以部署了：
 mvn tomcat7:redeploy -Ptest
 ```
 
+## 参考
 
+[Access Tomcat Manager App from different host](https://stackoverflow.com/questions/36703856/access-tomcat-manager-app-from-different-host)
 
