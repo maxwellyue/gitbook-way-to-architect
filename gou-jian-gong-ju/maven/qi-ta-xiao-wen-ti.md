@@ -6,8 +6,8 @@
 
 #### 2、如何将项目中WEB-INF/lib目录下的jar加入编译环境？
 
-由于历史等原因，我们在项目中WEB-INF/lib目录下手动添加了一些jar文件，此时Maven并不知道它的存在的。  
-此时，可以在maven-compiler-plugin插件中指定额外的编译参数即可，如下所示：
+由于历史等原因，我们在项目中`WEB-INF/lib`目录下手动添加了一些jar文件，此时`Maven`并不知道它的存在的。  
+此时，可以在`maven-compiler-plugin`插件中指定额外的编译参数即可，如下所示：
 
 ```text
 <plugin>
@@ -62,8 +62,8 @@ mvn clean compile exec:java -Dexec.mainClass="com.demo.App" -Dexec.args="aaa bbb
 			<configuration>
 				<mainClass>com.demo.App</mainClass>
 				<arguments>
-					<argument>11111111</argument>
-					<argument>22222222</argument>
+					<argument>aaa</argument>
+					<argument>bbb</argument>
 				</arguments>
 			</configuration>
 		</execution>
@@ -71,7 +71,7 @@ mvn clean compile exec:java -Dexec.mainClass="com.demo.App" -Dexec.args="aaa bbb
 </plugin>
 ```
 
-配置好插件后，执行mvn test 即可执行main方法
+配置好插件后，执行`mvn test` 即可执行`main`方法
 
 
 
