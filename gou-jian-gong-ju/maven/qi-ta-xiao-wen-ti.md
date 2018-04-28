@@ -123,16 +123,16 @@ find ~/.m2  -name "*.lastUpdated" -exec grep -q "Could not transfer" {} \; -prin
 
 [Where is Maven' settings.xml located on mac os?](https://stackoverflow.com/questions/3792842/where-is-maven-settings-xml-located-on-mac-os)
 
-\[既使用maven编译，又使用lib下的Jar包\]\([https://blog.csdn.net/catoop/article/details/48489365](https://blog.csdn.net/catoop/article/details/48489365)\)
+[既使用maven编译，又使用lib下的Jar包](https://blog.csdn.net/catoop/article/details/48489365)
 
-\[使用maven运行Java main的2种方式\]\([https://blog.csdn.net/mn960mn/article/details/49664701](https://blog.csdn.net/mn960mn/article/details/49664701)\)
+[使用maven运行Java main的2种方式](https://blog.csdn.net/mn960mn/article/details/49664701)
 
-\[清空仓库中lastUpdated文件\]\([https://my.oschina.net/lhplj/blog/201832](https://my.oschina.net/lhplj/blog/201832)\)
+[清空仓库中lastUpdated文件](https://my.oschina.net/lhplj/blog/201832)
 
 [maven如何过滤占位符](http://www.cnblogs.com/xiohao/p/5080327.html)
 
-\[使用Maven filter和profile隔离不同环境的配置文件  
-\]\([https://my.oschina.net/jackieyeah/blog/716503](https://my.oschina.net/jackieyeah/blog/716503)\)
+[使用Maven filter和profile隔离不同环境的配置文件](https://my.oschina.net/jackieyeah/blog/716503)  
+
 
   
 
