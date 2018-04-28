@@ -14,6 +14,12 @@ Maven有三种不同的生命周期（Lifecycle），分别是Clean、Default、
 
 具体某个阶段应该做什么工作，怎么做，Maven有默认的行为，当然也可以通过插件进行定制修改。这就引入了Maven中另一个重要概念：goal。一个phase可以绑定很多个goal，至少为一个，没有goal的phase是没有意义的。goal也是按顺序执行的，一个phase被执行时，绑定到phase里的goal会按绑定的时间被顺序执行，不管phase己经绑定了多少个goal，你自己定义的goal都可以继续绑到phase中。
 
+**mojo**
+
+Lifecycle与Phase与goal都是概念上的东西，mojo才是做具体事情的，可以简单理解mojo为goal的实现类，它继承于AbstractMojo，有一个execute方法，goal等的定义都是通过在mojo里定义一些注释的anotation来实现的，maven会在打包时，自动根据这些anotation生成一些xml文件，放在plugin的jar包里。
+
+> lifecycle与phase与goal就是级别的大小问题，引用必须是从高级引用下级（goal绑定到phase，执行时，phase会调用绑定到它那的goal），也不能跨级引用，如lifecycle可以引用任意的phase，不同lifecycle可以同时引用相同的phase，lifecycle不能跨级引用goal。goal会绑定到任意的phase中，也就是说不同的phase可以同时引用相同的goal，所以goal可以在一个lifecycle里被重复执行。
+
 ## **Clean Lifecycle** 
 
 在进行真正的构建之前进行一些清理工作，Clean声明周期包含如下三个Phase。
@@ -70,7 +76,9 @@ Maven有三种不同的生命周期（Lifecycle），分别是Clean、Default、
 
 ## 参考
 
-#### [Maven生命周期详解](http://juvenshun.iteye.com/blog/213959)
+#### [**Maven生命周期详解**](http://juvenshun.iteye.com/blog/213959)
+
+#### [**Maven plugin中的lifecycle、phase、goal、mojo概念及作用的理解**](http://gavin-chen.iteye.com/blog/336607)
 
 \[Introduction to the Build Lifecycle\]\([http://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html](http://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html)\)
 
