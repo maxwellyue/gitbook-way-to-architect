@@ -4,7 +4,27 @@
 
 `/Users/usename/.m2/settings.xml`或者`/usr/local/Cellar/maven/<version>/libexec/conf`
 
+#### 2、如何将项目中WEB-INF/lib目录下的jar加入编译环境？
 
+由于历史等原因，我们在项目中WEB-INF/lib目录下手动添加了一些jar文件，此时Maven并不知道它的存在的。  
+此时，可以在maven-compiler-plugin插件中指定额外的编译参数即可，如下所示：
+
+```text
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>2.3.2</version>
+    <configuration>
+        <source>1.7</source>
+        <target>1.7</target>
+        <encoding>utf-8</encoding>
+        <compilerArguments>
+            <!--将lib下的文件包含进编译目录-->
+            <extdirs>${project.basedir}/src/main/webapp/WEB-INF/lib</extdirs>
+        </compilerArguments>
+    </configuration>
+</plugin>
+```
 
 
 
