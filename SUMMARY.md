@@ -127,6 +127,7 @@
     * [一些小技巧](fu-wu-qi/tomcat/yi-xie-xiao-ji-qiao.md)
   * Nginx
     * [常用命令](fu-wu-qi/nginx/chang-yong-ming-ling.md)
+    * [基本配置](fu-wu-qi/nginx/ji-ben-pei-zhi.md)
   * Tengine
 * 中间件
   * 任务调度
