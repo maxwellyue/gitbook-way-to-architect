@@ -82,3 +82,7 @@ Lifecycle与Phase与goal都是概念上的东西，mojo才是做具体事情的�
 
 \[Introduction to the Build Lifecycle\]\([http://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html](http://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html)\)
 
+[What are Maven goals and phases and what is their difference?](https://stackoverflow.com/questions/16205778/what-are-maven-goals-and-phases-and-what-is-their-difference)
+
+
+
