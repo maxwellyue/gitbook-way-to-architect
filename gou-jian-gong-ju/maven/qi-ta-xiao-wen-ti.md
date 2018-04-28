@@ -82,6 +82,32 @@ mvn clean compile exec:java -Dexec.mainClass="com.demo.App" -Dexec.args="aaa bbb
 find ~/.m2  -name "*.lastUpdated" -exec grep -q "Could not transfer" {} \; -print -exec rm {} \;
 ```
 
+#### 5、properties文件采用`${xxx}`赋值，真正的值是配置在`pom`的`profile`中，但是未生效？
+
+```text
+<build>        
+    <resources>            
+        <resource>   
+              <directory>${project.basedir}/src/main/resources</directory>      
+             <!-- 加入这一行 -->
+            <filtering>true</filtering>   
+        </resource>        
+        <resource>        
+            <directory>${project.basedir}/bin</directory> 
+               <targetPath>/bin</targetPath>   
+                <!-- 加入这一行 -->             
+               <filtering>true</filtering>            
+        </resource>        
+    </resources>    
+</build>
+```
+
+
+
+
+
+
+
 ## 参考
 
 [Where is Maven' settings.xml located on mac os?](https://stackoverflow.com/questions/3792842/where-is-maven-settings-xml-located-on-mac-os)
@@ -89,6 +115,8 @@ find ~/.m2  -name "*.lastUpdated" -exec grep -q "Could not transfer" {} \; -prin
 \[既使用maven编译，又使用lib下的Jar包\]\([https://blog.csdn.net/catoop/article/details/48489365](https://blog.csdn.net/catoop/article/details/48489365)\)
 
 \[使用maven运行Java main的2种方式\]\([https://blog.csdn.net/mn960mn/article/details/49664701](https://blog.csdn.net/mn960mn/article/details/49664701)\)
+
+\[清空仓库中lastUpdated文件\]\([https://my.oschina.net/lhplj/blog/201832](https://my.oschina.net/lhplj/blog/201832)\)
 
   
 
