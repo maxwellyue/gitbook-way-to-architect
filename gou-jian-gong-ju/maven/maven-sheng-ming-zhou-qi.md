@@ -1,10 +1,18 @@
 # Maven生命周期
 
+## 重要概念
+
+**生命周期（Lifecycle）**
+
 Maven有三种不同的生命周期（Lifecycle），分别是Clean、Default、Site。每个生命周期又包含不同的阶段（Phase）。
+
+**阶段（Phase）**
 
 当我们在运行一个命令的时候，该命令都会对应某个生命周期的某个阶段，并且该生命周期中的在此阶段之前的命令都会被执行。比如，`mvn clean` 等同于 `mvn pre-clean clean` ，如果我们运行 `mvn post-clean` ，那么` pre-clean，clean` 都会被运行。这是Maven很重要的一个规则，可以大大简化命令行的输入。
 
-具体某个阶段应该做什么工作，怎么做，Maven有默认的行为，当然也可以通过插件进行定制修改。
+**目标（goal）**
+
+具体某个阶段应该做什么工作，怎么做，Maven有默认的行为，当然也可以通过插件进行定制修改。这就引入了Maven中另一个重要概念：goal。一个phase可以绑定很多个goal，至少为一个，没有goal的phase是没有意义的。goal也是按顺序执行的，一个phase被执行时，绑定到phase里的goal会按绑定的时间被顺序执行，不管phase己经绑定了多少个goal，你自己定义的goal都可以继续绑到phase中。
 
 ## **Clean Lifecycle** 
 
