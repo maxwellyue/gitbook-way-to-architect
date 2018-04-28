@@ -115,7 +115,62 @@ find ~/.m2  -name "*.lastUpdated" -exec grep -q "Could not transfer" {} \; -prin
 </mirror>
 ```
 
+7、新到公司，配置私服地址？
 
+假如
+
+```text
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <mirrors>
+        <mirror>
+            <id>maxwell</id>
+            <mirrorOf>*</mirrorOf>
+            <url>http://mvn.maxwell.com/nexus/content/groups/public/</url>
+        </mirror>
+    </mirrors>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <!--仓库地址-->
+            <repositories>
+                <repository>
+                    <id>maxwell</id>
+                    <url>http://mvn.maxwell.com/nexus/content/groups/public/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <!--插件库地址-->
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>maxwell</id>
+                    <url>http://mvn.maxwell.com/nexus/content/groups/public/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+
+    <activeProfiles>
+        <!--激活生效dev-->
+        <activeProfile>dev</activeProfile>
+    </activeProfiles>
+</settings>
+```
 
 
 
