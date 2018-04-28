@@ -46,7 +46,7 @@
 mvn clean compile exec:java -Dexec.mainClass="com.demo.App" -Dexec.args="aaa bbb"  
 ```
 
-二：使用插件运行
+②使用插件运行
 
 ```text
 <plugin>
@@ -73,7 +73,14 @@ mvn clean compile exec:java -Dexec.mainClass="com.demo.App" -Dexec.args="aaa bbb
 
 配置好插件后，执行`mvn test` 即可执行`main`方法
 
+#### 4、如何删除仓库中下载失败的`.lastUpdated`文件？
 
+通过Maven远程下载jar时，总出现下载到`.jar.lastUpdated`后缀的文件。此时，正常的jar包就下载不了，只能将其删除再次下载。
+
+```text
+# 执行以下命令（属于find和exec的联合用法，注意分号前的\必须保留）
+find ~/.m2  -name "*.lastUpdated" -exec grep -q "Could not transfer" {} \; -print -exec rm {} \;
+```
 
 ## 参考
 
