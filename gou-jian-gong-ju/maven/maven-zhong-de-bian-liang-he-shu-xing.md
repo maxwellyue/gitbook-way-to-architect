@@ -4,17 +4,12 @@
 
 内置属性是Maven预定义的，用户可以直接使用，内置属性如下：
 
-```text
-${basedir}  表示项目根目录，即包含pom.xml文件的目录
-
-${version}  表示项目版本
-
-${project.basedir}  同${basedir}
-
-${project.baseUri}  表示项目文件地址
-
-${maven.build.timestamp}  表示项目构件开始时间
-
+```bash
+${basedir}                      表示项目根目录，即包含pom.xml文件的目录
+${version}                      表示项目版本
+${project.basedir}              同${basedir}
+${project.baseUri}              表示项目文件地址
+${maven.build.timestamp}        表示项目构件开始时间
 ${maven.build.timestamp.format} 表示属性${maven.build.timestamp}的展示格式,默认值为yyyyMMdd-HHmm
       可通过如下方式自定义其格式,其类型可参考java.text.SimpleDateFormat。
       <properties>
@@ -26,17 +21,17 @@ ${maven.build.timestamp.format} 表示属性${maven.build.timestamp}的展示格
 
 使用pom属性可以引用到pom.xml文件对应元素的值
 
-${project.build.directory}表示主源码路径;
+```bash
+${project.build.directory}         表示主源码路径;
+${project.build.sourceEncoding}    表示主源码的编码格式;
+${project.build.sourceDirectory}   表示主源码路径;
+${project.build.finalName}         表示输出文件名称;
+${project.version}                 表示项目版本,与${version}相同;
+```
 
-${project.build.sourceEncoding}表示主源码的编码格式;
+**自定义属性**
 
-${project.build.sourceDirectory}表示主源码路径;
-
-${project.build.finalName}表示输出文件名称;
-
-${project.version}表示项目版本,与${version}相同;
-
-**自定义属性**\(在pom.xml文件的&lt;properties&gt;标签下定义的Maven属性\)
+是指在pom.xml文件的&lt;properties&gt;标签下定义的Maven属性
 
 | &lt;project&gt;  &lt;properties&gt;    &lt;my.pro&gt;abc&lt;/my.pro&gt;  &lt;/properties&gt;&lt;/project&gt; |
 | --- |
