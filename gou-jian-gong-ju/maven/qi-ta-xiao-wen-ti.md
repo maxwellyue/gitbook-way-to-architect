@@ -38,11 +38,50 @@
 </dependency> 
 ```
 
+#### 3、使用maven运行Java main的2种方式
+
+①直接在命令行运行
+
+```text
+mvn clean compile exec:java -Dexec.mainClass="com.demo.App" -Dexec.args="aaa bbb"  
+```
+
+二：使用插件运行
+
+```text
+<plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>exec-maven-plugin</artifactId>
+	<version>1.4.0</version>
+	<executions>
+		<execution>
+			<phase>test</phase>
+			<goals>
+				<goal>java</goal>
+			</goals>
+			<configuration>
+				<mainClass>com.demo.App</mainClass>
+				<arguments>
+					<argument>11111111</argument>
+					<argument>22222222</argument>
+				</arguments>
+			</configuration>
+		</execution>
+	</executions>
+</plugin>
+```
+
+配置好插件后，执行mvn test 即可执行main方法
+
+
+
 ## 参考
 
 [Where is Maven' settings.xml located on mac os?](https://stackoverflow.com/questions/3792842/where-is-maven-settings-xml-located-on-mac-os)
 
 \[既使用maven编译，又使用lib下的Jar包\]\([https://blog.csdn.net/catoop/article/details/48489365](https://blog.csdn.net/catoop/article/details/48489365)\)
+
+\[使用maven运行Java main的2种方式\]\([https://blog.csdn.net/mn960mn/article/details/49664701](https://blog.csdn.net/mn960mn/article/details/49664701)\)
 
   
 
