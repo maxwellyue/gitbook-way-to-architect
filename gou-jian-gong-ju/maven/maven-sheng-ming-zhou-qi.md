@@ -6,8 +6,6 @@ Maven有三种不同的生命周期（Lifecycle），分别是Clean、Default、
 
 具体某个阶段应该做什么工作，怎么做，Maven有默认的行为，当然也可以通过插件进行定制修改。
 
-理解上面这两段话的含义非常重要！
-
 ## **Clean Lifecycle** 
 
 在进行真正的构建之前进行一些清理工作，Clean声明周期包含如下三个Phase。
@@ -61,4 +59,10 @@ Maven有三种不同的生命周期（Lifecycle），分别是Clean、Default、
 | site-deploy | deploy the generated site documentation to the specified web server |
 
 
+
+## 参考
+
+#### [Maven生命周期详解](http://juvenshun.iteye.com/blog/213959)
+
+\[Introduction to the Build Lifecycle\]\([http://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html](http://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html)\)
 
