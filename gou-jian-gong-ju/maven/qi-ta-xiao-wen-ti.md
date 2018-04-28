@@ -115,7 +115,7 @@ find ~/.m2  -name "*.lastUpdated" -exec grep -q "Could not transfer" {} \; -prin
 </mirror>
 ```
 
-7、新到公司，配置私服地址？
+#### 7、新到公司，配置私服地址？
 
 假如公司私服为：`https://mvn.maxwell.com/nexus/#welcome`
 
@@ -175,6 +175,32 @@ find ~/.m2  -name "*.lastUpdated" -exec grep -q "Could not transfer" {} \; -prin
     </activeProfiles>
 </settings>
 ```
+
+#### 8、有一天，Maven管理的项目不再使用Maven了，需要将pom中的依赖都下载到项目中的lib目录下，怎么办？
+
+```bash
+# -DoutputDirectory  指定输出目录
+# -DincludeScope 指定复制哪些依赖
+mvn dependency:copy-dependencies -DoutputDirectory=/xxx/yyy/lib -DincludeScope=compile
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
