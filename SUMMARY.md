@@ -116,6 +116,7 @@
 * 构建工具
   * Maven
     * [常用命令](gou-jian-gong-ju/maven/chang-yong-ming-ling.md)
+    * [Maven生命周期](gou-jian-gong-ju/maven/maven-sheng-ming-zhou-qi.md)
   * Gradle
 * 大数据
   * Hadoop
