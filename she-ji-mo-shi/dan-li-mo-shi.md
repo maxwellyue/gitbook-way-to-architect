@@ -2,7 +2,7 @@
 
 ①静态内部类的方式
 
-```text
+```java
 public class Singleton { 
     private static class SingletonHolder { 
         private static final Singleton INSTANCE = new Singleton(); 
@@ -18,7 +18,7 @@ public class Singleton {
 
 ②饿汉式
 
-```text
+```java
 public class Singleton{
     //类加载时就初始化
     private static final Singleton instance = new Singleton();
@@ -33,9 +33,11 @@ public class Singleton{
 
 ③枚举
 
-```text
+```java
 public enum EasySingleton{
     INSTANCE;
 }
 ```
+
+
 
