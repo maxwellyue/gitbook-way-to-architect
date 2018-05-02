@@ -114,6 +114,7 @@
 * [设计模式](she-ji-mo-shi/README.md)
   * [单例模式](she-ji-mo-shi/dan-li-mo-shi.md)
   * [模板模式](she-ji-mo-shi/mo-ban-mo-shi.md)
+  * [策略模式](she-ji-mo-shi/ce-lve-mo-shi.md)
 * [构建工具](gou-jian-gong-ju.md)
   * [Maven](maven.md)
     * [常用命令](gou-jian-gong-ju/maven/chang-yong-ming-ling.md)
