@@ -119,6 +119,7 @@
     * [Maven生命周期](gou-jian-gong-ju/maven/maven-sheng-ming-zhou-qi.md)
     * [Maven中的变量和属性](gou-jian-gong-ju/maven/maven-zhong-de-bian-liang-he-shu-xing.md)
     * [不同环境的如何配置不同的变量](gou-jian-gong-ju/maven/bu-tong-huan-jing-de-ru-he-pei-zhi-bu-tong-de-bian-liang.md)
+    * [常用插件及配置](gou-jian-gong-ju/maven/chang-yong-cha-jian-ji-pei-zhi.md)
     * [其他问题](gou-jian-gong-ju/maven/qi-ta-xiao-wen-ti.md)
   * Gradle
 * 大数据
