@@ -1,7 +1,6 @@
 # Summary
 
 * [前言](README.md)
-* 前言
 * [Java语言](java-yu-yan/README.md)
   * [Java关键字](java-yu-yan/java-guan-jian-zi/README.md)
     * [Java中四种修饰符的限制范围](java-yu-yan/java-guan-jian-zi/java-zhong-si-zhong-xiu-shi-fu-de-xian-zhi-fan-wei.md)
@@ -114,7 +113,7 @@
   * [TCP三次握手和四次挥手](wang-luo/tcp-san-ci-wo-shou-he-si-ci-hui-shou.md)
 * [设计模式](she-ji-mo-shi/README.md)
   * [单例模式](she-ji-mo-shi/dan-li-mo-shi.md)
-* 构建工具
+* [构建工具](gou-jian-gong-ju.md)
   * [Maven](maven.md)
     * [常用命令](gou-jian-gong-ju/maven/chang-yong-ming-ling.md)
     * [Maven生命周期](gou-jian-gong-ju/maven/maven-sheng-ming-zhou-qi.md)
