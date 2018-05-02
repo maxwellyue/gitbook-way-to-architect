@@ -1,4 +1,4 @@
-# Table of contents
+# Summary
 
 * [前言](README.md)
 * 前言
@@ -114,11 +114,12 @@
 * [设计模式](she-ji-mo-shi/README.md)
   * [单例模式](she-ji-mo-shi/dan-li-mo-shi.md)
 * 构建工具
-  * Maven
+  * [Maven](maven.md)
     * [常用命令](gou-jian-gong-ju/maven/chang-yong-ming-ling.md)
     * [Maven生命周期](gou-jian-gong-ju/maven/maven-sheng-ming-zhou-qi.md)
-    * [其他问题](gou-jian-gong-ju/maven/qi-ta-xiao-wen-ti.md)
     * [Maven中的变量和属性](gou-jian-gong-ju/maven/maven-zhong-de-bian-liang-he-shu-xing.md)
+    * [不同环境的如何配置不同的变量](gou-jian-gong-ju/maven/bu-tong-huan-jing-de-ru-he-pei-zhi-bu-tong-de-bian-liang.md)
+    * [其他问题](gou-jian-gong-ju/maven/qi-ta-xiao-wen-ti.md)
   * Gradle
 * 大数据
   * Hadoop
