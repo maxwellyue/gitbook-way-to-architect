@@ -118,7 +118,6 @@
     * [单例模式](she-ji-mo-shi/dan-li-mo-shi.md)
     * [建造者模式](she-ji-mo-shi/jian-zao-zhe-mo-shi.md)
     * [原型模式](she-ji-mo-shi/yuan-xing-mo-shi.md)
-    * [原型模式](she-ji-mo-shi/yuan-xing-mo-shi.md)
     * [fasfawv](she-ji-mo-shi/fasfawv.md)
   * [行为型](she-ji-mo-shi/xing-wei-xing.md)
     * 观察者模式
