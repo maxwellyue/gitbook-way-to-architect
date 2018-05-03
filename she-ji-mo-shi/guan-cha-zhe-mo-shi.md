@@ -81,33 +81,21 @@ public class AccountObserver implements Observer {
 ```
 
 观察者2
-
+```java
 public class WorkCardObserver implements Observer {
 
-
-
     @Override
-
-    public void update\(Observable o, Object arg\) {
-
-        Employee employee = \(Employee\)o;
-
-        Employee.Status status = employee.getStatus\(\);
-
-        if\(status == Employee.Status.NEW\){
-
-            System.out.println\(String.format\("make an work card for \[employee : %s\]", employee.getName\(\)\)\);
-
-        }else if\(status == Employee.Status.LEAVE\){
-
-            System.out.println\(String.format\("reclaim \[employee : %s\] work card", employee.getName\(\)\)\);
-
+    public void update(Observable o, Object arg) {
+        Employee employee = (Employee)o;
+        Employee.Status status = employee.getStatus();
+        if(status == Employee.Status.NEW){
+            System.out.println(String.format("make an work card for [employee : %s]", employee.getName()));
+        }else if(status == Employee.Status.LEAVE\){
+            System.out.println(String.format("reclaim [employee : %s] work card", employee.getName()));
         }
-
     }
-
 }
-
+```
 验证
 
 ```java
