@@ -117,7 +117,7 @@
   * [模板模式](she-ji-mo-shi/mo-ban-mo-shi.md)
   * [策略模式](she-ji-mo-shi/ce-lve-mo-shi.md)
   * [建造者模式](she-ji-mo-shi/jian-zao-zhe-mo-shi.md)
-  * 原型模式
+  * [原型模式](she-ji-mo-shi/yuan-xing-mo-shi.md)
 * [构建工具](gou-jian-gong-ju.md)
   * [Maven](maven.md)
     * [常用命令](gou-jian-gong-ju/maven/chang-yong-ming-ling.md)

@@ -313,3 +313,11 @@ public interface JedisClientConfiguration {
 
 
 
+### 参考
+
+---
+
+[设计模式之Builder模式](https://www.jianshu.com/p/e2a2fe3555b9)
+
+
+
