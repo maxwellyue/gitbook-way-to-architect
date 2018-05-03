@@ -114,20 +114,20 @@
   * [TCP三次握手和四次挥手](wang-luo/tcp-san-ci-wo-shou-he-si-ci-hui-shou.md)
 * [设计模式](she-ji-mo-shi/README.md)
   * [设计模式概述](she-ji-mo-shi/she-ji-mo-shi-gai-shu.md)
-  * [模板模式](she-ji-mo-shi/mo-ban-mo-shi.md)
-  * [策略模式](she-ji-mo-shi/ce-lve-mo-shi.md)
-  * [建造者模式](she-ji-mo-shi/jian-zao-zhe-mo-shi.md)
-  * [责任链模式](she-ji-mo-shi/ze-ren-lian-mo-shi.md)
-  * 观察者模式
   * [创建型](she-ji-mo-shi/chuang-jian-xing.md)
-    * 34
-  * [单例模式](she-ji-mo-shi/dan-li-mo-shi.md)
-  * [单例模式](she-ji-mo-shi/dan-li-mo-shi.md)
+    * [单例模式](she-ji-mo-shi/dan-li-mo-shi.md)
+    * [单例模式](she-ji-mo-shi/dan-li-mo-shi.md)
+    * [建造者模式](she-ji-mo-shi/jian-zao-zhe-mo-shi.md)
+    * [原型模式](she-ji-mo-shi/yuan-xing-mo-shi.md)
+    * [原型模式](she-ji-mo-shi/yuan-xing-mo-shi.md)
   * [行为型](she-ji-mo-shi/xing-wei-xing.md)
-    * 232
+    * 观察者模式
+    * [策略模式](she-ji-mo-shi/ce-lve-mo-shi.md)
+    * [模板模式](she-ji-mo-shi/mo-ban-mo-shi.md)
+    * [责任链模式](she-ji-mo-shi/ze-ren-lian-mo-shi.md)
   * [结构型](she-ji-mo-shi/jie-gou-xing.md)
-    * [3rf](she-ji-mo-shi/3rf.md)
-  * [原型模式](she-ji-mo-shi/yuan-xing-mo-shi.md)
+    * 组合模式
+    * 装饰模式
 * [构建工具](gou-jian-gong-ju.md)
   * [Maven](maven.md)
     * [常用命令](gou-jian-gong-ju/maven/chang-yong-ming-ling.md)
