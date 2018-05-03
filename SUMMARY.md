@@ -95,8 +95,9 @@
 * [系统设计](xi-tong-she-ji/README.md)
   * [一致性Hash算法](xi-tong-she-ji/yi-zhi-xing-hash-suan-fa.md)
 * [版本控制](ban-ben-kong-zhi/README.md)
-  * Git
+  * [Git](ban-ben-kong-zhi/git.md)
     * [Git常用命令](ban-ben-kong-zhi/und/git-chang-yong-ming-ling.md)
+    * [场景命令](ban-ben-kong-zhi/und/chang-jing-ming-ling.md)
   * Svn
 * [操作系统](cao-zuo-xi-tong/README.md)
   * [Linux](cao-zuo-xi-tong/linux/README.md)
