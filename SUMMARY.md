@@ -118,6 +118,7 @@
   * [策略模式](she-ji-mo-shi/ce-lve-mo-shi.md)
   * [建造者模式](she-ji-mo-shi/jian-zao-zhe-mo-shi.md)
   * [原型模式](she-ji-mo-shi/yuan-xing-mo-shi.md)
+  * [责任链模式](she-ji-mo-shi/ze-ren-lian-mo-shi.md)
 * [构建工具](gou-jian-gong-ju.md)
   * [Maven](maven.md)
     * [常用命令](gou-jian-gong-ju/maven/chang-yong-ming-ling.md)
