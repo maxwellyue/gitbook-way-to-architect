@@ -12,14 +12,6 @@
 
 ![](/assets/责任链流程示意图.png)
 
-> 注意点：
->
-> ①有可能某一个Handler处理后，不再向后传递，直接结束链
->
-> ②各个Hanlder可能有顺序要求，即流向必须是hanlder1&gt;handler2&gt;handler&gt;3
-
-
-
 **典型应用场景**
 
 ①JS 中的事件冒泡
@@ -32,45 +24,19 @@
 
 
 
+实践经验：
+
+①有可能某一个Handler处理后，不再向后传递，直接结束链
+
+②各个Hanlder可能有顺序要求，即流向必须是hanlder1&gt;handler2&gt;handler&gt;3
 
 
 
+TODO：阅读Filter/Netty/SpringMVC中责任链的实现细节。
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[**示例1**](https://github.com/maxwellyue/JavaLanguage/tree/master/design-pattern/pattern-responsibility-chain/src/main/java/com/maxwell/learning/designpattern/resposibilitychain)
 
 
 
