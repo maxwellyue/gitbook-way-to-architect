@@ -120,6 +120,7 @@
     * [建造者模式](she-ji-mo-shi/jian-zao-zhe-mo-shi.md)
     * [原型模式](she-ji-mo-shi/yuan-xing-mo-shi.md)
     * [原型模式](she-ji-mo-shi/yuan-xing-mo-shi.md)
+    * fasfawv
   * [行为型](she-ji-mo-shi/xing-wei-xing.md)
     * 观察者模式
     * [策略模式](she-ji-mo-shi/ce-lve-mo-shi.md)
