@@ -119,7 +119,7 @@
     * [建造者模式](she-ji-mo-shi/jian-zao-zhe-mo-shi.md)
     * [原型模式](she-ji-mo-shi/yuan-xing-mo-shi.md)
   * [行为型](she-ji-mo-shi/xing-wei-xing.md)
-    * 观察者模式
+    * [观察者模式](she-ji-mo-shi/guan-cha-zhe-mo-shi.md)
     * [策略模式](she-ji-mo-shi/ce-lve-mo-shi.md)
     * [模板模式](she-ji-mo-shi/mo-ban-mo-shi.md)
     * [责任链模式](she-ji-mo-shi/ze-ren-lian-mo-shi.md)
