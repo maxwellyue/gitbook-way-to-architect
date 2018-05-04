@@ -163,4 +163,9 @@
     * [如何设计分布式锁](zhong-jian-jian/fen-bu-shi-suo/ru-he-she-ji-fen-bu-shi-suo/README.md)
       * [基于zookeeper](zhong-jian-jian/fen-bu-shi-suo/ru-he-she-ji-fen-bu-shi-suo/ji-yu-zookeeper.md)
       * [基于Redis](zhong-jian-jian/fen-bu-shi-suo/ru-he-she-ji-fen-bu-shi-suo/ji-yu-redis.md)
+* [Web开发](webkai-fa.md)
+  * [Http请求类型及区别](webkai-fa/httpqing-qiu-lei-xing-ji-qu-bie.md)
+  * [常见的content-type](webkai-fa/chang-jian-de-content-type.md)
+  * [如何处理跨域](webkai-fa/ru-he-chu-li-kua-yu.md)
+  * [Restful最佳实践](webkai-fa/restfulzui-jia-shi-jian.md)
 
