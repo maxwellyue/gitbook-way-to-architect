@@ -118,6 +118,7 @@
     * [单例模式](she-ji-mo-shi/dan-li-mo-shi.md)
     * [建造者模式](she-ji-mo-shi/jian-zao-zhe-mo-shi.md)
     * [原型模式](she-ji-mo-shi/yuan-xing-mo-shi.md)
+    * [享元模式](she-ji-mo-shi/xiang-yuan-mo-shi.md)
   * [行为型](she-ji-mo-shi/xing-wei-xing.md)
     * [观察者模式](she-ji-mo-shi/guan-cha-zhe-mo-shi.md)
     * [策略模式](she-ji-mo-shi/ce-lve-mo-shi.md)
