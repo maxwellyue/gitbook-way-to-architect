@@ -17,11 +17,8 @@
 
 * **Cilent：**命令触发者或者说负责下达命令
 
-
-
 **看代码来理解上面这5个角色的职责**
 
-  
 `Receiver`
 
 ```java
@@ -95,8 +92,6 @@ public class Client {
     }
 }
 ```
-
-
 
 **通过录音机实例来理解**
 
@@ -221,6 +216,28 @@ public class Julia {
     }
 }
 ```
+
+
+
+
+
+TODO：
+
+1、命令模式在实际项目场景中的应用
+
+2、命令模式深入的理解以及高阶扩展
+
+
+
+### 参考
+
+---
+
+[java设计模式－命令模式\(Command\)](https://www.jianshu.com/p/5901e76a6348)
+
+[命令模式— Graphic Design Patterns - 图说设计模式 - Read the Docs](http://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/command.html)
+
+《研磨设计模式》
 
 
 
