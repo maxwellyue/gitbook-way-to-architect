@@ -118,17 +118,29 @@ AFactory factory = new A2ImplFactory();
 factory.createA();
 ```
 
+客户端使用的时候，选择A1Impl还是A2Impl可以通过配置文件+反射来进行，这样就无需修改代码。
 
+现在来从客户端的角度来对比原始方式、简单工厂模式、工厂方法模式这三种方式获取接口A实例的代码：
 
+```java
+//原始方式
+A a = new A1Impl();
 
+//简单工厂模式
+A a = Factory.createA(1);
 
+//工厂方法模式
+AFactory factory = new A1ImplFactory();
+A a = factory.createA();
+```
 
+but what the fuck!!! 这比原始（使用`A  a = new A1Impl()`）相比，岂不是更复杂了，而且也没简单工厂好哪去啊，客户端也同样要选择，还多了很多工厂类。
 
+个人理解：
 
+①A接口对象的创建可能很复杂，很多情况不是直接`new A1Impl()`就能搞定的，而简单工厂模式和工厂方法模式则能屏蔽这些创建细节，客户端无需关系这些创建细节，客户端只是需要一个现成的对象。
 
-
-
-
+②
 
 
 
