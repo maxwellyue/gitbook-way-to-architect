@@ -217,17 +217,11 @@ public class Julia {
 }
 ```
 
-
-
-
-
 TODO：
 
 1、命令模式在实际项目场景中的应用
 
-2、命令模式深入的理解以及高阶扩展
-
-
+2、命令模式深入的理解以及高阶扩展（可以在《研磨设计模式中找到答案》）
 
 ### 参考
 
@@ -238,6 +232,4 @@ TODO：
 [命令模式— Graphic Design Patterns - 图说设计模式 - Read the Docs](http://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/command.html)
 
 《研磨设计模式》
-
-
 
