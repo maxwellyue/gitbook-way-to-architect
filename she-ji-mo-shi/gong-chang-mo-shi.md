@@ -1,4 +1,16 @@
-# 工厂模式
+# public class A1Impl implements A{
+
+```java
+    public void a(){...}
+}
+public class A1Impl implements A{
+    public void a(){...}
+}
+public class A1Impl implements A{
+    public void a(){...}
+}
+工厂模式
+```
 
 ---
 
@@ -78,11 +90,11 @@ public interface A{
 }
 
 public class A1Impl implements A{
-    void a(){...}
+    public void a(){...}
 }
 
 public class A2Impl implements A{
-    void a(){...}
+    public void a(){...}
 }
 ```
 
@@ -94,13 +106,13 @@ public interface AFactory{
 }
 
 public class A1ImplFactory implements AFactory{
-    A createA(){
+    public A createA(){
         return new A1Impl();
     }
 }
 
 public class A2ImplFactory implements AFactory{
-    A createA(){
+    public A createA(){
         return new A2Impl();
     }
 }
@@ -156,13 +168,120 @@ but what the fuck!!! 这比原始（使用`A  a = new A1Impl()`）相比，岂�
 
 此时，我们可以考虑将一些相关的产品组成一个“产品族”，由同一个工厂来统一生产。
 
-抽象工厂模式中的具体工厂不只是创建一种产品，它负责创建一组类似的产品。
+抽象工厂模式中的具体工厂不只是创建一种产品，它负责创建一组类似的产品：每一个具体工厂都提供了多个工厂方法用于产生多种不同类型的产品，这些产品构成了一个产品族。
+
+还是延续之前的例子，只是现在我们生产的对象有两大类：
+
+```java
+public interface A{
+    void a();
+}
+
+public interfaceB{
+    void b();
+}
+
+public class A1Impl implements A{
+    public void a(){...}
+}
+
+public class A2Impl implements A{
+    public void a(){...}
+}
+
+public class B1Impl implements B{
+    public void b(){...}
+}
+
+public class B1Impl implements B{
+    public void b(){...}
+}
+```
+
+假如我们使用工厂方法模式的话，我们需要这么写：
+
+```java
+public interface AFactory{
+    A createA();
+}
+
+public class A1ImplFactory implements AFactory{
+    public A createA(){
+        return new A1Impl();
+    }
+}
+
+public class A2ImplFactory implements AFactory{
+    public A createA(){
+        return new A2Impl();
+    }
+}
 
 
+public interface BFactory{
+    B createBB();
+}
 
+public class B1ImplFactory implements BFactory{
+    public B createA(){
+        return new B1Impl();
+    }
+}
 
+public class B2ImplFactory implements BFactory{
+    public B createA(){
+        return new B2Impl();
+    }
+}
+```
 
-  
+如果使用抽象工厂模式，则是这样的（假设A1Impl和B1Impl是同一种组产品X，A2Impl和B2Impl是同一种组产品Y）：
+
+```java
+public interface Factory{
+    A createA();
+    B createB();
+}
+
+public class XFactory implements Factory(){
+    public A createA(){
+        return new A1Impl();
+    }
+    
+    public B createB(){
+        return new B1Impl();
+    }
+}
+
+public class YFactory implements Factory(){
+    public A createA(){
+        return new A2Impl();
+    }
+    
+    public B createB(){
+        return new B2Impl();
+    }
+}
+```
+
+客户端使用：
+
+```java
+//创建X组产品
+Factory factory = new XFactory();
+A a = factory.createA();
+B b = factory.createB();
+
+//创建Y组产品
+Factory factory = new YFactory();
+A a = factory.createA();
+B b = factory.createB();
+```
+
+同样，客户端需要X组还是Y组产品，也同样可以通过配置文件+反射的方式完成。
+
+这么看，抽象工厂模式是在产品除了接口外具有另一一种维度上相同点，可以分组的情况下，对工厂方法模式的改进。
+
 
 
 
