@@ -70,7 +70,73 @@ A instance = Factory.createA(2);
 
 还是上面与简单工厂模式一样的例子，来看使用工厂方法模式是怎么做的。
 
-假如有接口A，接口A的实现类A1Impl， A2Impl
+假如有接口A，接口A的实现类A1Impl， A2Impl：
+
+```java
+public interface A{
+    void a();
+}
+
+public class A1Impl implements A{
+    void a(){...}
+}
+
+public class A2Impl implements A{
+    void a(){...}
+}
+```
+
+则工厂方法模式要做的是：
+
+```java
+public interface AFactory{
+    A createA();
+}
+
+public class A1ImplFactory implements AFactory{
+    A createA(){
+        return new A1Impl();
+    }
+}
+
+public class A2ImplFactory implements AFactory{
+    A createA(){
+        return new A2Impl();
+    }
+}
+```
+
+客户端使用：
+
+```java
+//创建A1Impl实例
+AFactory factory = new A1ImplFacory();
+facory.createA();
+
+//创建A2Impl实例
+AFactory factory = new A2ImplFactory();
+factory.createA();
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
