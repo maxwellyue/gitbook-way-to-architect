@@ -127,6 +127,7 @@
   * [结构型](she-ji-mo-shi/jie-gou-xing.md)
     * 组合模式
     * 装饰模式
+    * [代理模式](she-ji-mo-shi/jie-gou-xing/dai-li-mo-shi.md)
 * [构建工具](gou-jian-gong-ju.md)
   * [Maven](maven.md)
     * [常用命令](gou-jian-gong-ju/maven/chang-yong-ming-ling.md)
