@@ -1,22 +1,10 @@
-# public class A1Impl implements A{
-
-```java
-    public void a(){...}
-}
-public class A1Impl implements A{
-    public void a(){...}
-}
-public class A1Impl implements A{
-    public void a(){...}
-}
-工厂模式
-```
+# 工厂模式
 
 ---
 
 工厂模式：提供了一种创建对象的最佳方式，在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口来指向新创建的对象。
 
-工厂模式分三种：简单工厂模式、工厂方法模式、抽象工厂模式。
+工厂模式分三种：简单工厂模式、工厂方法模式（也简称工厂模式）、抽象工厂模式。
 
 ## 简单工厂
 
@@ -284,13 +272,9 @@ B b = factory.createB();
 
 总结一下抽象工厂模式：①增加新的产品族很方便，无须修改已有系统，符合开闭原则；②但如果系统要增加一个接口C产品，则要对所有的工厂（无论接口还是实现）进行修改，这点就不符合开闭原则。所以，在系统设计之初就要对产品类型要考虑充分。
 
-
-
 ## 参考
 
 ---
 
 [设计模式Java版](https://www.gitbook.com/book/quanke/design-pattern-java)中的简单工厂模式、工厂方法模式、抽象工厂模式
-
-
 
