@@ -2,7 +2,7 @@
 
 ---
 
-**命令模式的本质**
+**命令模式的本质**  
 对命令封装，将命令发送者和命令接受者（或执行者）解耦。
 
 **命令模式中的角色**
@@ -18,8 +18,12 @@
 * **Cilent：**命令触发者或者说负责下达命令
 
 
-**看代码来理解上面这4个角色的职责**
+
+**看代码来理解上面这5个角色的职责**
+
+  
 `Receiver`
+
 ```java
 public class Receiver {
     /**
@@ -32,21 +36,24 @@ public class Receiver {
 ```
 
 `Command`
+
 ```java
 public interface Command {
     void execute();
 }
 ```
+
 `ConcreteCommand`
+
 ```java
 public class ConcreteCommand implements Command {
     //持有相应的接收者对象
     private Receiver receiver = null;
-    
+
     public ConcreteCommand(Receiver receiver) {
         this.receiver = receiver;
     }
-    
+
     @Override
     public void execute() {
         //转调接收者的方法
@@ -54,22 +61,26 @@ public class ConcreteCommand implements Command {
     }
 }
 ```
+
 `Invoker`
+
 ```java
 public class Invoker {
     //持有命令对象
     private Command command = null;
-    
+
     public Invoker(Command command) {
         this.command = command;
     }
-    
+
     public void action() {
         command.execute();
     }
 }
 ```
+
 `Client`
+
 ```java
 public class Client {
     public static void main(String[] args) {
@@ -83,14 +94,16 @@ public class Client {
         invoker.action();
     }
 }
-
 ```
+
+
 
 **通过录音机实例来理解**
 
-小女孩茱莉(Julia)有一个盒式录音机，此录音机有播音Play、倒带Rewind、停止Stop功能。录音机的按钮便是请求者角色Invoker；茱莉(Julia)是客户端角色Client，而录音机便是接收者角色Receiver。
+小女孩茱莉\(Julia\)有一个盒式录音机，此录音机有播音Play、倒带Rewind、停止Stop功能。录音机的按钮便是请求者角色Invoker；茱莉\(Julia\)是客户端角色Client，而录音机便是接收者角色Receiver。
 
 `Receiver`：由录音机扮演
+
 ```java
 public class AudioPlayer {
     public void play() {
@@ -104,7 +117,9 @@ public class AudioPlayer {
     }
 }
 ```
+
 Command
+
 ```java
 public interface Command {
     void execute();
@@ -112,13 +127,14 @@ public interface Command {
 ```
 
 `ConcreteCommand`：有三个，`PlayCommand/RewindCommand/StopCommand`
+
 ```java
 public class PlayCommand implements Command {
     private AudioPlayer audio;
     public PlayCommand(AudioPlayer audio) {
         this.audio = audio;
     }
-    
+
     @Override
     public void execute() {
         audio.play();
@@ -130,7 +146,7 @@ public class RewindCommand implements Command {
     public RewindCommand(AudioPlayer audio) {
         this.audio = audio;
     }
-    
+
     @Override
     public void execute() {
         audio.rewind();
@@ -141,14 +157,16 @@ public class StopCommand implements Command {
     public StopCommand(AudioPlayer audio) {
         this.audio = audio;
     }
-    
+
     @Override
     public void execute() {
         audio.stop();
     }
 }
 ```
+
 `Invoker`：录音机上的按钮
+
 ```java
 public class Keypad {
     private Command playCommand;
@@ -163,21 +181,23 @@ public class Keypad {
     public void setStopCommand(Command stopCommand) {
         this.stopCommand = stopCommand;
     }
-    
+
     public void play() {
         playCommand.execute();
     }
-    
+
     public void rewind() {
         rewindCommand.execute();
     }
-    
+
     public void stop() {
         stopCommand.execute();
     }
 }
 ```
+
 `Client`，茱莉小女孩
+
 ```java
 public class Julia {
     public static void main(String[] args) {
@@ -201,4 +221,6 @@ public class Julia {
     }
 }
 ```
+
+
 
