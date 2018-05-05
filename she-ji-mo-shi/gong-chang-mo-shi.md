@@ -247,7 +247,7 @@ public class XFactory implements Factory(){
     public A createA(){
         return new A1Impl();
     }
-    
+
     public B createB(){
         return new B1Impl();
     }
@@ -257,7 +257,7 @@ public class YFactory implements Factory(){
     public A createA(){
         return new A2Impl();
     }
-    
+
     public B createB(){
         return new B2Impl();
     }
@@ -280,9 +280,17 @@ B b = factory.createB();
 
 同样，客户端需要X组还是Y组产品，也同样可以通过配置文件+反射的方式完成。
 
-这么看，抽象工厂模式是在产品除了接口外具有另一一种维度上相同点，可以分组的情况下，对工厂方法模式的改进。
+这么看，抽象工厂模式是在产品除了接口外具有另一一种维度上相同点，可以分组的情况下，对工厂方法模式的改进：必须为每一个产品都创建一个工厂类。
+
+总结一下抽象工厂模式：①增加新的产品族很方便，无须修改已有系统，符合开闭原则；②但如果系统要增加一个接口C产品，则要对所有的工厂（无论接口还是实现）进行修改，这点就不符合开闭原则。所以，在系统设计之初就要对产品类型要考虑充分。
 
 
+
+## 参考
+
+---
+
+[设计模式Java版](https://www.gitbook.com/book/quanke/design-pattern-java)中的简单工厂模式、工厂方法模式、抽象工厂模式
 
 
 
