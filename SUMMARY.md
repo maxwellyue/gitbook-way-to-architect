@@ -116,6 +116,7 @@
   * [设计模式概述](she-ji-mo-shi/she-ji-mo-shi-gai-shu.md)
   * [创建型](she-ji-mo-shi/chuang-jian-xing.md)
     * [单例模式](she-ji-mo-shi/dan-li-mo-shi.md)
+    * [工厂模式](she-ji-mo-shi/gong-chang-mo-shi.md)
     * [建造者模式](she-ji-mo-shi/jian-zao-zhe-mo-shi.md)
     * [原型模式](she-ji-mo-shi/yuan-xing-mo-shi.md)
     * [享元模式](she-ji-mo-shi/xiang-yuan-mo-shi.md)
