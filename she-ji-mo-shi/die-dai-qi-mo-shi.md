@@ -14,7 +14,7 @@ while (iterator.hasNext()){
 
 这就是迭代器模式！！！
 
-**迭代器模式\(Iterator Pattern\)：提供一种方法来访问聚合对象，而不用暴露这个对象的内部表示。**
+**迭代器模式\(Iterator Pattern\)：提供一种方法来访问聚合对象，而不用暴露这个对象的内部表示。主要体现单一职责的思想。**
 
 **迭代器模式中的角色**
 
@@ -130,5 +130,5 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
 }
 ```
 
-无论使用哪种实现机制，客户端都无须关心具体迭代器对象的创建细节，只需通过调用createIterator\(\)即可得到一个可用的迭代器对象。
+无论使用哪种实现机制，客户端都无须关心具体迭代器对象的创建细节，只需通过调用`createIterator()`即可得到一个可用的迭代器对象。
 
