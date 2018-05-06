@@ -16,6 +16,8 @@
 >
 > 中介者模式是迪米特法则的典型应用（另外，还有门面模式）。
 
+**中介者模式的本质：解耦**
+
 **中介者模式中的角色**
 
 * Mediator（抽象中介者）：定义各组件（或同事对象）之间通信的方法
@@ -72,9 +74,10 @@ Colleague：抽象同事类，维持了一个抽象中介者的引用，用于�
 
 ```java
 public abstract class Colleague {  
-    
+
     //维持一个抽象中介者的引用  
     protected Mediator mediator; 
+    
     public Colleague(Mediator mediator) {  
         this.mediator=mediator;  
     }
@@ -93,7 +96,7 @@ ConcreteColleague：具体同事类
 
 ```java
 public class ConcreteColleague extends Colleague {  
-    
+
     public ConcreteColleague(Mediator mediator) {  
         super(mediator);  
     }  
@@ -105,12 +108,193 @@ public class ConcreteColleague extends Colleague {
 }
 ```
 
-Colleague类的代码中，自身方法（Self-Method）与依赖方法\(Depend-Method\)的区别：假如类A在修改自身某属性后，必须要去修改类B的有个属性，那么类A中就要有两个方法，`updateSelf()`以及`updateB()`，那么对A而言，`updateSelf()`就是自身方法，`updateB()`就是类A的依赖方法。不引入中介者的话，因为有`updateB()`这个操作，类A就必须持有类B的引用，而引入中介者后，这个依赖方法就可以交给中介者去做。
-
-举个例子：
+Colleague类的代码中，自身方法（Self-Method）与依赖方法\(Depend-Method\)的区别：假如类A在修改自身某属性后，必须要去修改类B的有个属性，那么类A中就要有两个方法，`updateSelf()`以及`updateB()`，那么对A而言，`updateSelf()`就是自身方法，`updateB()`就是类A的依赖方法。不引入中介者的话，因为有`updateB()`这个操作，类A就必须持有类B的引用，而引入中介者后，这个依赖方法就可以交给中介者去做（有没有很像门面模式？？？）。在这种模式下，每个对象都会在自己的状态改变时通知中介者；每个对象都会对中介者所发出的请求作出回应（有没有很像观察者模式？？？）。
 
 
 
+**举个例子**：现在你想在电脑上播放一张CD，需要光驱读取，光驱读取后将数据交给CPU处理，CPU处理完之后，将CD中的视频信息交给显卡去显示，将音频信息交给声卡去播放。而主板相当于中介者，光驱、CPU、显卡、声卡之间的交互都通过主板来完成。
+
+Colleague：抽象同事类
+
+```java
+public abstract class Colleague {  
+
+    //维持一个抽象中介者的引用  
+    private Mediator mediator; 
+    
+    public Colleague(Mediator mediator) {  
+        this.mediator=mediator;  
+    }
+    
+    public Mediator getMediator(){
+        return this.mediator;
+    }
+    
+}
+```
+
+ConcreteColleague：有四个，分别是光驱、CPU、显卡、声卡
+
+```java
+public class CDDriver extends Colleague{
+    
+    public CDDriver(Mediator mediator){
+        super(mediator);
+    }
+    
+    //光驱读取的数据
+    private String data;
+    
+    public String getDate(){
+        return this.data;
+    }
+    
+    public void readCD(){
+        //模拟CD数据
+        this.data="[声音信息...],[视频信息...]";
+        //通过中介调用依赖方法：通知主板，自己读取到了数据data
+        this.getMediator.change(this);
+    }
+}
+```
+
+```java
+public class CPU extends Colleague{
+    
+    public CPU(Mediator mediator){
+        super(mediator);
+    }
+    
+    //解析出的视频数据
+    private String vedioData;
+    //解析出的音频数据
+    private String soundDate;
+        
+    public String getVedioDate(){
+        return this.vedioData;
+    }
+    public String getSound(){
+        return this.sooundData;
+    }
+    
+    //解析数据
+    public void resolveData(String cdData){
+        //解析CDDriver读取的原始CD数据
+        String[] data = cdData.split(",");
+        this.soundDate = data[0];
+        this.vedioDate = data[1];
+        //通过中介调用依赖方法：通知主板，自己解析数据了
+        this.getMediator.change(this);
+    }
+}
+```
+
+```java
+public class VedioCard extends Colleague{
+    
+    public VedioCard(Mediator mediator){
+        super(mediator);
+    }
+    
+    public void showVedio(String vedioData){
+        System.out.print("正在观看：" + vedioData);
+    }
+}
+```
+
+```java
+public class SoundCard extends Colleague{
+    
+    public SoundCard(Mediator mediator){
+        super(mediator);
+    }
+    
+    public void playSound(String soundData){
+        System.out.print("画外音：" + soundData);
+    }
+}
+```
+
+Mediator
+
+```java
+public interface Mediator{
+    void changed(Colleague colleague);
+}
+```
+
+ConcreteMediator，中介的具体实现，即主板
+
+```java
+public class MotherBoard implements Mediator{
+
+    private CDDriver cdDriver;
+    private CPU cpu;
+    private VedioCard vedioCard;
+    private SoundCard soundCard;
+    
+    public void setCDDriver(CDDriver driver){
+        this.cdDriver = driver;
+    }    
+    
+    public void setCPU(CPU cpu){
+        this.cpu = cpu;
+    }
+    
+    public void setVedioCard(VedioCard vedioCard){
+        this.vedioCard = vedioCard;
+    }
+    
+    public void setSoundCard(SoundCard soundCard){
+        this.soundCard = soundCard;
+    }
+    
+    public void changed(Colleague col){
+        if(col == this.cdDriver){
+            //获取光驱读取的数据
+            String data = col.getData();
+            //交给CPU解析
+            this.cpu.resolveData(data);
+        }else if(col == this.cpu){
+            //获取CPU解析出的信息
+            String vedio = col.getVedioData();
+            String sound = col.getSoundData();
+            //交给声卡和显卡去显示或播放
+            this.vedioCard.showVedio(vedio);
+            this.soundCard.playSound(sound);
+        }
+    }
+}
+```
+
+Client
+
+```java
+public class Client{
+
+    public static void main(String[] args){
+        //创建中介
+        Mediator mediator = new MotherBoard();
+        //创建同事类
+        CDDriver driver = new CDDriver(mediator);
+        CPU cpu = new CPU(mediator);
+        VedioCard vedioCard = new VedioCard(mediator);
+        SoundCard soundCard = new SoundCard(mediator);
+        //让中介知道所有同事类
+        mediator.setCDDriver(driver);
+        mediator.serCPU(cpu);
+        mediator.setVedioCard(vedioCaard);
+        mediator.setSoundCard(soundCard);
+        
+        //开始看电影
+        driver.readCD();
+    }
+
+}
+//输出如下
+正在播放：[视频信息...]
+画外音：[声音信息...]
+```
 
 
 
@@ -119,50 +303,20 @@ Colleague类的代码中，自身方法（Self-Method）与依赖方法\(Depend-
 
 
 
-### 参考
+
+
+
+
+
+参考
 
 ---
 
 [23种设计模式（7）：中介者模式](https://blog.csdn.net/zhengzhb/article/details/7430098)
 
+[设计模式 ——— 中介者模式](https://www.jianshu.com/p/21d27fd06e86)
+
   
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-**    
+**     
 **
 
