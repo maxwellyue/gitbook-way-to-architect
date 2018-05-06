@@ -101,7 +101,7 @@ TODO：理解迭代器模式中具体聚合类与具体迭代器类之间存在�
 public abstract class AbstractList<E> extends AbstractCollection<E> implements List<E> {
 
     ......
-    
+
     public Iterator<E> iterator() {
         return new Itr();
     }    
@@ -109,12 +109,18 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
     private class Itr implements Iterator<E>{
         ......
     }
-    
+
+
+    //由于在Iterator接口中定义的方法太少，只有三个，通过这三个方法只能实现正向遍历，
+    //而有时候我们需要对一个聚合对象进行逆向遍历等操作，
+    //因此在JDK的ListIterator接口中声明了用于逆向遍历的hasPrevious()和previous()等方法，
+    //如果客户端需要调用这两个方法来实现逆向遍历，就不能再使用iterator()方法来创建迭代器了，
+    //因为此时创建的迭代器对象是不具有这两个方法的。 
     public ListIterator<E> listIterator(final int index) {
         ...
         return new ListItr(index);
     }
-    
+
     private class ListItr implements ListIterator<E>{
         ......
     }
@@ -124,5 +130,5 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
 }
 ```
 
-
+无论使用哪种实现机制，客户端都无须关心具体迭代器对象的创建细节，只需通过调用createIterator\(\)即可得到一个可用的迭代器对象。
 
