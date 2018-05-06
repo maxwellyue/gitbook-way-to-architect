@@ -132,3 +132,14 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
 
 无论使用哪种实现机制，客户端都无须关心具体迭代器对象的创建细节，只需通过调用`createIterator()`即可得到一个可用的迭代器对象。
 
+
+
+### 参考
+
+---
+
+[迭代器模式-Iterator Pattern](https://gof.quanke.name/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F-Iterator%20Pattern.html)：文字 + 代码均来自这里
+
+  
+
+
