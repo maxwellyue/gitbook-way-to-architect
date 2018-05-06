@@ -128,6 +128,7 @@
     * [命令模式](she-ji-mo-shi/ming-ling-mo-shi.md)
     * [外观模式](she-ji-mo-shi/wai-guan-mo-shi.md)
     * [迭代器模式](she-ji-mo-shi/die-dai-qi-mo-shi.md)
+    * [中介者模式](she-ji-mo-shi/zhong-jie-zhe-mo-shi.md)
   * [结构型](she-ji-mo-shi/jie-gou-xing.md)
     * 组合模式
     * 装饰模式
