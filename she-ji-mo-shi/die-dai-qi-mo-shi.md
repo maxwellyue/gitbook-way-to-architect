@@ -51,12 +51,12 @@ public interface Iterator {
 
 ```java
 public class ConcreteIterator implements Iterator {  
-    
+
     //具体聚合对象的引用   
     private ConcreteAggregate objects;   
     //定义一个游标，记录当前访问位置      
     private int cursor;
-    
+
     public ConcreteIterator(ConcreteAggregate objects) {  
         this.objects=objects;  
     }  
@@ -84,24 +84,37 @@ ConcreteAggregate
 
 ```java
 public class ConcreteAggregate implements Aggregate {    
-      
+
     public Iterator createIterator() {  
           return new ConcreteIterator(this);  
     }  
-    
+
     //other Aggragate itself functional method implements
 }
 ```
 
 TODO：理解迭代器模式中具体聚合类与具体迭代器类之间存在的依赖关系和关联关系。
 
+**在JDK中，使用了内部类的方式来实现迭代器**，如下：
 
+```java
+public abstract class AbstractList<E> extends AbstractCollection<E> implements List<E> {
 
+    ......
+    
+    private class Itr implements Iterator<E>{
+        ......
+    }
+        
+    private class ListItr implements ListIterator<E>{
+        ......
+    }
+    
+    ......
 
+}
 
-
-
-
+```
 
 
 
