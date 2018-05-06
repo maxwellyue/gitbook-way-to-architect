@@ -126,6 +126,7 @@
     * [模板模式](she-ji-mo-shi/mo-ban-mo-shi.md)
     * [责任链模式](she-ji-mo-shi/ze-ren-lian-mo-shi.md)
     * [命令模式](she-ji-mo-shi/ming-ling-mo-shi.md)
+    * [外观模式](she-ji-mo-shi/wai-guan-mo-shi.md)
   * [结构型](she-ji-mo-shi/jie-gou-xing.md)
     * 组合模式
     * 装饰模式
