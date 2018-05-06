@@ -102,25 +102,27 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
 
     ......
     
+    public Iterator<E> iterator() {
+        return new Itr();
+    }    
+
     private class Itr implements Iterator<E>{
         ......
     }
-        
+    
+    public ListIterator<E> listIterator(final int index) {
+        ...
+        return new ListItr(index);
+    }
+    
     private class ListItr implements ListIterator<E>{
         ......
     }
-    
+
     ......
 
 }
-
 ```
-
-
-
-
-
-
 
 
 
