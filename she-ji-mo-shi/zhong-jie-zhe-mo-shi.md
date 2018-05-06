@@ -4,9 +4,9 @@
 
 中介者模式\(Mediator Pattern\)：引入一个“第三者”来降低现有系统中类之间的耦合度，由这个“第三者”来封装并协调原有组件两两之间复杂的引用关系，使之成为一个松耦合的系统。
 
-加入中介者后的系统前后对比（[图片来源](http://www.cnblogs.com/chenssy/p/3348520.html)）
+加入中介者后的系统前后对比（[图片来源](http://www.cnblogs.com/chenssy/p/3348520.html)）![](/assets/WechatIMG7.jpeg)
 
-> 迪米特法则：又叫作最少知识原则（Least Knowledge Principle 简写LKP），
+> [迪米特法则](https://baike.baidu.com/item/%E8%BF%AA%E7%B1%B3%E7%89%B9%E6%B3%95%E5%88%99)：又叫作最少知识原则（Least Knowledge Principle 简写LKP），
 >
 > 迪米特法则的初衷在于降低类之间的耦合由于每个类尽量减少对其他类的依赖，因此，很容易使得系统的功能模块功能独立，相互之间不存在（或很少有）依赖关系。
 >
