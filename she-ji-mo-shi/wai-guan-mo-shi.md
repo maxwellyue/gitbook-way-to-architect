@@ -15,7 +15,6 @@
 `SubSystem`
 
 ```java
-
 public class SubSystemA  
 {  
     public void methodA()  
@@ -41,7 +40,7 @@ public class SubSystemC
 }
 ```
 
-Facade
+`Facade`：维持对子系统的引用
 
 ```java
 public class Facade  
@@ -59,10 +58,9 @@ public class Facade
 }
 ```
 
-Client
+`Client`：通过外观类来间接调用子系统对象的方法，无需与子系统直接交互
 
 ```java
-
 public class Client  
 {  
     public static void main(string[] args)  
@@ -71,8 +69,9 @@ public class Client
         facade.Method();  
     }  
 }
-
 ```
+
+
 
 
 
