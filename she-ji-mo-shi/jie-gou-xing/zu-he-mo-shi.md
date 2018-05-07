@@ -18,6 +18,214 @@
 
 **组合模式结构代码**
 
+Component
+
+```java
+public abstract class Component {  
+    public abstract void add(Component c); //增加成员  
+    public abstract void remove(Component c); //删除成员  
+    public abstract Component getChild(int i); //获取成员  
+    public abstract void operation();  //Leaf和Composite共有的业务方法  
+}
+```
+
+Leaf：由于Leaf没有add、remove、getChild等操作，所以在实现中可以抛出UnSupportOperationException或直接为空。
+
+```java
+public class Leaf extends Component {  
+    
+    public void add(Component c) {   
+        //异常处理或错误提示   
+    }     
+
+    public void remove(Component c) {   
+        //异常处理或错误提示   
+    }  
+
+    public Component getChild(int i) {   
+        //异常处理或错误提示  
+        return null;   
+    }
+
+    public void operation() {  
+        //叶子构件具体业务方法的实现  
+    }   
+}
+```
+
+Composite
+
+```java
+public class Composite extends Component {  
+    
+    private ArrayList<Component> list = new ArrayList<Component>();  
+
+    public void add(Component c) {  
+        list.add(c);  
+    }  
+
+    public void remove(Component c) {  
+        list.remove(c);  
+    }  
+
+    public Component getChild(int i) {  
+        return (Component)list.get(i);  
+    }  
+
+    public void operation() {  
+        //容器构件具体业务方法的实现  
+        //递归调用成员构件的业务方法  
+        for(Object obj:list) {  
+            ((Component)obj).operation();  
+        }  
+    }     
+}
+```
+
+现实中，电脑上的目录，公司中的部门，软件中的菜单，都是这种树形结构的形式，都可以考虑使用组合模式来简化客户端的操作。
+
+举个例子：开发一个杀毒\(AntiVirus\)软件，该软件既可以对某个文件夹\(Folder\)杀毒，也可以对某个指定的文件\(File\)进行杀毒。该杀毒软件还可以根据各类文件的特点，为不同类型的文件提供不同的杀毒方式，例如图像文件\(ImageFile\)和文本文件\(TextFile\)的杀毒方式就有所差异。用户在使用的时候，无论是文件夹还是文件，无论是何种类型的文件，都可以通过同一种操作完成杀毒这个工作。
+
+Component：AbstractFile
+
+```java
+public abstract class AbstractFile {  
+    public abstract void add(AbstractFile file);  
+    public abstract void remove(AbstractFile file);  
+    public abstract AbstractFile getChild(int i);  
+    public abstract void killVirus();  
+}  
+```
+
+Composite：Folder
+
+```java
+
+public class Folder extends AbstractFile {  
+    
+    //定义集合fileList，用于存储AbstractFile类型的成员  
+    private ArrayList<AbstractFile> fileList=new ArrayList<AbstractFile>();  
+    
+    private String name;  
+
+    public Folder(String name) {  
+        this.name = name;  
+    }  
+
+    public void add(AbstractFile file) {  
+       fileList.add(file);    
+    }  
+
+    public void remove(AbstractFile file) {  
+        fileList.remove(file);  
+    }  
+
+    public AbstractFile getChild(int i) {  
+        return (AbstractFile)fileList.get(i);  
+    }  
+
+    public void killVirus() {  
+        //模拟杀毒
+        System.out.println("****对文件夹'" + name + "'进行杀毒"); 
+        //递归调用成员构件的killVirus()方法  
+        for(Object obj : fileList) {  
+            ((AbstractFile)obj).killVirus();  
+        }  
+    }  
+}
+```
+
+Leaf：有三个，分别是`ImageFile ，TextFile，VedioFile`
+
+```java
+//图像文件类
+class ImageFile extends AbstractFile {  
+    private String name;  
+
+    public ImageFile(String name) {  
+        this.name = name;  
+    }  
+
+    public void add(AbstractFile file) {  
+       System.out.println("对不起，不支持该方法！");  
+    }  
+
+    public void remove(AbstractFile file) {  
+        System.out.println("对不起，不支持该方法！");  
+    }  
+
+    public AbstractFile getChild(int i) {  
+        System.out.println("对不起，不支持该方法！");  
+        return null;  
+    }  
+
+    public void killVirus() {  
+        //模拟杀毒  
+        System.out.println("----对图像文件'" + name + "'进行杀毒");  
+    }  
+}  
+
+//文本文件类
+class TextFile extends AbstractFile {  
+    private String name;  
+
+    public TextFile(String name) {  
+        this.name = name;  
+    }  
+
+    public void add(AbstractFile file) {  
+       System.out.println("对不起，不支持该方法！");  
+    }  
+
+    public void remove(AbstractFile file) {  
+        System.out.println("对不起，不支持该方法！");  
+    }  
+
+    public AbstractFile getChild(int i) {  
+        System.out.println("对不起，不支持该方法！");  
+        return null;  
+    }  
+
+    public void killVirus() {  
+        //模拟杀毒  
+        System.out.println("----对文本文件'" + name + "'进行杀毒");  
+    }  
+}  
+
+//视频文件类
+class VideoFile extends AbstractFile {  
+    private String name;  
+
+    public VideoFile(String name) {  
+        this.name = name;  
+    }  
+
+    public void add(AbstractFile file) {  
+       System.out.println("对不起，不支持该方法！");  
+    }  
+
+    public void remove(AbstractFile file) {  
+        System.out.println("对不起，不支持该方法！");  
+    }  
+
+    public AbstractFile getChild(int i) {  
+        System.out.println("对不起，不支持该方法！");  
+        return null;  
+    }  
+
+    public void killVirus() {  
+        //模拟杀毒  
+        System.out.println("----对视频文件'" + name + "'进行杀毒");  
+    }  
+} 
+```
+
+客户端使用
+
+
+
+
+
 
 
 
