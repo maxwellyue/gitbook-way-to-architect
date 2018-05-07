@@ -33,7 +33,7 @@ Leaf：由于Leaf没有add、remove、getChild等操作，所以在实现中可�
 
 ```java
 public class Leaf extends Component {  
-    
+
     public void add(Component c) {   
         //异常处理或错误提示   
     }     
@@ -57,7 +57,7 @@ Composite
 
 ```java
 public class Composite extends Component {  
-    
+
     private ArrayList<Component> list = new ArrayList<Component>();  
 
     public void add(Component c) {  
@@ -94,18 +94,17 @@ public abstract class AbstractFile {
     public abstract void remove(AbstractFile file);  
     public abstract AbstractFile getChild(int i);  
     public abstract void killVirus();  
-}  
+}
 ```
 
 Composite：Folder
 
 ```java
-
 public class Folder extends AbstractFile {  
-    
+
     //定义集合fileList，用于存储AbstractFile类型的成员  
     private ArrayList<AbstractFile> fileList=new ArrayList<AbstractFile>();  
-    
+
     private String name;  
 
     public Folder(String name) {  
@@ -135,7 +134,7 @@ public class Folder extends AbstractFile {
 }
 ```
 
-Leaf：有三个，分别是`ImageFile ，TextFile，VedioFile`
+Leaf：有2个，分别是`ImageFile ，TextFile`
 
 ```java
 //图像文件类
@@ -190,39 +189,43 @@ class TextFile extends AbstractFile {
         //模拟杀毒  
         System.out.println("----对文本文件'" + name + "'进行杀毒");  
     }  
-}  
-
-//视频文件类
-class VideoFile extends AbstractFile {  
-    private String name;  
-
-    public VideoFile(String name) {  
-        this.name = name;  
-    }  
-
-    public void add(AbstractFile file) {  
-       System.out.println("对不起，不支持该方法！");  
-    }  
-
-    public void remove(AbstractFile file) {  
-        System.out.println("对不起，不支持该方法！");  
-    }  
-
-    public AbstractFile getChild(int i) {  
-        System.out.println("对不起，不支持该方法！");  
-        return null;  
-    }  
-
-    public void killVirus() {  
-        //模拟杀毒  
-        System.out.println("----对视频文件'" + name + "'进行杀毒");  
-    }  
 } 
 ```
 
 客户端使用
 
+```java
+public class Client {  
+    public static void main(String args[]) {  
+        
+        AbstractFile file1,file2,file3,file4,file5,folder1,folder2,folder3,folder4;  
 
+        folder = new Folder("my");  
+        imageFolder = new Folder("img");  
+        textFolder = new Folder("text");  
+        
+        folder.add(imageFolder);  
+        folder.add(textFolder); 
+               
+        iamgeFolder.add(new ImageFile("dog.jpg"));  
+        imageFolder.add(new ImageFile("cat.png"));  
+        textFolder.add(new TextFile("way-to-architect.txt"));           
+
+        //用户需求1：对目录my进行杀毒
+        folder.killVirus();
+        
+        //用户需求2：只对图片杀毒
+        imageFolder.killVirus();
+        
+        //用户需求3：只对way-to-architect.txt文件杀毒
+        new TextFile("way-to-architect.txt").killVirus();
+    }  
+}
+```
+
+可以看出，无论用户操作的是树形结构的叶子节点还是容器节点，所执行的操作都是一样的（都是执行`killVirus()`方法）。即用户无须关心节点的层次结构，可以对所选节点进行统一处理。
+
+注意到，上面的示例代码中，叶子节点
 
 
 
