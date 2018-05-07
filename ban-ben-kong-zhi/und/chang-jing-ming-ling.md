@@ -33,3 +33,12 @@ $ git stash apply
 
 ok，问题解决
 
+3、本地新建分支后，同步到远程分支（远程分支还不存在）
+
+```
+# 这样就可以创建远程分支，并将本地分支同步过去
+$ git push local-branch-name:remote-branch-name
+```
+
+
+
