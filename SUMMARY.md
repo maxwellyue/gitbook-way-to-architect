@@ -134,7 +134,7 @@
   * [结构型](she-ji-mo-shi/jie-gou-xing.md)
     * [组合模式](she-ji-mo-shi/jie-gou-xing/zu-he-mo-shi.md)
       * [组合模式续](she-ji-mo-shi/jie-gou-xing/zu-he-mo-shi/zu-he-mo-shi-xu.md)
-    * 装饰模式
+    * [装饰模式](she-ji-mo-shi/jie-gou-xing/zhuang-shi-mo-shi.md)
     * [代理模式](she-ji-mo-shi/jie-gou-xing/dai-li-mo-shi.md)
     * [备忘录模式](she-ji-mo-shi/jie-gou-xing/bei-wang-lu-mo-shi.md)
 * [构建工具](gou-jian-gong-ju.md)
