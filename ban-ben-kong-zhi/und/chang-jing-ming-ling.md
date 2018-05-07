@@ -13,5 +13,23 @@ git checkout aaa
 git stash apply 或者 git stash pop
 ```
 
+2、[忘记切分支修改了代码](https://getyii.com/topic/240)
 
+有时候没注意分支，直接在 master 上做开发了，假设你现在在 master 分支上已经修改了文件：
+
+```
+# 把当前未提交到本地（和服务器）的代码推入到 Git 的栈中：
+$ git stash
+
+# 查看效果：
+$ git status 
+
+# 切换分支：
+$ git branch dev 
+
+# 还原代码：
+$ git stash apply
+```
+
+ok，问题解决
 
