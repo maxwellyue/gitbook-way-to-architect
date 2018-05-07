@@ -189,7 +189,7 @@ class TextFile extends AbstractFile {
         //模拟杀毒  
         System.out.println("----对文本文件'" + name + "'进行杀毒");  
     }  
-} 
+}
 ```
 
 客户端使用
@@ -197,26 +197,26 @@ class TextFile extends AbstractFile {
 ```java
 public class Client {  
     public static void main(String args[]) {  
-        
+
         AbstractFile file1,file2,file3,file4,file5,folder1,folder2,folder3,folder4;  
 
         folder = new Folder("my");  
         imageFolder = new Folder("img");  
         textFolder = new Folder("text");  
-        
+
         folder.add(imageFolder);  
         folder.add(textFolder); 
-               
+
         iamgeFolder.add(new ImageFile("dog.jpg"));  
         imageFolder.add(new ImageFile("cat.png"));  
         textFolder.add(new TextFile("way-to-architect.txt"));           
 
         //用户需求1：对目录my进行杀毒
         folder.killVirus();
-        
+
         //用户需求2：只对图片杀毒
         imageFolder.killVirus();
-        
+
         //用户需求3：只对way-to-architect.txt文件杀毒
         new TextFile("way-to-architect.txt").killVirus();
     }  
@@ -224,12 +224,6 @@ public class Client {
 ```
 
 可以看出，无论用户操作的是树形结构的叶子节点还是容器节点，所执行的操作都是一样的（都是执行`killVirus()`方法）。即用户无须关心节点的层次结构，可以对所选节点进行统一处理。
-
-注意到，上面的示例代码中，叶子节点
-
-
-
-
 
 
 
