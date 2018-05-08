@@ -19,12 +19,12 @@ class ScrollBarDecorator extends  ComponentDecorator{
 }
 ```
 
-即经过装饰后，被装饰类只是在原有方法的内部去增强了原有方法，其实这类似于AOP的功能增强。但假如要在被装饰类中添加一个新的方法，且该方法与被装饰类中的原有方法没有任何关系，比如OA系统中，采购单\(PurchaseRequest\)和请假条都有display\(\)方法，现在要对他们添加审批和删除功能，那么使用装饰模式的代码结构如下：![](/assets/屏幕快照 2018-05-08 下午9.48.27.png)其中，审批装饰类代码具体如下：
+即经过装饰后，被装饰类只是在原有方法的内部去增强了原有方法，其实这类似于AOP的功能增强。但假如要在被装饰类中添加一个新的方法，且该方法与被装饰类中的原有方法没有任何关系，比如OA系统中，采购单\(PurchaseRequest\)和请假条都有display\(\)方法，现在要对他们添加审批和删除功能，那么使用装饰模式的代码结构如下：其中，审批装饰类代码具体如下：
 
 ```java
 //审批装饰类
 public class Approver extends Decorator{
-      
+
       public Approver(Document document){
              super(document);
       }
@@ -49,9 +49,31 @@ OA系统例子中演示的装饰模式，称之为半透明装饰模式。半透
 
 **JDK中的装饰模式**
 
+JDK中最典型的装饰模式的应用就是I/O流，看如下代码：
+
+```java
+try (DataInputStream inputStream = new DataInputStream(new BufferedInputStream(new FileInputStream("test.txt")))){
+
+    //do something with inputStream
+    ......
+
+} catch (FileNotFoundException e) {
+    e.printStackTrace();
+}catch (IOException e){
+    e.printStackTrace();
+}
+
+```
+
+这里，FileInputSream相当于原始的被装饰的类，它经过了BufferedInputSream装饰（拥有了buffer功能），又经过DataInputStream装饰。
+
+这几个类之间的关系如下图：
 
 
 
+这里的InputStream相当于Component，FileInputStream相当于ConcreteCoponent，而FilterInputStream相当于Decorator，BufferedInputStream和DataInputStream相当于ConcreteDecorator。
+
+输出流OutputStream与之类似。
 
 
 
