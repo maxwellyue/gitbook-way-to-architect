@@ -22,6 +22,11 @@ scp -i /Users/yue/educloud_server -r /Users/yue/xxxx/dist/static root@192.168.12
 
 # 从远程主机向本地传输文件时，只需要将上面的scp后面的定位文件的字符的前后位置倒置即可，如
 scp -r xiaoming@192.168.12.21:/home/remotefile.txt /Users/yue/Desktop
+
+# scp参数解释
+-r ：递归复制整个文件夹
+-P ：指定端口（注意是大写的P）
+-i ：指定密钥文件
 ```
 
 远程执行命令
@@ -35,4 +40,6 @@ ssh xiaoming@192.168.12.21  "rm -rf /home/edu-web/*;"
 # 以用户xiaoming登录，并指定免密私钥在本地的存放地址为/Users/yue/educloud_server
 ssh xiaoming@192.168.12.21 -i /Users/yue/educloud_server "cd /home/backup-edu-web;mkdir xxxx;cp -r /home/edu-web/* /home/backup-edu-web/xxxx;"
 ```
+
+
 
