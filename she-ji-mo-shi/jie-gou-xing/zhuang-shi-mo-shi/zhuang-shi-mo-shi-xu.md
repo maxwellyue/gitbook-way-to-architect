@@ -74,13 +74,11 @@ try (DataInputStream inputStream = new DataInputStream(new BufferedInputStream(n
 
 输出流OutputStream与之类似。
 
-
-
 ### 参考
 
 ---
 
-[扩展系统功能--装饰模式](https://quanke.gitbooks.io/design-pattern-java/content/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F-Decorator%20Pattern.html)
+[扩展系统功能--装饰模式](https://quanke.gitbooks.io/design-pattern-java/content/装饰模式-Decorator Pattern.html)：文字和代码大多来自于此
 
-《研磨设计模式 第22章 装饰模式》
+《研磨设计模式 第22章 装饰模式》：JDK中装饰模式
 
