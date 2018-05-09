@@ -40,5 +40,14 @@ ok，问题解决
 $ git push local-branch-name:remote-branch-name
 ```
 
+3、撤销某次commit
+
+```
+# 先找到commit id
+$ git log
+# 撤销
+$ git reset --hard commit_id
+```
+
 
 
