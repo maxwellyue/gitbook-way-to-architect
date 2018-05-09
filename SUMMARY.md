@@ -147,6 +147,7 @@
     * [不同环境的如何配置不同的变量](gou-jian-gong-ju/maven/bu-tong-huan-jing-de-ru-he-pei-zhi-bu-tong-de-bian-liang.md)
     * [常用插件及配置](gou-jian-gong-ju/maven/chang-yong-cha-jian-ji-pei-zhi.md)
     * [其他问题](gou-jian-gong-ju/maven/qi-ta-xiao-wen-ti.md)
+    * dependencies与dependencyManagement的区别
   * Gradle
 * 大数据
   * Hadoop
