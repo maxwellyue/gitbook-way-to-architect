@@ -132,7 +132,6 @@
     * [中介者模式](she-ji-mo-shi/zhong-jie-zhe-mo-shi.md)
       * [中介模式续](she-ji-mo-shi/zhong-jie-zhe-mo-shi/zhong-jie-mo-shi-xu.md)
     * [状态模式](she-ji-mo-shi/zhuang-tai-mo-shi.md)
-      * [状态模式续](she-ji-mo-shi/zhuang-tai-mo-shi/zhuang-tai-mo-shi-xu.md)
       * [实例1--投票](she-ji-mo-shi/zhuang-tai-mo-shi/shi-li-1-tou-piao.md)
   * [结构型](she-ji-mo-shi/jie-gou-xing.md)
     * [组合模式](she-ji-mo-shi/jie-gou-xing/zu-he-mo-shi.md)
