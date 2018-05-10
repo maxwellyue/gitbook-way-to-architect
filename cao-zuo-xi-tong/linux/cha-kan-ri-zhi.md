@@ -60,12 +60,24 @@ less filename （在查看之前不会加载整个文件）
 ```
 # 方式①
 $ :> filenname
+
 # 方式②
 $ > filename
+
 # 方式③
 $ echo "" > filename
+
 # 方式④
-# cat "" > filename
+$ echo > filename
+
+# 方式⑤
+$ cat /dev/null > filename
+
+# 方式⑥
+$ echo /dev/null > filename
+
+# 方式⑦
+$ cp /dev/null > filename
 ```
 
 
