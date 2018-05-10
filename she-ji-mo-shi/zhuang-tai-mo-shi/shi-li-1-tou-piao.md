@@ -28,7 +28,7 @@ public class NormalVoteState implements VoteState {
     public void vote(String user, String voteItem, VoteManager voteManager) {
         //正常投票，记录到投票记录中
         voteManager.getMapVote().put(user, voteItem);
-        System.out.println("恭喜投票成功");
+        System.out.println("投票成功");
     }
 
 }
@@ -74,39 +74,30 @@ public class BlackVoteState implements VoteState {
 Context
 
 ```java
-
-
 public class VoteManager {
-    
+
     private VoteState state = null;
-    
+
     //记录用户投票的结果，<用户名称，投票的选项>
     private Map<String,String> mapVote = new HashMap<String,String>();
-    
+
     //记录用户投票次数，<用户名称，投票的次数>
     private Map<String,Integer> mapVoteCount = new HashMap<String,Integer>();
-    /**
-     * 获取用户投票结果的Map
-     */
+    
     public Map<String, String> getMapVote() {
         return mapVote;
     }
-    /**
-     * 投票
-     * @param user    投票人
-     * @param voteItem    投票的选项
-     */
+   
     public void vote(String user,String voteItem){
         //1.为该用户增加投票次数
-        //从记录中取出该用户已有的投票次数
         Integer oldVoteCount = mapVoteCount.get(user);
         if(oldVoteCount == null){
             oldVoteCount = 0;
         }
         oldVoteCount += 1;
         mapVoteCount.put(user, oldVoteCount);
-        //2.判断该用户的投票类型，就相当于判断对应的状态
-        //到底是正常投票、重复投票、恶意投票还是上黑名单的状态
+        
+        //2.判断该用户的投票类型
         if(oldVoteCount == 1){
             state = new NormalVoteState();
         }
@@ -119,15 +110,38 @@ public class VoteManager {
         else if(oldVoteCount > 8){
             state = new BlackVoteState();
         }
-        //然后转调状态对象来进行相应的操作
+        //3.转调状态对象来进行相应的操作
         state.vote(user, voteItem, this);
     }
 }
 ```
 
+客户端
 
+```java
+public class Client {
 
+    public static void main(String[] args) {
+        
+        VoteManager vm = new VoteManager();
+        for(int i = 0;i < 9; i++){
+            vm.vote("user-1","A");
+        }
+    }
 
+}
+
+//输出如下
+投票成功
+请不要重复投票
+请不要重复投票
+请不要重复投票
+你有恶意刷屏行为，取消投票资格
+你有恶意刷屏行为，取消投票资格
+你有恶意刷屏行为，取消投票资格
+你有恶意刷屏行为，取消投票资格
+进入黑名单，将禁止登录和使用本系统
+```
 
 
 
