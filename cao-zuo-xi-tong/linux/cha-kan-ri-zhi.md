@@ -55,5 +55,18 @@ less filename （在查看之前不会加载整个文件）
 显示文件前10行内容：head -n 10 filename
 ```
 
+### 清空文件内容
+
+```
+# 方式①
+$ :> filenname
+# 方式②
+$ > filename
+# 方式③
+$ echo "" > filename
+# 方式④
+# cat "" > filename
+```
+
 
 
