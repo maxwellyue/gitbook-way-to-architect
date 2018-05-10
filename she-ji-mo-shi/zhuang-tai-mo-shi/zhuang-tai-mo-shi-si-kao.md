@@ -48,5 +48,80 @@ public interface LeaveRequestState extends State {
 }
 ```
 
+ConcreteState：有三个
+
+```java
+//项目经理状态
+public class ProjectManagerState implements LeaveRequestState {
+
+    @Override
+    public void process(StateMachine request) {
+
+        LeaveRequestModel model = (LeaveRequestModel) request.getBusinessVO();
+
+        //模拟审批过程
+        mockAudit(model);
+
+        if("同意".equals(model.getResult())){
+            if(model.getLeaveDays() < 3){
+                //小于三天，将流程状态设置为结束
+                request.setState(new AuditOverState());
+            }else {
+                //大于三天，交给部门经理继续审核
+                request.setState(new DepManagerState());
+            }
+
+        }else {
+            //项目经理不同意，则将流程状态设置为结束
+            request.setState(new AuditOverState());
+        }
+    }
+
+    private void mockAudit(LeaveRequestModel model) {
+        boolean res =  new Random().nextBoolean(); 
+        if(res){
+            model.setResult("同意");
+        }else {
+            model.setResult("不同意");
+        }
+    }
+}
+
+//部门经理状态
+public class DepManagerState implements LeaveRequestState {
+
+    @Override
+    public void process(StateMachine request) {
+
+        LeaveRequestModel model = (LeaveRequestModel) request.getBusinessVO();
+
+        //模拟审批过程
+        mockAudit(model);
+
+        //将流程状态设置为结束
+        request.setState(new AuditOverState());
+    }
+
+    private void mockAudit(LeaveRequestModel model) {
+        boolean res =  new Random().nextBoolean(); 
+        if(res){
+            model.setResult("同意");
+        }else {
+            model.setResult("不同意");
+        }
+    }
+}
+//审批结束状态
+public class AuditOverState implements LeaveRequestState {
+    @Override
+    public void process(StateMachine stateMachine) {
+        LeaveRequestModel model = (LeaveRequestModel)stateMachine.getBusinessVO();
+        System.out.println("请假审批结束，审批结果：" + model.getResult());
+    }
+}
+```
+
+
+
 
 
