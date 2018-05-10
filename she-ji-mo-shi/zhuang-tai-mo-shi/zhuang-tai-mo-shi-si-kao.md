@@ -8,10 +8,6 @@
 
 ![](/assets/屏幕快照 2018-05-10 下午8.17.43.png)
 
-
-
-
-
 Context
 
 为了让代码更具通用性（比如，在其他流程如报销中，也可以重复使用一部分代码），引入StateMachine（其实就是Context的更上一层的抽象）
@@ -163,6 +159,14 @@ context.process();
 对象的状态一般需要持久化到数据库中，而状态改变后，何时去进行下个状态的操作，取决于具体的场景：①有可能是定时去数据库获取特定状态的业务数据；②也有可能是等待用户去获取某特定状态的业务数据；
 
 
+
+### 参考
+
+---
+
+ 《研磨设计模式 第18章 状态模式》
+
+[状态模式-State Pattern](https://quanke.gitbooks.io/design-pattern-java/content/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F-State%20Pattern.html)
 
 
 
