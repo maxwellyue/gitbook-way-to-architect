@@ -83,11 +83,11 @@ public class VoteManager {
 
     //记录用户投票次数，<用户名称，投票的次数>
     private Map<String,Integer> mapVoteCount = new HashMap<String,Integer>();
-    
+
     public Map<String, String> getMapVote() {
         return mapVote;
     }
-   
+
     public void vote(String user,String voteItem){
         //1.为该用户增加投票次数
         Integer oldVoteCount = mapVoteCount.get(user);
@@ -96,7 +96,7 @@ public class VoteManager {
         }
         oldVoteCount += 1;
         mapVoteCount.put(user, oldVoteCount);
-        
+
         //2.判断该用户的投票类型
         if(oldVoteCount == 1){
             state = new NormalVoteState();
@@ -122,7 +122,7 @@ public class VoteManager {
 public class Client {
 
     public static void main(String[] args) {
-        
+
         VoteManager vm = new VoteManager();
         for(int i = 0;i < 9; i++){
             vm.vote("user-1","A");

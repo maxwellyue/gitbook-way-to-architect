@@ -70,10 +70,7 @@ public class ProjectManagerState implements LeaveRequestState {
             }
         }else {   
             request.setState(new AuditOverState());
-        }
-        
-        //保存到数据库
-        saveModel2DB(model);
+        }    
     }
 
     private void mockAudit(LeaveRequestModel model) {
@@ -99,8 +96,8 @@ public class DepManagerState implements LeaveRequestState {
 
         //将流程状态设置为结束
         request.setState(new AuditOverState());
-        
-        
+
+
     }
 
     private void mockAudit(LeaveRequestModel model) {
@@ -135,8 +132,6 @@ public class LeaveRequestModel {
     private int leaveDays;
     //请假结果
     private String result;
-    //当前状态
-    private State currentState;
 
     ....省略以上属性的getter和setter方法
 
@@ -144,11 +139,20 @@ public class LeaveRequestModel {
 }
 ```
 
-流程为：某用户在页面上点击请假，填写请假详情，系统则model = new LeaveRequestModel，并将该model信息保存到数据库（如其他地方），并记录其state为ProjectManagerState；部门经理登录系统，获取state为ProjectManagerState请假信息，在页面点击同意或不同意，后台执行
+客户端：就是构建一个状态机，然后让状态机开始工作
 
+```java
+StateMachine context = new LeaveRequestContext();
+context.setBusinessVO(model);
+context.setState(new ProjectManagerState());
+context.process();
+```
 
+在上面的示例中，客户端调用时，就是为了创建一个状态机，来对某一次流程进行处理，而构建状态机中需要的业务数据和状态机的当前状态，即business和state，这两个参数是需要保存在某个地方的，一般是数据库。
 
+当然，也可以像上个投票的例子一样，将这些数据保存在Context中（这样仅仅是示例，实际应用中一般是持久化存储的）。
 
+无论是投票的例子，还是工作流的例子：某个对象，对不同状态下，同一方法声明在不同的实现不同，这些不同的逻辑分开放在不同的状态类中，而不是用if-else全部写在同一方法中，因为实际场景下，某一个状态下，业务逻辑可能就很复杂。
 
 
 
