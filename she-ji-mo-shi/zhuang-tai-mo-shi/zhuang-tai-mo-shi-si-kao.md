@@ -64,17 +64,16 @@ public class ProjectManagerState implements LeaveRequestState {
 
         if("同意".equals(model.getResult())){
             if(model.getLeaveDays() < 3){
-                //小于三天，将流程状态设置为结束
                 request.setState(new AuditOverState());
-            }else {
-                //大于三天，交给部门经理继续审核
+            }else {        
                 request.setState(new DepManagerState());
             }
-
-        }else {
-            //项目经理不同意，则将流程状态设置为结束
+        }else {   
             request.setState(new AuditOverState());
         }
+        
+        //保存到数据库
+        saveModel2DB(model);
     }
 
     private void mockAudit(LeaveRequestModel model) {
@@ -100,6 +99,8 @@ public class DepManagerState implements LeaveRequestState {
 
         //将流程状态设置为结束
         request.setState(new AuditOverState());
+        
+        
     }
 
     private void mockAudit(LeaveRequestModel model) {
@@ -120,6 +121,34 @@ public class AuditOverState implements LeaveRequestState {
     }
 }
 ```
+
+业务数据
+
+```java
+public class LeaveRequestModel {
+
+    //请假人
+    private String user;
+    //请假开始时间
+    private String beginDate;
+    //请假天数
+    private int leaveDays;
+    //请假结果
+    private String result;
+    //当前状态
+    private State currentState;
+
+    ....省略以上属性的getter和setter方法
+
+
+}
+```
+
+流程为：某用户在页面上点击请假，填写请假详情，系统则model = new LeaveRequestModel，并将该model信息保存到数据库（如其他地方），并记录其state为ProjectManagerState；部门经理登录系统，获取state为ProjectManagerState请假信息，在页面点击同意或不同意，后台执行
+
+
+
+
 
 
 
