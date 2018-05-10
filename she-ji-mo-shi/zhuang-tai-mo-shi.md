@@ -20,21 +20,25 @@
 
 * ConcreteState（具体状态类）：抽象状态类的子类，实现一个与Context的一个状态相关的行为，每一个具体状态类对应Context的一个具体状态，不同的具体状态类其行为有所不同。
 
+> **小知识**：代码中state与status的区别
+>
+> **state所指的状态，一般都是有限的、可列举的，status则是不可确定的。**
+
 **状态模式结构代码**
 
-Status
+State
 
 ```java
-public interface Status{
+public interface State{
     //声明抽象业务方法，不同的具体状态类实现不同    
     void handle(String parameter);
 }
 ```
 
-ConcreteStatus
+ConcreteState
 
 ```java
-public ConcreteStatus implements Status{
+public ConcreteState implements State{
 
     public void handle(String parameter){
         System.out.print("具体的业务逻辑");
@@ -47,15 +51,15 @@ Context
 ```java
 public class Context{
 
-    private Status status;
+    private State statee;
 
-    public setStatus(Status status){
-        this.status = status;
+    public setState(Status state){
+        this.state = state;
     }
 
     public void request(String arg){
         ...
-        status.handle(parameter);
+        state.handle(parameter);
         ...
     }
 
@@ -69,65 +73,65 @@ Context：屏幕，客户端与Context交互
 ```java
 public class Screen {  
     //枚举所有的状态，currentState表示当前状态  
-    private Status currentStatus, normalStatus, largerStatus, largestStatus;  
+    private State currentState, normalState, largerState, largestState;  
 
     public Screen() {  
-        this.normalStatus = new NormalStatus(); //创建正常状态对象  
-        this.largerStatus = new LargerStatus(); //创建二倍放大状态对象  
-        this.largestStatus = new LargestStatus(); //创建四倍放大状态对象  
-        this.currentStatus = normalStatus; //设置初始状态  
-        this.currentStatus.display();  
+        this.normalState = new NormalState(); //创建正常状态对象  
+        this.largerState = new LargerState(); //创建二倍放大状态对象  
+        this.largestState = new LargestState(); //创建四倍放大状态对象  
+        this.currentState = normalState; //设置初始状态  
+        this.currentState.display();  
     }  
 
-    public void setStatus(Status status) {  
-        this.currentStatus = status;  
+    public void setState(Status state) {  
+        this.currentState = state;  
     }  
 
     //单击事件处理方法，封转了对状态类中业务方法的调用和状态的转换  
     public void onClick() {  
-        if (this.currentStatus == normalStatus) {  
-            this.setStatus(largerStatus);  
-            this.currentStatus.display();  
+        if (this.currentState == normalState) {  
+            this.setState(largerState);  
+            this.currentState.display();  
         }  
-        else if (this.currentStatus == largerStatus) {  
-            this.setStatus(largestStatus);  
-            this.currentStatus.display();  
+        else if (this.currentState == largerState) {  
+            this.setState(largestState);  
+            this.currentState.display();  
         }  
-        else if (this.currentStatus == largestStatus) {  
-            this.setStatus(normalStatus);  
-            this.currentStatus.display();  
+        else if (this.currentState == largestState) {  
+            this.setState(normalState);  
+            this.currentState.display();  
         }  
     }  
 }
 ```
 
-Status
+State
 
 ```java
-public interface Status{  
+public interface State{  
     void display();  
 }
 ```
 
-ConcreteStatus：有三个
+ConcreteState：有三个
 
 ```java
 //正常状态
-public class NormalStatus extends Status{  
+public class NormalState extends State{  
     public void display() {  
         System.out.println("正常大小！");  
     }  
 }  
 
 //二倍方法状态
-public class LargerStatus extends Status{  
+public class LargerState extends State{  
     public void display() {  
         System.out.println("二倍大小！");  
     }  
 }  
 
 //四倍放大状态
-public class LargestStatus extends Status{  
+public class LargestState extends State{  
     public void display() {  
         System.out.println("四倍大小！");  
     }  
