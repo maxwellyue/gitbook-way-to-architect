@@ -112,7 +112,7 @@
     * [Shell脚本](cao-zuo-xi-tong/linux/shelljiao-ben.md)
   * Mac
   * [计算机基础](cao-zuo-xi-tong/linux/ji-suan-ji-ji-chu.md)
-    * 进制
+    * [进制](cao-zuo-xi-tong/linux/ji-suan-ji-ji-chu/jin-zhi.md)
 * [网络](wang-luo/README.md)
   * [TCP三次握手和四次挥手](wang-luo/tcp-san-ci-wo-shou-he-si-ci-hui-shou.md)
 * [设计模式](she-ji-mo-shi/README.md)
