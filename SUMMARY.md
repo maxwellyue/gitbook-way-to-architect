@@ -99,7 +99,7 @@
     * [Git常用命令](ban-ben-kong-zhi/und/git-chang-yong-ming-ling.md)
     * [场景命令](ban-ben-kong-zhi/und/chang-jing-ming-ling.md)
   * Svn
-* [操作系统](cao-zuo-xi-tong/README.md)
+* [计算机操作系统](cao-zuo-xi-tong/README.md)
   * [Linux](cao-zuo-xi-tong/linux/README.md)
     * [常用命令](cao-zuo-xi-tong/linux/chang-yong-ming-ling.md)
     * [查看日志](cao-zuo-xi-tong/linux/cha-kan-ri-zhi.md)
@@ -110,9 +110,10 @@
     * [进程](cao-zuo-xi-tong/linux/jin-cheng.md)
     * [防火墙](cao-zuo-xi-tong/linux/fang-huo-qiang.md)
     * [Shell脚本](cao-zuo-xi-tong/linux/shelljiao-ben.md)
-  * Mac
+  * [Mac](cao-zuo-xi-tong/linux/mac.md)
   * [计算机基础](cao-zuo-xi-tong/linux/ji-suan-ji-ji-chu.md)
     * [进制](cao-zuo-xi-tong/linux/ji-suan-ji-ji-chu/jin-zhi.md)
+    * [Java中的位运算](cao-zuo-xi-tong/linux/ji-suan-ji-ji-chu/javazhong-de-wei-yun-suan.md)
 * [网络](wang-luo/README.md)
   * [TCP三次握手和四次挥手](wang-luo/tcp-san-ci-wo-shou-he-si-ci-hui-shou.md)
 * [设计模式](she-ji-mo-shi/README.md)
