@@ -111,6 +111,8 @@
     * [防火墙](cao-zuo-xi-tong/linux/fang-huo-qiang.md)
     * [Shell脚本](cao-zuo-xi-tong/linux/shelljiao-ben.md)
   * Mac
+  * [计算机基础](cao-zuo-xi-tong/linux/ji-suan-ji-ji-chu.md)
+    * 进制
 * [网络](wang-luo/README.md)
   * [TCP三次握手和四次挥手](wang-luo/tcp-san-ci-wo-shou-he-si-ci-hui-shou.md)
 * [设计模式](she-ji-mo-shi/README.md)
@@ -141,6 +143,7 @@
       * [装饰模式续](she-ji-mo-shi/jie-gou-xing/zhuang-shi-mo-shi/zhuang-shi-mo-shi-xu.md)
     * [代理模式](she-ji-mo-shi/jie-gou-xing/dai-li-mo-shi.md)
     * [备忘录模式](she-ji-mo-shi/jie-gou-xing/bei-wang-lu-mo-shi.md)
+    * [桥接模式](she-ji-mo-shi/jie-gou-xing/qiao-jie-mo-shi.md)
 * [构建工具](gou-jian-gong-ju.md)
   * [Maven](maven.md)
     * [常用命令](gou-jian-gong-ju/maven/chang-yong-ming-ling.md)
