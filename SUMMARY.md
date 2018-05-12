@@ -145,6 +145,7 @@
     * [代理模式](she-ji-mo-shi/jie-gou-xing/dai-li-mo-shi.md)
     * [备忘录模式](she-ji-mo-shi/jie-gou-xing/bei-wang-lu-mo-shi.md)
     * [桥接模式](she-ji-mo-shi/jie-gou-xing/qiao-jie-mo-shi.md)
+      * [桥接模式实例一](she-ji-mo-shi/jie-gou-xing/qiao-jie-mo-shi/qiao-jie-mo-shi-shi-li-yi.md)
 * [构建工具](gou-jian-gong-ju.md)
   * [Maven](maven.md)
     * [常用命令](gou-jian-gong-ju/maven/chang-yong-ming-ling.md)
