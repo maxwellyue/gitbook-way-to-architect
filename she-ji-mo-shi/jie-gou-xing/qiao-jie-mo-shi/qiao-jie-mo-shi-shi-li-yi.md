@@ -4,6 +4,10 @@
 
 我们很可能会想到如下的设计方案：
 
+
+
+
+
 我们现在对该设计方案进行分析，发现存在如下两个主要问题：
 
 \(1\)多层继承结构，导致系统中类的个数急剧增加，具体层的类的个数 = 所支持的图像文件格式数×所支持的操作系统数。
@@ -22,7 +26,7 @@ public class Matrix {
 }
 ```
 
-抽象图像类：抽象类
+Abstraction
 
 ```java
 public abstract class Image {  
@@ -37,7 +41,7 @@ public abstract class Image {
 }
 ```
 
-抽象操作系统实现类：实现类接口
+Implementor
 
 ```java
 public interface ImageImp {  
@@ -45,7 +49,7 @@ public interface ImageImp {
 }
 ```
 
-具体的操作系统实现类：
+ConcreteImplementor
 
 ```java
 //Windows操作系统实现类：具体实现类  
@@ -70,7 +74,7 @@ pulbic class UnixImp implements ImageImp {
 }
 ```
 
-图像处理类
+RefinedAbstraction
 
 ```java
 //JPG格式图像：扩充抽象类  
@@ -114,7 +118,7 @@ pulbic class GIFImage extends Image {
 }
 ```
 
-客户端
+Client
 
 ```java
 publci class Client {  
