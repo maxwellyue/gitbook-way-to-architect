@@ -83,13 +83,11 @@ public class RefinedAbstractionB extends Abstraction{
 }
 ```
 
-
-
 ### 参考
 
 ---
 
-《研磨设计模式--第24章 桥接模式》
+《研磨设计模式--第24章 桥接模式》：代码
 
-
+[处理多维变化--桥接模式](#)：文字
 
