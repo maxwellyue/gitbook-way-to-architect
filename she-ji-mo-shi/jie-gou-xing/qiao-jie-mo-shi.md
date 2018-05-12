@@ -66,9 +66,9 @@ public class RefinedAbstractionA extends Abstraction{
     public RefinedAbstractionA(Implementor impl){
         super(impl);
     }
-    
+
     public void otherOperation(){
-        
+
     }
 }
 public class RefinedAbstractionB extends Abstraction{
@@ -76,18 +76,20 @@ public class RefinedAbstractionB extends Abstraction{
     public RefinedAbstractionB(Implementor impl){
         super(impl);
     }
-    
+
     public void otherOperation(){
-        
+
     }
 }
 ```
 
 
 
+### 参考
 
+---
 
-
+《研磨设计模式--第24章 桥接模式》
 
 
 
