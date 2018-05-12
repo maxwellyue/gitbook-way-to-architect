@@ -126,5 +126,5 @@ publci class Client {
 }
 ```
 
-
+在上面的代码中，Image充当抽象类，其子类JPGImage、PNGImage、BMPImage和GIFImage充当扩充抽象类；ImageImp充当实现类接口，其子类WindowsImp、LinuxImp和UnixImp充当具体实现类。
 
