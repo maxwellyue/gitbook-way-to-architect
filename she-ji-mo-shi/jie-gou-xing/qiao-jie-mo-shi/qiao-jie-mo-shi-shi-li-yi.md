@@ -4,6 +4,8 @@
 
 我们很可能会想到如下的设计方案：
 
+![](/assets/屏幕快照 2018-05-13 上午1.39.06.png)
+
 
 
 
@@ -131,4 +133,12 @@ publci class Client {
 ```
 
 在上面的代码中，Image充当抽象类，其子类JPGImage、PNGImage、BMPImage和GIFImage充当扩充抽象类；ImageImp充当实现类接口，其子类WindowsImp、LinuxImp和UnixImp充当具体实现类。
+
+
+
+
+
+---
+
+[处理多维变化--桥接模式](https://gof.quanke.name/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F-Bridge%20Pattern.html)：代码+文字均来自此处
 
