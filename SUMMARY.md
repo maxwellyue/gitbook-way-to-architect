@@ -177,10 +177,10 @@
   * [消息队列](zhong-jian-jian/fen-bu-shi-shi-wu/xiao-xi-dui-lie.md)
     * 为什么需要消息队列
     * 消息队列关键点
-    * 不同消息队列产品对比
-    * RobbitMQ
-    * RocketMQ
-    * Kafka
+    * [不同消息队列产品对比](zhong-jian-jian/fen-bu-shi-shi-wu/xiao-xi-dui-lie/bu-tong-xiao-xi-dui-lie-chan-pin-dui-bi.md)
+    * [RobbitMQ](zhong-jian-jian/fen-bu-shi-shi-wu/xiao-xi-dui-lie/robbitmq.md)
+    * [RocketMQ](zhong-jian-jian/fen-bu-shi-shi-wu/xiao-xi-dui-lie/rocketmq.md)
+    * [Kafka](zhong-jian-jian/fen-bu-shi-shi-wu/xiao-xi-dui-lie/kafka.md)
   * [分布式事务](zhong-jian-jian/fen-bu-shi-shi-wu/README.md)
     * [什么是分布式事务](zhong-jian-jian/fen-bu-shi-shi-wu/shi-yao-shi-fen-bu-shi-shi-wu.md)
     * [解决方案](zhong-jian-jian/fen-bu-shi-shi-wu/jie-jue-fang-an.md)
