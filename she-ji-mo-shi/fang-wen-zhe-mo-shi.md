@@ -21,6 +21,7 @@
 **访问者模式结构代码**
 
 Visitor：访问者接口
+
 ```java
 public interface Visitor {
 
@@ -32,14 +33,18 @@ public interface Visitor {
 
 }
 ```
+
 Element：抽象元素类
+
 ```java
 public abstract class Element {
 
     public abstract void accept(Visitor visitor);
 }
 ```
+
 ConcreteElement
+
 ```java
 //具体元素对象
 public class ConcreteElementA extends Element{
@@ -56,7 +61,9 @@ public class ConcreteElementB extends Element{
     }
 }
 ```
+
 ConcreteVisitor
+
 ```java
 //实现某一功能的具体访问者
 public class ConcreteVisitor1 implements Visitor{
@@ -85,7 +92,9 @@ public class ConcreteVisitor2 implements Visitor{
     }
 }
 ```
+
 ObjectStructure：元素集合类
+
 ```java
 public class ObjectStructure {
 
@@ -102,7 +111,9 @@ public class ObjectStructure {
     }
 }
 ```
+
 Client
+
 ```java
 public class Client {
 
@@ -118,7 +129,6 @@ public class Client {
     }
 }
 ```
-
 
 
 
