@@ -212,3 +212,13 @@ public static void main(String[] args) {
 
 可见，上面的\[4\]处输出的值为父线程中的local值，满足了我们的需求。
 
+
+
+## 参考
+
+---
+
+[ThreadLocal父子线程传递实现方案](https://blog.csdn.net/a837199685/article/details/52712547)
+
+[Github：Transmittable ThreadLocal\(TTL\)](https://github.com/alibaba/transmittable-thread-local)
+
