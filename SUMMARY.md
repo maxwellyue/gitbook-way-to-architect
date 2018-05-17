@@ -57,6 +57,8 @@
     * [Integer.parseInt\(\)与Interger.valueof\(\)](java-yu-yan/chang-jian-fang-fa-de-li-jie/integer.parseint-yu-interger.valueof.md)
   * [SPI](java-yu-yan/spi/README.md)
     * SPI是什么
+  * 字节码
+    * [javaagent](java-yu-yan/java-guan-jian-zi/javaagent.md)
 * [Go语言](go-yu-yan.md)
 * [算法](suan-fa/README.md)
   * [准备思路](suan-fa/zhun-bei-si-lu.md)
