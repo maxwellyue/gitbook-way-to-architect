@@ -1,4 +1,6 @@
-不同的传值场景
+## 不同的传值场景
+
+---
 
 ThreadLocal是线程私有变量，每个线程均有一个私有的ThreadLocal变量，为在复杂场景下的传值提供了一种便捷的方式。
 
@@ -209,12 +211,4 @@ public static void main(String[] args) {
 ```
 
 可见，上面的\[4\]处输出的值为父线程中的local值，满足了我们的需求。
-
-InheritableThreadLocal
-
-
-
-
-
-
 
