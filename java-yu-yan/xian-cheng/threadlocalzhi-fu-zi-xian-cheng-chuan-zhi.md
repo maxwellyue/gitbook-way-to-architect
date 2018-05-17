@@ -1,3 +1,5 @@
+不同的传值场景
+
 ThreadLocal是线程私有变量，每个线程均有一个私有的ThreadLocal变量，为在复杂场景下的传值提供了一种便捷的方式。
 
 比如
@@ -11,6 +13,12 @@ threadLocal.get();
 ```
 
 但是ThreadLocal只能解决在某一个线程内的变量set/get，假如现在我们想在子线程中获取父线程中的ThreadLoca变量的值，怎么办？
+
+> 什么是父子线程
+>
+> 在A线程中，创建并启动了线程B，那么A就是B的父线程，B就是A的子线程；
+>
+> 对某线程而言，至多有一个父线程，可以有多个子线程。
 
 ```java
 public static void main(String[] args) {
@@ -141,7 +149,6 @@ public static void main(String[] args) {
 该问题的解决方案为阿里开源的[Transmittable ThreadLocal\(TTL\)](https://github.com/alibaba/transmittable-thread-local)，上述问题的解决代码如下：
 
 ```java
-
 public static void main(String[] args) {
         //latch仅仅为了控制程序运行顺序，与主题无关
         CountDownLatch latch = new CountDownLatch(2);
@@ -203,15 +210,7 @@ public static void main(String[] args) {
 
 可见，上面的\[4\]处输出的值为父线程中的local值，满足了我们的需求。
 
-
-
-
-
-
-
-
-
-
+InheritableThreadLocal
 
 
 
