@@ -34,7 +34,6 @@
   * [JVM](java-yu-yan/jvm/README.md)
     * [JVM内存结构](java-yu-yan/jvm/jvm-nei-cun-jie-gou.md)
     * [Java内存模型](java-yu-yan/jvm/java-nei-cun-mo-xing.md)
-    * [类文件结构](java-yu-yan/jvm/lei-wen-jian-jie-gou.md)
     * [类文件结构](java-yu-yan/jvm/lei-wen-jian-jie-gou-1.md)
     * [类初始化顺序](java-yu-yan/jvm/lei-chu-shi-hua-shun-xu.md)
     * [类加载机制](java-yu-yan/jvm/lei-jia-zai-ji-zhi.md)
@@ -44,7 +43,6 @@
     * [逃逸分析](java-yu-yan/jvm/tao-yi-fen-xi.md)
     * [JVM常用配置](java-yu-yan/jvm/jvm-chang-yong-pei-zhi.md)
     * [GC日志分析](java-yu-yan/jvm/gc-ri-zhi-fen-xi.md)
-    * [类文件结构](java-yu-yan/jvm/lei-wen-jian-jie-gou-2.md)
   * [面向对象](java-yu-yan/mian-xiang-dui-xiang/README.md)
     * [Object类中的方法](java-yu-yan/mian-xiang-dui-xiang/object-lei-zhong-de-fang-fa.md)
     * 值传递还是引用传递？
