@@ -1,0 +1,2 @@
+ThreadLocal是线程私有变量，每个线程均有一个私有的ThreadLocal
+

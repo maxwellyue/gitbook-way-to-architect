@@ -11,6 +11,7 @@
     * [给出场景，问数据结构？](java-yu-yan/ji-he/gei-chu-chang-jing-wen-shu-ju-jie-gou.md)
   * [线程](java-yu-yan/xian-cheng/README.md)
     * [ThreadLocal](java-yu-yan/xian-cheng/threadlocal.md)
+    * [ThreadLocal之父子线程传值](java-yu-yan/xian-cheng/threadlocalzhi-fu-zi-xian-cheng-chuan-zhi.md)
     * 线程中断的理解
     * [线程状态](java-yu-yan/xian-cheng/xian-cheng-zhuang-tai.md)
     * [线程池类型及工作原理](java-yu-yan/xian-cheng/xian-cheng-chi-lei-xing-ji-gong-zuo-yuan-li.md)
