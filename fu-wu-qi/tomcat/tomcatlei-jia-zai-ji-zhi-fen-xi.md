@@ -129,3 +129,5 @@ public class Dog{
 
 ---
 [Tomcat-8.5-官方文档：Class Loader HOW-TO](http://tomcat.apache.org/tomcat-8.5-doc/class-loader-howto.html)
+[Tomcat类加载器及应用间class隔离与共享
+](https://zhuanlan.zhihu.com/p/24168200)
