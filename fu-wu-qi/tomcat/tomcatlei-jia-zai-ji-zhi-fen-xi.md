@@ -14,195 +14,93 @@ Tomcat在初始化时，会创建以下4种类加载器（[Tomcat 8.5](http://to
   Webapp1   Webapp2 ...    
 ```
 
-1. Bootstrap：负责加载JVM提供的基础的运行时类（即rt.jar）以及${JAVA\_HOME}/jre/lib/ext下的类（相当于JDK本身的Bootstarp和Extention这两个类加载器的功能）。
-2. System：该类加载器通常会加载环境变量CLASSPATH中的类，但是Tomcat并不是如此，它会忽略CLASSPATH，而去加载以下jar文件：
-①
+* **Bootstrap**：负责加载JVM提供的基础的运行时类（即`rt.jar`）以及`${JAVA\_HOME}/jre/lib/ext`下的类（相当于JDK本身的Bootstarp和Extention这两个类加载器的功能）。
+* **System**：该类加载器通常会加载环境变量CLASSPATH中的类，但是Tomcat并不是如此，它会忽略CLASSPATH，而去加载`$CATALINA_HOME/bin`目录下的3个jar：
+  * `bootstrap.jar`
+  * `tomcat-juli.jar`（如果`$CATALINA_BASE/bin`目录下也有这个包，会使用`$CATALINA_BASE/bin`目录下的）
+  * `commons-daemon.jar` 
 
+* **Common**
+该类加载器加载的类，对Tomcat自身和所有Web应用都可见。通常情况下，应用的类文件不应该放在Common ClassLoader中。Common会扫描
+`$CATALINA_BASE/conf/catalina.properties`中common.loader属性指定的路径中的类文件。默认情况下，它会按顺序去下列路径中去加载：
+  * `$CATALINA_BASE/lib`中未打包的classes和resources
+  * `$CATALINA_BASE/lib`中的jar文件
+  * `$CATALINA_HOME/lib`中未打包的classes和resources
+  * `$CATALINA_HOME/lib`中的jar文件
 
+>默认情况下，这些路径下的jar主要有以下这些：
+* annotations-api.jar — JavaEE annotations classes.
+* catalina.jar — Implementation of the Catalina servlet container portion of Tomcat.
+* catalina-ant.jar — Tomcat Catalina Ant tasks.
+* catalina-ha.jar — High availability package.
+* catalina-storeconfig.jar — Generation of XML configuration files from current state
+* catalina-tribes.jar — Group communication package.
+* ecj-*.jar — Eclipse JDT Java compiler.
+* el-api.jar — EL 3.0 API.
+* jasper.jar — Tomcat Jasper JSP Compiler and Runtime.
+* jasper-el.jar — Tomcat Jasper EL implementation.
+* jsp-api.jar — JSP 2.3 API.
+* servlet-api.jar — Servlet 3.1 API.
+* tomcat-api.jar — Several interfaces defined by Tomcat.
+* tomcat-coyote.jar — Tomcat connectors and utility classes.
+* tomcat-dbcp.jar — Database connection pool implementation based on package-renamed copy of Apache Commons Pool and Apache Commons DBCP.
+* tomcat-i18n-**.jar — Optional JARs containing resource bundles for other languages. As default bundles are also included in each individual JAR, they can be safely removed if no internationalization of messages is needed.
+* tomcat-jdbc.jar — An alternative database connection pool implementation, known as Tomcat JDBC pool. See documentation for more details.
+* tomcat-util.jar — Common classes used by various components of Apache Tomcat.
+* tomcat-websocket.jar — WebSocket 1.1 implementation
+* websocket-api.jar — WebSocket 1.1 API
 
-## 
+* **WebappX**<br>每一个部署在Tomcat中的web应用，Tomcat都会为其创建一个WebappClassloader，它会去加载应用`WEB-INF/classes`目录下所有未打包的classes和resources，然后再去加载`WEB-INF/lib`目录下的所有jar文件。每个应用的WebappClassloader都不同，因此，它加载的类只对本应用可见，其他应用不可见（这是实现web应用隔离的关键）。
 
-## 
 
-## 
+正如上面提到的，WebappClassloader的行为与Java默认的双亲委派模型是有所区别的。当WebappClassloader收到加载类的请求时，它**首先**在自己的路径（repository）中去寻找类的class文件（而不是委托给父类去加载）。但是有例外：JRE中的类库是不允许重写的！
 
-## 
+**从应用的视角来看，class或者resource的加载顺序是这样的：
+**
+1. JVM中的类库，如rt.jar和$JAVA_HOME/jre/lib/ext目录下的jar
+2. 应用的/WEB-INF/classes目录
+3. 应用的/WEB-INF/lib/*.jar
+4. SystemClassloader加载的类（如上所述）
+5. CommonClassloader加载的类（如上所述）
 
-## 
+**但是，如果你的应用配置了`<loader delegate="true"/>`，那么加载顺序就会变为：
+**
+1. JVM中的类库，如rt.jar和$JAVA_HOME/jre/lib/ext目录下的jar
+2. SystemClassloader加载的类（如上所述）
+3. CommonClassloader加载的类（如上所述）2
+4. 应用的/WEB-INF/classes目录
+5. 应用的/WEB-INF/lib/*.jar
 
-## **Webapp类加载器**
+### QA
 
-正如上面内容所说，Webapp类加载器，相对于传统的Java的类加载器，最主要的区别是
+---
 
-> **子优先**\(child first\)
+Q：默认配置下，在项目中如果在一个Tomcat内部署多个应用，甚至多个应用内使用了某个类似的几个不同版本，但它们之间却互不影响。这是如何做到的？
 
-也就是说，在Web应用内，需要加载一个类的时候，不是先委托给parent，而是先自己加载，在自己的类路径上找不到才会再委托parent。
+>A：多个应用之间的相同类库，由于使用不同的类加载器进行加载，它们仍然是不同的对象。<br>
+对于任意一个类，都需要由加载它的类加载器和这个类本身一同确立其在Java虚拟机中的唯一性：比较两个类是否“相等”，只有在这两个类是由同一个类加载器的前提下才有意义，否则即使这两个类来源于同一个Class文件，被同一个虚拟机加载，只要加载它们的类加载器不同，那这两个类就必定不相等。这里所指的相等，包括代表类的Class类的对象的equals()方法、isAssignableFrom()方法、isInstance()方法的返回结果，也包括使用instanceof关键字做对象所属关系判定等情况。
 
-> 但是此处的子优先有些地方需要注意的是，Java的基础类不允许其重新加载，以及servlet-api也不允许重新加载。
 
-那为什么要先child之后再parent呢？我们前面说是Servlet规范规定的。但确实也是实际需要。假如我们两个应用内使用了相同命名空间里的一个class，一个使用的是Spring 2.x，一个使用的是Spring 3.x。如果是parent先加载的话，在第一个应用加载后，第二个应用再需要的时候，就直接从parent里拿到了，但是却不符合需要。
+Q：如果多个应用都用到了某类似的相同版本，是否可以统一提供，不在各个应用内分别提供，占用内存？
 
-另外一点是，各个Web应用的类加载器，是相互独立的，即WebappClassloader的多个实例，只有这样，多个应用之间才可能使用不同版本的相同命令空间下的类库，而不互相受影响。
+>A：可以，可以将这些公共的类库放在Common类加载器的扫描范围，即`$CATALINA_BASE/conf/catalina.properties`中`common.loader`属性指定的目录。
 
-该类加载器会加载Web应用的WEB-INF/classes内的class和资源文件，以及WEB-INF/lib下的所有jar文件。
 
-当然，有些时候，有需要还按照传统的Java类加载器加载class时，Tomcat内提供了配置，可以实现父优先。
+Q：在开发Web应用时，在pom.xml中添加了servlet-api的依赖，那实际应用的class加载时，会加载应用本身引入的servlet-api这个jar吗？
 
-## **Common 类加载器**
+>A：不会。对于我们应用内提供的Servlet-api，应用服务器是不会加载的，因为容器已经自已加载过了。这里不是因为父优先还是子优先的问题，而是这类内容，是不允许被重写的。如果你应用内有一个叫javax.servlet.Servlet的class，那加载后可能就影响了应用内的正常运行了。
 
-通过上面的class loader组织的图，可以知道Common 类加载器，是做为webapp类加载器的parent存在的。它是在以下文件中进行配置的：
+Q：假如有一个jar包（非Java规范或Servlet规范的实现包，只是普通的其他第三方包），这个jar文件在`$CATALINA_HOME/bin`（或者在`$CATALINA_HOME/lib`）目录、应用本身的/WEB-INF/lib目录下都各有一份，那么最终应用中使用的是哪个jar？
 
-> **TOMCAT\_HOME/conf/catalina.properties**
+>A：
 
-文档中给的样例：
 
-对于目录结尾的，视为class文件的加载路径，对于目录/\*.jar结尾的，则视为目录下所有jar会被加载。
 
-这个配置，默认已经包含了Tomcat的base下的lib目录和home下的lib目录。\(关于catalina.base这个，可以看之前写IDE内Tomcat工作原理的文章[你一定不知道IDE里的Tomcat是怎么工作的！](https://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzI3MTEwODc5Ng%3D%3D%26mid%3D401107149%26idx%3D1%26sn%3D908bd8ba76b38417570056795626c163%26scene%3D21%23wechat_redirect)\)
 
-> **common.loader**="${catalina.base}/lib","${catalina.base}/lib/\*.jar","${catalina.home}/lib","${catalina.home}/lib/\*.jar"
 
-所以，lib目录下的class和jar文件，在启动时就都被加载了。
 
-一般来说，这个类加载器用来加载一些既需要Tomcat容器内和所有应用共同可见的class，应用的class不建议放到这儿加载。
 
-介绍完这两个加载器之后，我们来看文章开始时提到的几个问题：
+### 参考
 
-* 多个应用之间类库不互相冲突，是由于使用了不同的类加载器进行加载的。彼此之间如同路人。即使看起来同样一个类，使用不同的类加载器加载，也是不同的对象，这点要引起注意。
-
-* 多个应用之间，如果大家使用了相同的类库，而且数据众多，为了避免重复加载占用内存，就可以用到我们的Common 类加载器。只要在配置中指定对应的目录，然后提取出共用的文件即可。我在之前的公司开发应用服务器时，就有客户有这样的需求。
-
-* 对于我们应用内提供的Servlet-api，其实应用服务器是不会加载的，因为容器已经自已加载过了。当然，这里不是因为父优先还是子优先的问题，而是这类内容，是不允许被重写的。如果你应用内有一个叫javax.servlet.Servlet的class，那加载后可能就影响了应用内的正常运行了。
-
-我们看在Tomcat6.x中加载一个包含servlet 3.x api的jar，会直接提示jar not loaded.
-
-**类加载器实现分析**
-
-在Tomcat启动时，会创建一系列的类加载器，在其主类Bootstrap的初始化过程中，会先初始化classloader，然后将其绑定到Thread中。
-
-> ```
-> public void init() throws Exception {
->
->     initClassLoaders();
->
-> Thread.currentThread().setContextClassLoader(catalinaLoader);
->
->     SecurityClassLoad.securityClassLoad(catalinaLoader);  }
-> ```
-
-其中initClassLoaders方法，会根据catalina.properties的配置，创建相应的classloader。由于默认只配置了common.loader属性，所以其中只会创建一个出来
-
-> ```
->
-> ```
-
-所以，后面线程中绑定的都一直是commonClassLoader。
-
-然后，当一个应用启动的时候，会为其创建对应的WebappClassLoader。此时会将commonClassLoader设置为其parent。下面的代码是StandardContext类在启动时创建WebappLoader的代码
-
-> ```
->
-> ```
-
-这里的getParentClassLoader会从当前组件的classLoader一直向上，找parent classLoader设置。之后注意下一行代码
-
-> webappLoader.**setDelegate**
-
-这就是在设置后面Web应用的类查找时是父优先还是子优先。这个配置可以在server.xml里，对Context组件进行配置。
-
-即在Context元素下可以嵌套一个**Loader**元素，配置Loader的delegate即可，其默认为false，即子优先。类似于这样
-
-> &lt;Context&gt;
->
-> &lt;Loader className="" **delegate**="true"/&gt;
->
-> &lt;/Context&gt;
-
-注意Loader还有一个属性是reloadable，用于表明对于/WEB-INF/classes/ 和 /WEB-INF/lib 下资源发生变化时，是否重新加载应用。这个特性在开发的时候，还是很有用的。
-
-如果你的应用并没有配置这个属性，想要重新加载一个应用，只需要使用manager里的reload功能就可以。
-
-有点跑题，回到我们说的delgate上面来，配置之后，可以指定Web应用类加载时，到底是使用父优先还是子优先。
-
-这里的WebappLoader，就开始了正式的创建WebappClassLoader
-
-> ```
-> 配置等信息使用前面Loader内的配置。
-> ```
-
-应用的classLoader也配置好之后，我们再来看真正应用需要class的时候，是如何子优先的。
-
-在loadClass的时候，会调用到WebappClassLoader的loadClass方法，此时，查找一个class的步骤总结这样几步：
-
-这里把方法中分步的注释拿来罗列一下，
-
-> 1. \(0\) Check our previously loaded local class cache
->
-> 2. \(0.1\) Check our previously loaded class cache
->
-> 3. \(0.2\) Try loading the class with the system class loader, to prevent
->
-> ```
-> the webapp from overriding Java SE classes. This implements SRV.10.7.2
-> ```
->
-> 1. 然后，会判断是否启用了securityManager，启用时会进行packageAccess的检查。
-
-主要判断已加载的类里是否已经包含，然后避免Java SE的classes被覆盖，packageAccess的检查。
-
-之后，开始了我们的父优先子优先的流程。这里判断是否使用delegate时，对于一些容器提供的class，也会跳过。
-
-> boolean delegateLoad = delegate \|\| **filter**\(name\);
-
-这里的filter就用来过滤容器提供的类以及servlet-api的类。
-
-> ```
->
-> ```
-
-然后确定到底是父优先，还是子优先，开始类的加载
-
-**父优先**
-
-> ```
-> // (1) Delegate to our parent if requested
-> if (delegateLoad) {
-> if (log.isDebugEnabled())
-> log.debug("  Delegating to parent classloader1 " + parent);
-> try {
->         clazz = Class.forName(name, false, parent);
-> if (clazz != null) {
-> if (log.isDebugEnabled())
-> log.debug("  Loading class from parent");
-> if (resolve)
->                 resolveClass(clazz);
-> return (clazz);
->         }
->     } catch (ClassNotFoundException e) {
-> // Ignore
->     }
-> }
-> ```
-
-此时如果没找到，就走到下面的代码，开始查找本地的资源库\(repository\)和子优先时一样：
-
-> ```
-> 如果父优先和子优先都没能查找到需要的class，此时会抛出
-> ```
-
-> ```
-> throw new ClassNotFoundException(name);
-> ```
-
-关于上面代码，有一个地方，感兴趣的同学可以再深入了解下，
-
-> ```
-> clazz = Class.forName(name, false, parent);
-> ```
-
-也许你这么多年一直直接用Class.forName，没管过后面还可以多传两个参数。
-
-关于ClassLoader，你还想了解什么？
-
-Tomcat类加载器及应用间class隔离与共享
-
+---
+[Tomcat-8.5-官方文档：Class Loader HOW-TO](http://tomcat.apache.org/tomcat-8.5-doc/class-loader-howto.html)
