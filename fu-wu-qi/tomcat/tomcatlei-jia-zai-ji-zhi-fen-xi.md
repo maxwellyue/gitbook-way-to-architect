@@ -1,50 +1,34 @@
 JDK的类加载机制是双亲委派：先委托给他的parent类加载器，让parent类加载器先来加载，如果没有，才再在自己的路径上加载。
 
-**启动（Bootstrap）类加载器**
+但是Tomcat的类加载机制与此不同。
 
-* ：是用本地代码实现的类装入器，它负责将
-  `<`
-  `Java_Runtime_Home`
-  `>`
-  `/lib`
-  下面的类库加载到内存中（比如
-  `rt.jar`
-  ）。由于引导类加载器涉及到虚拟机本地实现细节，开发者无法直接获取到启动类加载器的引用，所以不允许直接通过引用进行操作。
-* **标准扩展（Extension）类加载器**
-  ：是由 Sun 的
-  `ExtClassLoader（sun.misc.Launcher$ExtClassLoader）`
-  实现的。它负责将
-  `<`
-  ` Java_Runtime_Home `
-  `>`
-  `/lib/ext`
-  或者由系统变量
-  `java.ext.dir`
-  指定位置中的类库加载到内存中。开发者可以直接使用标准扩展类加载器。
-* **系统（System）类加载器**
-  ：是由 Sun 的
-  `AppClassLoader（sun.misc.Launcher$AppClassLoader）`
-  实现的。它负责将系统类路径（
-  `CLASSPATH`
-  ）中指定的类库加载到内存中。开发者可以直接使用系统类加载器。
-
-
-
-但是...，这里需要注意一下
-
-> 对于Web应用的类加载，和上面的双亲委托是有区别的。
-
-在Tomcat中，涉及到的类加载器大致有以下几类，像官方文档里这张表示一样，这里对于Bootstrap和System这种加载Java基础类的我们不做分析，主要来看一下后面的Common和WebappX这两类class loader。
+Tomcat在初始化时，会创建以下4种类加载器（[Tomcat 8.5](http://tomcat.apache.org/tomcat-8.5-doc/class-loader-howto.html)）。
 
 ```
-     Bootstrap
+       Bootstrap           
           |
-       System
+       System              
           |
-       Common
+       Common          
        /     \
-  Webapp1   Webapp2 ...
+  Webapp1   Webapp2 ...    
 ```
+
+1. Bootstrap：负责加载JVM提供的基础的运行时类（即rt.jar）以及${JAVA\_HOME}/jre/lib/ext下的类（相当于JDK本身的Bootstarp和Extention这两个类加载器的功能）。
+2. System：该类加载器通常会加载环境变量CLASSPATH中的类，但是Tomcat并不是如此，它会忽略CLASSPATH，而去加载以下jar文件：
+①
+
+
+
+## 
+
+## 
+
+## 
+
+## 
+
+## 
 
 ## **Webapp类加载器**
 
@@ -109,81 +93,7 @@ JDK的类加载机制是双亲委派：先委托给他的parent类加载器，�
 其中initClassLoaders方法，会根据catalina.properties的配置，创建相应的classloader。由于默认只配置了common.loader属性，所以其中只会创建一个出来
 
 > ```
-> private
-> void
-> initClassLoaders
-> ()
-> {
-> try
-> {
-> commonLoader
-> =
-> createClassLoader
-> (
-> "common"
-> ,
-> null
-> );
-> if
-> (
-> commonLoader
-> ==
-> null
-> )
-> {
-> // no config file, default to this loader - we might be in a 'single' env.
-> commonLoader
-> =
-> this
-> .
-> getClass
-> ().
-> getClassLoader
-> ();
-> }
-> catalinaLoader
-> =
-> createClassLoader
-> (
-> "server"
-> ,
-> commonLoader
-> );
-> sharedLoader
-> =
-> createClassLoader
-> (
-> "shared"
-> ,
-> commonLoader
-> );
-> }
-> catch
-> (
-> Throwable
-> t
-> )
-> {
-> handleThrowable
-> (
-> t
-> );
-> log
-> .
-> error
-> (
-> "Class loader creation threw exception"
-> ,
-> t
-> );
-> System
-> .
-> exit
-> (
-> 1
-> );
-> }
-> }
+>
 > ```
 
 所以，后面线程中绑定的都一直是commonClassLoader。
@@ -191,33 +101,7 @@ JDK的类加载机制是双亲委派：先委托给他的parent类加载器，�
 然后，当一个应用启动的时候，会为其创建对应的WebappClassLoader。此时会将commonClassLoader设置为其parent。下面的代码是StandardContext类在启动时创建WebappLoader的代码
 
 > ```
-> if
-> (
-> getLoader
-> ()
-> ==
-> null
-> )
-> {
-> WebappLoader
-> webappLoader
-> =
-> new
-> WebappLoader
-> (
-> getParentClassLoader
-> ());
-> webappLoader
-> .
-> setDelegate
-> (
-> getDelegate
-> ());
-> setLoader
-> (
-> webappLoader
-> );
-> }
+>
 > ```
 
 这里的getParentClassLoader会从当前组件的classLoader一直向上，找parent classLoader设置。之后注意下一行代码
@@ -243,36 +127,8 @@ JDK的类加载机制是双亲委派：先委托给他的parent类加载器，�
 这里的WebappLoader，就开始了正式的创建WebappClassLoader
 
 > ```
-> private WebappClassLoaderBase createClassLoader()
-> throws Exception {
->
->     Class
-> <
-> ?
-> >
->  clazz = Class.forName(loaderClass);
->     WebappClassLoaderBase classLoader = null;
->
-> if (parentClassLoader == null) {
-> parentClassLoader = context.getParentClassLoader();
->     }
->     Class
-> <
-> ?
-> >
-> [] argTypes = { ClassLoader.class };
->     Object[] args = { parentClassLoader };
->     Constructor
-> <
-> ?
-> >
->  constr = clazz.getConstructor(argTypes);
->     classLoader = (WebappClassLoaderBase) constr.newInstance(args);
-> return classLoader;
-> }
+> 配置等信息使用前面Loader内的配置。
 > ```
-
-配置等信息使用前面Loader内的配置。
 
 应用的classLoader也配置好之后，我们再来看真正应用需要class的时候，是如何子优先的。
 
@@ -301,77 +157,7 @@ JDK的类加载机制是双亲委派：先委托给他的parent类加载器，�
 这里的filter就用来过滤容器提供的类以及servlet-api的类。
 
 > ```
-> protected
-> synchronized
-> boolean
-> filter
-> (
-> String
-> name
-> )
-> {
-> if
-> (
-> name
-> ==
-> null
-> )
-> return
-> false
-> ;
-> // Looking up the package
-> String
-> packageName
-> =
-> null
-> ;
-> int
-> pos
-> =
-> name
-> .
-> lastIndexOf
-> (
-> '.'
-> );
-> if
-> (
-> pos
-> !=
-> -
-> 1
-> )
-> packageName
-> =
-> name
-> .
-> substring
-> (
-> 0
-> ,
-> pos
-> );
-> else
-> return
-> false
-> ;
-> packageTriggersPermit
-> .
-> reset
-> (
-> packageName
-> );
-> if
-> (
-> packageTriggersPermit
-> .
-> lookingAt
-> ())
-> {
-> return
-> false
-> ;
-> }
+>
 > ```
 
 然后确定到底是父优先，还是子优先，开始类的加载
@@ -401,71 +187,8 @@ JDK的类加载机制是双亲委派：先委托给他的parent类加载器，�
 此时如果没找到，就走到下面的代码，开始查找本地的资源库\(repository\)和子优先时一样：
 
 > ```
-> // (2) Search local repositories
-> if
-> (
-> log
-> .
-> isDebugEnabled
-> ())
-> log
-> .
-> debug
-> (
-> "  Searching local repositories"
-> );
-> try
-> {
-> clazz
-> =
-> findClass
-> (
-> name
-> );
-> if
-> (
-> clazz
-> !=
-> null
-> )
-> {
-> if
-> (
-> log
-> .
-> isDebugEnabled
-> ())
-> log
-> .
-> debug
-> (
-> "  Loading class from local repository"
-> );
-> if
-> (
-> resolve
-> )
-> resolveClass
-> (
-> clazz
-> );
-> return
-> (
-> clazz
-> );
-> }
-> }
-> catch
-> (
-> ClassNotFoundException
-> e
-> )
-> {
-> // Ignore
-> }
+> 如果父优先和子优先都没能查找到需要的class，此时会抛出
 > ```
-
-如果父优先和子优先都没能查找到需要的class，此时会抛出
 
 > ```
 > throw new ClassNotFoundException(name);
