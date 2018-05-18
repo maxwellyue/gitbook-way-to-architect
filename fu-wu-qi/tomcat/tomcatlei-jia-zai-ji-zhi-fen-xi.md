@@ -98,9 +98,28 @@ Q：在开发Web应用时，在pom.xml中添加了servlet-api的依赖，那实�
 
 Q：假如有一个jar包（非Java规范或Servlet规范的实现包，只是普通的其他第三方包），这个jar文件在`$CATALINA_HOME/bin`（或者在`$CATALINA_HOME/lib`）目录、应用本身的/WEB-INF/lib目录下都各有一份，那么最终应用中使用的是哪个jar？
 
->A：
-
-
+>A：分为两种情况讨论
+* 1. **Jar在`$CATALINA_HOME/bin`和`WEB-INF/lib`下**<br>这种情况下，总是以应用中的jar为准：因为自己放在`$CATALINA_HOME/bin`下的jar根本不会被加载，SystemClassloader只会加载`$CATALINE_HOME/bin`下的自带的3个jar（上面提高的那三个），这是在Tomcat中的启动脚本中`catalina.sh`写死的，其他放在该目录的jar，不会被加载。
+* 2. **Jar在`$CATALINA_HOME/lib`和`WEB-INF/lib`下**<br>这种情况下，又有两种情形：①默认情形`(<loader delegate="false">)`，按照Tomcat的类加载机制，WebappClassloader加载，而WebappClassLoader首先在自己的路径范围（即`/WEB-INF/lib`目录）查找，发现自己的路径内含有要加载的类的class文件，就会将其load到JVM中，结束这次类加载；②修改了`Tomcat`默认的类加载机制，即配置了`<loader delegate=true>`，那么`WebappClassloader`在收到加载jar内某各类的加载请求时，会直接将类加载请求委托给父类`CommonClassloader`，`CommonClassloader`就会去自己的路径范围去查找对应class文件，完成加载。<br>
+**验证思路**：
+①写一个类Dog，打包，将其放在`$CATALINA_HOME/bin`或者`$CATALINA_HOME/lib`下
+```
+public class Dog{
+	public Dog(){
+		System.out.println("a dog born in tomcat internal");
+	}
+}
+```
+②将Dog类该写为，打包，新增webapp项目，将jar放在该webapp项目的`/WEB-INF/lib`目录下
+```
+public class Dog{
+	public Dog(){
+		System.out.println("a dog born in webapp");
+	}
+}
+```
+③使该项目在该Tomcat下运行，观察输出内容。<br>
+④修改`$CATALINA_HOME/conf/Context.xml`，添加内容`<Loader delegate="true"/>`，再次运行项目，观察输出内容
 
 
 
