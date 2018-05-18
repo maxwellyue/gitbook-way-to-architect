@@ -1,10 +1,6 @@
 # ThreadLocal
 
----
-
 ## 实现原理
-
----
 
 每个`Thread`维护一个`ThreadLocalMap`映射表，这个映射表的`key`是`ThreadLocal`实例本身，`value`是真正需要存储的`Object`。
 
@@ -16,8 +12,6 @@
 
 ## 内存泄漏
 
----
-
 `ThreadLocalMap`使用`ThreadLocal`的弱引用作为`key`，如果一个`ThreadLocal`没有外部强引用来引用它，那么系统 GC 的时候，这个`ThreadLocal`势必会被回收，这样一来，`ThreadLocalMap`中就会出现`key`为`null`的`Entry`，就没有办法访问这些`key`为`null`的`Entry`的`value`，如果当前线程再迟迟不结束的话，这些`key`为`null`的`Entry`的`value`就会一直存在一条强引用链：`Thread Ref -> Thread -> ThreaLocalMap -> Entry -> value`永远无法回收，造成内存泄漏。
 
 其实，`ThreadLocalMap`的设计中已经考虑到这种情况，也加上了一些防护措施：在`ThreadLocal`的`get()`,`set()`,`remove()`的时候都会清除线程`ThreadLocalMap`里所有`key`为`null`的`value`。
@@ -28,8 +22,6 @@
 * 分配使用了`ThreadLocal`又不再调用`get()`，`set()`，`remove()`方法，那么就会导致内存泄漏。
 
 ## 为什么使用弱引用
-
----
 
 从表面上看内存泄漏的根源在于使用了弱引用。网上的文章大多着重分析`ThreadLocal`使用了弱引用会导致内存泄漏，但是另一个问题也同样值得思考：为什么使用弱引用而不是强引用？
 
@@ -53,8 +45,6 @@
 因此，`ThreadLocal`内存泄漏的根源是：由于`ThreadLocalMap`的生命周期跟`Thread`一样长，如果没有手动删除对应`key`就会导致内存泄漏，而不是因为弱引用。
 
 ## ThreadLocal 最佳实践
-
----
 
 综合上面的分析，我们可以理解`ThreadLocal`内存泄漏的前因后果，那么怎么避免内存泄漏呢？
 

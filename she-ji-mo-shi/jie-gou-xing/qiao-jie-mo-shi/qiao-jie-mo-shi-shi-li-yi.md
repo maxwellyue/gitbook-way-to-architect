@@ -1,14 +1,12 @@
+# 桥接模式实例一
+
 假如现在要开发一个跨平台图像浏览系统，要求该系统能够显示BMP、JPG、GIF、PNG等多种格式的文件，并且能够在Windows、Linux、Unix等多个操作系统上运行。
 
 系统首先将各种格式的文件解析为像素矩阵\(Matrix\)，然后将像素矩阵显示在屏幕上，在不同的操作系统中可以调用不同的绘制函数来绘制像素矩阵。系统需具有较好的扩展性以支持新的文件格式和操作系统。
 
 我们很可能会想到如下的设计方案：
 
-![](/assets/屏幕快照 2018-05-13 上午1.39.06.png)
-
-
-
-
+![](../../../.gitbook/assets/ping-mu-kuai-zhao-20180513-shang-wu-1.39.06.png)
 
 我们现在对该设计方案进行分析，发现存在如下两个主要问题：
 
@@ -134,11 +132,5 @@ publci class Client {
 
 在上面的代码中，Image充当抽象类，其子类JPGImage、PNGImage、BMPImage和GIFImage充当扩充抽象类；ImageImp充当实现类接口，其子类WindowsImp、LinuxImp和UnixImp充当具体实现类。
 
-
-
-
-
----
-
-[处理多维变化--桥接模式](https://gof.quanke.name/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F-Bridge%20Pattern.html)：代码+文字均来自此处
+[处理多维变化--桥接模式](https://gof.quanke.name/桥接模式-Bridge%20Pattern.html)：代码+文字均来自此处
 

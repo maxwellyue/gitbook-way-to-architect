@@ -17,7 +17,7 @@
 1. 如果目标对象实现了接口，默认情况下会采用JDK的动态代理实现AOP ，但通过配置来强制使用CGLIB实现AOP
 2. 如果目标对象没有实现了接口，必须采用CGLIB库，spring会自动在JDK动态代理和CGLIB之间转换
 
-**如何强制使用CGLIB实现AOP？ **
+**如何强制使用CGLIB实现AOP？** 
 
 1. 添加CGLIB库，SPRING\_HOME/cglib/\*.jar
 2. 在spring配置文件中加入`<aop:aspectj-autoproxy proxy-target-class="true"/>`

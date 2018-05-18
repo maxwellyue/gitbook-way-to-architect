@@ -1,14 +1,16 @@
+# 不同环境的如何配置不同的变量
+
 在项目的开发中，一般会有dev、test、statge、prod等环境的区分。
 
 如何管理变量在不同环境中的值？
 
 有多种实践方式
 
-### 第一种
+## 第一种
 
 ①在项目的根目录下建立如下pom文件：
 
-```
+```text
 pom.xml(默认)
 pom_test.xml
 pom_prod.xml
@@ -17,7 +19,7 @@ pom_dev.xml
 
 ②打包时，指定`pom`文件：
 
-```
+```text
 # 生产环境
 mvn clean package -f pom_prod.xml
 # 测试环境
@@ -28,11 +30,11 @@ mvn clean package -f pom_dev.xml
 
 由于多个 pom.xml 之间重复配置很多，不容易维护，实际中不推荐使用这种方式。
 
-### 第二种
+## 第二种
 
 ①在项目根目录中建立如下目录
 
-```
+```text
 ├──profiles 
 |   |
 |   |——test
@@ -45,7 +47,7 @@ mvn clean package -f pom_dev.xml
 
 ②在pom文件中，建立对应的profile
 
-```
+```text
 <profiles>
     <profile>
         <!--默认使用该配置-->
@@ -74,7 +76,7 @@ mvn clean package -f pom_dev.xml
 
 ③在pom中配置打包插件
 
-```
+```text
 <plugin>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-war-plugin</artifactId>
@@ -98,7 +100,7 @@ mvn clean package -f pom_dev.xml
 
 ④打包时，指定环境
 
-```
+```text
 # 开发环境
 mvn clean package -Pprod
 # 测试环境
@@ -112,13 +114,13 @@ mvn clean package -Pdev
 > * 配置文件所在目录不一定建在项目根目录下，也可以建立在于java文件平级的地方，或者其他任何地方，只要在打包插件中指定就可以了。
 > * 目录中配置文件可以有多个，打包时都会包含进去
 
-### 第三种
+## 第三种
 
 这种与第二种类似，只是无需新建配置文件，而是直接将变量配置在pom文件中。
 
 ①在pom文件中的profile中配置变量
 
-```
+```text
 <profiles>
     <profile>
         <id>dev</id>
@@ -159,7 +161,7 @@ mvn clean package -Pdev
 
 ②在pom中配置resource中的filter为true（目的：将其他地方的占位符替换为pom中配置的真正的值）
 
-```
+```text
 <resources>
     <resource>
         <directory>src/main/resources</directory>
@@ -170,7 +172,7 @@ mvn clean package -Pdev
 
 ③打包时，指定环境
 
-```
+```text
 # 开发环境
 mvn clean package -Pprod
 # 测试环境
@@ -179,13 +181,5 @@ mvn clean package -Ptest
 mvn clean package -Pdev
 ```
 
-
-
 个人更倾向于使用第二种方式。
-
-
-
-
-
-
 

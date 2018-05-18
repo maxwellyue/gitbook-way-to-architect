@@ -1,3 +1,5 @@
+# 组合模式续
+
 注意到，上面的示例代码中，叶子节点由于不支持add/remove/getChild等操作，不得不提示用户不支持次操作或为空实现，这样就会造成很多代码重复。解决办法有两个：
 
 **透明方式**
@@ -31,9 +33,7 @@ public abstract class AbstractFile {
 
 这种方式中，COmponent中只保留Leaf和Composite的公共操作（例子中的`killVirus()`），Lead中不会出现add/remove等方法，只在Composite中保留add/remove等方法。这种方式虽然安全，但是客户端不能完全面向抽象编程。在实际应用中，安全组合模式的使用频率也非常高，在Java AWT中使用的组合模式就是安全组合模式。
 
-
-
-### 组合模式适用场景
+## 组合模式适用场景
 
 在以下情况下可以考虑使用组合模式：
 
@@ -43,19 +43,7 @@ public abstract class AbstractFile {
 
 \(3\) 在一个系统中能够分离出叶子对象和容器对象，而且它们的类型不固定，需要增加一些新的类型。
 
-  
+## 参考
 
-
-
-
-
-
-### 参考
-
----
-
-内容来自：[组合模式-Composite Pattern](https://gof.quanke.name/%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F-Composite%20Pattern.html)
-
-  
-
+内容来自：[组合模式-Composite Pattern](https://gof.quanke.name/组合模式-Composite%20Pattern.html)
 

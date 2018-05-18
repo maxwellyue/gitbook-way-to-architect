@@ -1,7 +1,3 @@
----
-description: 开发常用的Nginx命令
----
-
 # 常用命令
 
 ```bash

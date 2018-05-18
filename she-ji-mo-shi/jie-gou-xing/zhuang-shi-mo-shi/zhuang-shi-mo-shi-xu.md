@@ -1,3 +1,5 @@
+# 装饰模式续
+
 上面的实例代码中，我们新增的功能（增加滚动条和黑色边框）都是加入到被装饰的原始类即Component的方法中，客户端并不会调用这些方法：
 
 ```java
@@ -19,7 +21,7 @@ class ScrollBarDecorator extends  ComponentDecorator{
 }
 ```
 
-即经过装饰后，被装饰类只是在原有方法的内部去增强了原有方法，其实这类似于AOP的功能增强。但假如要在被装饰类中添加一个新的方法，且该方法与被装饰类中的原有方法没有任何关系，比如OA系统中，采购单\(PurchaseRequest\)和请假条都有display\(\)方法，现在要对他们添加审批和删除功能，那么使用装饰模式的代码结构如下：![](/assets/屏幕快照 2018-05-08 下午9.48.27.png)
+即经过装饰后，被装饰类只是在原有方法的内部去增强了原有方法，其实这类似于AOP的功能增强。但假如要在被装饰类中添加一个新的方法，且该方法与被装饰类中的原有方法没有任何关系，比如OA系统中，采购单\(PurchaseRequest\)和请假条都有display\(\)方法，现在要对他们添加审批和删除功能，那么使用装饰模式的代码结构如下：![](../../../.gitbook/assets/ping-mu-kuai-zhao-20180508-xia-wu-9.48.27.png)
 
 其中，审批装饰类代码具体如下：
 
@@ -68,17 +70,15 @@ try (DataInputStream inputStream = new DataInputStream(new BufferedInputStream(n
 
 这里，`FileInputSream`相当于原始的被装饰的类，它经过了`BufferedInputSream`装饰（拥有了buffer功能），又经过`DataInputStream`装饰。
 
-这几个类之间的关系如下图：![](/assets/屏幕快照 2018-05-08 下午10.14.38.png)
+这几个类之间的关系如下图：![](../../../.gitbook/assets/ping-mu-kuai-zhao-20180508-xia-wu-10.14.38.png)
 
 这里的`InputStream`相当于`Component`，`FileInputStream`相当于`ConcreteComponent`，而`FilterInputStream`相当于`Decorator`，`BufferedInputStream`和`DataInputStream`相当于`ConcreteDecorator`。
 
 输出流OutputStream与之类似。
 
-### 参考
+## 参考
 
----
-
-[扩展系统功能--装饰模式](https://quanke.gitbooks.io/design-pattern-java/content/装饰模式-Decorator Pattern.html)：文字和代码大多来自于此
+[扩展系统功能--装饰模式](https://quanke.gitbooks.io/design-pattern-java/content/装饰模式-Decorator%20Pattern.html)：文字和代码大多来自于此
 
 《研磨设计模式 第22章 装饰模式》：JDK中装饰模式
 

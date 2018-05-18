@@ -1,7 +1,5 @@
 # 备忘录模式
 
----
-
 备忘录模式：在不破坏封装的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，这样可以在以后将对象恢复到原先保存的状态。（在操作一个对象前，把这个对象临时保存一份，以便将来恢复）。
 
 从字面意思来看，备忘录，首先要有备忘的内容，其次考虑把这个要备忘的内容存在哪。
@@ -11,9 +9,7 @@
 备忘录模式中的三个角色
 
 * Originator：要备忘的内容就是Originator这个对象的状态
-
 * Memento：备忘的内容要存储在哪？没错，就是要存在Memento这个对象上
-
 * Caretaker：备忘的内容存在Memento上，Caretaker负责保管Memento，并在需要的时候，提供之前保管的Memento。
 
 **备忘录模式代码演示**
@@ -115,7 +111,7 @@ public class Client {
 
 **这么看，备忘录其实就是在操作对象之前，先将现在的状态（可能是全部属性，可能是部分属性）保存起来，等对象状态改变之后，想要恢复，在设置为之前保存的状态**。
 
-**看一个更具体的例子：实现下象棋时候的悔棋功能（**[**代码来源**](https://gof.quanke.name/%E6%92%A4%E9%94%80%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0%E2%80%94%E2%80%94%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%B8%89%EF%BC%89.html)**）**
+**看一个更具体的例子：实现下象棋时候的悔棋功能（**[**代码来源**](https://gof.quanke.name/撤销功能的实现——备忘录模式（三）.html)**）**
 
 Originator，就是棋子
 
@@ -230,26 +226,25 @@ class MementoCaretaker {
 Client
 
 ```java
-
 public class Client {  
     public static void main(String args[]) {  
         MementoCaretaker mc = new MementoCaretaker();  
-        
+
         Chessman chess = new Chessman("车",1,1);  
         display(chess);  
-        
+
         mc.setMemento(chess.save()); //保存状态       
         chess.setY(4);  
         display(chess);  
-        
+
         mc.setMemento(chess.save()); //保存状态  
         display(chess);  
-        
+
         chess.setX(5);  
         display(chess);  
-        
+
         System.out.println("******悔棋******");     
-        
+
         chess.restore(mc.getMemento()); //恢复状态  
         display(chess);  
     }
@@ -268,7 +263,7 @@ public class Client {
 棋子车当前位置为：第1行第4列。
 ```
 
-上面的代码中，我们只能后悔一次。假如我们需要实现多次悔棋，则只需要修改备忘录管理类（[代码来源](https://gof.quanke.name/%E6%92%A4%E9%94%80%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0%E2%80%94%E2%80%94%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%9B%9B%EF%BC%89.html)）：
+上面的代码中，我们只能后悔一次。假如我们需要实现多次悔棋，则只需要修改备忘录管理类（[代码来源](https://gof.quanke.name/撤销功能的实现——备忘录模式（四）.html)）：
 
 ```java
 class MementoCaretaker {  
@@ -355,23 +350,9 @@ public class Client {
 
 ④对后端开发，使用备忘录模式的场景我没想起来...
 
-
-
-
-
-
-
-
-
-
-
-### 参考
-
----
+## 参考
 
 [设计模式之备忘录模式](https://www.jianshu.com/p/cd29a2ca97c5)
 
 [《JAVA与模式》之备忘录模式](http://www.cnblogs.com/java-my-life/archive/2012/06/06/2534942.html) ：讲的很全面
-
-
 

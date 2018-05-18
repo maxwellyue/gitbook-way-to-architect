@@ -8,7 +8,7 @@ Maven有三种不同的生命周期（Lifecycle），分别是Clean、Default、
 
 **阶段（Phase）**
 
-当我们在运行一个命令的时候，该命令都会对应某个生命周期的某个阶段，并且该生命周期中的在此阶段之前的命令都会被执行。比如，`mvn clean` 等同于 `mvn pre-clean clean` ，如果我们运行 `mvn post-clean` ，那么` pre-clean，clean` 都会被运行。这是Maven很重要的一个规则，可以大大简化命令行的输入。
+当我们在运行一个命令的时候，该命令都会对应某个生命周期的某个阶段，并且该生命周期中的在此阶段之前的命令都会被执行。比如，`mvn clean` 等同于 `mvn pre-clean clean` ，如果我们运行 `mvn post-clean` ，那么 `pre-clean，clean` 都会被运行。这是Maven很重要的一个规则，可以大大简化命令行的输入。
 
 **目标（goal）**
 
@@ -60,7 +60,7 @@ Lifecycle与Phase与goal都是概念上的东西，mojo才是做具体事情的�
 | install | install the package into the local repository, for use as a dependency in other projects locally. |
 | deploy | done in an integration or release environment, copies the final package to the remote repository for sharing with other developers and projects. |
 
-我们最常用的就是`mvn package `或者`mvn install `或者`mvn compile`了。
+我们最常用的就是`mvn package` 或者`mvn install` 或者`mvn compile`了。
 
 ## **Site Lifecycle**
 
