@@ -146,3 +146,5 @@ Q：假如有一个jar包（非Java规范或Servlet规范的实现包，只是�
 
  [Tomcat类加载器及应用间class隔离与共享 ](https://zhuanlan.zhihu.com/p/24168200)
 
+[Tomcat那些事儿](https://zhuanlan.zhihu.com/tomcat)
+
