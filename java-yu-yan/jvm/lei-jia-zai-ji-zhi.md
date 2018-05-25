@@ -205,5 +205,9 @@ protected Class<?> loadClass(String name, boolean resolve)throws ClassNotFoundEx
 
   代码热替换、模块热部署等。
 
+## 参考
+
 内容来自《深入理解Java虚拟机》：虚拟机类加载机制
+
+扩展阅读：[How Classes are Found](https://docs.oracle.com/javase/8/docs/technotes/tools/findingclasses.html)
 

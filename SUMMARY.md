@@ -30,7 +30,8 @@
   * [IO](java-yu-yan/io.md)
   * [注解](java-yu-yan/zhu-jie.md)
   * [反射](java-yu-yan/fan-she.md)
-  * [流程控制](java-yu-yan/liu-cheng-kong-zhi.md)
+  * [流程控制](java-yu-yan/liu-cheng-kong-zhi/README.md)
+    * [Java: for\(;;\) vs. while\(true\)](java-yu-yan/liu-cheng-kong-zhi/java-for-vs.-while-true.md)
   * [JVM](java-yu-yan/jvm/README.md)
     * [JVM内存结构](java-yu-yan/jvm/jvm-nei-cun-jie-gou.md)
     * [Java内存模型](java-yu-yan/jvm/java-nei-cun-mo-xing.md)
@@ -43,6 +44,8 @@
     * [逃逸分析](java-yu-yan/jvm/tao-yi-fen-xi.md)
     * [JVM常用配置](java-yu-yan/jvm/jvm-chang-yong-pei-zhi.md)
     * [GC日志分析](java-yu-yan/jvm/gc-ri-zhi-fen-xi.md)
+    * [Java8 JVM 参数解读](java-yu-yan/jvm/java8-jvm-can-shu-jie-du.md)
+    * [java -jar启动时的依赖jar的加载](java-yu-yan/jvm/java-jar-qi-dong-shi-de-yi-lai-jar-de-jia-zai.md)
   * [面向对象](java-yu-yan/mian-xiang-dui-xiang/README.md)
     * [Object类中的方法](java-yu-yan/mian-xiang-dui-xiang/object-lei-zhong-de-fang-fa.md)
     * 值传递还是引用传递？
@@ -59,6 +62,9 @@
     * SPI是什么
   * 字节码
     * [javaagent](java-yu-yan/zi-jie-ma/javaagent.md)
+    * [字节码操纵](java-yu-yan/zi-jie-ma/zi-jie-ma-cao-zong.md)
+    * [如何查看类编译后的字节码指令](java-yu-yan/zi-jie-ma/ru-he-cha-kan-lei-bian-yi-hou-de-zi-jie-ma-zhi-ling.md)
+    * [字节码指令有哪些](java-yu-yan/zi-jie-ma/zi-jie-ma-zhi-ling-you-na-xie.md)
 * [Go语言](go-yu-yan.md)
 * [算法](suan-fa/README.md)
   * [准备思路](suan-fa/zhun-bei-si-lu.md)
@@ -181,16 +187,43 @@
     * [为什么需要任务调度](zhong-jian-jian/ren-wu-tiao-du/wei-shi-mo-xu-yao-ren-wu-tiao-du.md)
   * [消息队列](zhong-jian-jian/xiao-xi-dui-lie/README.md)
     * 为什么需要消息队列
-    * 消息队列关键点
+    * [消息队列关键点](zhong-jian-jian/xiao-xi-dui-lie/xiao-xi-dui-lie-guan-jian-dian.md)
+    * [消息中间件需要解决的问题](zhong-jian-jian/xiao-xi-dui-lie/xiao-xi-zhong-jian-jian-xu-yao-jie-jue-na-xie-wen-ti.md)
     * [不同消息队列产品对比](zhong-jian-jian/xiao-xi-dui-lie/bu-tong-xiao-xi-dui-lie-chan-pin-dui-bi.md)
-    * [RobbitMQ](zhong-jian-jian/xiao-xi-dui-lie/robbitmq.md)
-    * [RocketMQ](zhong-jian-jian/xiao-xi-dui-lie/rocketmq.md)
+    * [RocketMQ](zhong-jian-jian/xiao-xi-dui-lie/robbitmq/README.md)
+      * [快速入门](zhong-jian-jian/xiao-xi-dui-lie/robbitmq/kuai-su-ru-men.md)
+      * [整体架构](zhong-jian-jian/xiao-xi-dui-lie/robbitmq/zheng-ti-jia-gou.md)
+      * [部署方式](zhong-jian-jian/xiao-xi-dui-lie/robbitmq/untitled/README.md)
+        * [Broker部署方案](zhong-jian-jian/xiao-xi-dui-lie/robbitmq/untitled/broker-bu-shu-fang-an.md)
+      * 客户端使用
+        * [客户端使用指南](zhong-jian-jian/xiao-xi-dui-lie/robbitmq/ke-hu-duan-shi-yong/ke-hu-duan-shi-yong-zhi-nan.md)
+        * [快速开始](zhong-jian-jian/xiao-xi-dui-lie/robbitmq/ke-hu-duan-shi-yong/kuai-su-kai-shi.md)
+        * 简单示例
+        * 有序消息示例
+        * 广播消息示例
+        * 定时消息示例
+        * 批量消息示例
+        * 过滤消息示例
+        * 日志输出配置示例
+      * 关键点实现
+      * [最佳实践](zhong-jian-jian/xiao-xi-dui-lie/robbitmq/zui-jia-shi-jian/README.md)
+        * [Broker的最佳实践](zhong-jian-jian/xiao-xi-dui-lie/robbitmq/zui-jia-shi-jian/broker-de-zui-jia-shi-jian.md)
+        * [生产者最佳实践](zhong-jian-jian/xiao-xi-dui-lie/robbitmq/zui-jia-shi-jian/sheng-chan-zhe-zui-jia-shi-jian/README.md)
+          * [生产者最佳实践续](zhong-jian-jian/xiao-xi-dui-lie/robbitmq/zui-jia-shi-jian/sheng-chan-zhe-zui-jia-shi-jian/sheng-chan-zhe-zui-jia-shi-jian-xu.md)
+        * [消费者最佳实践](zhong-jian-jian/xiao-xi-dui-lie/robbitmq/zui-jia-shi-jian/xiao-fei-zhe-zui-jia-shi-jian/README.md)
+          * [消费者最佳实践续](zhong-jian-jian/xiao-xi-dui-lie/robbitmq/zui-jia-shi-jian/xiao-fei-zhe-zui-jia-shi-jian/xiao-fei-zhe-zui-jia-shi-jian-xu.md)
+        * [名称服务最佳实践](zhong-jian-jian/xiao-xi-dui-lie/robbitmq/zui-jia-shi-jian/ming-cheng-fu-wu-zui-jia-shi-jian.md)
+        * [JVM/kernel配置的最佳实践](zhong-jian-jian/xiao-xi-dui-lie/robbitmq/zui-jia-shi-jian/jvmkernel-pei-zhi-de-zui-jia-shi-jian.md)
+    * [RabbitMQ](zhong-jian-jian/xiao-xi-dui-lie/rocketmq.md)
     * [Kafka](zhong-jian-jian/xiao-xi-dui-lie/kafka.md)
   * [分布式事务](zhong-jian-jian/fen-bu-shi-shi-wu/README.md)
     * [什么是分布式事务](zhong-jian-jian/fen-bu-shi-shi-wu/shi-mo-shi-fen-bu-shi-shi-wu.md)
     * [解决方案](zhong-jian-jian/fen-bu-shi-shi-wu/jie-jue-fang-an.md)
   * 服务治理
+    * [RPC概念](zhong-jian-jian/fu-wu-zhi-li/rpc-gai-nian.md)
+    * [RPC最简实现](zhong-jian-jian/fu-wu-zhi-li/rpc-zui-jian-shi-xian.md)
     * Dubbo
+    * RMI
   * 分布式锁
     * [如何设计分布式锁](zhong-jian-jian/fen-bu-shi-suo/ru-he-she-ji-fen-bu-shi-suo/README.md)
       * [基于zookeeper](zhong-jian-jian/fen-bu-shi-suo/ru-he-she-ji-fen-bu-shi-suo/ji-yu-zookeeper.md)
