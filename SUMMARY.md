@@ -223,7 +223,7 @@
     * [RPC概念](zhong-jian-jian/fu-wu-zhi-li/rpc-gai-nian.md)
     * [RPC最简实现](zhong-jian-jian/fu-wu-zhi-li/rpc-zui-jian-shi-xian.md)
     * Dubbo
-    * RMI
+    * [Java RMI](zhong-jian-jian/fu-wu-zhi-li/rmi.md)
   * 分布式锁
     * [如何设计分布式锁](zhong-jian-jian/fen-bu-shi-suo/ru-he-she-ji-fen-bu-shi-suo/README.md)
       * [基于zookeeper](zhong-jian-jian/fen-bu-shi-suo/ru-he-she-ji-fen-bu-shi-suo/ji-yu-zookeeper.md)
