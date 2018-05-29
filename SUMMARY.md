@@ -232,7 +232,7 @@
       * [基于Redis](zhong-jian-jian/fen-bu-shi-suo/ru-he-she-ji-fen-bu-shi-suo/ji-yu-redis.md)
   * 注册中心
     * [注册中心的职责](zhong-jian-jian/zhu-ce-zhong-xin/zhu-ce-zhong-xin-de-zhi-ze.md)
-    * 不同注册中心的比较
+    * [不同注册中心的比较](zhong-jian-jian/zhu-ce-zhong-xin/bu-tong-zhu-ce-zhong-xin-de-bi-jiao.md)
 * [Web开发](web-kai-fa/README.md)
   * [Http请求类型及区别](web-kai-fa/http-qing-qiu-lei-xing-ji-qu-bie.md)
   * [常见的content-type](web-kai-fa/chang-jian-de-contenttype.md)
