@@ -222,9 +222,10 @@
   * 服务治理
     * [RPC概念](zhong-jian-jian/fu-wu-zhi-li/rpc-gai-nian.md)
     * [RPC最简实现](zhong-jian-jian/fu-wu-zhi-li/rpc-zui-jian-shi-xian.md)
-    * Dubbo
-    * [Java RMI](zhong-jian-jian/fu-wu-zhi-li/rmi.md)
     * [为什么需要服务治理](zhong-jian-jian/fu-wu-zhi-li/wei-shen-me-xu-yao-fu-wu-zhi-li.md)
+    * Dubbo
+      * [Dubbo整体架构](zhong-jian-jian/fu-wu-zhi-li/dubbo/dubbo-zheng-ti-jia-gou.md)
+    * [Java RMI](zhong-jian-jian/fu-wu-zhi-li/rmi.md)
   * 分布式锁
     * [如何设计分布式锁](zhong-jian-jian/fen-bu-shi-suo/ru-he-she-ji-fen-bu-shi-suo/README.md)
       * [基于zookeeper](zhong-jian-jian/fen-bu-shi-suo/ru-he-she-ji-fen-bu-shi-suo/ji-yu-zookeeper.md)
