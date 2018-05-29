@@ -223,7 +223,7 @@
     * [RPC概念](zhong-jian-jian/fu-wu-zhi-li/rpc-gai-nian.md)
     * [RPC最简实现](zhong-jian-jian/fu-wu-zhi-li/rpc-zui-jian-shi-xian.md)
     * [为什么需要服务治理](zhong-jian-jian/fu-wu-zhi-li/wei-shen-me-xu-yao-fu-wu-zhi-li.md)
-    * Dubbo
+    * [Dubbo](zhong-jian-jian/fu-wu-zhi-li/dubbo/README.md)
       * [Dubbo整体架构](zhong-jian-jian/fu-wu-zhi-li/dubbo/dubbo-zheng-ti-jia-gou.md)
     * [Java RMI](zhong-jian-jian/fu-wu-zhi-li/rmi.md)
   * 分布式锁
