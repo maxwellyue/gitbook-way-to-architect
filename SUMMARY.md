@@ -56,8 +56,9 @@
     * Java序列化的方式有哪些？
   * [新特性](java-yu-yan/xin-te-xing/README.md)
     * 流 Stream
-      * Stream是什么
-      * Stream使用示例
+      * [Stream是什么](java-yu-yan/xin-te-xing/liu-de-gai-nian-you-shi-ji-shi-yong/stream-shi-shen-me.md)
+      * [Stream API详解](java-yu-yan/xin-te-xing/liu-de-gai-nian-you-shi-ji-shi-yong/stream-shi-yong-shi-li.md)
+      * 流编程
     * [lambda表达式](java-yu-yan/xin-te-xing/lambda-biao-da-shi.md)
   * [常见方法的理解](java-yu-yan/chang-jian-fang-fa-de-li-jie/README.md)
     * hashCode\(\)与equal\(\)
