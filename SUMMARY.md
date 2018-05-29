@@ -231,6 +231,8 @@
       * [基于zookeeper](zhong-jian-jian/fen-bu-shi-suo/ru-he-she-ji-fen-bu-shi-suo/ji-yu-zookeeper.md)
       * [基于Redis](zhong-jian-jian/fen-bu-shi-suo/ru-he-she-ji-fen-bu-shi-suo/ji-yu-redis.md)
   * 注册中心
+    * 注册中心的职责
+    * 不同注册中心的比较
 * [Web开发](web-kai-fa/README.md)
   * [Http请求类型及区别](web-kai-fa/http-qing-qiu-lei-xing-ji-qu-bie.md)
   * [常见的content-type](web-kai-fa/chang-jian-de-contenttype.md)
