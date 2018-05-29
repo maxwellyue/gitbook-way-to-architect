@@ -215,6 +215,7 @@
           * [消费者最佳实践续](zhong-jian-jian/xiao-xi-dui-lie/robbitmq/zui-jia-shi-jian/xiao-fei-zhe-zui-jia-shi-jian/xiao-fei-zhe-zui-jia-shi-jian-xu.md)
         * [名称服务最佳实践](zhong-jian-jian/xiao-xi-dui-lie/robbitmq/zui-jia-shi-jian/ming-cheng-fu-wu-zui-jia-shi-jian.md)
         * [JVM/kernel配置的最佳实践](zhong-jian-jian/xiao-xi-dui-lie/robbitmq/zui-jia-shi-jian/jvmkernel-pei-zhi-de-zui-jia-shi-jian.md)
+        * [新特性 Filter Server](zhong-jian-jian/xiao-xi-dui-lie/robbitmq/zui-jia-shi-jian/xin-te-xing-filter-server.md)
     * [RabbitMQ](zhong-jian-jian/xiao-xi-dui-lie/rocketmq.md)
     * [Kafka](zhong-jian-jian/xiao-xi-dui-lie/kafka.md)
   * [分布式事务](zhong-jian-jian/fen-bu-shi-shi-wu/README.md)
