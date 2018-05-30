@@ -58,6 +58,7 @@
     * 流 Stream
       * [Stream是什么](java-yu-yan/xin-te-xing/liu-de-gai-nian-you-shi-ji-shi-yong/stream-shi-shen-me.md)
       * [Stream API详解](java-yu-yan/xin-te-xing/liu-de-gai-nian-you-shi-ji-shi-yong/stream-shi-yong-shi-li.md)
+      * [Stream进阶](java-yu-yan/xin-te-xing/liu-de-gai-nian-you-shi-ji-shi-yong/stream-jin-jie.md)
       * 流编程
     * [lambda表达式](java-yu-yan/xin-te-xing/lambda-biao-da-shi.md)
   * [常见方法的理解](java-yu-yan/chang-jian-fang-fa-de-li-jie/README.md)
