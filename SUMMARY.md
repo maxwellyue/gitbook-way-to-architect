@@ -61,6 +61,7 @@
       * [Stream进阶](java-yu-yan/xin-te-xing/liu-de-gai-nian-you-shi-ji-shi-yong/stream-jin-jie.md)
       * 流编程
     * [lambda表达式](java-yu-yan/xin-te-xing/lambda-biao-da-shi.md)
+    * [默认方法（Default Methods）](java-yu-yan/xin-te-xing/mo-ren-fang-fa-default-methods.md)
   * [常见方法的理解](java-yu-yan/chang-jian-fang-fa-de-li-jie/README.md)
     * hashCode\(\)与equal\(\)
     * [Integer.parseInt\(\)与Interger.valueof\(\)](java-yu-yan/chang-jian-fang-fa-de-li-jie/integer.parseint-yu-interger.valueof.md)
