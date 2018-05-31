@@ -72,6 +72,8 @@
     * [字节码操纵](java-yu-yan/zi-jie-ma/zi-jie-ma-cao-zong.md)
     * [如何查看类编译后的字节码指令](java-yu-yan/zi-jie-ma/ru-he-cha-kan-lei-bian-yi-hou-de-zi-jie-ma-zhi-ling.md)
     * [字节码指令有哪些](java-yu-yan/zi-jie-ma/zi-jie-ma-zhi-ling-you-na-xie.md)
+  * 命令行工具
+    * [命令行工具概览](java-yu-yan/ming-ling-hang-gong-ju/ming-ling-hang-gong-ju-gai-lan.md)
 * [Go语言](go-yu-yan.md)
 * [算法](suan-fa/README.md)
   * [准备思路](suan-fa/zhun-bei-si-lu.md)
