@@ -281,3 +281,5 @@ jstack 2245
 
 [记一次Java内存过大排查](https://jeffinbao.github.io/2016/04/24/20160424-research-on-java-memory-overweighted/)
 
+[jstack\(查看线程\)、jmap\(查看内存\)和jstat\(性能分析\)命令](http://guafei.iteye.com/blog/1815222)
+
