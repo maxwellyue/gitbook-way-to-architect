@@ -31,7 +31,7 @@ jps 参数
 | -v | 输出JVM启动参数 |
 | -V | 通过由标志文件（.hotspotrc文件或由-XX：Flags = &lt; 文件名 &gt;参数指定的文件）传递给JVM的启动参数。 |
 
-
+注意：**jps只能显示当前用户的java进程**，要显示其他用户的还是只能用unix/linux的ps命令。
 
 ## jstat：虚拟机统计信息监控工具
 
@@ -231,6 +231,12 @@ Dumping heap to /root/xxxxx.bin ...
 Heap dump file created
 ```
 
+小技巧：如果执行jmap -histo &lt;pid&gt; ，会发现有非常多的类信息，可以使用如下命令查看某个pid的java服务占用内存排名前n的类：
+
+```text
+jmap -histo <pid> | head -n
+```
+
 ## **jhat：虚拟机堆转储快照分析工具**
 
 Sun JDK提供了jhat（JVM Heap Analysis Tool）命令与jmap搭配使用，来分析jmap生成的堆转储快照。jhat内置了一个微型的HTTP/HTML服务器，生成dump文件的分析结果后，可以在浏览器中查看，不过实事求是地说，在实际工作中，除非真的没有别的工具可用，否则一般不会去直接使用jhat命令来分析dump文件，主要原因有二：一是一般不会在部署应用程序的服务器上直接分析dump文件，即使可以这样做，也会尽量将dump文件拷贝到其他机器上进行分析，因为分析工作时一个耗时且消耗硬件资源的过程，既然都要在其他机器上进行，就没必要收到命令行工具的限制了。另外一个原因是jhat的分析功能相对来说很简陋，VisualVM以及专门分析dump文件的Eclipse Memory Analyzer、IBM HeapAnalyzer等工具，都能实现比jhat更强大更专业的分析功能。
@@ -270,4 +276,8 @@ jstack 2245
 [Oracle Java Platform, Standard Edition Tools Reference: ****jstat](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/jstat.html)
 
 [《深入理解Java虚拟机》——JDK自带命令行工具](https://my.oschina.net/daidetian/blog/304383)
+
+[Java命令学习系列（一）——Jps](http://www.hollischuang.com/archives/105)
+
+[记一次Java内存过大排查](https://jeffinbao.github.io/2016/04/24/20160424-research-on-java-memory-overweighted/)
 
