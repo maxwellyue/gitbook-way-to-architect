@@ -136,6 +136,7 @@
   * [网络术语](wang-luo/wang-luo-shu-yu/README.md)
     * [网关、路由器、交换机、IP等](wang-luo/wang-luo-shu-yu/wang-guan-lu-you-qi-jiao-huan-ji-ip-deng.md)
     * [VLAN](wang-luo/wang-luo-shu-yu/vlan.md)
+    * [LAN](wang-luo/wang-luo-shu-yu/lan.md)
 * [设计模式](she-ji-mo-shi/README.md)
   * [设计模式概述](she-ji-mo-shi/she-ji-mo-shi-gai-shu.md)
   * [创建型](she-ji-mo-shi/chuang-jian-xing/README.md)
