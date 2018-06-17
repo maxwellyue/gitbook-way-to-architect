@@ -1,4 +1,4 @@
-# SPI是什么
+# 理解SPI
 
 ## 概念
 
@@ -114,6 +114,10 @@ public class DriverManager {
 * [_JsonbProvider:_](https://javaee.github.io/javaee-spec/javadocs/javax/json/bind/spi/JsonbProvider.html) provides JSON binding objects.
 * [_Extention:_](https://docs.oracle.com/javaee/7/api/javax/enterprise/inject/spi/Extension.html) provides extensions for the CDI container.
 * [_ConfigSourceProvider_:](https://openliberty.io/javadocs/microprofile-1.2-javadoc/org/eclipse/microprofile/config/spi/ConfigSourceProvider.html) provides a source for retrieving configuration properties.
+
+> 注意
+>
+> 假如在配置文件中，写了多个实现类，那么在ServiceLoader加载具体实现类的时候，要根据自己的需求去调用实现者：是任意选择一个实现类，还是根据某种规则选择一个实现类，还是这多个实现类都要去调用。
 
 ## SPI思想
 

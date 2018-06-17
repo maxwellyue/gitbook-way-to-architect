@@ -66,7 +66,7 @@
     * [hashCode\(\)与equal\(\)](java-yu-yan/chang-jian-fang-fa-de-li-jie/hashcode-yu-equal.md)
     * [Integer.parseInt\(\)与Interger.valueof\(\)](java-yu-yan/chang-jian-fang-fa-de-li-jie/integer.parseint-yu-interger.valueof.md)
   * [SPI](java-yu-yan/spi/README.md)
-    * [SPI是什么](java-yu-yan/spi/spi-shi-shi-mo.md)
+    * [理解SPI](java-yu-yan/spi/spi-shi-shi-mo.md)
   * [字节码](java-yu-yan/zi-jie-ma/README.md)
     * [javaagent](java-yu-yan/zi-jie-ma/javaagent.md)
     * [字节码操纵](java-yu-yan/zi-jie-ma/zi-jie-ma-cao-zong.md)
