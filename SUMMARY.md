@@ -118,6 +118,7 @@
     * [应用内限流](xi-tong-she-ji/xian-liu/ying-yong-nei-xian-liu.md)
     * [分布式限流](xi-tong-she-ji/xian-liu/fen-bu-shi-xian-liu.md)
     * [接入层限流](xi-tong-she-ji/xian-liu/jie-ru-ceng-xian-liu.md)
+    * [节流](xi-tong-she-ji/xian-liu/jie-liu.md)
   * [降级](xi-tong-she-ji/jiang-ji.md)
   * [负载均衡](xi-tong-she-ji/fu-zai-jun-heng.md)
 * [版本控制](ban-ben-kong-zhi/README.md)
