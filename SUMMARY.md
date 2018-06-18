@@ -114,6 +114,7 @@
   * [一致性Hash算法](xi-tong-she-ji/yi-zhi-xing-hash-suan-fa.md)
   * [限流](xi-tong-she-ji/xian-liu/README.md)
     * [限流是什么](xi-tong-she-ji/xian-liu/xian-liu-shi-shen-me.md)
+    * [限流算法](xi-tong-she-ji/xian-liu/xian-liu-suan-fa.md)
   * [降级](xi-tong-she-ji/jiang-ji.md)
   * [负载均衡](xi-tong-she-ji/fu-zai-jun-heng.md)
 * [版本控制](ban-ben-kong-zhi/README.md)
