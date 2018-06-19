@@ -120,6 +120,7 @@
     * [接入层限流](xi-tong-she-ji/xian-liu/jie-ru-ceng-xian-liu/README.md)
       * [ngx\_http\_limit\_conn\_module](xi-tong-she-ji/xian-liu/jie-ru-ceng-xian-liu/ngx_http_limit_conn_module.md)
       * [ngx\_http\_limit\_req\_module](xi-tong-she-ji/xian-liu/jie-ru-ceng-xian-liu/ngx_http_limit_req_module.md)
+      * [lua\_resty\_limit-tarffic](xi-tong-she-ji/xian-liu/jie-ru-ceng-xian-liu/lua_resty_limit-tarffic.md)
     * [节流](xi-tong-she-ji/xian-liu/jie-liu.md)
   * [降级](xi-tong-she-ji/jiang-ji.md)
   * [负载均衡](xi-tong-she-ji/fu-zai-jun-heng.md)
