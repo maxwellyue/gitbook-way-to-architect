@@ -123,7 +123,7 @@
       * [lua\_resty\_limit-tarffic](xi-tong-she-ji/xian-liu/jie-ru-ceng-xian-liu/lua_resty_limit-tarffic.md)
     * [节流](xi-tong-she-ji/xian-liu/jie-liu.md)
   * [降级](xi-tong-she-ji/jiang-ji/README.md)
-    * [自动开关降级](xi-tong-she-ji/jiang-ji/zi-dong-kai-guan-jiang-ji.md)
+    * [降级详解](xi-tong-she-ji/jiang-ji/zi-dong-kai-guan-jiang-ji.md)
     * [人工开发降级](xi-tong-she-ji/jiang-ji/ren-gong-kai-fa-jiang-ji.md)
     * [读服务降级](xi-tong-she-ji/jiang-ji/du-fu-wu-jiang-ji.md)
     * [写服务降级](xi-tong-she-ji/jiang-ji/xie-fu-wu-jiang-ji.md)
