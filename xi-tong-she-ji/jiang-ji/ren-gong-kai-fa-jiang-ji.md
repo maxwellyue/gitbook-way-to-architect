@@ -2,6 +2,8 @@
 
 在开启、关闭降级开关时，我们需要使用可配置的方式来动态调整。在应用时，首先要封装一套应用层API，以便业务逻辑使用。对于开关数据的存储，如果涉及的服务器/系统较少，初期可以使用配置文件的方式进行配置。如果涉及的服务器/系统较多，则可以使用配置中心（如Consule，Etcd等）进行配置。
 
+其实整体的思路就是将降级开关做成应用的配置项，然后借助配置文件或配置中心实时获取配置项的变化。配置文件和配置中心的实时更新本身与降级这个主题关系不大。
+
 ## 应用层API封装
 
 **1. 应用层API封装**
@@ -44,29 +46,90 @@ public int getExpiresInSeconds() {
 }
 ```
 
-##  **配置文件实现开关配置**
+## 使用**配置文件的方式**
 
 使用properties文件作为配置文件，借助JDK 7 WatchService实现文件变更监听，实现代码如下所示。
 
-```text
-static {     try {         filename= "application.properties";         resource= new ClassPathResource(filename);         //监听filename所在目录下的文件修改、删除事件        watchService = FileSystems.getDefault().newWatchService();        Paths.get(resource.getFile().getParent()).register(watchService,StandardWatchEventKinds.ENTRY_MODIFY, StandardWatchEventKinds.ENTRY_DELETE);         properties= PropertiesLoaderUtils.loadProperties(resource);     } catch(IOException e) {e.printStackTrace();}     //启动一个线程监听内容变化，并重新载入配置     Thread watchThread = new Thread(() -> {         while(true) {             try{                WatchKey watchKey = watchService.take();                for (WatchEvent<?> event : watchKey.pollEvents()) {                    if (Objects.equal(event.context().toString(), filename)){                         properties =PropertiesLoaderUtils.loadProperties (resource);                         break;                    }                }                watchKey.reset();             } catch (Exception e){e.printStackTrace();}         }     });    watchThread.setDaemon(true);    watchThread.start();       Runtime.getRuntime().addShutdownHook(newThread(() -> {         try{             watchService.close();         } catch(IOException e) {e.printStackTrace();}     }));   } 
+```java
+public class Configs {
+    public static Properties properties;
+    static {
+        final String configFilename = "app.properties";
+        final ClassPathResource resource = new ClassPathResource(configFilename);
+        try {
+            //先加载一次配置文件
+            properties = PropertiesLoaderUtils.loadProperties(resource);
+            //设置监听配置文件所在目录的文件删除/新增操作
+            final WatchService watcher = FileSystems.getDefault().newWatchService();
+            Paths.get(resource.getFile().getParent()).register(watcher,
+                    StandardWatchEventKinds.ENTRY_CREATE,
+                    StandardWatchEventKinds.ENTRY_DELETE,
+                    StandardWatchEventKinds.ENTRY_MODIFY);
+            //开启监听线程
+            Thread watchThread = new Thread(() -> {
+                try {
+                    WatchKey watchKey = watcher.take();
+                    for (WatchEvent<?> event : watchKey.pollEvents()) {
+                        //如果是配置文件发生变化，则重新加载配置文件
+                        System.out.println(event.kind() + ":::" + event.context().toString());
+                        if (Objects.equals(configFilename, event.context().toString())) {
+                            properties = PropertiesLoaderUtils.loadProperties(resource);
+                            break;
+                        }
+                    }
+                    watchKey.reset();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            watchThread.setDaemon(true);
+            watchThread.start();
+
+            //JVM停止时，关闭watcher线程
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                try {
+                    watcher.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean getBoolean(String key) {
+        String property = properties.getProperty(key, "false");
+        return "true".equals(property);
+    }
+    public static int getInt(String key) {
+        String property = properties.getProperty(key, "0");
+        return Integer.valueOf(property);
+    }
+}
 ```
 
-* 使用WatchService监听“application.properties”文件所在目录内容变化，包括修改、删除事件。
-* 通过后台线程实现阻塞等待内容变化事件，一旦发现有内容变更，如果是“application.properties”文件发生变更，则重新装载配置文件。
-* JVM停止时记得关闭WatchService。
+这样，每次需要修改配置文件内容，可以用修改后的配置文件替换原配置文件。
 
-整体实现比较简单，然后就可以封装Properties实现自己的开关API了。通过配置文件的方式缺点是每次配置文件内容变更需要将配置文件同步到服务器上，这点算是比较麻烦的，如果自动部署系统支持动态更改配置文件并同步用这种方式，那么也并不麻烦。只是如果要维护多个项目时，则需要切换多个界面来操作。
+> 如上方式，并不能监听到配置文件的直接修改操作，只能使用新配置文件替换旧配置文件的方式。
 
-**3. 配置中心实现开关配置**
+## 使用**配置中心的方式**
 
-统一配置中心，或者叫分布式配置中心，目的是实现配置开关的集中管理，要有配置后台方便开关的配置，对于一般公司来说配置中心的维护要简单，不需要投入过多的人力来做这件事情，配置中心不管是采用拉取模式还是推送模式，要考虑到连接数和网络带宽可能带来的风险和问题。目前有一些开源方案可以选择，如Zookeeper、Diamond、Disconf、Etcd3、Consul。本文选择了Consul，其支持多数据中心、服务发现、KV存储等特性，而且使用简单，提供了简单的Web UI方便管理，更多介绍可以参考Nginx负载均衡部分。我们借助Consul的KV存储特性来实现配置管理。
+通过配置中心修改开关配置，应用程序去获取这些变更（推送或拉取），思路与使用配置文件的方式是一致的。
 
-启动Consul Server
+目前有一些开源方案可以选择，如Zookeeper、Diamond、Disconf、Etcd3、Consul。
 
 
 
+## 内容来源
+
+《亿级流量网站架构核心技术》：降级详解
 
 
-使用配置文件的方式
+
+
+
+
 
