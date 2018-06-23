@@ -142,3 +142,5 @@ RocketMQ官方文档：生产者最佳实践
 
 [RocketMQ 客户端配置](http://jaskey.github.io/blog/2017/06/13/rocketmq-client-config/)
 
+《亿级流量网站架构核心技术》：超时与重试机制
+
