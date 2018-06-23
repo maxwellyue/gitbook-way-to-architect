@@ -127,6 +127,7 @@
     * [人工降级开关的实现](xi-tong-she-ji/jiang-ji/ren-gong-kai-fa-jiang-ji.md)
     * [自动降级的实现：Hystrix](xi-tong-she-ji/jiang-ji/du-fu-wu-jiang-ji.md)
   * [负载均衡](xi-tong-she-ji/fu-zai-jun-heng.md)
+  * [超时与重试机制](xi-tong-she-ji/chao-shi-yu-zhong-shi-ji-zhi.md)
 * [版本控制](ban-ben-kong-zhi/README.md)
   * [Git](ban-ben-kong-zhi/git/README.md)
     * [Git常用命令](ban-ben-kong-zhi/git/git-chang-yong-ming-ling.md)
