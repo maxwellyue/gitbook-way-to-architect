@@ -71,35 +71,39 @@ Statement 超时的具体数值需要根据每个应用自身的情况而定，�
 
 ### 4、Transition超时设置
 
-事务超时是在框架（Spring或EJB容器）或应用程序层面上才有效的超时。主要用来限制执行一个事务内所有 Statement 执行的总时长。简单来讲：
-
-`Statement Timeout =  * N (number of statements being processed) + @ (garbage collection, etc.).`  
-
-
-事务超时= Statement 超时  N（需要执行的 Statement 的数量） + 其它（垃圾回收等其他时间）\*\*。
-
-
-
-比如，假设执行一次 Statement 执行需0.1秒，那执行几次 Statement  
- 并不是什么问题，但如果是执行十万次则需要一万秒（大约7个小时），这就可以用上事务超时了。
-
-EJB 的声明式事务管理 \(容器管理事务\) 就是一种典型的使用场景，但声明式事务管理只是定义了相应的规范，容器内事务的处理过程和具体实现由容器的开发者负责。我们公司并没有用 EJB，用的是最常见的 Spring 框架，所以事务超时的配置也由 Spring 来管理。在 Spring 中，事务超时可以在 XML 文件显式配置或在 Java 代码中用 Transactional 注解来配置。
+事务超时是在框架（Spring或EJB容器）或应用程序层面上才有效的超时。主要用来限制执行一个事务内所有 Statement 执行的总时长。因此，事务超时可以理解为：
 
 ```text
+事务超时 = Statement超时时间 * 执行的 Statement 的数量 + 其他垃圾回收等时间
+```
+
+比如，假设执行一次Statement 需要0.1秒，那执行几次 Statement并不是什么问题，但如果是执行十万次则需要一万秒（大约7个小时），这就可以用上事务超时了。
+
+开发中最常用的就是Spring 框架，所以事务超时的配置也由 Spring 来管理。
+
+XML文件配置方式：单位：秒，默认-1，即使用底层事务控制系统的配置。
+
+```markup
 <tx:attributes>
         <tx:method name="…" timeout="3"/>
 </tx:attributes>
+
+```
+
+Transactional 注解方式：单位：秒，默认-1，即使用底层事务控制系统的配置。
+
+```java
+@Transactional(timeout=10)
+public void add(){
+    ... ...
+}
 ```
 
 Spring 提供的事务超时的配置非常简单，它会记录每个事务的开始时间和消耗时间，当特定的事件发生时会对已消耗掉的时间做校验，如果超出了配置将抛出异常。
 
-Spring 中数据库连接被保存在线程本地变量（ThreadLocal）中，这被称作事务同步（Transaction Synchronization）。当数据库连接被保存到 ThreadLocal 时，同时会记录事务的开始时间和超时时间。所以通过数据库连接的代理创建的 Statement 在执行时就会校验这个时间。
+> 在Spring 中，数据库连接会被保存到线程本地变量ThreadLocal中（这被称作事务同步Transaction Synchronization）。当数据库连接被保存到 ThreadLocal 时，同时会记录事务的开始时间和超时时间。所以通过数据库连接的代理创建的 Statement 在执行时就会校验这个时间。
 
-EJB 的声明式事务管理的实现也是类似，实现的思路非常简单。如果事务超时非常重要，但你所使用的容器或框架不提供此功能，你也可以选择自己实现，关于事务超时并没有制定标准的 API。
 
-Lucy 框架的1.5和1.6版不支持事务超时，但你可以通过 Spring 的事务管理达到相同的效果。
-
-假设一个事务里有5条 Statement ，每条 Statement 执行时间是200毫秒，其它业务逻辑或框架操作的执行时间是100毫秒，那事务允许的超时时间至少应该1100毫秒（200 \* 5 + 100）。
 
 ## 
 
@@ -161,4 +165,10 @@ DruidDataSource大部分属性都是参考DBCP的，超时相关配置加了粗�
 [深入理解JDBC的超时设置](http://www.importnew.com/2466.html)
 
 [Understanding JDBC Internals & Timeout Configuration](https://www.cubrid.org/blog/understanding-jdbc-internals-and-timeout-configuration)
+
+[MyBatis官方文档](http://www.mybatis.org/mybatis-3/zh/configuration.html#settings)
+
+[Apache Commons DBCP](http://commons.apache.org/dbcp/)
+
+[DruidDataSource配置属性列表](https://github.com/alibaba/druid/wiki/DruidDataSource%E9%85%8D%E7%BD%AE%E5%B1%9E%E6%80%A7%E5%88%97%E8%A1%A8)
 
