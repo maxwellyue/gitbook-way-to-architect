@@ -1,4 +1,4 @@
-# Nginx负载均衡
+# Nginx负载均衡（七层）
 
 > 这里Nginx是作为应用负载均衡器，即Nginx直连后端真实应用服务器。
 
@@ -35,9 +35,9 @@ http {
 
 同时，可以设置后端服务器的状态：
 
-①down：表示当前server暂时不参与负载均衡。
+①`down`：表示当前server暂时不参与负载均衡。当测试或者某个后端服务器出现故障时，可以暂时通过该配置临时摘掉机器。  
+②`backup`：表示是预留的备份机，当其他所有非backup机器出现故障或者繁忙的时候，才会请求backup机器，这台机器的访问压力最轻。如通过缩容上游服务器进行压测时，要摘掉一些上游服务器进行压测，但为了保险起见会配置一些备上游服务器，当压测的上游服务器都挂掉时，流量可以转发到备上游服务器，从而不影响用户请求处理。  
 
-②backup：表示是预留的备份机，当其他所有非backup机器出现故障或者繁忙的时候，才会请求backup机器，这台机器的访问压力最轻。
 
 ```lua
 upstream backend {
@@ -163,16 +163,114 @@ upstream backend {
 
 此处需要注意，检查间隔时间不能太短，否则可能因为心跳检查包太多造成上游服务器挂掉，同时要设置合理的超时时间。
 
+## Nginx与上游服务器的长连接
 
+通过如下配置：
 
-  
+```lua
+http {
+    ... ...
+    upstream backend {
+    　　server 192.168.61.1:9080 weight=1;
+    　　server 192.168.61.1:9090 weight=2 backup;
+    　　keepalive 100;
+    }
+    server {
+        listen 80;
+        location / {
+        　  #http1.1支持keep-alive
+        　　proxy_http_version 1.1;
+        　　proxy_set_header Connection "";
+        　　proxy_pass http://backend;
+　　    }
+    }
+    ... ...
+}
+```
 
+配置说明：
 
+`keepalive`：配置长连接数量，这里是指每个Worker进程与上游服务器可缓存的空闲连接的最大数量（不是总连接数，keepalive指令不限制Worker进程与上游服务器的总连接数量）。当超出这个数量时，最近最少使用的连接将被关闭。
 
+> ①如果是http/1.0，则需要配置发送“Connection: Keep-Alive”请求头。
+>
+> ②上游服务器不要忘记开启长连接支持。
+
+## Nginx反向代理配置
+
+Nginx在七层的作用就是反向代理，它除了实现了负载均衡之外，还提供如缓存来减少上游服务器的压力。
+
+### 全局配置缓存
+
+```lua
+http {
+   ... ...
+   proxy_buffering on;
+　　proxy_buffer_size 4k;
+　　proxy_buffers 512 4k;
+　　proxy_busy_buffers_size 64k;
+　　proxy_temp_file_write_size 256k;
+　　proxy_cache_lock on;
+　　proxy_cache_lock_timeout 200ms;
+　　proxy_temp_path /tmpfs/proxy_temp;
+　　proxy_cache_path /tmpfs/proxy_cache levels=1:2keys_zone =cache:512m inactive=5m max_size=8g;
+　　proxy_connect_timeout 3s;
+　　proxy_read_timeout 5s;
+　　proxy_send_timeout 5s;
+
+   gzip on;
+　　gzip_min_length 1k;
+　　gzip_buffers 16 16k;
+　　gzip_http_version 1.0;
+　　gzip_proxied any;
+　　gzip_comp_level 2;
+　　gzip_types text/plainapplication/x-java text/css application/xml;
+　　gzip_vary on;
+
+   server{
+      ... ...
+   }
+   ... ...
+}
+    
+```
+
+配置说明：
+
+①开启proxy buffer，缓存内容将存放在tmpfs（内存文件系统）以提升性能，设置超时时间。
+
+②开启gzip支持，减少网络传输的数据包大小。对于内容型响应建议开启gzip压缩，gzip\_comp\_level压缩级别要根据实际压测来决定（带宽和吞吐量之间的抉择）。
+
+### location配置缓存
+
+```lua
+location ~ ^/backend/(.*)$ {
+　　#请求上游服务器使用GET方法（不管请求是什么方法）
+　　proxy_method GET;
+　　#不给上游服务器传递请求体
+　　proxy_pass_request_body off;
+　　#不给上游服务器传递请求头
+　　proxy_pass_request_headers off;
+　　#设置上游服务器的哪些响应头不发送给客户端
+　　proxy_hide_header Vary;
+　　#支持keep-alive
+　　proxy_http_version 1.1;
+　　proxy_set_header Connection "";
+　　#给上游服务器传递Referer、Cookie和Host（按需传递）
+　　proxy_set_header Referer $http_referer;
+　　proxy_set_header Cookie $http_cookie;
+　　proxy_set_header Host web.c.3.local;
+　　proxy_pass http://backend /$1$is_args$args;
+}
+```
+
+上述配置中开启了`proxy_pass_request_body`和`proxy_pass_request_headers`，禁止向上游服务器传递请求头和内容体，从而使得上游服务器不受请求头攻击，也不需要解析；如果需要传递，则使用proxy\_set\_header按需传递即可。
 
 ## 参考
 
 《亿级流量网站架构核心技术》：负载均衡与反向代理
 
 [Nginx几种负载均衡算法及配置实例](https://www.jianshu.com/p/129fe671deed)
+
+[Nginx缓存设置](http://blog.51cto.com/linux008/547236)
 
