@@ -2,7 +2,51 @@
 
 ## 数据库服务端超时设置
 
+以MySQL为例，服务端的超时设置主要有以下几项：（时间单位：秒）
 
+```text
+mysql> show global variables like "%timeout%";
++-----------------------------+----------+
+| Variable_name               | Value    |
++-----------------------------+----------+
+| connect_timeout             | 10       |
+| delayed_insert_timeout      | 300      |   # 从5.6.7开始被弃用
+| have_statement_timeout      | YES      |
+| innodb_flush_log_at_timeout | 1        |
+| innodb_lock_wait_timeout    | 50       |
+| innodb_rollback_on_timeout  | OFF      |
+| interactive_timeout         | 28800    |
+| lock_wait_timeout           | 31536000 |
+| net_read_timeout            | 30       |
+| net_write_timeout           | 60       |
+| rpl_stop_slave_timeout      | 31536000 |
+| slave_net_timeout           | 60       |
+| wait_timeout                | 28800    |
++-----------------------------+----------+
+```
+
+#### connect\_timeout
+
+获取MySQL连接是多次握手的结果，除了用户名和密码的匹配校验外，还有IP-&gt;HOST-&gt;DNS-&gt;IP验证，任何一步都可能因为网络问题导致线程阻塞。为了防止线程浪费在不必要的校验等待上，超过connect\_timeout的连接请求将会被拒绝。
+
+**innodb\_lock\_wait\_timeout**  
+事务等待获取资源时等待的最长时间，超过这个时间还未分配到资源则会返回应用失败，该参数能够有效避免在资源有限的情况下产生太多的锁等待
+
+**innodb\_rollback\_on\_timeout**
+
+默认情况下`innodb_lock_wait_timeout` 超时后只是超时的sql执行失败，整个事务并不回滚，也不做提交，如需要事务在超时的时候回滚，则需要设置innodb\_rollback\_on\_timeout=ON，该参数默认为OFF。
+
+**interactive\_timeout/wait\_timeout**
+
+即使没有网络问题，也不能允许客户端一直占用连接。对于保持sleep状态超过了wait\_timeout（或interactive\_timeout，取决于client\_interactive标志）的客户端，MySQL会主动断开连接。
+
+**net\_read\_timeout / net\_write\_timeout**
+
+该参数只对TCP/IP链接有效，分别是数据库等待接收客户端发送网络包和发送网络包给客户端的超时时间，这是在Activity状态下的线程才有效的参数。
+
+**slave\_net\_timeout**
+
+Slave判断主机是否挂掉的超时设置，在设定时间内依然没有获取到Master的回应就认为Master挂掉了。
 
 ## 数据库客户端超时设置
 
@@ -36,13 +80,14 @@ JDBC部分主要处理网络连接超时，来处理网络故障 。因为JDBC�
 
 Statement 超时是用来限制 Statement 的执行时间的，它的具体值是通过下面的JDBC API来设置的。JDBC 驱动程序基于这个值进行 Statement 执行时的超时处理。
 
-```text
+```java
+// 默认值为0，表示不进行限制
 java.sql.Statement.setQueryTimeout(int timeout) 
 ```
 
-但是，一般在开发中，我们一般会使用ORM框架开发，不会出现上面的代码。所以，这个配置更多是通过框架来进行设置（然后再传递给底层的JDBC使用）。
+各个JDBC driver实现`java.sql.Statement`的时候都需要实现该函数，超时会直接被取消掉并且抛出`SQLTimeoutException`异常。
 
-以`MyBatis`为例：单位：秒，默认值都是unset，即会使用具体驱动的设置。
+但是，一般在开发中，我们一般会使用ORM框架开发，不会出现上面的代码。所以，这个配置更多是通过框架来进行设置（然后再传递给底层的JDBC使用）。以`MyBatis`为例：单位：秒，默认值都是unset，即会使用具体驱动的设置。
 
 ```markup
 <!-- 在Configuration中设置全局的Statement超时：默认值为unset，即使用具体驱动的设置-->
@@ -67,7 +112,7 @@ java.sql.Statement.setQueryTimeout(int timeout)
 
 如果使用 Lucy 1.5或1.6版，可以通过设置 `queryTimeout` 属性在数据源层面设置Statement 超时。
 
-Statement 超时的具体数值需要根据每个应用自身的情况而定，并没有推荐的配置。
+可以看出，如果**不设置Statement的超时，则默认不进行超时限制**，这是很危险的做法，因此在开发中，务必在ORM框架中（如果不使用MyBatis之类的ORM框架，则需要在相应的数据库操作工具中）设置Statement的超时。而Statement 超时的具体数值需要根据每个应用自身的情况而定，并没有推荐的配置。
 
 ### 4、Transition超时设置
 
@@ -79,21 +124,26 @@ Statement 超时的具体数值需要根据每个应用自身的情况而定，�
 
 比如，假设执行一次Statement 需要0.1秒，那执行几次 Statement并不是什么问题，但如果是执行十万次则需要一万秒（大约7个小时），这就可以用上事务超时了。
 
-开发中最常用的就是Spring 框架，所以事务超时的配置也由 Spring 来管理。
+以Spring为例： 单位：秒，默认-1，即使用底层事务控制系统的配置，比如在JTA中，默认是30s。 
 
-XML文件配置方式：单位：秒，默认-1，即使用底层事务控制系统的配置。
+XML文件配置方式
 
 ```markup
+<!--全局配置-->
+<bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+          p:dataSource-ref="dataSource" 
+          p:defaultTimeout="100"/>
 <tx:attributes>
-        <tx:method name="…" timeout="3"/>
+        <!--为某个方法单独配置-->
+        <tx:method name="…" timeout="100"/>
 </tx:attributes>
-
 ```
 
-Transactional 注解方式：单位：秒，默认-1，即使用底层事务控制系统的配置。
+Transactional 注解方式
 
 ```java
-@Transactional(timeout=10)
+@Transactional(timeout=100)
 public void add(){
     ... ...
 }
@@ -103,64 +153,13 @@ Spring 提供的事务超时的配置非常简单，它会记录每个事务的�
 
 > 在Spring 中，数据库连接会被保存到线程本地变量ThreadLocal中（这被称作事务同步Transaction Synchronization）。当数据库连接被保存到 ThreadLocal 时，同时会记录事务的开始时间和超时时间。所以通过数据库连接的代理创建的 Statement 在执行时就会校验这个时间。
 
-
-
-## 
-
-  
-  
-作者：预流  
-链接：https://www.jianshu.com/p/2deaf51bf715  
-來源：简书  
-简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
-
-
-
-
-
-> 即使配置了 Statement 超时，应用程序还是不能从故障中恢复，因为 Statement 超时在网络故障时不起作用。
-
-**Statement 超时在网络故障时不起作用**。它只能做到：限制一次Statement 执行的时间，处理超时以防网络故障必须由 JDBC 驱动来做。
-
-JDBC 驱动的 socket 超时还会受操作系统的 socket 超时配置的影响。这解释了为什么案例中的 JDBC 连接在网络故障后阻塞了30分钟才恢复，即使没配置 JDBC 驱动的 socket 超时。
-
-DBCP 连接池位于图2的左边。你会发现各种层面的超时与 DBCP 是分开的。DBCP 负责数据库连接（即本文中说到的**Connection**）的创建和管理，并不涉及超时的处理。当在 DBCP 中创建了一个数据库连接或发送了一条查询校验的 sql 语句用于检查连接有效性时，socket 超时会影响这些过程的处理，但并不直接影响应用程序。
-
-然而在应用程序中调用 DBCP 的 getConnection\(\) 方法时，你能指定应用程序获取数据库连接的超时时间，但这和 JDBC 的连接超时无关。
-
-
-
-
-
-
-
-## Druid超时设置
-
-DruidDataSource大部分属性都是参考DBCP的，超时相关配置加了粗体显示。
-
-| 配置 | 缺省值 | 说明 |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| maxActive | 8 | 最大连接池数量 |
-| minIdle |  | 最小连接池数量 |
-| **maxWait** |  | **获取连接时最大等待时间**，单位毫秒。配置了maxWait之后，缺省启用公平锁，并发效率会有所下降，如果需要可以通过配置useUnfairLock属性为true使用非公平锁。 |
-| validationQuery |  | 用来检测连接是否有效的sql，要求是一个查询语句，常用select 'x'。如果validationQuery为null，testOnBorrow、testOnReturn、testWhileIdle都不会起作用。 |
-| **validationQueryTimeout** |  | 单位：秒，**检测连接是否有效的超时时间**。底层调用jdbc Statement对象的void setQueryTimeout\(int seconds\)方法 |
-| testOnBorrow | true | 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。 |
-| testOnReturn | false | 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。 |
-| testWhileIdle | false | 建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于`timeBetweenEvictionRunsMillis`，执行validationQuery检测连接是否有效。 |
-| keepAlive | false （1.0.28） | 连接池中的`minIdle`数量以内的连接，空闲时间超过`minEvictableIdleTimeMillis`，则会执行keepAlive操作。 |
-| **timeBetweenEvictionRunsMillis** | 1分钟（1.0.14） | 有两个含义： 1\) Destroy线程会检测连接的间隔时间，如果连接空闲时间大于等于`minEvictableIdleTimeMillis`则关闭物理连接。 2\) testWhileIdle的判断依据，详细看testWhileIdle属性的说明 |
-| **minEvictableIdleTimeMillis** |  | 连接保持空闲而不被驱逐的最小时间 |
-
-
-
-
-
-参考
+## 参考
 
 [如何配置MySQL数据库超时设置](https://blog.csdn.net/qq_34531925/article/details/78812841)
 
 [MySQL的timeout那点事](http://www.penglixun.com/tech/database/mysql_timeout.html)
+
+[MySQL 各种超时参数的含义](https://www.cnblogs.com/xiaoboluo768/p/6222862.html)
 
 [深入理解JDBC的超时设置](http://www.importnew.com/2466.html)
 
@@ -171,4 +170,12 @@ DruidDataSource大部分属性都是参考DBCP的，超时相关配置加了粗�
 [Apache Commons DBCP](http://commons.apache.org/dbcp/)
 
 [DruidDataSource配置属性列表](https://github.com/alibaba/druid/wiki/DruidDataSource%E9%85%8D%E7%BD%AE%E5%B1%9E%E6%80%A7%E5%88%97%E8%A1%A8)
+
+[Spring Transaction Management](https://docs.spring.io/spring/docs/4.2.x/spring-framework-reference/html/transaction.html)
+
+[处理sql超时](http://xiaobaoqiu.github.io/blog/2015/08/22/chu-li-sqlchao-shi/)
+
+[MySQL Configuration Properties for Connector](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-configuration-properties.html)
+
+[张开涛：超时与重试机制\(2\)](http://zhuanlan.51cto.com/art/201707/543853.htm)
 
