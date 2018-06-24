@@ -153,6 +153,27 @@ Spring 提供的事务超时的配置非常简单，它会记录每个事务的�
 
 > 在Spring 中，数据库连接会被保存到线程本地变量ThreadLocal中（这被称作事务同步Transaction Synchronization）。当数据库连接被保存到 ThreadLocal 时，同时会记录事务的开始时间和超时时间。所以通过数据库连接的代理创建的 Statement 在执行时就会校验这个时间。
 
+
+
+### **FAQ** 
+
+  
+Q1. 我已经使用Statement.setQueryTimeout\(\)方法设置了查询超时，但在网络出错时并没有产生作用。 
+
+➔ 查询超时仅在socket timeout生效的前提下才有效，它并不能用来解决外部的网络错误，要解决这种问题，必须设置JDBC的socket timeout。 
+
+Q2. transaction timeout，statement timeout和socket timeout和DBCP的配置有什么关系？ 
+
+➔ 当通过DBCP获取数据库连接时，除了DBCP获取连接时的waitTimeout配置以外，其他配置对JDBC没有什么影响。 
+
+Q3. 如果设置了JDBC的socket timeout，那DBCP连接池中处于IDLE状态的连接是否也会在达到超时时间后被关闭？ 
+
+➔ 不会。socket的设置只会在产生数据读写时生效，而不会对DBCP中的IDLE连接产生影响。当DBCP中发生新连接创建，老的IDLE连接被移除，或是连接有效性校验的时候，socket设置会对其产生一定的影响，但除非发生网络问题，否则影响很小。 
+
+Q4. socket timeout应该设置为多少？ 
+
+➔ socket timeout必须高于statement timeout，但并没有什么推荐值。在发生网络错误的时候，socket timeout将会生效，但是再小心的配置也无法避免网络错误的发生，只是在网络错误发生后缩短服务失效的时间（如果网络恢复正常的话）。
+
 ## 参考
 
 [如何配置MySQL数据库超时设置](https://blog.csdn.net/qq_34531925/article/details/78812841)
