@@ -128,6 +128,7 @@
     * [自动降级的实现：Hystrix](xi-tong-she-ji/jiang-ji/du-fu-wu-jiang-ji.md)
   * [负载均衡](xi-tong-she-ji/fu-zai-jun-heng/README.md)
     * [概述](xi-tong-she-ji/fu-zai-jun-heng/gai-shu.md)
+    * [互联网架构下的负载均衡](xi-tong-she-ji/fu-zai-jun-heng/hu-lian-wang-jia-gou-xia-de-fu-zai-jun-heng.md)
   * [超时与重试机制](xi-tong-she-ji/chao-shi-yu-zhong-shi-ji-zhi/README.md)
     * [什么地方要超时与重试](xi-tong-she-ji/chao-shi-yu-zhong-shi-ji-zhi/shen-me-di-fang-yao-chao-shi-yu-zhong-shi.md)
     * [代理层超时与重试](xi-tong-she-ji/chao-shi-yu-zhong-shi-ji-zhi/dai-li-ceng-chao-shi-yu-zhong-shi.md)
