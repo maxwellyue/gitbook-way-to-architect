@@ -9,7 +9,7 @@
 * **失败重试机制**：配置当超时或上游服务器不存活时，是否需要重试其他上游服务器。
 * **服务器心跳检查**：上游服务器的健康检查/心跳检查。
 
-### Nginx上游服务器配置
+## Nginx上游服务器配置
 
 通过在http指令下配置upstream即可。
 
@@ -50,7 +50,7 @@ upstream backend {
 
 > 还有max\_fails和fail\_timeout等参数，后面的失败重试部分再进行说明。
 
-### Nginx负载均衡算法
+## Nginx负载均衡算法
 
 Nginx中支持的负载均衡算法（用户请求到来时选择哪个后端服务器）主要有以下几种：
 
@@ -84,7 +84,7 @@ Nginx商业版支持该算法，基于最小平均响应时间进行负载均衡
 
 TODO：各种算法的配置示例
 
-### Nginx失败重试
+## Nginx失败重试
 
 主要有两部分配置：upstream server和proxy\_pass。
 
@@ -115,15 +115,15 @@ http {
 
 上游服务器中的`max_fails`和`fail_timeout`：指定每个上游服务器，当`fail_timeout`时间内失败了`max_fails`次请求，则认为该上游服务器不可用/不存活，然后将摘掉该上游服务器，`fail_timeout`时间后会再次将该服务器加入到存活上游服务器列表进行重试。
 
-todo
+详见：[代理层超时与重试](https://maxwell.gitbook.io/way-to-architect/~/edit/drafts/-LFmi05RkCD7vKp_K5tp/xi-tong-she-ji/chao-shi-yu-zhong-shi-ji-zhi/dai-li-ceng-chao-shi-yu-zhong-shi)
 
-### Nginx健康检查
+## Nginx健康检查
 
 Nginx对上游服务器的健康检查默认采用的是惰性策略（Nginx商业版提供了进行主动健康检查）。当然也可以集成[nginx\_upstream\_check\_module](https://github.com/yaoweibin/nginx_upstream_check_module)模块来进行主动健康检查。
 
 [nginx\_upstream\_check\_module](https://github.com/yaoweibin/nginx_upstream_check_module)模块支持以下两种检查模式。
 
-**TCP心跳检查**
+### 1、**TCP心跳检查**
 
 ```lua
 upstream backend {
@@ -143,7 +143,7 @@ upstream backend {
 
 　　timeout：检测请求超时时间配置。
 
-**HTTP心跳检查**
+### 2、**HTTP心跳检查**
 
 ```lua
 upstream backend {
