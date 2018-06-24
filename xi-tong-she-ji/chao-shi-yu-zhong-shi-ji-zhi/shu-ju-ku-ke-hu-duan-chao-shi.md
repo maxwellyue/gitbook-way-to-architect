@@ -1,10 +1,24 @@
 # 数据库超时
 
-数据库服务端超时设置
+## 数据库服务端超时设置
 
 
 
-JDBC超时设置
+## JDBC超时设置
+
+JDBC即数据库的驱动程序，是Java应用中用来连接关系型数据库的标准API。比如我们使用MySQL数据库时，一般会在项目中添加mysql-connector-java.jar，这个库就是JDBC的实现。
+
+JDBC通过socket对字节流进行处理，因此会有一些基本网络操作，若没有合理地设置socket timeout，可能会出现连接被阻塞这样的错误。 
+
+JDBC是属于低级别的库， 高级别的timeout依赖于低级别的timeout，只有当低级别的timeout无误时，高级别的timeout才能确保正常。例如，当socket timeout出现问题时，高级别的statement timeout和transaction timeout都将失效。 
+
+即使设置了statement timeout，当网络出错时，应用也无法从错误中恢复。
+
+statement timeout无法处理网络连接失败时的超时，它能做的仅仅是限制statement的操作时间。网络连接失败时的timeout必须交由JDBC来处理。   
+JDBC的socket timeout会受到操作系统socket timeout设置的影响，这就解释了为什么在之前的案例中，JDBC连接会在网络出错后阻塞30分钟，然后又奇迹般恢复，即使我们并没有对JDBC的socket timeout进行设置。 
+
+DBCP负责的是数据库连接的创建和管理，并不干涉timeout的处理。当连接在DBCP中创建，或是DBCP发送校验query检查连接有效性的时候，socket timeout将会影响这些过程，但并不直接对应用造成影响。   
+当在应用中调用DBCP的getConnection\(\)方法时，你可以设置获取数据库连接的超时时间，但是这和JDBC的timeout毫不相关。 ![](http://www.cubrid.org/files/attach/images/220547/584/303/timeout-of-each-level.png)
 
 连接池超时设置
 
