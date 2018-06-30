@@ -171,13 +171,97 @@ ORDER BY
 7 rows in set (0.01 sec)
 ```
 
-### 
-
-### 
-
 ### TOP N
 
-查询语句：假设取TOP 2，即取每门课程成绩较高的2个分数和对应的用户。
+假设取TOP 2，即取每门课程成绩较高的2个分数和对应的用户。
+
+#### 方案1：使用UNION ALL
+
+如果结果集比较小，可以用程序查询单个分组结果后拼凑，也可以使用UNION ALL拼凑。
+
+查询语句：如果课程共有5中，则写5条单独查，再使用UNION ALL聚合。
+
+```sql
+( SELECT course_id , score , user_id FROM score WHERE course_id = 1 ORDER BY score DESC LIMIT 2) 
+UNION ALL
+( SELECT course_id , score , user_id FROM score WHERE course_id = 2 ORDER BY score DESC LIMIT 2) 
+UNION ALL
+( SELECT course_id , score , user_id FROM score WHERE course_id = 3 ORDER BY score DESC LIMIT 2)
+ UNION ALL
+( SELECT course_id , score , user_id FROM score WHERE course_id = 4 ORDER BY score DESC LIMIT 2) 
+UNION ALL
+( SELECT course_id , score , user_id FROM score WHERE course_id = 5 ORDER BY score DESC LIMIT 2)
+```
+
+查询结果：（共10条记录）
+
+```text
++-----------+-------+---------+
+| course_id | score | user_id |
++-----------+-------+---------+
+| 1         | 60    | 1       |
+| 1         | 45    | 2       |
+| 2         | 98    | 4       |
+| 2         | 98    | 3       |
+| 3         | 100   | 4       |
+| 3         | 100   | 3       |
+| 4         | 89    | 2       |
+| 4         | 88    | 1       |
+| 5         | 71    | 2       |
+| 5         | 70    | 4       |
++-----------+-------+---------+
+10 rows in set (0.01 sec)
+```
+
+这种方案有一个问题：同一课程，前2高的分数，可能会对应2个以上用户，即可能会漏数据。
+
+#### 方案2：自身左连接
+
+查询语句：
+
+```sql
+SELECT
+	s.course_id ,
+	s.score ,
+	s.user_id
+FROM
+	score s
+LEFT JOIN score s1 ON s.course_id = s1.course_id AND s.score < s1.score
+GROUP BY
+	s.user_id ,
+	s.course_id ,
+	s.score
+HAVING
+	COUNT(s1.id) < 2
+ORDER BY
+	s.course_id ,
+	s.score DESC
+```
+
+查询结果：
+
+```text
++-----------+-------+---------+
+| course_id | score | user_id |
++-----------+-------+---------+
+| 1         | 60    | 1       |
+| 1         | 45    | 2       |
+| 2         | 98    | 3       |
+| 2         | 98    | 4       |
+| 3         | 100   | 3       |
+| 3         | 100   | 4       |
+| 4         | 89    | 2       |
+| 4         | 88    | 1       |
+| 5         | 71    | 2       |
+| 5         | 70    | 4       |
+| 5         | 70    | 3       |
++-----------+-------+---------+
+11 rows in set (0.01 sec)
+```
+
+#### 方案3：子查询
+
+查询语句：
 
 ```sql
 SELECT
@@ -186,20 +270,27 @@ SELECT
 	user_id
 FROM
 	score s
+WHERE 
+	(
+		SELECT COUNT(*) FROM score s1 
+		WHERE s1.course_id = s.course_id AND s1.score > s.score
+	) < 2
+ORDER BY course_id ASC , score DESC
+
+# 或者如下子查询
+SELECT
+	course_id ,
+	score ,
+	user_id
+FROM
+	score s
 WHERE
 	(
-		SELECT
-			COUNT(*)
-		FROM
-			score s1
-		LEFT JOIN score s2 ON s1.course_id = s2.course_id
-		AND s1.score < s2.score
-		WHERE
-			s1.id = s.id
+		SELECT COUNT(*) FROM score s1
+		LEFT JOIN score s2 ON s1.course_id = s2.course_id AND s1.score < s2.score
+		WHERE s1.id = s.id
 	) < 2
-ORDER BY
-	s.course_id ASC ,
-	score DESC
+ORDER BY s.course_id ASC, score DESC
 ```
 
 查询结果：
@@ -223,7 +314,26 @@ ORDER BY
 11 rows in set (0.01 sec)
 ```
 
-因为课程id为5的课程，第二高的分数（70），对应两个用户，所以共有11条数据。
+#### 方案4 ：使用用户变量
+
+查询语句：
+
+```text
+
+
+
+```
+
+查询结果：
+
+```text
+
+
+
+
+```
+
+
 
 
 
