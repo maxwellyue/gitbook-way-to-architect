@@ -4,7 +4,7 @@
 
 Apache RocketMQ是一个具有低延迟、高性能和可靠性、万亿级容量同时具备灵活的可伸缩性的分布式消和流处理平台，它由四个部分组成：name servers， brokers，producers 和 consumers。它们所有都可以水平扩展避免单点故障。
 
-![](../../../.gitbook/assets/image%20%289%29.png)
+![](../../../.gitbook/assets/image%20%2810%29.png)
 
 **名称服集群务 NameServer cluster**  
 NameServer服务提供了轻量级的服务发现和路由。每个NameServer服务记录完整的路由信息，提供一致的读写服务，支持快速存储扩展。  
@@ -44,7 +44,7 @@ Broker Server负责消息存储、消息传递、消息查询，保证高可用�
 ④**高可用服务**\(HA Service\)：提供主从Broker的数据同步。  
 ⑤**索引服务**\(Index Service\)：为消息建立索引，以便消息的快速查询。
 
-![](../../../.gitbook/assets/image%20%286%29.png)
+![](../../../.gitbook/assets/image%20%287%29.png)
 
 ## RocketMQ整体网络通信过程描述
 
