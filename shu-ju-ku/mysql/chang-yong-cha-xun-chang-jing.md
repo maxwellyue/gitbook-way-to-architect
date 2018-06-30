@@ -31,7 +31,7 @@ ORDER BY  age;
 
 查询结果：
 
-```sql
+```text
 +-------+------+--------+------+
 | name  | age  | gender | rank |
 +-------+------+--------+------+
@@ -90,11 +90,86 @@ INSERT INTO score (user_id, course_id, score) VALUES(4,5,70);
 
 ### TOP 1
 
+### 方案1：自连接
 
+查询语句如下：
 
-### 
+```sql
+SELECT
+	s.course_id ,
+	s.score ,
+	s.user_id
+FROM
+	score s
+JOIN(
+	SELECT
+		course_id ,
+		max(score) AS score
+	FROM
+		score
+	GROUP BY
+		course_id
+) s1 ON s.course_id = s1.course_id AND s.score = s1.score
+ORDER BY s.course_id
 
-### 
+```
+
+查询结果：
+
+```text
++-----------+-------+---------+
+| course_id | score | user_id |
++-----------+-------+---------+
+| 1         | 60    | 1       |
+| 2         | 98    | 3       |
+| 2         | 98    | 4       |
+| 3         | 100   | 3       |
+| 3         | 100   | 4       |
+| 4         | 89    | 2       |
+| 5         | 71    | 2       |
++-----------+-------+---------+
+7 rows in set (0.01 sec)
+# 因为课程2、3的最高成绩对应的用户有多条，所以会有多条记录
+```
+
+#### 方案2：子查询
+
+```sql
+SELECT
+	course_id ,
+	score ,
+	user_id
+FROM
+	score s
+WHERE
+	score =(
+		SELECT
+			MAX(score)
+		FROM
+			score s1
+		WHERE
+			s.course_id = s1.course_id
+	)
+ORDER BY
+	course_id
+```
+
+查询结果：
+
+```text
++-----------+-------+---------+
+| course_id | score | user_id |
++-----------+-------+---------+
+| 1         | 60    | 1       |
+| 2         | 98    | 3       |
+| 2         | 98    | 4       |
+| 3         | 100   | 3       |
+| 3         | 100   | 4       |
+| 4         | 89    | 2       |
+| 5         | 71    | 2       |
++-----------+-------+---------+
+7 rows in set (0.01 sec)
+```
 
 ### 
 
@@ -129,7 +204,7 @@ ORDER BY
 
 查询结果：
 
-```sql
+```text
 +-----------+-------+---------+
 | course_id | score | user_id |
 +-----------+-------+---------+
@@ -151,4 +226,12 @@ ORDER BY
 因为课程id为5的课程，第二高的分数（70），对应两个用户，所以共有11条数据。
 
 
+
+
+
+## 参考
+
+[Rank function in MySQL](https://stackoverflow.com/questions/3333665/rank-function-in-mysql)
+
+[MySQL获取分组后的TOP 1和TOP N记录](http://sangei.iteye.com/blog/2359584)
 
