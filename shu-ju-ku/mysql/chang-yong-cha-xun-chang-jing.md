@@ -1,6 +1,6 @@
 # 常见查询场景
 
-#### 1、按某字段排序后，增加排名字段
+## 增加排名字段
 
 比如，用户表中，按照年龄排序后，增加rank字段：
 
@@ -47,7 +47,7 @@ ORDER BY  age;
 8 rows in set (0.02 sec)
 ```
 
-2、分组后取组内Top N的记录
+## 分组后取组内TOP 1或者Top N
 
 假如，有成绩表，现在，需要按照课程进行分组，然后取出每门课程成绩最高或Top N 的学生和分数：
 
@@ -87,6 +87,20 @@ INSERT INTO score (user_id, course_id, score) VALUES(4,4,35);
 INSERT INTO score (user_id, course_id, score) VALUES(4,5,70);
 
 ```
+
+### TOP 1
+
+
+
+### 
+
+### 
+
+### 
+
+### 
+
+### TOP N
 
 查询语句：假设取TOP 2，即取每门课程成绩较高的2个分数和对应的用户。
 
