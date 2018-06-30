@@ -47,5 +47,48 @@ ORDER BY  age;
 8 rows in set (0.02 sec)
 ```
 
+2、分组后取组内Top N的记录
+
+假如，有成绩表，现在，需要按照课程进行分组，然后取出每门课程成绩最高的学生和分数：
+
+```sql
+# 建表
+CREATE TABLE `score` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL COMMENT '用户id',
+  `course_id` int(11) NOT NULL COMMENT '课程id',
+  `score` int(11) NOT NULL COMMENT '分数',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8
+
+# 测试数据
+INSERT INTO score (user_id, course_id, score) VALUES(1,1,60);
+INSERT INTO score (user_id, course_id, score) VALUES(1,2,80);
+INSERT INTO score (user_id, course_id, score) VALUES(1,3,90);
+INSERT INTO score (user_id, course_id, score) VALUES(1,4,88);
+INSERT INTO score (user_id, course_id, score) VALUES(1,5,61);
+
+INSERT INTO score (user_id, course_id, score) VALUES(2,1,45);
+INSERT INTO score (user_id, course_id, score) VALUES(2,2,78);
+INSERT INTO score (user_id, course_id, score) VALUES(2,3,35);
+INSERT INTO score (user_id, course_id, score) VALUES(2,4,89);
+INSERT INTO score (user_id, course_id, score) VALUES(2,5,71);
+
+INSERT INTO score (user_id, course_id, score) VALUES(3,1,36);
+INSERT INTO score (user_id, course_id, score) VALUES(3,2,98);
+INSERT INTO score (user_id, course_id, score) VALUES(3,3,100);
+INSERT INTO score (user_id, course_id, score) VALUES(3,4,35);
+INSERT INTO score (user_id, course_id, score) VALUES(3,5,70);
+
+INSERT INTO score (user_id, course_id, score) VALUES(3,1,36);
+INSERT INTO score (user_id, course_id, score) VALUES(3,2,98);
+INSERT INTO score (user_id, course_id, score) VALUES(3,3,100);
+INSERT INTO score (user_id, course_id, score) VALUES(3,4,35);
+INSERT INTO score (user_id, course_id, score) VALUES(3,5,70);
+
+```
+
+查询语句：
+
 
 
