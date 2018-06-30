@@ -144,6 +144,7 @@
   * [网关](xi-tong-she-ji/wang-guan.md)
   * [CAP](xi-tong-she-ji/cap/README.md)
     * [什么是CAP](xi-tong-she-ji/cap/shen-me-shi-cap.md)
+    * [CAP理解](xi-tong-she-ji/cap/cap-li-jie.md)
 * [版本控制](ban-ben-kong-zhi/README.md)
   * [Git](ban-ben-kong-zhi/git/README.md)
     * [Git常用命令](ban-ben-kong-zhi/git/git-chang-yong-ming-ling.md)
