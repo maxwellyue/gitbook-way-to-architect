@@ -104,7 +104,7 @@
     * [SQL语句调优](shu-ju-ku/mysql/sql-yu-ju-tiao-you.md)
     * [索引](shu-ju-ku/mysql/suo-yin.md)
     * [分组内排序](shu-ju-ku/mysql/fen-zu-nei-pai-xu.md)
-    * [常用查询场景](shu-ju-ku/mysql/chang-yong-cha-xun-chang-jing.md)
+    * [常见查询场景](shu-ju-ku/mysql/chang-yong-cha-xun-chang-jing.md)
   * [Redis](shu-ju-ku/redis.md)
   * [Hbase](shu-ju-ku/hbase.md)
   * [OpenTSDB](shu-ju-ku/opentsdb.md)

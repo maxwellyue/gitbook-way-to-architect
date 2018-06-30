@@ -1,4 +1,4 @@
-# 常用查询场景
+# 常见查询场景
 
 #### 1、按某字段排序后，增加排名字段
 
@@ -49,7 +49,7 @@ ORDER BY  age;
 
 2、分组后取组内Top N的记录
 
-假如，有成绩表，现在，需要按照课程进行分组，然后取出每门课程成绩最高的学生和分数：
+假如，有成绩表，现在，需要按照课程进行分组，然后取出每门课程成绩最高或Top N 的学生和分数：
 
 ```sql
 # 建表
@@ -80,15 +80,61 @@ INSERT INTO score (user_id, course_id, score) VALUES(3,3,100);
 INSERT INTO score (user_id, course_id, score) VALUES(3,4,35);
 INSERT INTO score (user_id, course_id, score) VALUES(3,5,70);
 
-INSERT INTO score (user_id, course_id, score) VALUES(3,1,36);
-INSERT INTO score (user_id, course_id, score) VALUES(3,2,98);
-INSERT INTO score (user_id, course_id, score) VALUES(3,3,100);
-INSERT INTO score (user_id, course_id, score) VALUES(3,4,35);
-INSERT INTO score (user_id, course_id, score) VALUES(3,5,70);
+INSERT INTO score (user_id, course_id, score) VALUES(4,1,36);
+INSERT INTO score (user_id, course_id, score) VALUES(4,2,98);
+INSERT INTO score (user_id, course_id, score) VALUES(4,3,100);
+INSERT INTO score (user_id, course_id, score) VALUES(4,4,35);
+INSERT INTO score (user_id, course_id, score) VALUES(4,5,70);
 
 ```
 
-查询语句：
+查询语句：假设取TOP 2，即取每门课程成绩较高的2个分数和对应的用户。
+
+```sql
+SELECT
+	course_id ,
+	score ,
+	user_id
+FROM
+	score s
+WHERE
+	(
+		SELECT
+			COUNT(*)
+		FROM
+			score s1
+		LEFT JOIN score s2 ON s1.course_id = s2.course_id
+		AND s1.score < s2.score
+		WHERE
+			s1.id = s.id
+	) < 2
+ORDER BY
+	s.course_id ASC ,
+	score DESC
+```
+
+查询结果：
+
+```sql
++-----------+-------+---------+
+| course_id | score | user_id |
++-----------+-------+---------+
+| 1         | 60    | 1       |
+| 1         | 45    | 2       |
+| 2         | 98    | 3       |
+| 2         | 98    | 4       |
+| 3         | 100   | 3       |
+| 3         | 100   | 4       |
+| 4         | 89    | 2       |
+| 4         | 88    | 1       |
+| 5         | 71    | 2       |
+| 5         | 70    | 3       |
+| 5         | 70    | 4       |
++-----------+-------+---------+
+11 rows in set (0.01 sec)
+```
+
+因为课程id为5的课程，第二高的分数（70），对应两个用户，所以共有11条数据。
 
 
 
