@@ -318,26 +318,49 @@ ORDER BY s.course_id ASC, score DESC
 
 查询语句：
 
-```text
-
-
-
+```sql
+set @num := 0, @course_id := 0;
+SELECT
+	course_id ,
+	score ,
+	user_id
+FROM
+	(
+		SELECT
+			course_id ,
+			score ,
+			user_id ,
+			@num := IF(@course_id = course_id , @num + 1 , 1) AS row_number ,
+			@course_id := course_id AS dummy
+		FROM
+			score
+		ORDER BY
+			course_id, score DESC
+	) AS s
+WHERE s.row_number <= 2
 ```
 
 查询结果：
 
 ```text
-
-
-
-
++-----------+-------+---------+
+| course_id | score | user_id |
++-----------+-------+---------+
+| 1         | 60    | 1       |
+| 1         | 45    | 2       |
+| 2         | 98    | 3       |
+| 2         | 98    | 4       |
+| 3         | 100   | 3       |
+| 3         | 100   | 4       |
+| 4         | 89    | 2       |
+| 4         | 88    | 1       |
+| 5         | 71    | 2       |
+| 5         | 70    | 3       |
++-----------+-------+---------+
+10 rows in set (0.01 sec)
 ```
 
-
-
-
-
-
+这种方案同样有一个问题：同一课程，前2高的分数，可能会对应2个以上用户，即可能会漏数据。
 
 ## 参考
 
