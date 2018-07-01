@@ -99,6 +99,8 @@
   * [druid](kuang-jia-huo-gong-ju/druid.md)
   * [Netty](kuang-jia-huo-gong-ju/netty.md)
   * [Consul](kuang-jia-huo-gong-ju/consul.md)
+  * [etcd](kuang-jia-huo-gong-ju/etcd.md)
+  * [confd](kuang-jia-huo-gong-ju/confd.md)
 * [数据库](shu-ju-ku/README.md)
   * [MySQL](shu-ju-ku/mysql/README.md)
     * [基本配置](shu-ju-ku/mysql/ji-ben-pei-zhi.md)
