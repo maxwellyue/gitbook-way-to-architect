@@ -86,17 +86,32 @@ QConf是360开源的一个分布式配置管理工具。基于zookeeper实现，
 
 Facebook内部也有一整套完善的配置管理体系，其中一个产品叫Gatekeeper，目前没有开源。
 
-
-
-* [etcd](https://github.com/coreos/etcd)
-* [zookeeper](https://zookeeper.apache.org/)
-* [consul](https://www.consul.io/)
-* [confd](https://github.com/kelseyhightower/confd)
-* [cfg4j](http://www.cfg4j.org/)
-
 #### 其他
 
-[xdiamond](https://github.com/hengyunabc/xdiamond) 、[zk-ucc](https://github.com/cncduLee/zk-ucc)、[xxlconf](https://github.com/xuxueli/xxl-conf)、[diablo](https://github.com/ihaolin/diablo)、[super-diamond](https://github.com/melin/super-diamond)
+[cfg4j](http://www.cfg4j.org/)、[xdiamond](https://github.com/hengyunabc/xdiamond) 、[zk-ucc](https://github.com/cncduLee/zk-ucc)、[xxlconf](https://github.com/xuxueli/xxl-conf)、[diablo](https://github.com/ihaolin/diablo)、[super-diamond](https://github.com/melin/super-diamond)
+
+## 其他开源组件
+
+可以基于现有的一些开源组件，实现配置中心的功能。
+
+TODO
+
+[etcd](https://github.com/coreos/etcd)
+
+[zookeeper](https://zookeeper.apache.org/)
+
+[consul](https://www.consul.io/)
+
+[confd](https://github.com/kelseyhightower/confd)
+
+confd是用go写的一个轻量级配置管理工具，它主要关注
+
+* 使用存储在etcd/consul/dynamodb/redis/vault/zookeeper/aws ssm参数存储/环境变量中的配置，并处理模板资源中的数据，使本地配置文件保持最新。
+* 重新加载应用程序以获取新的配置文件更改
+
+
+
+
 
 
 
