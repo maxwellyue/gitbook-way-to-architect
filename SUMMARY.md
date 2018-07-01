@@ -290,7 +290,7 @@
   * [配置中心](zhong-jian-jian/pei-zhi-zhong-xin/README.md)
     * [概述](zhong-jian-jian/pei-zhi-zhong-xin/pei-zhi-zhong-xin-shi-shen-me.md)
     * [不同配置中心对比](zhong-jian-jian/pei-zhi-zhong-xin/bu-tong-pei-zhi-zhong-xin-dui-bi.md)
-    * [配置中心怎么做](zhong-jian-jian/pei-zhi-zhong-xin/pei-zhi-zhong-xin-zen-me-zuo.md)
+    * [配置中心的实现与选型](zhong-jian-jian/pei-zhi-zhong-xin/pei-zhi-zhong-xin-zen-me-zuo.md)
 * [Web开发](web-kai-fa/README.md)
   * [Http请求类型及区别](web-kai-fa/http-qing-qiu-lei-xing-ji-qu-bie.md)
   * [常见的content-type](web-kai-fa/chang-jian-de-contenttype.md)
