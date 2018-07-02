@@ -225,7 +225,7 @@
   * [Spark](da-shu-ju/spark.md)
 * [服务器](fu-wu-qi/README.md)
   * [Tomcat](fu-wu-qi/tomcat/README.md)
-    * [Tomcat配置](fu-wu-qi/tomcat/tomcat-pei-zhi.md)
+    * [server.xml配置详解](fu-wu-qi/tomcat/tomcat-pei-zhi.md)
     * [让Tomcat支持Maven远程部署](fu-wu-qi/tomcat/rang-tomcat-zhi-chi-maven-yuan-cheng-bu-shu.md)
     * [一些小技巧](fu-wu-qi/tomcat/yi-xie-xiao-ji-qiao.md)
     * [Tomcat类加载机制分析](fu-wu-qi/tomcat/tomcat-lei-jia-zai-ji-zhi-fen-xi.md)
