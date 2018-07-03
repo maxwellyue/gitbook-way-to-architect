@@ -1,4 +1,4 @@
-# 让Tomcat支持Maven远程部署
+# Maven远程部署
 
 第一步：修改 `{tomcat}/webapps/manager/META-INF/context.xml`文件
 
