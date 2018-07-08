@@ -153,6 +153,8 @@
   * [CAP](xi-tong-she-ji/cap/README.md)
     * [什么是CAP](xi-tong-she-ji/cap/shen-me-shi-cap.md)
     * [CAP理解](xi-tong-she-ji/cap/cap-li-jie.md)
+  * [生产者-消费者模型](xi-tong-she-ji/sheng-chan-zhe-xiao-fei-zhe-mo-xing/README.md)
+    * [Java的不同实现](xi-tong-she-ji/sheng-chan-zhe-xiao-fei-zhe-mo-xing/java-de-bu-tong-shi-xian.md)
 * [版本控制](ban-ben-kong-zhi/README.md)
   * [Git](ban-ben-kong-zhi/git/README.md)
     * [Git常用命令](ban-ben-kong-zhi/git/git-chang-yong-ming-ling.md)
