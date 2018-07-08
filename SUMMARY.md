@@ -103,6 +103,8 @@
     * [Consul是什么](kuang-jia-huo-gong-ju/consul/consul-shi-shen-me.md)
   * [etcd](kuang-jia-huo-gong-ju/etcd.md)
   * [confd](kuang-jia-huo-gong-ju/confd.md)
+  * [Akka](kuang-jia-huo-gong-ju/akka/README.md)
+    * [Actor模型是什么](kuang-jia-huo-gong-ju/akka/actor-mo-xing-shi-shen-me.md)
 * [数据库](shu-ju-ku/README.md)
   * [MySQL](shu-ju-ku/mysql/README.md)
     * [基本配置](shu-ju-ku/mysql/ji-ben-pei-zhi.md)
