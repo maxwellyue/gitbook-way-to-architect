@@ -81,6 +81,7 @@
   * [基本排序](suan-fa/ji-ben-pai-xu.md)
   * [高级排序](suan-fa/gao-ji-pai-xu.md)
   * [树](suan-fa/shu.md)
+  * [双缓冲队列](suan-fa/shuang-huan-chong-dui-lie.md)
 * [框架或工具](kuang-jia-huo-gong-ju/README.md)
   * [Spring](kuang-jia-huo-gong-ju/spring/README.md)
     * [@transactional注解在什么情况下会失效](kuang-jia-huo-gong-ju/spring/transactional-zhu-jie-zai-shi-mo-qing-kuang-xia-hui-shi-xiao.md)
