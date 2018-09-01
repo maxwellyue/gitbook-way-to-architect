@@ -11,7 +11,7 @@
 ## 设计模式的原则：SOLID
 
 | 简称 | 全称 | 含义 |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | SRP | The Single Responsibility Principle | 单一责任原则 |
 | OCP | The Open Closed Principle | 开放封闭原则 |
 | LSP | The Liskov Substitution Principle | 里氏替换原则 |

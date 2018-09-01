@@ -11,7 +11,7 @@ Disruptor是英国外汇交易公司LMAX开发的一个高性能队列，研发�
 介绍Disruptor之前，我们先来看一看常用的线程安全的内置队列有什么问题。Java的内置队列如下表所示。
 
 | 队列 | 有界性 | 锁 | 数据结构 |
-| --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- |
 | ArrayBlockingQueue | bounded | 加锁 | arraylist |
 | LinkedBlockingQueue | optionally-bounded | 加锁 | linkedlist |
 | ConcurrentLinkedQueue | unbounded | 无锁 | linkedlist |

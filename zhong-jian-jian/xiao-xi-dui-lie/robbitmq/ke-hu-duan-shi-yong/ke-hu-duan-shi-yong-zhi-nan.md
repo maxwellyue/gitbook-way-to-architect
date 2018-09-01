@@ -15,7 +15,7 @@ producer.setNamesrvAddr("192.168.0.1:9876");
 ### 1、客户端的公共配置
 
 | 参数名 | 默认值 | 说明 |
-| --- | --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- |
 | namesrvAddr | 　 | Name Server地址列表，多个NameServer地址用分号隔开 |
 | clientIP | 本机IP | 客户端本机IP地址，某些机器会发生无法识别客户端IP地址情况，需要应用在代码中强制指定 |
 | instanceName | DEFAULT | 客户端实例名称，客户端创建的多个Producer、Consumer实际是共用一个内部实例（这个实例包含网络连接、线程资源等） |
@@ -27,7 +27,7 @@ producer.setNamesrvAddr("192.168.0.1:9876");
 ### 2、Producer 配置
 
 | 参数名 | 默认值 | 说明 |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- |
 | producerGroup | DEFAULT\_PRODUCER | Producer组名，多个Producer如果属于一个应用，发送同样的消息，则应该将它们归为同一组 |
 | createTopicKey | TBW102 | 在发送消息时，自动创建服务器不存在的topic，需要指定Key。 |
 | defaultTopicQueueNums | 4 | 在发送消息时，自动创建服务器不存在的topic，默认创建的队列数 |
@@ -45,7 +45,7 @@ producer.setNamesrvAddr("192.168.0.1:9876");
 #### 3.1、PushConsumer的配置
 
 | 参数名 | 默认值 | 说明 |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- |
 | consumerGroup | DEFAULT\_CONSUMER | Consumer组名，多个Consumer如果属于一个应用，订阅同样的消息，且消费逻辑一致，则应该将它们归为同一组 |
 | messageModel | CLUSTERING | 消息模型，支持以下两种  1、集群消费  2、广播消费 |
 | consumeFromWhere | CONSUME\_FROM\_LAST\_OFFSET | Consumer启动后，默认从什么位置开始消费 |
@@ -64,7 +64,7 @@ producer.setNamesrvAddr("192.168.0.1:9876");
 #### 3.2、PullConsumer配置
 
 | 参数名 | 默认值 | 说明 |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- |
 | consumerGroup | DEFAULT\_CONSUMER | Consumer组名，多个Consumer如果属于一个应用，订阅同样的消息，且消费逻辑一致，则应该将它们归为同一组 |
 | brokerSuspendMaxTimeMillis | 20000 | 长轮询，Consumer拉消息请求在Broker挂起最长时间，单位毫秒 |
 | consumerTimeoutMillisWhenSuspend | 30000 | 长轮询，Consumer拉消息请求在Broker挂起超过指定时间，客户端认为超时，单位毫秒 |
@@ -80,7 +80,7 @@ producer.setNamesrvAddr("192.168.0.1:9876");
 ### 1、针对Producer
 
 | 字段名 | 默认值 | 说明 |
-| --- | --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- |
 | Topic | null | 必填，线下环境不需要申请，线上环境需要申请后才能使用 |
 | Body | null | 必填，二进制形式，序列化由应用决定，Producer与Consumer要协商好序列化形式。 |
 | Tags | null | 选填，类似于Gmail为每封邮件设置的标签，方便服务器过滤使用。目前只支持每个消息设置一个tag，所以也可以类比为Notify的MessageType概念 |

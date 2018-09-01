@@ -3,7 +3,7 @@
 Java命令行工具主要有以下几种：
 
 | **名称** | **主要功能** |
-| --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- |
 | jps | JVM Process Status Tool，显示指定系统内所有HotSpot虚拟机进程 |
 | jstat | JVM Statistics Minitoring Tool，用于收集HotSpot虚拟机各方面的运行数据 |
 | jinfo | Configuration Info for Java，显示虚拟机配置信息 |
@@ -26,7 +26,7 @@ root@arch:~# jps -mlVv
 jps 参数
 
 | -m | 输出虚拟机进程启动时传递给主类的main\(\)函数的参数 |
-| --- | --- | --- | --- |
+| :--- | :--- |
 | -l | 输出主类的全名，如果进程执行的是jar包，输出jar路径 |
 | -v | 输出JVM启动参数 |
 | -V | 通过由标志文件（.hotspotrc文件或由-XX：Flags = &lt; 文件名 &gt;参数指定的文件）传递给JVM的启动参数。 |
@@ -54,7 +54,7 @@ jstat [option vmid [interval[s|ms] [count]] ]
 选项option代表用户查询的虚拟机信息，主要分为3类：类装载、垃圾收集和运行期编译状况，具体选项及作用参见下表：
 
 | **选项** | **作用**  |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- |
 | -class | 监视类装载、卸载数量、总空间及类装载所耗费的时间 |
 | -gc | 监视Java堆状况，包括Eden区、2个Survivor区、老年代、永久代等的容量 |
 | -gccapacity | 监视内容与-gc基本相同，但输出主要关注Java堆各个区域使用到的最大和最小空间 |
@@ -106,7 +106,7 @@ jinfo [option] pid
 ```
 
 | -flag name | 输出name属性的值 |
-| --- | --- | --- | --- | --- |
+| :--- | :--- |
 | -flag \[+\|-\]name | 启用或禁用name功能 |
 | -flag name=value | 设置name属性的值为value |
 | -flags | 输出JVM使用的属性及值 |
@@ -170,7 +170,7 @@ jmap [option] vmid
 option选项合法值与具体含义如下：
 
 | **选项** | **作用** |
-| --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- |
 | -dump | 生成Java堆转储快照。格式为：`-dump:[live,]format=b,file=<filename>`，其中live子参数说明是否只dump出存活的对象 |
 | -finalizerinfo | 显示在F-Queue中等待Finalizer线程执行finalize\(\)方法的对象。 |
 | -heap | 显示Java堆详细信息，如使用哪种回收器、参数配置、分代状况等。 |
@@ -258,7 +258,7 @@ jstack [option] vmid
 option选项的合法值与具体意义如下：
 
 | **选项** | **作用** |
-| --- | --- | --- | --- |
+| :--- | :--- |
 | -F | 强制输出`threaddump`（当`jstack <pid>`没有响应时，即pid进程hung住了） |
 | -l | 除堆栈外，显示关于锁的附加信息 |
 | -m | 如果调用到本地方法的话，可以显示C/C++的堆栈 |
