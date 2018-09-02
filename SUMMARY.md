@@ -24,6 +24,7 @@
       * [各种锁的概念](java-yu-yan/xian-cheng/tong-bu-yu-suo/ge-zhong-suo-de-gai-nian.md)
       * [CAS的理解](java-yu-yan/xian-cheng/tong-bu-yu-suo/cas-de-li-jie.md)
     * [fork/join的理解](java-yu-yan/xian-cheng/forkjoin-de-li-jie.md)
+    * [如何确保同一属性的任务被同一线程执行](java-yu-yan/xian-cheng/ru-he-que-bao-tong-yi-shu-xing-de-ren-wu-bei-tong-yi-xian-cheng-zhi-hang.md)
   * [异常](java-yu-yan/yi-chang/README.md)
     * [异常体系及为什么要有这种异常设计](java-yu-yan/yi-chang/yi-chang-ti-xi-ji-wei-shi-mo-yao-you-zhe-zhong-yi-chang-she-ji.md)
     * [多catch的执行情况](java-yu-yan/yi-chang/duo-catch-de-zhi-hang-qing-kuang.md)
