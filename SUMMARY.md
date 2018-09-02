@@ -9,6 +9,7 @@
     * [一个ArrayList在循环过程中删除，会不会出问题，为什么？](java-yu-yan/ji-he/yi-ge-arraylist-zai-xun-huan-guo-cheng-zhong-shan-chu-hui-bu-hui-chu-wen-ti-wei-shi-mo.md)
     * [HashMap](java-yu-yan/ji-he/hashmap.md)
     * [给出场景，问数据结构？](java-yu-yan/ji-he/gei-chu-chang-jing-wen-shu-ju-jie-gou.md)
+    * [一行代码初始化ArrayList](java-yu-yan/ji-he/yi-hang-dai-ma-chu-shi-hua-arraylist.md)
   * [线程](java-yu-yan/xian-cheng/README.md)
     * [ThreadLocal](java-yu-yan/xian-cheng/threadlocal.md)
     * [ThreadLocal之父子线程传值](java-yu-yan/xian-cheng/threadlocal-zhi-fu-zi-xian-cheng-chuan-zhi.md)
