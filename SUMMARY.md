@@ -93,6 +93,7 @@
     * [Spring中的设计模式](kuang-jia-huo-gong-ju/spring/spring-zhong-de-she-ji-mo-shi.md)
     * [Spring如何维护beans](kuang-jia-huo-gong-ju/spring/spring-ru-he-wei-hu-beans.md)
     * [IOC的理解](kuang-jia-huo-gong-ju/spring/ioc-de-li-jie.md)
+    * [如何在数据库事务提交成功后进行异步操作](kuang-jia-huo-gong-ju/spring/ru-he-zai-shu-ju-ku-shi-wu-ti-jiao-cheng-gong-hou-jin-hang-yi-bu-cao-zuo.md)
   * [SpringMVC](kuang-jia-huo-gong-ju/springmvc/README.md)
     * [Controller是如何将参数和前端传来的数据一一对应的](kuang-jia-huo-gong-ju/springmvc/controller-shi-ru-he-jiang-can-shu-he-qian-duan-chuan-lai-de-shu-ju-yi-yi-dui-ying-de.md)
     * [请求处理流程](kuang-jia-huo-gong-ju/springmvc/qing-qiu-chu-li-liu-cheng.md)
