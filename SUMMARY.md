@@ -324,5 +324,6 @@
   * [HTTP状态码](web-kai-fa/http-zhuang-tai-ma.md)
   * [Http下载原理](web-kai-fa/httpxia-zai-yuan-li.md)
 * 测试
-  * [压测－apache bench](ya-ce-ff0d-apache-bench.md)
+  * [压测:apache bench](ya-ce-ff0d-apache-bench.md)
+  * [压测:Jmeter](ya-6d4b-jmeter.md)
 
