@@ -15,6 +15,7 @@
       * [创建](java-yu-yan/xian-cheng/chuang-jian.md)
       * [线程状态及切换](java-yu-yan/xian-cheng/xian-cheng-zhuang-tai-ji-qie-huan.md)
       * [线程中断的理解](java-yu-yan/xian-cheng/xian-cheng-zhong-duan-de-li-jie.md)
+      * [几种方法的解释](java-yu-yan/xian-cheng/ji-zhong-fang-fa-de-jie-shi.md)
     * [线程池](java-yu-yan/xian-cheng/xian-cheng-chi.md)
       * [线程池类型及工作原理](java-yu-yan/xian-cheng/xian-cheng-chi-lei-xing-ji-gong-zuo-yuan-li.md)
       * [如何确保同一属性的任务被同一线程执行](java-yu-yan/xian-cheng/ru-he-que-bao-tong-yi-shu-xing-de-ren-wu-bei-tong-yi-xian-cheng-zhi-hang.md)
