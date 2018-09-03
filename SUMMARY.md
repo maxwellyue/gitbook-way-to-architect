@@ -32,6 +32,7 @@
   * [IO](java-yu-yan/io.md)
   * [枚举](java-yu-yan/mei-ju.md)
     * [常见用法](java-yu-yan/mei-ju/chang-jian-yong-fa.md)
+    * [枚举类在序列化中的问题](java-yu-yan/mei-ju/rpcxu-lie-hua-zhong-mei-ju-lei-de-wen-ti.md)
   * [注解](java-yu-yan/zhu-jie.md)
   * [反射](java-yu-yan/fan-she.md)
   * [流程控制](java-yu-yan/liu-cheng-kong-zhi/README.md)
