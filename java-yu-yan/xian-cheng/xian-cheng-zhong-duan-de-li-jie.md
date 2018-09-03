@@ -130,18 +130,14 @@ i am running...
 interrupted...
 ```
 
-
-
-
-
 ### 内容来源
 
 [详细分析Java中断机制](http://www.infoq.com/cn/articles/java-interrupt-mechanism)
 
 [Java中的线程Thread方法之---interrupt\(\)](https://blog.csdn.net/jiangwei0910410003/article/details/19962603)
 
-[用interrupt\(\)中断Java线程](http://hapinwater.iteye.com/blog/310558)[  
-](https://blog.csdn.net/jiangwei0910410003/article/details/19962603)
+[用interrupt\(\)中断Java线程](http://hapinwater.iteye.com/blog/310558)[  ](https://blog.csdn.net/jiangwei0910410003/article/details/19962603)
 
-
+[Java里一个线程调用了Thread.interrupt\(\)到底意味着什么？  
+](https://www.zhihu.com/question/41048032)
 
