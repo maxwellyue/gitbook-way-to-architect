@@ -19,6 +19,12 @@ public enum Color{
 Color red = Color.valueOf("RED");
 //获取所有枚举值
 Color[] values = Color.values();
+//获取枚举值的name
+String name = Color.RED.name();
+System.out.println(name);//输出:RED
+//获取枚举值在类中出现的顺序
+int ordinal = Color.WHITE.ordinal();
+System.out.println(ordinal);//输出:1
 ```
 
 ## 使用场景
