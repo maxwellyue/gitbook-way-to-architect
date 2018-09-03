@@ -1,8 +1,8 @@
-序列化的时候Java仅仅是将枚举对象的name属性输出到结果中，反序列化的时候则是通过java.lang.Enum的valueOf方法来根据名字查找枚举对象。
+序列化的时候，仅仅是将**枚举对象的name属性**输出到结果中，反序列化的时候则是通过**java.lang.Enum的valueOf方法**来根据名字查找枚举对象。
 
 同时，编译器是不允许任何对这种序列化机制的定制的，因此禁用了writeObject、readObject、readObjectNoData、writeReplace和readResolve等方法。
 
-假定服务端做的序列化，客户端做的是反序列化，假定原来使用相同的API版本，但发生了以下情况：
+假定服务端进行序列化，客户端进行反序列化，假定原来使用相同的API版本，但发生了以下情况：
 
 **1、服务端枚举多了一个枚举值**
 
@@ -20,40 +20,87 @@ public enum Color {
 }
 ```
 
-如果服务端返回一个Color.Green给客户端，此时hessian反序列化调用枚举类的valueOf方法来获取反序列化，但是客户端的枚举类中没有Green，那么客户端反序列化会直接抛出异常。
+如果服务端返回一个Color.Green给客户端，此时反序列化调用枚举类的valueOf方法来获取反序列化，但是客户端的枚举类中没有Green，那么客户端反序列化会直接抛出异常。
 
+**2、服务端枚举ordinal值以及枚举类成员变量值和客户端不一致  
+**假设服务端的枚举类为
 
+```java
+//服务端
+public enum Color {
+    RED("red"),WHITE("white"),BLACK("black");
+    
+    private String value;
 
-2.服务端枚举ordinal值以及枚举类成员变量值和客户端不一致  
-假设服务端的枚举类为
+    Color(String value) {
+        this.value = value;
+    }
+}
+//客户端
+public enum Color {
+    RED("red"),BLACK("xblack");
+    
+    private String value;
 
-| 123456 | publicenum A {  X\("aaa"\),  Y\("bbbb"\);//此时Y的ordinal为1，对应的value为bbb  String value;  A\(String value\) {this.value=value}} |
-| :--- | :--- |
+    Color(String value) {
+        this.value = value;
+    }
+}
+```
 
+假如服务端传递给客户端Color.BLACK\(ordinal为2，对应的value为black\)，此时客户端拿到的Color.BLACK对应的ordinal为1，对应的value为xblack。
 
-客户端的枚举类为
+还有一点要特别注意：**枚举是单例的**！如下代码所示：
 
-| 1234567 | publicenum A {  X\("aaa"\),  Z\("ccc"\),  Y\("ddd"\);// 此时Y的ordinal为2对应的value为ddd  String value;  A\(String value\) {this.value=value;}} |
-| :--- | :--- |
+```java
+//定义枚举类
+public static enum Color{
+    WHITE("white"),
+    BLACK("black");
 
+    public String value;
 
-假如入服务端传递给客户端的是A.Y，此时客户端拿到的A.Y对应的ordinal为2，对应的value为ddd。  
-上面这个点非常重要。  
-3.枚举是单例的
+    Color(String value) {
+        this.value = value;
+    }
 
-| 1234567891011121314151617181920212223242526272829303132 | publicenum TestEnum {        XX\("xx"\);        TestEnum\(String value\) {        this.value = value;    }        String value;        public String getValue\(\) {        return value;    }        publicvoidsetValue\(String value\) {        this.value = value;    }}publicclassTest {publicstaticvoidmain\(String\[\] rgs\) {        TestEnum testEnum1 = TestEnum.XX;        TestEnum testEnum2 = TestEnum.XX;                testEnum1.setValue\("XX"\);        testEnum2.setValue\("YY"\);        System.out.println\(testEnum1.value\); // 输出 YY        System.out.println\(testEnum2.value\); // 输出 YY    }} |
-| :--- | :--- |
+    public void setValue(String value){
+        this.value = value;
+    }
+}
+//测试
+public class EnumExample {
 
+    @Test
+    public void enumTest(){
+        Color color1 = Color.WHITE;
+        Color color2 = Color.WHITE;
 
-testEnum1和testEnum2其实指向了同一个枚举引用。每次修改的都是同一个对象，所以前一个set的值被后面的set给覆盖了。
+        color1.setValue("val1");
+        color2.setValue("val2");
 
-#### 三.总结 {#三-总结}
+        System.out.println(color1.value);
+        System.out.println(color2.value);
+    }
+}
+//输出如下
+val2
+val2
 
-* 还是不要在RPC的接口中直接使用枚举类了，直接使用String就行
+```
+
+**总结**
+
+* 尽量不要在RPC的接口中使用枚举类了，直接使用public static final的方式，除非这个枚举类以后确实是不会修改的。
 * 在枚举类中使用字符串时直接使用name\(\)就行，不要再做过度封装，尽量保持枚举类的简洁
 * 枚举类使用在RPC接口上的时候就一定要小心，重构的时候要注意保持ordinal
 * 枚举在序列化和反序列化的时候，除了name值，其他啥都不带的
-* 禁止给枚举提供set方法，没用的
+
+# 参考
+
+[枚举在hessian序列化和反序列化中的问题](http://yangbolin.cn/2016/05/22/enum-probolems-in-hessian/)
+
+[Enum反序列化问题](http://xiaobaoqiu.github.io/blog/2015/04/01/enumfan-xu-lie-hua-wen-ti/)
 
 
 
