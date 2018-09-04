@@ -18,22 +18,46 @@ thread.setDaemon(true)
 
 * 守护线程应该永远不去访问固有资源，如文件、数据库，因为它会在任何时候甚至在一个操作的中间发生中断。
 
+* JVM退出时，Daemon线程中的finally块并不一定会执行。所以，在构建Daemon线程的时候，不能依靠finally块中的内容来确保执行关闭或清理资源的逻辑。
+
+* main线程不是守护线程！
+
+```java
+public class DaemonThreadExample {
+
+    public static void main(String[] args) {
+        Thread thread = new Thread(() -> {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                System.out.println("daemon finally run ");
+            }
+        });
+        thread.setDaemon(true);
+        thread.start();
+        System.out.println("main thread end, jvm will close...");
+    }
+}
+//输出如下
+main thread end, jvm will close...
+```
+
+
+
+
+
+
+
+
+
 **使用守护线程的场景**
 
 * 与系统业务同生死的基础服务（如日志采集/指标收集等）如果是采用SDK的方式，与业务系统在同一个JVM下，这些服务应该在业务线程（或者用户线程）结束后，允许JVM退出，不能因为基础服务的线程还在跑，而业务已经没有线程在跑，而程序还在运行，此时，就需要将基础服务中的相关线程设置为Daemon的。
 * 其他有待发现
 
-
-
-
-
-
-
 ### 参考
 
 [JAVA并发编程——守护线程\(Daemon Thread\)](https://www.cnblogs.com/luochengor/archive/2011/08/11/2134818.html)
-
-
-
-
 
