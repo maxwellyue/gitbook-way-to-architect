@@ -1,3 +1,5 @@
+# 深拷贝和浅拷贝
+
 下面列表是Java中深拷贝和浅拷贝的区别
 
 | Shallow Copy | Deep Copy |
@@ -17,8 +19,6 @@ _表格来源_：[Difference Between Shallow Copy Vs Deep Copy In Java](https://
 | 默认的clone\(\)方法创建的是浅拷贝 | 要实现深拷贝，必须重写clone\(\)方法 |
 | 如果一个对象中字段只有基本类型，推荐浅拷贝 | 如果一个对象中字段存在其他对象的引用类型，推荐深拷贝 |
 | 浅拷贝速度快，代价小 | 深拷贝相对较慢，代价大 |
-
----
 
 TODO：通过实例理解浅拷贝和深拷贝
 

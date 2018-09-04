@@ -1,4 +1,6 @@
-### **Thread类中的方法**
+# 几种方法的解释
+
+## **Thread类中的方法**
 
 **1、yield**
 
@@ -40,7 +42,7 @@ public final void join() throws InterruptedException
 该方法会让当前线程（调用该方法的线程，注意，这里并不是`thread.join()`中thread所表示的线程，而是方法`thread.join()`所在的线程）等待指定时间（如果为0，表示一直等到thread执行完），让join\(\)方法的所属线程thread执行。  
 join\(\)方法内部是调用wait\(\)方法实现的。
 
-### **Object类中的方法**
+## **Object类中的方法**
 
 **1、wait**
 
@@ -61,7 +63,6 @@ public final void wait() throws InterruptedException
 * 被其他线程中断（interrupt\(\)方法）
 * 设定的等待时间已到。如果是`wait(0)`或者`wait()`则会一直等待直到唤醒。
 
-  
 正确使用wait\(\)的方式如下：\(等待应该总是发生在轮询中：`waits should always occur in loops`\)
 
 ```java
@@ -87,17 +88,11 @@ public final native void notifyAll();
 ②执行一个同步块，并且该同步了该对象  
 ③对Class类型的对象，执行该类的一个同步的静态方法
 
-### 常见问题
+## 常见问题
 
 1、**sleep和wait的区别**
 
 * sleep是Thread类的方法，wait是Object类的方法；
-
 * sleep只是让线程休眠，与锁机制无关，不会释放锁（假如已经拥有锁），而wait则会让所在线程放弃锁。
-
 * wait和sleep都可以通过interrupt方法打断线程的暂停状态，从而使线程立刻抛出InterruptedException
-
-
-
-
 

@@ -1,6 +1,8 @@
+# String池化及intern\(\)方法的作用
+
 > 声明：以下内容可能有误
 
-# 常量池
+## 常量池
 
 要理解String的池化，必须首先知道**常量池**这个概念。
 
@@ -11,7 +13,7 @@
 
 在JDK1.6及之前，常量池位于方法区中，而在JDK1.7及之后，常量池位于堆中。
 
-# String
+## String
 
 String是不可变类，即一旦创建，就不能再次修改这个对象。而在编程中，String类型是最长用到的数据类型，对字符常量池化后，可以大大减少字符的数量，从而节省空间。
 
@@ -52,7 +54,6 @@ true
 前面说到，可以在运行期间动态地向常量池中添加常量，如果想要在运行期间向运行池中添加一个字符串，则可以使用String类中提供的一个方法：`intern()`，`intern`这个单词是“驻留”的意思，也就是将某个字符串放置到常量池中。但是，如何放，不同JDK版本是不一样的（因为常量池的位置发生了变化）。
 
 * JDK1.6及之前：如果常量池中已经存在想要放入的字符串（`equals`），则直接返回已经存在的那个字符串的地址，如果不存在，则将其放入，并返回引用地址。
-
 * JDK1.7及之后：如果常量池中不存在，但堆中存在，则直接在常量池中存储这个字符串在堆中的地址，而不是像JDK1.6那样存储这个字符串本身。
 
 即通过intern\(\)方法，可以确保从常量池中得到与想要放入的字符串值（假设为s）equals的一个字符串的地址（假设为s\_addr），并且只要s是equals的，那么得到的永远是这个s\_addr。
@@ -71,20 +72,15 @@ String s1 = new StringBuilder("abc").append("abc").toString();
 System.out.println(s1.intern() == s1);
 ```
 
-# 参考
+## 参考
 
 [请别再拿“String s = new String\("xyz"\);创建了多少个String实例”来面试了吧](http://rednaxelafx.iteye.com/blog/774673)
 
 [Java常量池理解与总结](https://www.jianshu.com/p/c7f47de2ee80)
 
-[String池化及intern方法的作用](https://darrenyjy.github.io/2016/05/28/String%E6%B1%A0%E5%8C%96%E5%8F%8Aintern%E6%96%B9%E6%B3%95%E7%9A%84%E4%BD%9C%E7%94%A8/)
+[String池化及intern方法的作用](https://darrenyjy.github.io/2016/05/28/String池化及intern方法的作用/)
 
 [深入解析String\#intern](https://tech.meituan.com/in_depth_understanding_string_intern.html)
 
 [Java技术——你真的了解String类的intern\(\)方法吗](https://blog.csdn.net/seu_calvin/article/details/52291082)
-
-  
-
-
-
 

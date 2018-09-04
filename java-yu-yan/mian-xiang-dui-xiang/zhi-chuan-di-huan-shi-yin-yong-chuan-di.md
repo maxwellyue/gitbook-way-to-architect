@@ -1,4 +1,4 @@
-# Java是值传递还是引用传递？
+# 值传递还是引用传递？
 
 值传递/引用传递，描述的是将参数传给方法时，是如何对这个参数进行求值的，而不是值参数的内容的数据类型。
 
@@ -15,12 +15,9 @@
 对Java来言，方法参数传递只有一种，就是 “**pass-by-value**”，也就是**值传递**。
 
 * 如果是基本类型，则将原有的数据拷贝一份，方法内的操作对原有的数据不会有影响。
-
 * 如果是引用类型，则将这个引用类型的变量拷贝一份，“复印件”也是引用类型，且与“原件”指向同一对象。
 
 即在Java中**不管参数的类型是什么，一律传递参数的副本。**
-
-
 
 请使用下述示例检验是否真正地明白Java是值传递。
 
@@ -73,14 +70,9 @@ static void addNum(int a) {
 5
 ```
 
-### 
-
-### 参考
+## 参考
 
 [Java 到底是值传递还是引用传递？](https://www.zhihu.com/question/31203609)
 
 [What's the difference between passing by reference vs. passing by value?](https://stackoverflow.com/questions/373419/whats-the-difference-between-passing-by-reference-vs-passing-by-value)
-
-  
-
 

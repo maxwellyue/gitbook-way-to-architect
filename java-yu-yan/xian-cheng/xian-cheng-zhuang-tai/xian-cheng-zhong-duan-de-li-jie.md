@@ -1,3 +1,5 @@
+# 线程中断的理解
+
 ## 中断的原理
 
 Java中断机制是一种协作机制，也就是说通过中断并不能直接终止另一个线程，而需要被中断的线程自己处理中断。
@@ -136,8 +138,8 @@ interrupted...
 
 [Java中的线程Thread方法之---interrupt\(\)](https://blog.csdn.net/jiangwei0910410003/article/details/19962603)
 
-[用interrupt\(\)中断Java线程](http://hapinwater.iteye.com/blog/310558)[  ](https://blog.csdn.net/jiangwei0910410003/article/details/19962603)
+[用interrupt\(\)中断Java线程](http://hapinwater.iteye.com/blog/310558)[ ](https://blog.csdn.net/jiangwei0910410003/article/details/19962603)
 
-[Java里一个线程调用了Thread.interrupt\(\)到底意味着什么？  
+[Java里一个线程调用了Thread.interrupt\(\)到底意味着什么？    
 ](https://www.zhihu.com/question/41048032)
 

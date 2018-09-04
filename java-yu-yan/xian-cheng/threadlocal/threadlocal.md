@@ -1,4 +1,4 @@
-# ThreadLocal
+# ThreadLocal原理
 
 ## 实现原理
 
@@ -8,7 +8,7 @@
 
 图中的虚线表示`ThreadLocalMap`是使用`ThreadLocal`的弱引用作为`Key`的，弱引用的对象在 GC 时会被回收。
 
-![](../../.gitbook/assets/threadlocal.jpg)
+![](../../../.gitbook/assets/threadlocal.jpg)
 
 ## 内存泄漏
 

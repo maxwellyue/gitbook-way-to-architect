@@ -1,7 +1,7 @@
 # Java中原子操作类
 
 从JDK1.5开始，Java提供了`java.util.concurrent.atomic`包，该包中的原子操作类提供了一种使用简单、性能高效**（使用CAS操作，无需加锁）、线程安全**地更新一个变量的方式。  
-![](https://upload-images.jianshu.io/upload_images/1932449-0b6bed1d4ef31ec1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
+![](https://upload-images.jianshu.io/upload_images/1932449-0b6bed1d4ef31ec1.png?imageMogr2/auto-orient/strip|imageView2/2/w/1000/format/webp)
 
 根据变量类型的不同，Atomic包中的这12个原子操作类（都是使用Unsafe实现的包装类）可以分为4种类型：
 
@@ -9,8 +9,6 @@
 * **原子更新数组**：`AtomicIntegerArray、AtomicLongArray、AtomicReferenceArray`
 * **原子更新引用**：`AtomicReference、AtomicReferenceFiledUpdater、AtomicMarkableReference`
 * **原子更新字段（属性）**：`AtomicIntegerFieldUpdater、AtomicLongFieldUpdater、AtomicStampedReference` 
-
----
 
 ## 原子更新基本类型类
 
@@ -67,8 +65,6 @@ atomicInteger的当前值：10
 其内部实现原子操作的原理是通过`UnSafe`类的`CAS`操作。//TODO 具体实现  
 其他`Java`的基本类型均可以使用类似的思路实现。
 
----
-
 ### 原子更新数组
 
 通过原子的方式更新数组里的某个元素，Atomic包提供了以下3个类：  
@@ -103,8 +99,6 @@ public void testAtomicIntegerArray() {
 8
 1   ----注意这里，构造方法中是将原数组复制了一份，所以对AtomicIntegerArray的操作，不会影响原数组
 ```
-
----
 
 ### 原子更新引用类型
 
@@ -151,8 +145,6 @@ class AtomicReferenceExample{
 老岳:28
 ```
 
----
-
 ### 原子更新字段类
 
 如果需要原子地更新某个类里的某个字段，就需要使用原子更新字段类，Atomic包提供了一下3个类进行原子字段更新。  
@@ -160,7 +152,7 @@ class AtomicReferenceExample{
 ②`AtomicLongFieldUpdater`：原子更新长整型的字段  
 ③`AtomicStampedReference`：原子更新带有版本号的引用类型（**可以解决CAS操作的ABA问题**）
 
-使用更新字段类必须使用静态方法`newUpdater(Class<U> tclass, String fieldName)`创建一个更新器（同时指定要更新的类和该类中的要更新的字段名），并且**该字段必须用`public volatile`修饰**。
+使用更新字段类必须使用静态方法`newUpdater(Class<U> tclass, String fieldName)`创建一个更新器（同时指定要更新的类和该类中的要更新的字段名），并且**该字段必须用**`public volatile`**修饰**。
 
 以`AtomicIntegerFieldUpdater`为例，演示代码如下：
 
@@ -197,6 +189,4 @@ class AtomicIntegerFieldUpdaterExample{
 //输出如下
 user现在的年龄:28
 ```
-
-
 

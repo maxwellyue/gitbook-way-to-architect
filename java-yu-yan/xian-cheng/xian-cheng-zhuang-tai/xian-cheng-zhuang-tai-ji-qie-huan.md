@@ -1,4 +1,6 @@
-# 线程状态
+# 线程状态及切换
+
+## 线程状态
 
 ```java
 /**
@@ -77,7 +79,7 @@ public enum State {
 }
 ```
 
-# 线程状态切换
+## 线程状态切换
 
-![](/assets/import.png)
+![](../../../.gitbook/assets/import.png)
 

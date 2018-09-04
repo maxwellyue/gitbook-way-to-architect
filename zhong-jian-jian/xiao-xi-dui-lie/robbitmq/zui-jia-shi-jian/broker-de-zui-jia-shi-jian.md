@@ -1,7 +1,3 @@
----
-description: 对用户而言，一些很有用的技巧
----
-
 # Broker的最佳实践
 
 ## Broker的角色

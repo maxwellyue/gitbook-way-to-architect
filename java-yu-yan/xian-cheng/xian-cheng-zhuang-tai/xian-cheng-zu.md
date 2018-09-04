@@ -1,8 +1,10 @@
+# 线程组ThreadGroup
+
 ## 什么是ThreadGroup
 
 线程组ThreadGroup表示一组线程的集合。
 
-线程组是为了方便和统一多个线程的管理而产生的。我们知道，在一个 Java 程序运行的时候会默认创建一个线程，我们称其为主线程（即为执行 `main`方法的线程）。其实，在一个 Java 程序运行的时候也会创建一个线程组，而这个主线程正是属于这个线程中的。
+线程组是为了方便和统一多个线程的管理而产生的。我们知道，在一个 Java 程序运行的时候会默认创建一个线程，我们称其为主线程（即为执行 `main`方法的线程）。其实，在一个 Java 程序运行的时候也会创建一个线程组，而这个主线程正是属于这个线程中的。
 
 ```java
 public class ThreadGroupExample {
@@ -14,7 +16,7 @@ public class ThreadGroupExample {
     }
 }
 //输出如下
-thread name is [main], threadGroup name is [main] 
+thread name is [main], threadGroup name is [main]
 ```
 
 线程组中不仅可以包含线程，也可以包含线程组，这个有点类似于文件夹的概念，线程对应的就是文件，线程组对应的就是文件夹，文件夹中不仅可以包含文件，也可以包含文件夹。
@@ -23,7 +25,7 @@ thread name is [main], threadGroup name is [main]
 
 当新建一个线程 / 线程组之后，如果你没有给这个新建的线程 / 线程组指定一个父线程组，那么其默认会将当前执行创建线程 / 线程组代码的线程所属的父线程组作为新的线程 / 线程组的父线程组。
 
-同时，一个线程只有调用了其 `start`方法之后，其才真正算是被添加到了对应的线程组中。
+同时，一个线程只有调用了其 `start`方法之后，其才真正算是被添加到了对应的线程组中。
 
 ## ThreadGroup 主要API
 
@@ -106,19 +108,4 @@ TODO：用到的时候，再补充实例代码
 [Java\_多线程 \(线程组\)](https://www.jianshu.com/p/bd97f7d8811e)
 
 [Java并发编程与技术内幕:ThreadGroup线程组应用](https://blog.csdn.net/Evankaka/article/details/51627380)
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
 

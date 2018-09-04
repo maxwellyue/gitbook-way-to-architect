@@ -1,4 +1,6 @@
-## 常见用法
+# 常见用法
+
+### 常见用法
 
 **判断两个枚举值相等是用==还是equal\(\)：**直接使用==，因为它的equal\(\)方法已经重写为了==，如下：
 
@@ -27,7 +29,7 @@ int ordinal = Color.WHITE.ordinal();
 System.out.println(ordinal);//输出:1
 ```
 
-## 使用场景
+### 使用场景
 
 1、**定义常量**
 
@@ -133,7 +135,7 @@ public enum Color {
 
 **所有的枚举都继承自**`java.lang.Enum`**类。由于Java 不支持多继承，所以枚举类不能再继承其他类**。
 
-```
+```text
 public interface Behaviour {  
     void print();  
     String getInfo();  
@@ -183,7 +185,7 @@ public static void main(String[] args) {
 
 `java.util.EnumSet`和`java.util.EnumMap`是两个枚举集合。EnumSet保证集合中的元素不重复；EnumMap中的key是enum类型，而value则可以是任意类型。
 
-# 参考
+## 参考
 
 [Java 枚举7常见种用法](http://blog.lichengwu.cn/java/2011/09/26/the-usage-of-enum-in-java/)
 
