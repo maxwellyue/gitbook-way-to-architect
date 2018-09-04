@@ -18,7 +18,69 @@
 
 * 如果是引用类型，则将这个引用类型的变量拷贝一份，“复印件”也是引用类型，且与“原件”指向同一对象。
 
+即在Java中**不管参数的类型是什么，一律传递参数的副本。**
 
 
+
+请使用下述示例检验是否真正地明白Java是值传递。
+
+```java
+//示例1
+public static void main(String[] args) {
+    List<Integer> list = new ArrayList<Integer>();
+    list.add(1);
+    list.add(2);
+    add(list);
+    list.forEach(item ->{
+        System.out.println(item);
+    });
+}
+
+static void add(List<Integer> list) {
+    list.add(3);
+}
+//输出如下
+1
+2
+3
+
+
+//示例2
+public static void main(String[] args) {
+    String a = "A";
+    append(a);
+    System.err.println(a);
+}
+
+static void append(String str) {
+    str += "is a";
+}
+//输出如下
+A
+
+
+//示例3
+public static void main(String[] args) {
+    int num = 5;
+    addNum(num);
+    System.err.println(num);
+}
+
+static void addNum(int a) {
+    a = a + 10;
+}
+//输出如下
+5
+```
+
+### 
+
+### 参考
+
+[Java 到底是值传递还是引用传递？](https://www.zhihu.com/question/31203609)
+
+[What's the difference between passing by reference vs. passing by value?](https://stackoverflow.com/questions/373419/whats-the-difference-between-passing-by-reference-vs-passing-by-value)
+
+  
 
 
