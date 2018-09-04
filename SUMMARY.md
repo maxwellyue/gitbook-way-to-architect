@@ -19,7 +19,7 @@
       * [用户线程与守护线程](java-yu-yan/xian-cheng/yong-hu-xian-cheng-yu-shou-hu-xian-cheng.md)
       * [线程组ThreadGroup](java-yu-yan/xian-cheng/xian-cheng-zu.md)
     * [线程池](java-yu-yan/xian-cheng/xian-cheng-chi.md)
-      * [线程池类型及工作原理](java-yu-yan/xian-cheng/xian-cheng-chi-lei-xing-ji-gong-zuo-yuan-li.md)
+      * [线程池工作原理及创建](java-yu-yan/xian-cheng/xian-cheng-chi-lei-xing-ji-gong-zuo-yuan-li.md)
       * [如何确保同一属性的任务被同一线程执行](java-yu-yan/xian-cheng/ru-he-que-bao-tong-yi-shu-xing-de-ren-wu-bei-tong-yi-xian-cheng-zhi-hang.md)
     * [ThreadLocal](java-yu-yan/xian-cheng/threadlocal.md)
       * [ThreadLocal原理](java-yu-yan/xian-cheng/threadlocal.md)
