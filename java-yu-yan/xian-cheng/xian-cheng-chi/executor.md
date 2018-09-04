@@ -163,9 +163,5 @@ executor.execute(future);
 
 大多数摘抄自《Java并发编程的艺术》
 
-
-
-
-
-
+扩展阅读：[java线程池与五种常用线程池策略使用与解析](https://blog.csdn.net/u011479540/article/details/51867886)
 
