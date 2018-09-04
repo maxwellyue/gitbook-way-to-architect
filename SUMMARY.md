@@ -32,7 +32,7 @@
       * [各种锁的概念](java-yu-yan/xian-cheng/tong-bu-yu-suo/ge-zhong-suo-de-gai-nian.md)
       * [CAS](java-yu-yan/xian-cheng/tong-bu-yu-suo/cas-de-li-jie.md)
         * [CAS的理解](java-yu-yan/xian-cheng/tong-bu-yu-suo/cas-de-li-jie/casde-li-jie.md)
-        * Java中原子操作类
+        * [Java中原子操作类](java-yu-yan/xian-cheng/tong-bu-yu-suo/cas-de-li-jie/javazhong-yuan-zi-cao-zuo-lei.md)
     * [fork/join的理解](java-yu-yan/xian-cheng/forkjoin-de-li-jie.md)
   * [异常](java-yu-yan/yi-chang/README.md)
     * [异常体系及为什么要有这种异常设计](java-yu-yan/yi-chang/yi-chang-ti-xi-ji-wei-shi-mo-yao-you-zhe-zhong-yi-chang-she-ji.md)
