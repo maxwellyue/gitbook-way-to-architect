@@ -55,6 +55,7 @@ public ThreadPoolExecutor(int corePoolSize,
   * PriorityBlockingQueue：具有优先级的无限阻塞队列
 
 * **ThreadFactory**：创建线程的工厂。
+
 * **RejectedExecutionHandler**：饱和策略，即队列和线程池都满了，对于新提交的任务无法执行，这时采取的处理新来的任务的方法，有4种策略可选（也可以**自定义策略：实现RejectedExecutionHandler接口，如记录日志或持久化不能处理的任务**）
 
   * AbortPolicy：直接抛出`RejectedExecutionException`异常。（默认策略）
@@ -75,7 +76,11 @@ public ThreadPoolExecutor(int corePoolSize,
 
 
 
-drf
+
+
+
+
+
 
 
 
