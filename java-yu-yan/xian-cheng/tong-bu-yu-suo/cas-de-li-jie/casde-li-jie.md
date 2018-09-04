@@ -20,6 +20,8 @@ public final int incrementAndGet() {
 
 `boolean compareAndSet(int current, int newValue)`方法是一个原子方法，该方法首先会先检查`AtomicInteger`的当前数值（从内存中读取，即**CAS操作中内存值**）是否等于`current`（即**CAS操作中预期值**），如果等于，则说明`AtomicInteger`的值没有被其他线程修改过，则会将`AtomicInteger`的值设置为`newValue`（即**CAS操作中要修改的新值**），并返回`true`；如果不等于，说明`AtomicInteger`的值被其他线程修改过，则返回`fasle`。
 
+> 理解关键字：**内存位置（V）、预期原值（A）、新值\(B\)**
+
 **CAS实现原子操作的三个问题**
 
 * **ABA问题**
@@ -31,8 +33,6 @@ public final int incrementAndGet() {
 * **③只能保证一个共享变量的原子操作**
   * 当对一个共享变量执行操作时，我们可以使用循环CAS的方式来保证原子操作，但是对多个共享变量操作时，循环CAS就无法保证操作的原子性，这个时候就可以用锁，或者有一个取巧的办法，就是把多个共享变量合并成一个共享变量来操作。比如有两个共享变量i＝2,j=a，合并一下ij=2a，然后用CAS来操作ij。
   * 从Java1.5开始JDK提供了**AtomicReference**类来保证引用对象之间的原子性，你可以把多个变量放在一个对象里来进行CAS操作。
-
-
 
 #### 内容来源
 
