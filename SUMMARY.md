@@ -7,14 +7,14 @@
     * [static和final](java-yu-yan/java-guan-jian-zi/static-he-final.md)
   * [集合](java-yu-yan/ji-he/README.md)
     * Collection
-      * [综述](java-yu-yan/ji-he/zong-shu.md)
+      * [Collection综述](java-yu-yan/ji-he/zong-shu.md)
       * [给出场景，问数据结构？](java-yu-yan/ji-he/gei-chu-chang-jing-wen-shu-ju-jie-gou.md)
     * List
-      * [综述](java-yu-yan/ji-he/zong-shu.md)
+      * [List综述](java-yu-yan/ji-he/zong-shu.md)
       * [一行代码初始化ArrayList](java-yu-yan/ji-he/yi-hang-dai-ma-chu-shi-hua-arraylist.md)
       * [一个ArrayList在循环过程中删除，会不会出问题，为什么？](java-yu-yan/ji-he/yi-ge-arraylist-zai-xun-huan-guo-cheng-zhong-shan-chu-hui-bu-hui-chu-wen-ti-wei-shi-mo.md)
     * [Map](java-yu-yan/ji-he/map.md)
-      * 综述
+      * [Map综述](java-yu-yan/ji-he/zong-shu.md)
       * [HashMap](java-yu-yan/ji-he/hashmap.md)
   * [线程](java-yu-yan/xian-cheng/README.md)
     * [线程](java-yu-yan/xian-cheng/xian-cheng-zhuang-tai/README.md)
