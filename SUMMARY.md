@@ -6,10 +6,16 @@
     * [Java中四种修饰符的限制范围](java-yu-yan/java-guan-jian-zi/java-zhong-si-zhong-xiu-shi-fu-de-xian-zhi-fan-wei.md)
     * [static和final](java-yu-yan/java-guan-jian-zi/static-he-final.md)
   * [集合](java-yu-yan/ji-he/README.md)
-    * [一个ArrayList在循环过程中删除，会不会出问题，为什么？](java-yu-yan/ji-he/yi-ge-arraylist-zai-xun-huan-guo-cheng-zhong-shan-chu-hui-bu-hui-chu-wen-ti-wei-shi-mo.md)
-    * [HashMap](java-yu-yan/ji-he/hashmap.md)
-    * [给出场景，问数据结构？](java-yu-yan/ji-he/gei-chu-chang-jing-wen-shu-ju-jie-gou.md)
-    * [一行代码初始化ArrayList](java-yu-yan/ji-he/yi-hang-dai-ma-chu-shi-hua-arraylist.md)
+    * Collection
+      * [综述](java-yu-yan/ji-he/zong-shu.md)
+      * [给出场景，问数据结构？](java-yu-yan/ji-he/gei-chu-chang-jing-wen-shu-ju-jie-gou.md)
+    * List
+      * [综述](java-yu-yan/ji-he/zong-shu.md)
+      * [一行代码初始化ArrayList](java-yu-yan/ji-he/yi-hang-dai-ma-chu-shi-hua-arraylist.md)
+      * [一个ArrayList在循环过程中删除，会不会出问题，为什么？](java-yu-yan/ji-he/yi-ge-arraylist-zai-xun-huan-guo-cheng-zhong-shan-chu-hui-bu-hui-chu-wen-ti-wei-shi-mo.md)
+    * [Map](java-yu-yan/ji-he/map.md)
+      * 综述
+      * [HashMap](java-yu-yan/ji-he/hashmap.md)
   * [线程](java-yu-yan/xian-cheng/README.md)
     * [线程](java-yu-yan/xian-cheng/xian-cheng-zhuang-tai/README.md)
       * [创建线程](java-yu-yan/xian-cheng/xian-cheng-zhuang-tai/chuang-jian.md)
