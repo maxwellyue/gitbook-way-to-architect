@@ -18,7 +18,7 @@
       * 1
       * 2
     * [Queue](java-yu-yan/ji-he/queue.md)
-      * Queue综述
+      * [Queue综述](java-yu-yan/ji-he/queue/queuezong-shu.md)
       * 1
       * 2
     * [Map](java-yu-yan/ji-he/map.md)
