@@ -22,7 +22,7 @@
       * 1
       * 2
     * [Map](java-yu-yan/ji-he/map.md)
-      * Map综述
+      * [Map综述](java-yu-yan/ji-he/mapzong-shu.md)
       * [HashMap](java-yu-yan/ji-he/hashmap.md)
     * 哈哈
   * [线程](java-yu-yan/xian-cheng/README.md)
