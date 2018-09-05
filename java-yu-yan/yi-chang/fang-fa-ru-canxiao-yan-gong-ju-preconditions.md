@@ -18,7 +18,7 @@ private void add(boolean bool, int[] array, int position) {
     if (position > array.length || position < 0) {
         throw new ArrayIndexOutOfBoundsException("position error!!");
     }
-    
+
     //ok, do something...
 }
 ```
@@ -27,7 +27,7 @@ private void add(boolean bool, int[] array, int position) {
 
 ### Preconditions
 
-Preconditions是Guava类库中提供了的一个作参数检查的工具类， 该类可以大大地简化我们代码中对于参数的预判断和处理，让我们对方法输入参数的验证实现起来更加简单。
+Preconditions是Guava类库中提供了的一个作参数检查的工具类， 该类可以大大地简化我们代码中对于参数的预判断和处理，让我们对方法输入参数的验证实现起来更加简单。
 
 下面，使用Preconditions对上述代码进行改造：
 
@@ -53,11 +53,9 @@ private static void testPreconditions(boolean bool, int[] array, int position) {
 
 
 
+**参考**
 
+[Google Guava中Preconditions的用法，让前置条件判断变得更优雅](https://blog.csdn.net/zivensonice/article/details/51912188)
 
-
-
-
-
-
+[Guava学习笔记：Preconditions优雅的检验参数](https://www.cnblogs.com/peida/p/Guava_Preconditions.html)
 
