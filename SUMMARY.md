@@ -10,7 +10,7 @@
       * [Collection综述](java-yu-yan/ji-he/collectionzong-shu.md)
       * [给出场景，问数据结构？](java-yu-yan/ji-he/gei-chu-chang-jing-wen-shu-ju-jie-gou.md)
     * [List](java-yu-yan/ji-he/list.md)
-      * List综述
+      * [List综述](java-yu-yan/ji-he/listzong-shu.md)
       * [一个ArrayList在循环过程中删除，会不会出问题，为什么？](java-yu-yan/ji-he/yi-ge-arraylist-zai-xun-huan-guo-cheng-zhong-shan-chu-hui-bu-hui-chu-wen-ti-wei-shi-mo.md)
       * [一行代码初始化ArrayList](java-yu-yan/ji-he/yi-hang-dai-ma-chu-shi-hua-arraylist.md)
     * [Set](java-yu-yan/ji-he/set.md)
