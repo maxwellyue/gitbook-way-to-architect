@@ -24,7 +24,6 @@
     * [Map](java-yu-yan/ji-he/map.md)
       * [Map综述](java-yu-yan/ji-he/mapzong-shu.md)
       * [HashMap](java-yu-yan/ji-he/hashmap.md)
-    * 哈哈
   * [线程](java-yu-yan/xian-cheng/README.md)
     * [线程](java-yu-yan/xian-cheng/xian-cheng-zhuang-tai/README.md)
       * [创建线程](java-yu-yan/xian-cheng/xian-cheng-zhuang-tai/chuang-jian.md)
