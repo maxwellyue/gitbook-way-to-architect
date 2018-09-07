@@ -25,6 +25,8 @@ private final Condition notEmpty;
 private final Condition notFull;
 ```
 
+可见，ArrayBlockingQueue只有1个锁，同一时刻，要么添加数据，要么删除数据，两者不能并行执行。
+
 ## 插入元素
 
 offer\(\)方法：如果队列已满，直接返回fasle
@@ -154,9 +156,5 @@ public boolean remove(Object o) {
 }
 ```
 
-
-
 内容来源：[Java阻塞队列ArrayBlockingQueue和LinkedBlockingQueue实现原理分析](https://fangjian0423.github.io/2016/05/10/java-arrayblockingqueue-linkedblockingqueue-analysis/)
-
-
 
