@@ -21,6 +21,7 @@
       * [Queue综述](java-yu-yan/ji-he/queue/queuezong-shu.md)
       * 1
       * 2
+      * [高性能无锁队列Disruptor](java-yu-yan/ji-he/queue/gao-xing-neng-wu-suo-dui-lie-disruptor.md)
     * [Map](java-yu-yan/ji-he/map.md)
       * [Map综述](java-yu-yan/ji-he/mapzong-shu.md)
       * [HashMap](java-yu-yan/ji-he/hashmap.md)
