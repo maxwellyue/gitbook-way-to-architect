@@ -8,11 +8,9 @@ Iterator 是工作在一个独立的线程中，并且拥有一个 mutex 锁。 
 
 错误方式：
 
-```text
+```java
 public class ListRemoveTest {
-
     public static void main(String[] args) {
-
         List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 4, 6, 8));
         Iterator<Integer> iterator = list.iterator();
         for (; iterator.hasNext(); ) {
@@ -22,17 +20,14 @@ public class ListRemoveTest {
             }
         }
     }
-
 }
 ```
 
 正确方式1：
 
-```text
+```java
 public class ListRemoveTest {
-
     public static void main(String[] args) {
-
         List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 4, 6, 8));
         Iterator<Integer> iterator = list.iterator();
         for (; iterator.hasNext(); ) {
@@ -42,17 +37,14 @@ public class ListRemoveTest {
             }
         }
     }
-
 }
 ```
 
-正确方式2：
+正确方式2：注意，list.size\(\)是放在for语句中每次循环之前重新获取的，所以不会有问题
 
-```text
+```java
 public class ListRemoveTest {
-
     public static void main(String[] args) {
-
         List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 4, 6, 8));
         for (int i = 0; i < list.size(); i++ ) {
             int element = list.get(i);
@@ -60,9 +52,7 @@ public class ListRemoveTest {
                 list.remove(i);
             }
         }
-
     }
-
 }
 ```
 
