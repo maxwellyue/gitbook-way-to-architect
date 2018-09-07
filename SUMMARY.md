@@ -20,7 +20,7 @@
     * [Queue](java-yu-yan/ji-he/queue.md)
       * [Queue综述](java-yu-yan/ji-he/queue/queuezong-shu.md)
       * [ArrayBlockingQueue实现原理](java-yu-yan/ji-he/queue/arrayblockingqueueshi-xian-yuan-li.md)
-      * LinkedBlockingQueue实现原理
+      * [LinkedBlockingQueue实现原理](java-yu-yan/ji-he/queue/linkedblockingqueueshi-xian-yuan-li.md)
       * [高性能无锁队列Disruptor](java-yu-yan/ji-he/queue/gao-xing-neng-wu-suo-dui-lie-disruptor.md)
     * [Map](java-yu-yan/ji-he/map.md)
       * [Map综述](java-yu-yan/ji-he/mapzong-shu.md)
