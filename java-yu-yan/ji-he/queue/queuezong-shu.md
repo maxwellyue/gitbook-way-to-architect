@@ -1,6 +1,6 @@
 **Queue：元素有序，先进先出**
 
-## java.util
+# java.util
 
 **ArrayDeque**
 
@@ -16,9 +16,11 @@
 > （2）返回的迭代器并不保证提供任何的有序性  
 > （3）优先级队列不允许null元素，否则抛出NullPointException。
 
-## java.util.concurrent
+# java.util.concurrent
 
-在juc中，出现的与队列相关的都是`BlockingQueue`，即阻塞队列：当队列满时，队列会阻塞插入元素的线程，直到队列不满；当队列为空时，队列会阻塞获取元素的线程，直到队列不空。阻塞队列常用于生产者和消费者模式，生产者向队列中添加元素，消费者则从队列中取出元素。
+## BlockingQueue
+
+阻塞队列：当队列满时，队列会阻塞插入元素的线程，直到队列不满；当队列为空时，队列会阻塞获取元素的线程，直到队列不空。阻塞队列常用于生产者和消费者模式，生产者向队列中添加元素，消费者则从队列中取出元素。
 
 `BlockingQueue`中提供了以下方法来进行元素的插入/移除操作：
 
@@ -79,6 +81,34 @@
 **LinkedBlockingDeque**
 
 使用链表实现的双向阻塞队列，可以在队列的两端进行插入和移除元素。
+
+## Concurrent Queue
+
+**ConcurrentLinkedQueue**
+
+适合在对性能要求相对较高，同时存在**多个线程对队列的同时读写**的场景，即如果对队列加锁的成本较高则适合使用无锁的ConcurrentLinkedQueue来替代。
+
+> 单生产者，单消费者 用 LinkedBlockingqueue
+>
+> 多生产者，单消费者 用 LinkedBlockingqueue，比如任务队列
+>
+> 单生产者 ，多消费者 用 ConcurrentLinkedQueue
+>
+> 多生产者 ，多消费者 用 ConcurrentLinkedQueue ，比如消息队列
+
+**ConcurrentLinkedDeque**
+
+
+
+
+
+
+
+
+
+扩展阅读
+
+[Java多线程-工具篇-BlockingQueue](https://www.cnblogs.com/jackyuj/archive/2010/11/24/1886553.html)
 
 
 
