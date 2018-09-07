@@ -8,11 +8,10 @@
 
 **PriorityQueue**
 
-数据结构为优先级队列，元素不允许null，非同步
+无界队列，基于优先级堆，它的元素根据自然顺序或者通过实现Comparator接口的自定义排序方式进行排序。
 
 > 优先级队列是不同于先进先出队列的另一种队列。每次从队列中取出的是具有最高优先权的元素。  
-> （1）优先级队列不是同步的（线程安全版本为PriorityBlockingQueue）  
-> 队列的获取操作如poll\(\),peek\(\)和element\(\)是访问的队列的头，保证获取的是最小的元素（根据指定的排序规则）  
+> （1）优先级队列不是同步的（线程安全版本为PriorityBlockingQueue），队列的获取操作如poll\(\),peek\(\)和element\(\)是访问的队列的头，保证获取的是最小的元素（根据指定的排序规则）  
 > （2）返回的迭代器并不保证提供任何的有序性  
 > （3）优先级队列不允许null元素，否则抛出NullPointException。
 
@@ -98,17 +97,13 @@
 
 **ConcurrentLinkedDeque**
 
-
-
-
-
-
-
-
-
 扩展阅读
 
 [Java多线程-工具篇-BlockingQueue](https://www.cnblogs.com/jackyuj/archive/2010/11/24/1886553.html)
+
+[并发队列ConcurrentLinkedQueue和阻塞队列LinkedBlockingQueue使用场景总结](http://www.aichengxu.com/other/1959339.htm)
+
+[优先级队列是一种什么样的数据结构](http://www.importnew.com/6510.html)
 
 
 
