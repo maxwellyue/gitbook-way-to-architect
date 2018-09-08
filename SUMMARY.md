@@ -26,6 +26,8 @@
       * [Map综述](java-yu-yan/ji-he/mapzong-shu.md)
       * [HashMap](java-yu-yan/ji-he/hashmap.md)
         * [实现原理](java-yu-yan/ji-he/hashmap/shi-xian-yuan-li.md)
+        * [HashMap中的位运算](java-yu-yan/ji-he/hashmap/hashmapzhong-de-wei-yun-suan.md)
+        * [其他问题](java-yu-yan/ji-he/hashmap/qi-ta-wen-ti.md)
   * [线程](java-yu-yan/xian-cheng/README.md)
     * [线程](java-yu-yan/xian-cheng/xian-cheng-zhuang-tai/README.md)
       * [创建线程](java-yu-yan/xian-cheng/xian-cheng-zhuang-tai/chuang-jian.md)
