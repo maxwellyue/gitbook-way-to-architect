@@ -111,7 +111,7 @@ final V putVal(K key, V value, boolean onlyIfAbsent) {
     }
 ```
 
-**get**
+## **get**
 
 大体思路：
 
@@ -153,7 +153,6 @@ public V get(Object key) {
 整个get操作都是无锁的：（1）table数组被volatile关键字修饰；（2）元素的数据结构均为Node，其key值和hash值都由final修饰，不可变更，其value及对下一个元素的引用由volatile修饰，可见性也有保障。
 
 ```java
-static class Node<K,V> implements Map.Entry<K,V> {
   final int hash;
   final K key;
   volatile V val;
@@ -169,9 +168,18 @@ static final <K,V> Node<K,V> tabAt(Node<K,V>[] tab, int i) {
 }
 ```
 
+## resize
+
+TODO
+
 ## 总结
 
-相比JDK
+相比JDK1.7的ConcurrentHashMap，JDK1.8中的改进之处主要体现在：
+
+* 更小的锁粒度：1.8中摒弃了segment锁，直接将hash桶的头结点当做锁。旧版本的一个segment锁，保护了多个hash桶，而1.8版本的一个锁只保护一个hash桶，由于锁的粒度变小了，写操作的并发性得到了极大的提升。
+* 更高效的扩容
+  * 更多的扩容线程：扩容时，需要锁的保护。旧版本最多可以同时扩容的线程数是segment锁的个数。而1.8中理论上最多可以同时扩容的线程数是table数组的长度。但是为了防止扩容线程过多，ConcurrentHashMap规定了扩容线程每次最少迁移16个hash桶，因此1.8中实际上最多可以同时扩容的线程数是：hash桶的个数/16
+  * 扩容期间，依然保证较高的并发度：旧版本的segment锁，锁定范围太大，导致扩容期间，写并发度，严重下降。而新版本的采用更加细粒度的hash桶级别锁，扩容期间，依然可以保证写操作的并发度。
 
 ## 内容来源
 
@@ -182,4 +190,7 @@ static final <K,V> Node<K,V> tabAt(Node<K,V>[] tab, int i) {
 [Java8集合源码解析——ConcurrentHashMap](http://www.voidcn.com/article/p-kuonwbvr-bqt.html)
 
 [ConcurrentHashMap源码分析（JDK8） get/put/remove方法分析](https://www.jianshu.com/p/5bc70d9e5410)
+
+[附：1.7版本中的ConcurrentHashMap源码  
+](https://github.com/zxiaofan/JDK/blob/master/JDK1.7/src/java/util/concurrent/ConcurrentHashMap.java)
 
