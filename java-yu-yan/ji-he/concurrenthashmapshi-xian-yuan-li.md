@@ -137,6 +137,7 @@ ConcurrentHashMap 的高并发性主要来自于三个方面：
 
 [探索 ConcurrentHashMap 高并发性的实现机制](https://www.ibm.com/developerworks/cn/java/java-lo-concurrenthashmap/)
 
+[为什么ConcurrentHashMap是弱一致的](http://ifeve.com/concurrenthashmap-weakly-consistent/)
 
 
 
