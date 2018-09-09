@@ -171,13 +171,7 @@ static final <K,V> Node<K,V> tabAt(Node<K,V>[] tab, int i) {
 
 ## 总结
 
-x相比
-
-
-
-
-
-
+相比JDK
 
 ## 内容来源
 
@@ -188,7 +182,4 @@ x相比
 [Java8集合源码解析——ConcurrentHashMap](http://www.voidcn.com/article/p-kuonwbvr-bqt.html)
 
 [ConcurrentHashMap源码分析（JDK8） get/put/remove方法分析](https://www.jianshu.com/p/5bc70d9e5410)
-
-  
-
 
