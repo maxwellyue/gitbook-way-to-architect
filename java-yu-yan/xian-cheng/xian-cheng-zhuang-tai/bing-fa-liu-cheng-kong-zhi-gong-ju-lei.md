@@ -7,14 +7,14 @@ JDK中提供了两类并发工具类：
 
 * 作用：允许一个或多个线程等待其他线程完成操作
 * 使用步骤：
-①定义一个CountDownLatch（称为计数器），并指定等待次数；
-②在合适的时机将计数器减1；
-③在需要等待所有任务结束的位置，调用await()方法；
+  ①定义一个CountDownLatch（称为计数器），并指定等待次数；
+  ②在合适的时机将计数器减1；
+  ③在需要等待所有任务结束的位置，调用await\(\)方法；
 
-根据JDK中的说明文档整理的两个例子：
+根据JDK中的说明文档整理的两个例子：  
 例子1：
 
-```
+```java
 public class CountDownLatchLearning {
 
     public void doSomething() {
@@ -76,7 +76,7 @@ public class CountDownLatchLearning {
 
 例子2：
 
-```
+```java
 public class CountDownLatchLearning1 {
 
     public void doSomething() {
@@ -84,7 +84,7 @@ public class CountDownLatchLearning1 {
         CountDownLatch doneSignal = new CountDownLatch(100);
 
         Executor e = Executors.newFixedThreadPool(10);
-        
+
         for (int i = 0; i < 100; ++i) {
             e.execute(new WorkerRunnable(doneSignal, i));
         }
@@ -132,7 +132,7 @@ public class CountDownLatchLearning1 {
 * 作用：让一组线程等待至某个状态之后再全部同时执行，适用于多线程计算数据，最后合并计算结果的场景。
 * 使用：
 
-```
+```java
 ①构造：
 public CyclicBarrier(int parties, Runnable barrierAction) {}
 public CyclicBarrier(int parties) {}
@@ -157,7 +157,7 @@ reset()：重置CyclicBarrier
 public class CyclicBarriarExapmle {
 
     private Map<String, Integer> map = new ConcurrentHashMap<>();
-    
+
     CyclicBarrier barrier = new CyclicBarrier(10, ()->{
         //线程全部到达屏障后，执行的任务
         System.out.println("我是线程全部到达屏障后，执行的任务");
@@ -213,11 +213,12 @@ public class CyclicBarriarExapmle {
 **CountDownLatch与CyclicBarrier的区别**：二者都可以用来让一组线程等待其他线程，但CyclicBarrier功能更强大，可以重复使用，并可以设置优先任务。
 
 ### Semaphore
+
 * 作用：控制同时访问特定资源的线程数量，进行流量控制
 * 使用：①创建Semaphore，根据资源特性，指定可以同时访问该资源的线程数量；②在具体使用资源的时候，首先从Semaphore获取许可证，使用完资源之后，释放资源
 * 值得注意的是：在一个线程release之前，并不一定要acquire。可以根据程序需要，自行控制。
 
-```
+```java
 /**
  * Releases a permit, returning it to the semaphore.
  *
@@ -237,7 +238,8 @@ public void release() {
 ```
 
 举个例子：
-```
+
+```java
 public class SemaphoreExample {
     private Semaphore semaphore = new Semaphore(10);
     private Executor executor = Executors.newFixedThreadPool(30);
@@ -261,9 +263,10 @@ public class SemaphoreExample {
 ```
 
 ### Exchanger
-* 作用：线程间数据交换，它提供一个同步点，两个线程可以交换彼此的数据，这两个线程通过exchange()方法交换数据，如果第一个线程先执行该方法，它会一直等待第二个线程也执行该方法，当两个线程都到达同步点的时候，这两个线程就可以交换数据。
 
-```
+* 作用：线程间数据交换，它提供一个同步点，两个线程可以交换彼此的数据，这两个线程通过exchange\(\)方法交换数据，如果第一个线程先执行该方法，它会一直等待第二个线程也执行该方法，当两个线程都到达同步点的时候，这两个线程就可以交换数据。
+
+```java
 public class ExchangerExample {
 
     public static void main(String[] args){
@@ -292,9 +295,7 @@ public class ExchangerExample {
 }
 ```
 
-
 ### 参考
+
 《Java并发编程的艺术》，有适当更改
-
-
 
