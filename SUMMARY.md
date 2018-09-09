@@ -8,8 +8,8 @@
   * [集合](java-yu-yan/ji-he/README.md)
     * [集合概述](java-yu-yan/ji-he/ji-he-gai-shu.md)
       * [Collection综述](java-yu-yan/ji-he/collectionzong-shu.md)
-      * Fail-fast机制
-      * Iterator原理
+      * [fast-fail机制](java-yu-yan/ji-he/fast-failji-zhi.md)
+      * [Iterator原理](java-yu-yan/ji-he/iteratoryuan-li.md)
     * [List](java-yu-yan/ji-he/list.md)
       * [List综述](java-yu-yan/ji-he/listzong-shu.md)
       * [ArrayList在循环过程中删除元素的问题](java-yu-yan/ji-he/yi-ge-arraylist-zai-xun-huan-guo-cheng-zhong-shan-chu-hui-bu-hui-chu-wen-ti-wei-shi-mo.md)
