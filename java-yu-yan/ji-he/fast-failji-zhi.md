@@ -42,10 +42,10 @@ public void exception1() throws InterruptedException {
 }
 //抛出如下异常（省略部分异常信息）：
 java.util.ConcurrentModificationException
-	at java.util.ArrayList.sort(ArrayList.java:1456)
-	at java.util.Collections.sort(Collections.java:141)
-	at com.maxwell.learning.common.ListExample.exception1(ListExample.java:123)
-	at java.util.ArrayList.forEach(ArrayList.java:1249)
+    at java.util.ArrayList.sort(ArrayList.java:1456)
+    at java.util.Collections.sort(Collections.java:141)
+    at com.maxwell.learning.common.ListExample.exception1(ListExample.java:123)
+    at java.util.ArrayList.forEach(ArrayList.java:1249)
 ```
 
 2、**单线程循环操作时，使用在不恰当方式修改Collection结构**
@@ -68,10 +68,10 @@ public void exception2() throws InterruptedException {
 
 //抛出如下异常（省略部分异常信息）：
 java.util.ConcurrentModificationException
-	at java.util.ArrayList.sort(ArrayList.java:1456)
-	at java.util.Collections.sort(Collections.java:141)
-	at com.maxwell.learning.common.ListExample.exception2(ListExample.java:133)
-	at java.util.ArrayList.forEach(ArrayList.java:1249)
+    at java.util.ArrayList.sort(ArrayList.java:1456)
+    at java.util.Collections.sort(Collections.java:141)
+    at com.maxwell.learning.common.ListExample.exception2(ListExample.java:133)
+    at java.util.ArrayList.forEach(ArrayList.java:1249)
 ```
 
 ### 如何避免
@@ -80,7 +80,10 @@ java.util.ConcurrentModificationException
 
 
 
+### 参考
 
+[快速失败机制--fail-fast](https://blog.csdn.net/qq_38663729/article/details/79603612)
 
-
+[Java提高篇（三四）-----fail-fast机制  
+](https://blog.csdn.net/chenssy/article/details/38151189)
 
