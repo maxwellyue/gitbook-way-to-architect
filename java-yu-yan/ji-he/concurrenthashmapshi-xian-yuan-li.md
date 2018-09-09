@@ -1,8 +1,6 @@
 # 数据结构
 
-ConcurrentHashMap的底层数据结构是**数组+单向链表**。与HashMap不同，它的数组元素的数据结构为Segment，Segment本身又是数组+链表的结构，如下所示：
-
-
+ConcurrentHashMap的底层数据结构是**数组+单向链表**。与HashMap不同，它的数组元素的数据结构为Segment，Segment本身又是数组+链表的结构，如下所示：![](/assets/屏幕快照 2018-09-09 上午9.53.08.png)
 
 HashTable容器在竞争激烈的并发环境下表现出效率低下的原因是所有访问HashTable的线程都必须竞争同一把锁，那假如容器里有多把锁，每一把锁用于锁容器其中一部分数据，那么当多线程访问容器里不同数据段的数据时，线程间就不会存在锁竞争，从而可以有效的提高并发访问效率，这就是ConcurrentHashMap所使用的**锁分段技术，首先将数据分成一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问。**
 
@@ -62,7 +60,7 @@ private int hash(Object k) {
     if ((0 != h) && (k instanceof String)) {
         return sun.misc.Hashing.stringHash32((String) k);
     }
-    
+
     //重点是以下内容
     h ^= k.hashCode();
     // Spread bits to regularize both segment and index locations,
@@ -116,14 +114,9 @@ get操作的高效之处在于**整个get过程不需要加锁，除非读到的
 
 
 
-内容来源：[聊聊并发（四）——深入分析ConcurrentHashMap](http://www.infoq.com/cn/articles/ConcurrentHashMap)
+内容来源：[聊聊并发（四）——深入分析ConcurrentHashMap](http://www.infoq.com/cn/articles/ConcurrentHashMap)，略有改动。
 
-  
-  
+# 
 
-
-#  
-
-  
 
 
