@@ -8,7 +8,7 @@
   * [集合](java-yu-yan/ji-he/README.md)
     * [集合概述](java-yu-yan/ji-he/ji-he-gai-shu.md)
       * [Collection综述](java-yu-yan/ji-he/collectionzong-shu.md)
-      * [Iterator原理](java-yu-yan/ji-he/iteratoryuan-li.md)
+      * [Iterator原理及实现](java-yu-yan/ji-he/iteratoryuan-li.md)
       * [fast-fail机制](java-yu-yan/ji-he/fast-failji-zhi.md)
     * [List](java-yu-yan/ji-he/list.md)
       * [List综述](java-yu-yan/ji-he/listzong-shu.md)
