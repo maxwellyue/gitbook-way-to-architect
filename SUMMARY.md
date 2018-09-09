@@ -28,6 +28,8 @@
         * [HashMap实现原理](java-yu-yan/ji-he/hashmap/shi-xian-yuan-li.md)
         * [HashMap中的位运算](java-yu-yan/ji-he/hashmap/hashmapzhong-de-wei-yun-suan.md)
         * [HashMap其他问题](java-yu-yan/ji-he/hashmap/qi-ta-wen-ti.md)
+      * [LinkedHashMap](java-yu-yan/ji-he/linkedhashmap.md)
+      * [TreeMap](java-yu-yan/ji-he/treemap.md)
       * [ConcurrentHashMap](java-yu-yan/ji-he/concurrenthashmap.md)
         * [ConcurrentHashMap实现原理JDK1.7](java-yu-yan/ji-he/concurrenthashmapshi-xian-yuan-li.md)
         * [ConcurrentHashMap实现原理JDK1.8](java-yu-yan/ji-he/concurrenthashmapshi-xian-yuan-li-jdk1-8.md)
