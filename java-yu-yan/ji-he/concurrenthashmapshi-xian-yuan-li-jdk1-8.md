@@ -29,7 +29,7 @@ h = h ^ (h >>> 16)
 * 如果`table`数组还没有初始化，则使用`CAS`进行初始化
 * 如果`table`数组中`i`位置处元素为空，则使用`CAS`将`table[i]`的值设置为value
 * 如果其他线程正在对`table`数组进行扩容，则当前线程去协助其进行扩容
-* 其他情况，则使用**`synchronized`**锁住`table[i]`这个元素（链表表头或红黑树根节点），并将元素追加插入到链表或红黑树中；插入后，检查是否需要将该桶的数据结构由链表转化为红黑树。
+* 其他情况，则使用`synchronized`锁住`table[i]`这个元素（链表表头或红黑树根节点），并将元素追加插入到链表或红黑树中；插入后，检查是否需要将该桶的数据结构由链表转化为红黑树。
 
 * 成功设置`<key, value>`后，检查是否需要进行扩容
 
@@ -115,35 +115,42 @@ final V putVal(K key, V value, boolean onlyIfAbsent) {
 
 大体思路：
 
+* 根据hash值确定节点所在的table数组的位置i
+* 如果table\[i\]恰好就是要找的key，直接返回table\[i\]
+* 如果table的i处为链表结构，查从链表中查找该键值对并返回
+* 如果table的i处为红黑树结构或table\[i\]为已迁移节点（发生了扩容），则调用对应的方法去查找并返回
+* 没有找到，返回null
+
 ```java
 public V get(Object key) {
     Node<K,V>[] tab; Node<K,V> e, p; int n, eh; K ek;
     //计算key的hash值
     int h = spread(key.hashCode());
-    ///根据hash值确定节点所在的table数组的位置
+    //根据hash值确定节点所在的table数组的位置i
     if ((tab = table) != null && (n = tab.length) > 0 &&
+        //定位桶的位置
         (e = tabAt(tab, (n - 1) & h)) != null) {
+        //如果table[i]的key与传入的key相同（key的哈希值相同， key是equals的），则直接返回table[i]
         if ((eh = e.hash) == h) {
             if ((ek = e.key) == key || (ek != null && key.equals(ek)))
                 return e.val;
         }
+        //如果table[i]为特殊节点（红黑树或者ForwardingNode等），则去其中其查找
         else if (eh < 0)
             return (p = e.find(h, key)) != null ? p.val : null;
+        //如果table的i处为链表，查从链表中查找该键值对并返回
         while ((e = e.next) != null) {
             if (e.hash == h &&
                 ((ek = e.key) == key || (ek != null && key.equals(ek))))
                 return e.val;
         }
     }
+    //没有找到
     return null;
 }
 ```
 
-
-
-
-
-对于读操作，由于数组被volatile关键字修饰，因此不用担心数组的可见性问题。同时每个元素是一个Node实例（Java 7中每个元素是一个HashEntry），它的Key值和hash值都由final修饰，不可变更，无须关心它们被修改后的可见性问题。而其Value及对下一个元素的引用由volatile修饰，可见性也有保障。
+整个get操作都是无锁的：（1）table数组被volatile关键字修饰；（2）元素的数据结构均为Node，其key值和hash值都由final修饰，不可变更，其value及对下一个元素的引用由volatile修饰，可见性也有保障。
 
 ```java
 static class Node<K,V> implements Map.Entry<K,V> {
@@ -154,7 +161,7 @@ static class Node<K,V> implements Map.Entry<K,V> {
 }
 ```
 
-对于Key对应的数组元素的可见性，由Unsafe的getObjectVolatile方法保证。
+对于key对应的数组元素的可见性，由Unsafe的getObjectVolatile方法保证。
 
 ```java
 static final <K,V> Node<K,V> tabAt(Node<K,V>[] tab, int i) {
@@ -162,7 +169,15 @@ static final <K,V> Node<K,V> tabAt(Node<K,V>[] tab, int i) {
 }
 ```
 
-## 
+## 总结
+
+x相比
+
+
+
+
+
+
 
 ## 内容来源
 
@@ -170,5 +185,10 @@ static final <K,V> Node<K,V> tabAt(Node<K,V>[] tab, int i) {
 
 [探索jdk8之ConcurrentHashMap 的实现机制](https://www.cnblogs.com/huaizuo/p/5413069.html)
 
+[Java8集合源码解析——ConcurrentHashMap](http://www.voidcn.com/article/p-kuonwbvr-bqt.html)
+
+[ConcurrentHashMap源码分析（JDK8） get/put/remove方法分析](https://www.jianshu.com/p/5bc70d9e5410)
+
+  
 
 
