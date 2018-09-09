@@ -42,6 +42,7 @@
       * [几种方法的解释](java-yu-yan/xian-cheng/xian-cheng-zhuang-tai/ji-zhong-fang-fa-de-jie-shi.md)
       * [用户线程与守护线程](java-yu-yan/xian-cheng/xian-cheng-zhuang-tai/yong-hu-xian-cheng-yu-shou-hu-xian-cheng.md)
       * [线程组ThreadGroup](java-yu-yan/xian-cheng/xian-cheng-zhuang-tai/xian-cheng-zu.md)
+      * [并发工具类](java-yu-yan/xian-cheng/xian-cheng-zhuang-tai/bing-fa-liu-cheng-kong-zhi-gong-ju-lei.md)
     * [线程池](java-yu-yan/xian-cheng/xian-cheng-chi/README.md)
       * [线程池工作原理及创建](java-yu-yan/xian-cheng/xian-cheng-chi/xian-cheng-chi-lei-xing-ji-gong-zuo-yuan-li.md)
       * [Executor](java-yu-yan/xian-cheng/xian-cheng-chi/executor.md)
