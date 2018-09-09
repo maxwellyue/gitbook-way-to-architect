@@ -112,11 +112,32 @@ get操作的高效之处在于**整个get过程不需要加锁，除非读到的
 
 那么ConcurrentHashMap是如何判断在统计的时候容器是否发生了变化呢？**使用modCount变量**，在put , remove和clean方法里操作元素前都会将变量modCount进行加1，那么在统计size前后比较modCount是否发生变化，从而得知容器的大小是否发生变化。
 
+## 总结
+
+ConcurrentHashMap 是一个并发散列映射表的实现，它允许完全并发的读取，并且支持给定数量的并发更新。相比于`HashTable`和用同步包装器包装的 `HashMap（Collections.synchronizedMap(new HashMap())）`，ConcurrentHashMap 拥有更高的并发性。在HashTable 和由同步包装器包装的 HashMap 中，使用一个全局的锁来同步不同线程间的并发访问。同一时间点，只能有一个线程持有锁，也就是说在同一时间点，只能有一个线程能访问容器。这虽然保证多线程间的安全并发访问，但同时也导致对容器的访问变成_串行化_的了。
+
+在使用锁来协调多线程间并发访问的模式下，减小对锁的竞争可以有效提高并发性。有两种方式可以减小对锁的竞争：
+
+1. 减小请求同一个锁的频率。
+2. 减少持有锁的时间。
+
+ConcurrentHashMap 的高并发性主要来自于三个方面：
+
+1. 用分离锁实现多个线程间的更深层次的共享访问：减小了请求同一个锁的频率
+2. 用 HashEntery 对象的不变性来降低执行读操作的线程在遍历链表期间对加锁的需求。
+3. 通过对同一个 Volatile 变量的写 / 读访问，协调不同线程间读 / 写操作的内存可见性。
+
+通过 HashEntery 对象的不变性及对同一个 Volatile 变量的读 / 写来协调内存可见性，使得读操作大多数时候不需要加锁就能成功获取到需要的值。由于散列映射表在实际应用中大多数操作都是成功的读操作，所以 2 和 3 既可以减少请求同一个锁的频率，也可以有效减少持有锁的时间。
 
 
-内容来源：[聊聊并发（四）——深入分析ConcurrentHashMap](http://www.infoq.com/cn/articles/ConcurrentHashMap)，略有改动。
 
-# 
+## 内容来源
+
+[聊聊并发（四）——深入分析ConcurrentHashMap](http://www.infoq.com/cn/articles/ConcurrentHashMap)，略有改动。
+
+[探索 ConcurrentHashMap 高并发性的实现机制](https://www.ibm.com/developerworks/cn/java/java-lo-concurrenthashmap/)
+
+
 
 
 
