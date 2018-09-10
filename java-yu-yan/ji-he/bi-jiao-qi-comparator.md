@@ -47,13 +47,12 @@ public interface Comparator<T> {
 > 为什么可以不实现 equals\(Object obj\) ：  Java中的一切类都是继承于java.lang.Object，在Object.java中实现了equals\(Object obj\)函数，所以，其它所有的类也相当于都实现了该函数。即任何类默认都是已经实现了equals\(Object obj\)的。
 
 * compare\(T o1, T o2\) 的返回结果的说明：
+
   * 返回“负数”，意味着“o1比o2小”；
   * 返回“零”，意味着“o1等于o2”；
   * 返回“正数”，意味着“o1大于o2”。
 
   > 注意：**JDK1.7中，必须返回一对相反数，如1和-1，不能是1和0。因为1.7的排序算法采用**[**TimSort**](https://baike.baidu.com/item/TimSort)**，对返回值有严格要求**
-
-
 
 无论对于Comparable还是Comparator，都有这样一个推荐做法：
 
@@ -90,12 +89,12 @@ public class Person implements Comparable<Person>{
         }
         return res;
     }
-    
+
     @Override
     public String toString() {
         return String.format("%s: %d", this.name, this.age);
     }
-    
+
     //省略getter和setter方法
 }
 ```
