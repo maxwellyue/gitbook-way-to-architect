@@ -10,6 +10,7 @@
       * [容器：综述](java-yu-yan/ji-he/collectionzong-shu.md)
       * [Iterator原理及实现](java-yu-yan/ji-he/iteratoryuan-li.md)
       * [fast-fail机制](java-yu-yan/ji-he/fast-failji-zhi.md)
+      * [比较器Comparator](java-yu-yan/ji-he/bi-jiao-qi-comparator.md)
     * [List](java-yu-yan/ji-he/list.md)
       * [List综述](java-yu-yan/ji-he/listzong-shu.md)
       * [ArrayList在循环过程中删除元素的问题](java-yu-yan/ji-he/yi-ge-arraylist-zai-xun-huan-guo-cheng-zhong-shan-chu-hui-bu-hui-chu-wen-ti-wei-shi-mo.md)
