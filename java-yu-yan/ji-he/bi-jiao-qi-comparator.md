@@ -153,5 +153,7 @@ aaa: 32
 aaaa: 21
 ```
 
+按照年龄排序时，我们定义：进行compare时，年龄大的Person&gt;年龄小的Person，通过Collections.sort\(\)时，会按照我们定义的规则，对集合中的Person按照年龄进行从小到大的排序；
 
+按照名字长度排序时，我们定义：进行compare时，名字长的Person&gt;名字短的Person，通过Collections.sort\(\)时，会按照我们定义的规则，对集合中的Person按照名字长度从小到大的排序；
 
