@@ -133,7 +133,7 @@
       * [队列](suan-fa/gai-shu/dui-lie.md)
       * [串](suan-fa/gai-shu/chuan.md)
       * [树](suan-fa/gai-shu/shu.md)
-      * 图
+      * [图](suan-fa/gai-shu/tu.md)
     * [Java的一些实现](suan-fa/javade-yi-xie-shi-xian.md)
     * [红黑树](suan-fa/hong-hei-shu.md)
     * [双缓冲队列](suan-fa/shuang-huan-chong-dui-lie.md)
