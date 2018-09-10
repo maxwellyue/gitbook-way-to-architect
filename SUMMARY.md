@@ -129,6 +129,10 @@
   * [数据结构](suan-fa/shu-ju-jie-gou.md)
     * [概述](suan-fa/gai-shu.md)
       * [线性表](suan-fa/gai-shu/xian-xing-biao.md)
+      * [栈](suan-fa/gai-shu/zhan.md)
+      * 队列
+      * 树
+      * 图
     * [Java的一些实现](suan-fa/javade-yi-xie-shi-xian.md)
     * [红黑树](suan-fa/hong-hei-shu.md)
     * [双缓冲队列](suan-fa/shuang-huan-chong-dui-lie.md)
