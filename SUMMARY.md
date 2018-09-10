@@ -130,7 +130,7 @@
     * [概述](suan-fa/gai-shu.md)
       * [线性表](suan-fa/gai-shu/xian-xing-biao.md)
       * [栈](suan-fa/gai-shu/zhan.md)
-      * 队列
+      * [队列](suan-fa/gai-shu/dui-lie.md)
       * 树
       * 图
     * [Java的一些实现](suan-fa/javade-yi-xie-shi-xian.md)
