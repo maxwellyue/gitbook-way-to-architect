@@ -137,7 +137,6 @@
     * [Java的一些实现](suan-fa/javade-yi-xie-shi-xian.md)
     * [红黑树](suan-fa/hong-hei-shu.md)
     * [双缓冲队列](suan-fa/shuang-huan-chong-dui-lie.md)
-    * [树](suan-fa/shu.md)
   * 算法
     * [准备思路](suan-fa/zhun-bei-si-lu.md)
     * [基本排序](suan-fa/ji-ben-pai-xu.md)
