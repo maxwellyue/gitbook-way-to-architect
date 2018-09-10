@@ -131,7 +131,8 @@
       * [线性表](suan-fa/gai-shu/xian-xing-biao.md)
       * [栈](suan-fa/gai-shu/zhan.md)
       * [队列](suan-fa/gai-shu/dui-lie.md)
-      * 树
+      * [串](suan-fa/gai-shu/chuan.md)
+      * [树](suan-fa/gai-shu/shu.md)
       * 图
     * [Java的一些实现](suan-fa/javade-yi-xie-shi-xian.md)
     * [红黑树](suan-fa/hong-hei-shu.md)
