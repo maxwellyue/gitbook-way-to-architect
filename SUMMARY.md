@@ -19,6 +19,7 @@
       * [CopyOnWrite](java-yu-yan/ji-he/copyonwrite.md)
     * [Set](java-yu-yan/ji-he/set.md)
       * [Set综述](java-yu-yan/ji-he/set/setzong-shu.md)
+      * [HashSet实现原理](java-yu-yan/ji-he/set/hashmapshi-xian-yuan-li.md)
       * 1
       * 2
     * [Queue](java-yu-yan/ji-he/queue.md)
