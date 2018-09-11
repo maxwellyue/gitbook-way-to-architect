@@ -2,9 +2,9 @@
 
 在Java中，如果想要对对象进行排序，一般有两种方式：
 
-* 待比较对象的类实现Comparable接口，重写compareTo\(T o\)方法
+* 待比较对象的类实现Comparable接口，重写compareTo\(T o\)方法（一般称之为自然排序）
 
-* 自定义Comparator，重写Compare\(T o1, T o2\)方法
+* 自定义Comparator，重写Compare\(T o1, T o2\)方法（一般称之为定制排序）
 
 ## **Comparable**
 
