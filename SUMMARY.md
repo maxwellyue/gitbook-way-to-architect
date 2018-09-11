@@ -13,6 +13,7 @@
       * [比较器Comparator](java-yu-yan/ji-he/bi-jiao-qi-comparator.md)
     * [List](java-yu-yan/ji-he/list.md)
       * [List综述](java-yu-yan/ji-he/listzong-shu.md)
+      * [ArrayList原理分析](java-yu-yan/ji-he/arraylistyuan-li-fen-xi.md)
       * [ArrayList在循环过程中删除元素的问题](java-yu-yan/ji-he/yi-ge-arraylist-zai-xun-huan-guo-cheng-zhong-shan-chu-hui-bu-hui-chu-wen-ti-wei-shi-mo.md)
       * [常用的小技巧](java-yu-yan/ji-he/chang-yong-de-xiao-ji-qiao.md)
       * [CopyOnWrite](java-yu-yan/ji-he/copyonwrite.md)
