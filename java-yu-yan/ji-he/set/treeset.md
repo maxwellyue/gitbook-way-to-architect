@@ -1,6 +1,8 @@
 # TreeSet
 
-TreeSet是SortedSet接口的唯一实现类，TreeSet可以确保集合元素处于排序状态。TreeSet支持两种排序方式：
+**特性**
+
+TreeSet是SortedSet接口的唯一实现类，TreeSet可以确保集合元素处于排序状态。排序的规则由Comparator或Comparable来定义。
 
 **实现**
 
