@@ -112,14 +112,6 @@ public abstract class AbstractQueuedSynchronizer extends AbstractOwnableSynchron
 
 当前线程获取同步状态失败时，同步器会将当前线程以及等待状态等信息构造成一个Node节点，并将其加入到同步队列，同时会阻塞当前线程。当同步状态释放时，同步器会把同步队列中的首节点中的线程唤醒，使其再次尝试获取同步状态。![](/assets/屏幕快照 2018-09-14 上午12.07.46.png)
 
-
-
-
-
-
-
-
-
 ### **AQS中的主要方法**
 
 同步器的主要使用方式是继承，一般作为同步器组件的静态内部类，在同步器中仅定义了与状态相关的方法，且这个状态既可以独占地获取又可以共享的获取，这样就可以实现不同类型的同步组件（ReetrantLock、ReetrantReadWriteLock和CountDownLatch等）。它简化了锁的实现方式，屏蔽了同步状态管理、线程的排队、等待与唤醒等底层操作。
@@ -147,6 +139,24 @@ public abstract class AbstractQueuedSynchronizer extends AbstractOwnableSynchron
 | boolean tryAcquireSharedNanos\(int arg,long nanos\) | 在acquireSharedInterruptibly基础上增加了超时限制，如果当前线程在超时时间内没有获取到同步状态，那么将会返回false，获取到了返回true |
 | boolean releaseShared\(int arg\) | 共享式释放同步状态 |
 | Collection&lt;Thread&gt; getQueuedThreads\(\) | 获取等待在同步队列上的线程集合 |
+
+
+
+参考内容
+
+[Java 并发编程 ----- AQS（抽象队列同步器）](https://juejin.im/post/5afb9ab3f265da0b736dd1e1)
+
+[队列同步器（AQS）详解](https://blog.csdn.net/summer_yuxia/article/details/71452310)
+
+[Java中的锁——队列同步器](http://rolinyin.iteye.com/blog/2340159)
+
+《Java并发编程的艺术》：Java中的锁
+
+  
+  
+
+
+
 
 
 
