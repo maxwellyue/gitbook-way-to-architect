@@ -58,7 +58,7 @@
       * [InheritableThreadLocal](java-yu-yan/xian-cheng/threadlocal/inheritablethreadlocal.md)
     * [同步与锁](java-yu-yan/xian-cheng/tong-bu-yu-suo/README.md)
       * [synchronize关键字](java-yu-yan/xian-cheng/tong-bu-yu-suo/synchronize-guan-jian-zi.md)
-      * [Lock及实现类](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei.md)
+      * [Lock](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei.md)
       * [volatile关键字](java-yu-yan/xian-cheng/tong-bu-yu-suo/volatile-guan-jian-zi.md)
       * [各种锁的概念](java-yu-yan/xian-cheng/tong-bu-yu-suo/ge-zhong-suo-de-gai-nian.md)
       * [CAS](java-yu-yan/xian-cheng/tong-bu-yu-suo/cas-de-li-jie/README.md)
