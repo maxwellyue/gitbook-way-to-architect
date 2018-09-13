@@ -22,7 +22,7 @@ Condition中的方法如下：（一般会将Condition对象作为成员变量�
 
 ```java
 public interface Condition {
-    
+
     /**
      * 当前线程进入等待状态直到被通知（signalled）或中断(interrupted)
      * 
@@ -40,7 +40,7 @@ public interface Condition {
      * 
      */
     void awaitUninterruptibly();
-    
+
     /**
      * 当前线程进入等待状态，直到被通知或被中断或超时
      * 
@@ -63,7 +63,7 @@ public interface Condition {
      * 如果在到了截止时间仍未被通知，返回false
      */
     boolean awaitUntil(Date deadline) throws InterruptedException;
-    
+
     /**
      * 唤醒一个等待在Condition上的线程
      * 该线程从等待方法返回前必须获得与Condition相关联的锁
@@ -80,7 +80,7 @@ public interface Condition {
 
 **示例**
 
-使用Condition实现一个有界阻塞队列：当队列为空时，队列的获取操作将会阻塞当前线程，直到队列中有新增元素；当队列已满时，队列的插入操作就会阻塞插入线程，直到队列中出现空位（其实就是**简化版的`ArrayBlockingQueue`**）。
+使用Condition实现一个有界阻塞队列：当队列为空时，队列的获取操作将会阻塞当前线程，直到队列中有新增元素；当队列已满时，队列的插入操作就会阻塞插入线程，直到队列中出现空位（其实就是**简化版的**`ArrayBlockingQueue`）。
 
 ```java
 public class BoundedBlockingQueue<T> {
@@ -151,11 +151,13 @@ public class BoundedBlockingQueue<T> {
 }
 ```
 
+**Condition原理**
+
+
+
+
+
 **内容来源：**
 
 大部分来自《Java并发编程的艺术》，部分参考JDK中的注释说明。
-
-
-
-
 
