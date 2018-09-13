@@ -15,6 +15,12 @@
 > （2）返回的迭代器并不保证提供任何的有序性  
 > （3）优先级队列不允许null元素，否则抛出NullPointException。
 
+**LinkedList**
+
+虽然名为List，但也实现了Queue接口。
+
+
+
 # java.util.concurrent
 
 ## BlockingQueue
@@ -116,9 +122,7 @@
 
 通过不加锁的方式实现的队列都是无界的（无法保证队列的长度在确定的范围内）；而加锁的方式，可以实现有界队列。在稳定性要求特别高的系统中，为了防止生产者速度过快，导致内存溢出，只能选择有界队列；同时，为了减少Java的垃圾回收对系统性能的影响，会尽量选择array/heap格式的数据结构。这样筛选下来，符合条件的队列就只有ArrayBlockingQueue。
 
-
-
-扩展阅读
+**扩展阅读**
 
 [Java多线程-工具篇-BlockingQueue](https://www.cnblogs.com/jackyuj/archive/2010/11/24/1886553.html)
 
@@ -127,6 +131,4 @@
 [优先级队列是一种什么样的数据结构](http://www.importnew.com/6510.html)
 
 [高性能队列——Disruptor](https://tech.meituan.com/disruptor.html)
-
-
 
