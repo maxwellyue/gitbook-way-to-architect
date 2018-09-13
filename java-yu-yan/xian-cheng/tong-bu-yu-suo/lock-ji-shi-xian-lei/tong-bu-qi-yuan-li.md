@@ -1,5 +1,7 @@
 # 队列同步器
 
+### 概念
+
 AbstractQueuedSynchronizer**\(AQS\)**，是用来构建锁或者其他同步组件的基础框架，它使用了一个int成员变量（**status**）表示共享资源的同步状态，通过内置的**FIFO队列**来完成资源获取线程的排队工作。
 
 * status：多线程共享某资源时，该共享资源的状态（是否已经被其他线程锁住等），使用这个status来表示。
@@ -17,22 +19,21 @@ AbstractQueuedSynchronizer**\(AQS\)**，是用来构建锁或者其他同步组�
 
 * **独占模式**
 * * 表示共享状态值state每次只能由一条线程持有，其他线程如果需要获取，则需要阻塞，如JUC中的`ReentrantLock`
-
 * **共享模式**
 
   * 表示共享状态值state每次可以由多个线程持有，如JUC中的`CountDownLatch`
 
-##### AQS中的共享状态值
+### AQS中的共享状态值
 
 AQS是基于一个共享的int类型的state值来实现同步器同步的：
 
 ```java
 public abstract class AbstractQueuedSynchronizer extends AbstractOwnableSynchronizer implements java.io.Serializable {  
-    
+
     ... ...
-    
+
     private volatile int state;//*同步状态*  
-    
+
     //获取当前同步状态
     protected final int getState() {
         return state;
@@ -45,18 +46,16 @@ public abstract class AbstractQueuedSynchronizer extends AbstractOwnableSynchron
     protected final boolean compareAndSetState(int expect, int update) {
         return unsafe.compareAndSwapInt(this, stateOffset, expect, update);
     }
-    
+
     ... ...  
-}   
+}
 ```
 
 多线程共享某资源时，该共享资源的状态（是否已经被其他线程锁住等），AQS使用status来表示。为了达到多线程同步的功能，必然对该值的修改必须多线程可见，因此，state采用volatile修饰，而且`getter`和`seter`方法采用final进行修饰，目的是限制AQS的子类只能调用这两个方法对state的值进行设置和获取，而不能对其进行重写自定义设置/获取逻辑。
 
-  
-**AQS中FIFO队列中节点的数据结构**
+### **AQS中FIFO队列中节点的数据结构**
 
 ```java
-static final class Node {
     //标识节点为共享模式
     static final Node SHARED = new Node();
     //标识节点为独占模式
@@ -111,13 +110,21 @@ static final class Node {
 }
 ```
 
-节点Node是为了保存由于某种原因导致无法获取共享资源state而被入队的线程，因此`Node`中使用了`waitStatus`表示节点入队的原因，使用`Thread`对象来表示节点所关联的线程。至于`prev`，`next`，则是一般双向队列数据结构必须提供的指针，用于对队列进行相关操作。
+当前线程获取同步状态失败时，同步器会将当前线程以及等待状态等信息构造成一个Node节点，并将其加入到同步队列，同时会阻塞当前线程。当同步状态释放时，同步器会把同步队列中的首节点中的线程唤醒，使其再次尝试获取同步状态。![](/assets/屏幕快照 2018-09-14 上午12.07.46.png)
 
-**AQS中的主要方法**
+
+
+
+
+
+
+
+
+### **AQS中的主要方法**
 
 同步器的主要使用方式是继承，一般作为同步器组件的静态内部类，在同步器中仅定义了与状态相关的方法，且这个状态既可以独占地获取又可以共享的获取，这样就可以实现不同类型的同步组件（ReetrantLock、ReetrantReadWriteLock和CountDownLatch等）。它简化了锁的实现方式，屏蔽了同步状态管理、线程的排队、等待与唤醒等底层操作。
 
-同步器中可重写的方法如下：
+**同步器中可重写的方法如下：**
 
 | 方法 | 说明 |
 | :--- | :--- |
@@ -127,20 +134,19 @@ static final class Node {
 | boolean tryReleaseShared\(int arg\) | 共享式释放同步状态 |
 | boolean isHeldExclusively\(\) | 当前同步器是否在独占模式下被线程占用，一般该方法表示是否被当前线程所独占 |
 
-同步器中的模板方法如下：
+**同步器中的模板方法如下：**
 
-|  |  |
-| :--- | :--- |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
-
-
-
-
+| 方法 | 说明 |
+| --- | --- |
+| void acquire\(int arg\) | 独占式获取同步状态，如果当前线程获取同步状态成功，则由该方法返回，否则，将会进入同步队列等待，该方法将会调用重写的tryAcquire\(int arg\) 方法。 |
+| void acquireInterruptibly\(int arg\) | 与acquire\(int arg\) 相同，但是该方法响应中断，当前线程未获取到同步状态而进入同步队列中，如果当前被中断，则该方法会抛出InterruptedException并返回。 |
+| boolean tryAcquireNanos\(int arg,long nanos\) | 在acquireInterruptibly基础上增加了超时限制，如果当前线程在超时时间内没有获取到同步状态，那么将会返回false，获取到了返回true。 |
+| boolean release\(int arg\) | 独占式的释放同步状态，该方法会在释放同步状态之后，将同步队列中第一个节点包含的线程唤醒 |
+| void acquireShared\(int arg\) | 共享式获取同步状态，如果当前线程未获取到同步状态，将会进入同步队列等待。与独占式的不同是同一时刻可以有多个线程获取到同步状态。 |
+| void acquireSharedInterruptibly\(int arg\) | 与acquire\(int arg\) 相同，但是该方法响应中断，当前线程未获取到同步状态而进入同步队列中，如果当前被中断，则该方法会抛出InterruptedException并返回。 |
+| boolean tryAcquireSharedNanos\(int arg,long nanos\) | 在acquireSharedInterruptibly基础上增加了超时限制，如果当前线程在超时时间内没有获取到同步状态，那么将会返回false，获取到了返回true |
+| boolean releaseShared\(int arg\) | 共享式释放同步状态 |
+| Collection&lt;Thread&gt; getQueuedThreads\(\) | 获取等待在同步队列上的线程集合 |
 
 
 
