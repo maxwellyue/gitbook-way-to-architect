@@ -180,35 +180,30 @@ final boolean acquireQueued(final Node node, int arg) {
     boolean failed = true;
     try {
         boolean interrupted = false;
+        //无限循环
         for (;;) {
             //获取当前节点的前驱节点
             final Node p = node.predecessor();
             //如果前驱节点是头节点，则进行获取同步状态
             if (p == head && tryAcquire(arg)) {
-                //当前节点获取同步状态成功，则将当前节点设置为头节点（因为只可能有一个线程线程），并从自旋中返回
+                //当前节点获取同步状态成功，则将当前节点设置为头节点，并从自旋中返回
+                //（因为只可能有一个线程获取到同步状态，所以这里不需要通过CAS操作来设置）
                 setHead(node);
                 p.next = null; // help GC
                 failed = false;
                 return interrupted;
             }
-            if (shouldParkAfterFailedAcquire(p, node) &&
-                parkAndCheckInterrupt())
-                interrupted = true;
-        }
-    } finally {
+            
+            if (shouldParkAfterFailedAcquire(p, node) && //如果应该阻塞线程
+                parkAndCheckInterrupt())//阻塞线程，直到被中断才返回true，否则就一直阻塞
+                interrupted = true;     //阻塞过程被中断，则会继续从头开始for循环
+        }                               //这样就保证：队列中某个节点的前驱节点不是头节点，但是被中断了，
+    } finally {                         //也不会从循环中逃出，即不会出队，保证了FIFO的性质
         if (failed)
             cancelAcquire(node);
     }
 }
 ```
-
-当前线程在这个for\(;;\)中尝试获取同步状态，而只有前驱节点是头节点才能够获取同步状态：
-
-头节点是成功获取到同步状态的节点，而头节点的线程释放了同步状态后，将会唤醒后继节点，后继节点的线程在被唤醒后，需要检查自己的前驱节点是否为头节点；
-
-
-
-
 
 
 
@@ -241,26 +236,6 @@ final boolean acquireQueued(final Node node, int arg) {
 | boolean tryAcquireSharedNanos\(int arg,long nanos\) | 在acquireSharedInterruptibly基础上增加了超时限制，如果当前线程在超时时间内没有获取到同步状态，那么将会返回false，获取到了返回true |
 | boolean releaseShared\(int arg\) | 共享式释放同步状态 |
 | Collection&lt;Thread&gt; getQueuedThreads\(\) | 获取等待在同步队列上的线程集合 |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 参考内容
 
