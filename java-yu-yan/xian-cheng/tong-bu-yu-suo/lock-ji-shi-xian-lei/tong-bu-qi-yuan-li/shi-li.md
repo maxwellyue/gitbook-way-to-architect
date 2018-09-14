@@ -1,6 +1,6 @@
 ### **AQS中的主要方法**
 
-同步器的主要使用方式是继承，一般作为同步器组件的静态内部类，在同步器中仅定义了与状态相关的方法，且这个状态既可以独占地获取又可以共享的获取，这样就可以实现不同类型的同步组件（ReetrantLock、ReetrantReadWriteLock和CountDownLatch等）。它简化了锁的实现方式，屏蔽了同步状态管理、线程的排队、等待与唤醒等底层操作。
+同步器的主要使用方式是继承，一般作为同步器组件的静态内部类。同步器中仅定义了与状态相关的方法，且这个状态既可以独占地获取又可以共享的获取，这样就可以实现不同类型的同步组件（ReetrantLock、ReetrantReadWriteLock和CountDownLatch等）。它简化了锁的实现方式，屏蔽了同步状态管理、线程的排队、等待与唤醒等底层操作。
 
 **同步器中可重写的方法如下：**
 
@@ -25,3 +25,6 @@
 | boolean tryAcquireSharedNanos\(int arg,long nanos\) | 在acquireSharedInterruptibly基础上增加了超时限制，如果当前线程在超时时间内没有获取到同步状态，那么将会返回false，获取到了返回true |
 | boolean releaseShared\(int arg\) | 共享式释放同步状态 |
 | Collection&lt;Thread&gt; getQueuedThreads\(\) | 获取等待在同步队列上的线程集合 |
+
+
+
