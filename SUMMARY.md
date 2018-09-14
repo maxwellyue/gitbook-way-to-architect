@@ -103,7 +103,6 @@
     * [GC日志分析](java-yu-yan/jvm/gc-ri-zhi-fen-xi.md)
     * [Java8 JVM 参数解读](java-yu-yan/jvm/java8-jvm-can-shu-jie-du.md)
     * 垃圾收集器和内存分配策略
-    * [虚拟机执行引擎](java-yu-yan/jvm/xu-ni-ji-zhi-xing-yin-qing.md)
   * [面向对象](java-yu-yan/mian-xiang-dui-xiang/README.md)
     * [Object类中的方法](java-yu-yan/mian-xiang-dui-xiang/object-lei-zhong-de-fang-fa.md)
     * [值传递还是引用传递？](java-yu-yan/mian-xiang-dui-xiang/zhi-chuan-di-huan-shi-yin-yong-chuan-di.md)
