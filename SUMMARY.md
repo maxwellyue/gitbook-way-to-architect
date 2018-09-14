@@ -61,6 +61,7 @@
       * [Lock](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei.md)
         * [队列同步器](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei/tong-bu-qi-yuan-li.md)
           * [示例](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei/tong-bu-qi-yuan-li/shi-li.md)
+          * [同步状态的获取与释放](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei/tong-bu-qi-yuan-li/tong-bu-zhuang-tai-de-huo-qu-yu-shi-fang.md)
         * [重入锁和读写锁](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei/zhong-ru-suo-he-du-xie-suo.md)
         * [LockSupport](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei/locksupport.md)
         * [Condition](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei/condition.md)
