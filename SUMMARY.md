@@ -63,7 +63,7 @@
           * [同步状态的获取与释放](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei/tong-bu-qi-yuan-li/tong-bu-zhuang-tai-de-huo-qu-yu-shi-fang.md)
           * [使用方式](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei/tong-bu-qi-yuan-li/shi-li.md)
           * [示例：Mutex](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei/tong-bu-qi-yuan-li/shi-li-1.md)
-          * 示例：TwinsLock
+          * [示例：TwinsLock](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei/tong-bu-qi-yuan-li/shi-liff1a-twinslock.md)
         * [重入锁和读写锁](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei/zhong-ru-suo-he-du-xie-suo.md)
         * [LockSupport](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei/locksupport.md)
         * [Condition](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei/condition.md)

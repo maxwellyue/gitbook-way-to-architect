@@ -99,7 +99,7 @@ public class Counter {
     private int num;
 
     private Mutex mutex = new Mutex();
-    
+
     public Counter(int num){
         this.num = num;
     }
@@ -134,10 +134,6 @@ public class MutexExample {
 //输出如下：
 1000
 ```
-
-
-
-
 
 
 
