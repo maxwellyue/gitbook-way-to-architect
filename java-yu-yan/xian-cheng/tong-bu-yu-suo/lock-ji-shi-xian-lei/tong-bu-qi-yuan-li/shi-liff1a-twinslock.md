@@ -47,7 +47,7 @@ public class TwinsLock implements Lock {
                 }
             }
         }
-        
+
         final ConditionObject newCondition() {
             return new ConditionObject();
         }
@@ -93,11 +93,11 @@ public class TwinsLock implements Lock {
 
 ```java
 public class TwinsLockExample {
-    
+
     public static void main(String[] args) {
 
         final Lock lock = new TwinsLock();
-        
+
         class Worker extends Thread {
             @Override
             public void run() {
@@ -115,14 +115,14 @@ public class TwinsLockExample {
                 }
             }
         }
-        
+
         //启动10个线程
         for (int i = 0; i < 10; i++) {
             Worker worker = new Worker();
             worker.setDaemon(true);
             worker.start();
         }
-        
+
         //每间隔一秒钟打印一个空行.
         for (int i = 0; i < 10; i++) {
             try {
