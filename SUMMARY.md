@@ -60,6 +60,7 @@
       * [synchronize关键字](java-yu-yan/xian-cheng/tong-bu-yu-suo/synchronize-guan-jian-zi.md)
       * [Lock](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei.md)
         * [队列同步器](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei/tong-bu-qi-yuan-li.md)
+          * [示例](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei/tong-bu-qi-yuan-li/shi-li.md)
         * [重入锁和读写锁](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei/zhong-ru-suo-he-du-xie-suo.md)
         * [LockSupport](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei/locksupport.md)
         * [Condition](java-yu-yan/xian-cheng/tong-bu-yu-suo/lock-ji-shi-xian-lei/condition.md)
