@@ -1,4 +1,3 @@
-# 前言
 
-入门或者进阶。
+Read here [way-to-architect](https://maxwell.gitbook.io/way-to-architect)
 
