@@ -112,21 +112,9 @@ public abstract class AbstractQueuedSynchronizer extends AbstractOwnableSynchron
 
 当前线程获取同步状态失败时，同步器会将当前线程以及等待状态等信息构造成一个Node节点，并将其加入到同步队列，同时会阻塞当前线程。当同步状态释放时，同步器会把同步队列中的首节点中的线程唤醒，使其再次尝试获取同步状态。
 
-### 
 
 
-
-
-
-
-
-
-
-
-
-
-
-参考内容
+## 参考内容
 
 [Java 并发编程 ----- AQS（抽象队列同步器）](https://juejin.im/post/5afb9ab3f265da0b736dd1e1)
 
