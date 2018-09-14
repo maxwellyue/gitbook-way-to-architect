@@ -95,6 +95,7 @@
     * [类文件结构](java-yu-yan/jvm/lei-wen-jian-jie-gou.md)
     * [类初始化顺序](java-yu-yan/jvm/lei-chu-shi-hua-shun-xu.md)
     * [类加载机制](java-yu-yan/jvm/lei-jia-zai-ji-zhi.md)
+    * [垃圾收集器和内存分配策略](java-yu-yan/jvm/la-ji-shou-ji-qi-he-nei-cun-fen-pei-ce-lve.md)
     * [垃圾回收算法](java-yu-yan/jvm/la-ji-hui-shou-suan-fa.md)
     * [垃圾收集器](java-yu-yan/jvm/la-ji-shou-ji-qi.md)
     * [四种引用类型区别及何时回收](java-yu-yan/jvm/si-zhong-yin-yong-lei-xing-qu-bie-ji-he-shi-hui-shou.md)
@@ -102,7 +103,7 @@
     * [JVM常用配置](java-yu-yan/jvm/jvm-chang-yong-pei-zhi.md)
     * [GC日志分析](java-yu-yan/jvm/gc-ri-zhi-fen-xi.md)
     * [Java8 JVM 参数解读](java-yu-yan/jvm/java8-jvm-can-shu-jie-du.md)
-    * [java -jar启动时的依赖jar的加载](java-yu-yan/jvm/java-jar-qi-dong-shi-de-yi-lai-jar-de-jia-zai.md)
+    * 垃圾收集器和内存分配策略
   * [面向对象](java-yu-yan/mian-xiang-dui-xiang/README.md)
     * [Object类中的方法](java-yu-yan/mian-xiang-dui-xiang/object-lei-zhong-de-fang-fa.md)
     * [值传递还是引用传递？](java-yu-yan/mian-xiang-dui-xiang/zhi-chuan-di-huan-shi-yin-yong-chuan-di.md)
