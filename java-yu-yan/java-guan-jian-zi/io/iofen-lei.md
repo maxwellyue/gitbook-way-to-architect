@@ -10,7 +10,7 @@ Java 的 I/O 操作类在包 java.io 下，大概有将近 80 个类，但是这
 
 * 输出流：以OutputStream结尾的的以及其子类
 
-**输入还是输出：**谈这个概念是要有对象的，也就是说是谁的输入流、谁的输出流。对于一个java程序，往外发出信息，就要用输出流。而要从别的地方读取数据，就要用输入流。对于一个文件，别人发来信息我要接受，就要用输入流来读取，而要让A来读取它的内容，那么A就要用输入来读取。总之，两点：一个是具体对象，一个是数据的流向。理解这两个概念就可以明白到底是用输入流还是输出流。这里的输入输出，都是针对java程序而言的，程序从文件中读取数据就用输入流，程序往文件中写数据就要用输出流。
+**输入还是输出：**谈这个概念是要有对象的，也就是说是谁的输入流、谁的输出流。对于一个java程序，往外发出信息，就要用输出流。而要从别的地方读取数据，就要用输入流。对于一个文件，别人发来信息我要接受，就要用输入流来读取，而要让A来读取它的内容，那么A就要用输入来读取。总之，两点：一个是具体对象，一个是数据的流向。理解这两个概念就可以明白到底是用输入流还是输出流。这里的输入输出，都是针对java程序而言的，**程序从文件中读取数据就用输入流，程序往文件中写数据就要用输出流**。
 
 #### 按照操作单元划分
 
@@ -38,13 +38,35 @@ Java 的 I/O 操作类在包 java.io 下，大概有将近 80 个类，但是这
   * 转换流：InputStreamReader、OutputStreamReader等，实现字节流和字符流之间的转换。
   * 数据流 DataInputStream、DataOutputStream 等，提供将基础数据类型写入到文件中或者读取文件。
 
-## 基于字节的 I/O 操作接口
+在计算机的世界中，无论是内存/磁盘/网络传输，最小的存储单元都是字节（一个字节对应8个位），但在程序中，有意义的数据都是以字符形式出现。在Java中的I/O体系中，InputStream/OutputStream对应字节，Reader/Writer对应字符。在此基础之上，针对常见的文件操作，Java提供了File/RandomAccessFile等类；针对常见的网络操作，Java提供了NIO/NIO2等框架。
+
+下面将从输入/输出这个角度，讲解Java中的I/O体系中的InputStream/OutputStream以及Reader/Writer。
+
+## 输入流
 
 ---
 
 基于字节的 I/O 操作接口输入和输出分别是：InputStream 和 OutputStream。
 
 **InputStream**
+
+InputStream 是所有的输入字节流的父类，它是一个抽象类，主要包含三个方法：
+
+```java
+//读取一个字节并以整数的形式返回(0~255),如果返回-1已到输入流的末尾。 
+int read()；
+
+//读取一系列字节并存储到一个数组buffer，返回实际读取的字节数，如果读取前已到输入流的末尾返回-1。 
+int read(byte[] buffer)；
+
+//读取length个字节并存储到一个字节数组buffer，从off位置开始存,最多len，返回实际读取的字节数，如果读取前以到输入流的末尾返回-1。 
+int read(byte[] buffer, int off, int len) ；
+```
+
+在执行完流操作后，要调用`close()`方法来显式地关闭输入流，因为程序里打开的IO资源不属于内存资源，垃圾回收机制无法回收该资源，所以应该显式关闭文件IO资源。
+
+21212
+
 * FileInputStream：
 * FilterInputStream：
 * PipedInputStream：
@@ -52,14 +74,13 @@ Java 的 I/O 操作类在包 java.io 下，大概有将近 80 个类，但是这
 * StringBufferInputStream
 * ByteArrayInputStream
 
-
 **OutputStream**
+
 * FileOutputStream
 * FilterOutputStream
 * PipedOutputStream
 * ObjectOutputStream
 * ByteArrayOutputStream
-
 
 ## 基于字符的 I/O 操作接口
 
@@ -69,7 +90,18 @@ Java 的 I/O 操作类在包 java.io 下，大概有将近 80 个类，但是这
 
 **Reader**
 
-Reader提供了一个抽象方法 int read\(char cbuf\[\], int off, int len\)，返回读到的 n 个字节数。
+Reader 是所有的输入字符流的父类，它是一个抽象类，主要包含三个方法（与InputStream所提供的方法类似，只不过读取的数据单元变为了字符）：
+
+```java
+//读取一个字符并以整数的形式返回(0~255),如果返回-1已到输入流的末尾。 
+int read()； 
+
+//读取一系列字符并存储到一个数组buffer，返回实际读取的字符数，如果读取前已到输入流的末尾返回-1。 
+int read(char[] cbuf)； 
+
+//读取length个字符,并存储到一个数组buffer，从off位置开始存,最多读取len，返回实际读取的字符数，如果读取前以到输入流的末尾返回-1。 
+int read(char[] cbuf, int off, int len)
+```
 
 * InputStreamReader
   * FileReader
@@ -80,7 +112,6 @@ Reader提供了一个抽象方法 int read\(char cbuf\[\], int off, int len\)，
 * FilterReader
   * PushBackReader
 * PipedReader
-
 
 **Writer**
 
@@ -94,8 +125,6 @@ Writer 类提供了一个抽象方法 write\(char cbuf\[\], int off, int len\) �
 * BufferedWriter
 * PrintWriter
 * FilterWriter
-
-
 
 不管是 Writer 还是 Reader 类，它们都只定义了读取或写入的数据字符的方式，也就是怎么写或读，但是并没有规定数据要写到哪去，或者从哪里读取。
 
@@ -134,9 +163,9 @@ Writer的写入过程与之类似：通过 OutputStreamWriter 类完成，字符
 OutputStream out = new BufferedOutputStream(new ObjectOutputStream(new FileOutputStream("fileName"))；
 ```
 
+# 参考
 
+[深入分析 Java I/O 的工作机制](https://www.ibm.com/developerworks/cn/java/j-lo-javaio/index.html)
 
-
-
-内容来源：[深入分析 Java I/O 的工作机制](https://www.ibm.com/developerworks/cn/java/j-lo-javaio/index.html)，略有改动。
+[Java IO流详解（二）——IO流的框架体系](http://lruheng.com/2017/02/22/Java-IO流详解（二）——IO流的框架体系/)
 
