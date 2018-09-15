@@ -2,7 +2,7 @@
 
 ---
 
-### BIO 带来的挑战 {#N1011D}
+### BIO 的问题 {#N1011D}
 
 BIO 即阻塞 I/O，不管是磁盘 I/O 还是网络 I/O，数据在写入 OutputStream 或者从 InputStream 读取时都有可能会阻塞。一旦有线程阻塞将会失去 CPU 的使用权，这在当前的大规模访问量和有性能要求情况下是不能接受的。虽然当前的网络 I/O 有一些解决办法，如一个客户端一个处理线程，出现阻塞时只是一个线程阻塞而不会影响其它线程工作，还有为了减少系统线程的开销，采用线程池的办法来减少线程创建和回收的成本，但是有一些使用场景仍然是无法解决的。如当前一些需要大量 HTTP 长连接的情况，像淘宝现在使用的 Web 旺旺项目，服务端需要同时保持几百万的 HTTP 连接，但是并不是每时每刻这些连接都在传输数据，这种情况下不可能同时创建这么多线程来保持连接。即使线程的数量不是问题，仍然有一些问题还是无法避免的。如这种情况，我们想给某些客户端更高的服务优先级，很难通过设计线程的优先级来完成，另外一种情况是，我们需要让每个客户端的请求在服务端可能需要访问一些竞争资源，由于这些客户端是在不同线程中，因此需要同步，而往往要实现这些同步操作要远远比用单线程复杂很多。以上这些情况都说明，我们需要另外一种新的 I/O 操作方式。
 
@@ -16,6 +16,84 @@ BIO 即阻塞 I/O，不管是磁盘 I/O 还是网络 I/O，数据在写入 Outpu
 
 理解了这些概念后我们看一下，实际上它们是如何工作的，下面是典型的一段 NIO 代码：
 
+```java
+public void selector() throws IOException {
+    ByteBuffer buffer = ByteBuffer.allocate(1024);//创建缓冲器
+    Selector selector = Selector.open();//调用 Selector 的静态工厂创建一个选择器
+    ServerSocketChannel ssc = ServerSocketChannel.open();//创建一个服务端的Channel
+    ssc.configureBlocking(false);//设置为非阻塞方式
+    ssc.socket().bind(new InetSocketAddress(8080));//将channel绑定到一个Socket对象
+    ssc.register(selector, SelectionKey.OP_ACCEPT);//将channel注册到选择器上，并设置监听的事件类型
+    while (true) {
+        Set selectedKeys = selector.selectedKeys();//取得所有key集合
+        Iterator it = selectedKeys.iterator();
+        while (it.hasNext()) {
+            SelectionKey key = (SelectionKey) it.next();
+            if ((key.readyOps() & SelectionKey.OP_ACCEPT) == SelectionKey.OP_ACCEPT) {
+                ServerSocketChannel ssChannel = (ServerSocketChannel) key.channel();
+                SocketChannel sc = ssChannel.accept();//接受到服务端的请求
+                sc.configureBlocking(false);
+                sc.register(selector, SelectionKey.OP_READ);
+                it.remove();
+            } else if 
+            ((key.readyOps() & SelectionKey.OP_READ) == SelectionKey.OP_READ) {
+                SocketChannel sc = (SocketChannel) key.channel();
+                while (true) {
+                    buffer.clear();
+                    int n = sc.read(buffer);//读取数据
+                    if (n <= 0) {
+                        break;
+                    }
+                    buffer.flip();
+                }
+                it.remove();
+            }
+        }
+    }
+}
+```
+
+调用 Selector 的静态工厂创建一个选择器，创建一个服务端的 Channel 绑定到一个 Socket 对象，并把这个通信信道注册到选择器上，把这个通信信道设置为非阻塞模式。然后就可以调用 Selector 的 selectedKeys 方法来检查已经注册在这个选择器上的所有通信信道是否有需要的事件发生，如果有某个事件发生时，将会返回所有的 SelectionKey，通过这个对象 Channel 方法就可以取得这个通信信道对象从而可以读取通信的数据，而这里读取的数据是 Buffer，这个 Buffer 是我们可以控制的缓冲器。
+
+在上面的这段程序中，是将 Server 端的监听连接请求的事件和处理请求的事件放在一个线程中，但是在实际应用中，我们通常会把它们放在两个线程中，一个线程专门负责监听客户端的连接请求，而且是阻塞方式执行的；另外一个线程专门来处理请求，这个专门处理请求的线程才会真正采用 NIO 的方式，像 Web 服务器 Tomcat 和 Jetty 都是这个处理方式。
+
+### Buffer 的工作方式 {#N10153}
+
+上面介绍了 Selector 将检测到有通信信道 I/O 有数据传输时，通过 selelct\(\) 取得 SocketChannel，将数据读取或写入 Buffer 缓冲区。下面讨论一下 Buffer 如何接受和写出数据？
+
+Buffer 可以简单的理解为一组基本数据类型的元素列表，它通过几个变量来保存这个数据的当前位置状态，如下所示：
+
+| 变量 | **说明** |
+| :--- | :--- |
+| capacity | 缓冲区数组的总长度 |
+| position | 下一个要操作的数据元素的位置 |
+| limit | 数组中不可操作的下一个元素的位置，limit&lt;=capacity |
+| mark | 用于记录当前 position 的前一个位置或者默认是 0 |
+
+在实际操作数据时它们有如下关系：
+
+##### ![](https://www.ibm.com/developerworks/cn/java/j-lo-javaio/image023.jpg "Figure xxx. Requires a heading") {#N10189}
+
+我们通过 ByteBuffer.allocate\(11\) 方法创建一个 11 个 byte 的数组缓冲区，初始状态如上图所示，position 的位置为 0，capacity 和 limit 默认都是数组长度。当我们写入 5 个字节时位置变化如下图所示：
+
+##### ![](https://www.ibm.com/developerworks/cn/java/j-lo-javaio/image025.jpg "Figure xxx. Requires a heading") {#N10194}
+
+这时我们需要将缓冲区的 5 个字节数据写入 Channel 通信信道，所以我们需要调用 byteBuffer.flip\(\) 方法，数组的状态又发生如下变化：
+
+##### ![](https://www.ibm.com/developerworks/cn/java/j-lo-javaio/image027.jpg "Figure xxx. Requires a heading") {#N1019F}
+
+这时底层操作系统就可以从缓冲区中正确读取这 5 个字节数据发送出去了。在下一次写数据之前我们在调一下 clear\(\) 方法。缓冲区的索引状态又回到初始位置。
+
+这里还要说明一下 mark，当我们调用 mark\(\) 时，它将记录当前 position 的前一个位置，当我们调用 reset 时，position 将恢复 mark 记录下来的值。
+
+还有一点需要说明，通过 Channel 获取的 I/O 数据首先要经过操作系统的 Socket 缓冲区再将数据复制到 Buffer 中，这个的操作系统缓冲区就是底层的 TCP 协议关联的 RecvQ 或者 SendQ 队列，从操作系统缓冲区到用户缓冲区复制数据比较耗性能，Buffer 提供了另外一种直接操作操作系统缓冲区的的方式即 ByteBuffer.allocateDirector\(size\)，这个方法返回的 byteBuffer 就是与底层存储空间关联的缓冲区，它的操作方式与 linux2.4 内核的 sendfile 操作方式类似。
+
+
+
+
+
+
+
 
 
 
@@ -27,6 +105,4 @@ BIO 即阻塞 I/O，不管是磁盘 I/O 还是网络 I/O，数据在写入 Outpu
 
 
 内容来源：[深入分析 Java I/O 的工作机制](https://www.ibm.com/developerworks/cn/java/j-lo-javaio/index.html)
-
-
 
