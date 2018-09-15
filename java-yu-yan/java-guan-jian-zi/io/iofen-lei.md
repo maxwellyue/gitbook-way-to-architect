@@ -95,6 +95,7 @@ public abstract class Reader implements Readable, Closeable {
   * LineNumberReader：对原输入流提供按行读取的功能
 
 * CharArrayReader：将字符数组转换为输入流
+
 * StringReader：将字符串转换为输入流
 * FilterReader：对原字符流进行过滤
   * PushbackReader：
@@ -160,6 +161,7 @@ public abstract class Writer implements Appendable, Closeable, Flushable {
 * CharArrayWriter：将数据写入到内存中的字符数组中
 
 * StringWriter：将数组写入到一个字符串中
+
 * PipedWriter：todo
 * BufferedWriter：对输出流提供缓冲功能
 * PrintWriter：将数据写入到控制台，即提供打印功能
@@ -183,12 +185,14 @@ public abstract class Writer implements Appendable, Closeable, Flushable {
   * * 以Buffer开头的，说明该类是对另外一个流提供缓冲功能（输入流/输出流）
     * 以Print开头的，说明该类将数据写入到控制台，即提供打印功能（输出流）
 * 后半部分
-* * zijis输入/输出
+* * 字节/字符
+  * * 以InputStream/OutputStream结束的，说明是字节流
+    * 以Reader/Writer结束的，说明是字符流
   * 输入/输出
-  * * 以Input/Reader结束的，说明是输入流
-  * * 以Output/Writer结束的，说明是输出流
+  * * 以InputStream/Reader结束的，说明是输入流
+  * * 以OutputStream/Writer结束的，说明是输出流
 
-**Java I/O类库的设计是装饰模式应用的经典**。即不同的输入/输出流，可以被具有不同功能的类进行装饰，实现功能增强，如下：
+在使用这些类的时候，往往是组合使用的。Java I/O类库的设计是装饰模式应用的经典。即不同的输入/输出流，可以被具有不同功能的类进行装饰，实现功能增强，如下：
 
 ```java
 OutputStream out = new BufferedOutputStream(new ObjectOutputStream(new FileOutputStream("fileName"))；
