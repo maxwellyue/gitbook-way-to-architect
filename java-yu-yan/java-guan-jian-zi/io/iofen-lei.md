@@ -53,22 +53,22 @@ public abstract class InputStream implements Closeable {
 
     //读取一个字节并以整数的形式返回(0~255),如果返回-1已到输入流的末尾。 
     int read();
-    
+
     //读取一系列字节并存储到一个数组buffer，返回实际读取的字节数，如果读取前已到输入流的末尾返回-1。 
     int read(byte[] buffer);
-    
+
     //读取length个字节并存储到一个字节数组buffer，从off位置开始存,最多len，返回实际读取的字节数，如果读取前以到输入流的末尾返回-1。 
     int read(byte[] buffer, int off, int len);
 }
 
 public abstract class Reader implements Readable, Closeable {
-    
+
     //读取一个字符并以整数的形式返回(0~255),如果返回-1已到输入流的末尾。 
     int read(); 
-    
+
     //读取一系列字符并存储到一个数组buffer，返回实际读取的字符数，如果读取前已到输入流的末尾返回-1。 
     int read(char[] cbuf);
-    
+
     //读取length个字符,并存储到一个数组buffer，从off位置开始存,最多读取len，返回实际读取的字符数，如果读取前以到输入流的末尾返回-1。 
     int read(char[] cbuf, int off, int len);
 }
@@ -79,7 +79,7 @@ public abstract class Reader implements Readable, Closeable {
 * FileInputStream：从文件获取输入流，实现对文件的读取
 * FilterInputStream：过滤流，一般是对原来的输入流进行功能增强
 * * BufferedInputStream：提供缓冲功能
-  * DataInputStream： 包装为Java中的基本数据类型的流
+  * DataInputStream： 包装为Java中的基本数据类型的流
   * PushbackInputStream：
 * PipedInputStream：用于进程间通信
 * SequenceInputStream：把多个输入聚合成一个输入流
@@ -90,9 +90,10 @@ public abstract class Reader implements Readable, Closeable {
 
 * InputStreamReader：将字节流转换为字符流
 * * FileReader：与FileInputStream对应，用来读取文件
-
 * BufferedReader：对原输入流提供缓冲
+
   * LineNumberReader：对原输入流提供按行读取的功能
+
 * CharArrayReader：将字符数组转换为输入流
 * StringReader：将字符串转换为输入流
 * FilterReader：对原字符流进行过滤
@@ -103,19 +104,19 @@ public abstract class Reader implements Readable, Closeable {
 
 ---
 
-OutputStream是所有的输出字节流的父类，Writer 是所有的输出字符流的父类，这两个基类的功能基本一样，都是从将流写入到某处，但是操作的数据单元不同。 
+OutputStream是所有的输出字节流的父类，Writer 是所有的输出字符流的父类，这两个基类的功能基本一样，都是从将流写入到某处，但是操作的数据单元不同。
 
 ```java
 public abstract class OutputStream implements Closeable, Flushable {
     //向输出流中写入一个字节数据,该字节数据为参数b的低8位。 
     void write(int b) ; 
-    
+
     //将一个字节类型的数组中的数据写入输出流。 
     void write(byte[] b); 
-    
+
     //将一个字节类型的数组中的从指定位置（off）开始的,len个字节写入到输出流。 
     void write(byte[] b, int off, int len); 
-    
+
     //将输出流中缓冲的数据全部写出到目的地。 
     void flush();
 }
@@ -123,20 +124,20 @@ public abstract class OutputStream implements Closeable, Flushable {
 public abstract class Writer implements Appendable, Closeable, Flushable {
     //向输出流中写入一个字符数据,该字节数据为参数b的低16位。 
     void write(int c); 
-    
+
     //将一个字符类型的数组中的数据写入输出流， 
     void write(char[] cbuf) 
-    
+
     //将一个字符类型的数组中的从指定位置（offset）开始的,length个字符写入到输出流。 
     void write(char[] cbuf, int offset, int length);
-     
+
     //将一个字符串中的字符写入到输出流。 
     void write(String string); 
-    
+
     //将一个字符串从offset开始的length个字符写入到输出流。 
     void write(String string, int offset, int length); 
     //将输出流中缓冲的数据全部写出到目的地。 
-    
+
     void flush()
 }
 ```
@@ -156,15 +157,13 @@ public abstract class Writer implements Appendable, Closeable, Flushable {
 
 * OutputStreamWriter：从字符到字节的转换
 * * FileWriter：将数据写入到文件中
-
 * CharArrayWriter：将数据写入到内存中的字符数组中
+
 * StringWriter：将数组写入到一个字符串中
 * PipedWriter：todo
 * BufferedWriter：对输出流提供缓冲功能
 * PrintWriter：将数据写入到控制台，即提供打印功能
 * FilterWriter：对输出流进行过滤
-
-
 
 ## 总结
 
@@ -173,7 +172,7 @@ public abstract class Writer implements Appendable, Closeable, Flushable {
 对于Java的I/O诸多实现类的命名，如果将实现类的名字分为前后两部分，则可以从名字中获取这样的信息：
 
 * 前半部分
-* * 流的数据源
+* * 流的数据源/目的地
   * * 以File开头的，说明操作的是文件
     * 以String开头的，说明操作的是字符串
     * 以Char开头的，说明操作的是字符
@@ -181,17 +180,13 @@ public abstract class Writer implements Appendable, Closeable, Flushable {
     * 以Data开头的，说明操作的Java中的基本数据类型的数据
     * 以Object开头的，说明操作的是Java中的对象
   * 流的功能
-  * * 以Buffered开头的，说明该类是对另外一个流提供缓冲功能（输入流/输出流）
+  * * 以Buffer开头的，说明该类是对另外一个流提供缓冲功能（输入流/输出流）
     * 以Print开头的，说明该类将数据写入到控制台，即提供打印功能（输出流）
 * 后半部分
-* * 以Input/Reader结束的，说明是输入流
-  * 以Output/Writer结束的，说明是输出流
-
-
-
-
-
-
+* * zijis输入/输出
+  * 输入/输出
+  * * 以Input/Reader结束的，说明是输入流
+  * * 以Output/Writer结束的，说明是输出流
 
 **Java I/O类库的设计是装饰模式应用的经典**。即不同的输入/输出流，可以被具有不同功能的类进行装饰，实现功能增强，如下：
 
@@ -210,9 +205,4 @@ OutputStream out = new BufferedOutputStream(new ObjectOutputStream(new FileOutpu
 [Java IO教程](http://ifeve.com/java-io/)：是名副其实的教程，对每个类介绍的都很详细
 
 [Java输入输出流](https://blog.csdn.net/hguisu/article/details/7418161)
-
-  
-
-
-
 
