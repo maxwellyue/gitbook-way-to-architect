@@ -77,7 +77,7 @@
     * [I/O常用的接口/类](java-yu-yan/java-guan-jian-zi/io/iochang-yong-de-lei.md)
       * Serailizable
       * File
-      * RandomAccessFile
+      * [RandomAccessFile](java-yu-yan/java-guan-jian-zi/io/iochang-yong-de-lei/randomaccessfile.md)
     * [磁盘I/O与网络I/O](java-yu-yan/java-guan-jian-zi/io/ci-pan-i-oyu-wang-luo-i-o.md)
     * [NIO基础](java-yu-yan/java-guan-jian-zi/io/nio/nioji-chu.md)
     * [NIO2](java-yu-yan/java-guan-jian-zi/io/nio2.md)
