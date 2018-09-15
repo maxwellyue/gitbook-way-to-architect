@@ -46,116 +46,152 @@ Java 的 I/O 操作类在包 java.io 下，大概有将近 80 个类，但是这
 
 ---
 
-基于字节的 I/O 操作接口输入流为InputStream， 基于字符的 I/O 操作接口输入流为Reader。它们的作用都是从某处读取或获取流。
-
-**InputStream**
-
-InputStream 是所有的输入字节流的父类，它是一个抽象类，主要包含三个方法：
+InputStream 是所有的输入字节流的父类，Reader 是所有的输入字符流的父类，这两个基类的功能基本一样，都是从某处读取或获取流，但是读取的数据单元不同。
 
 ```java
-//读取一个字节并以整数的形式返回(0~255),如果返回-1已到输入流的末尾。 
-int read()；
+public abstract class InputStream implements Closeable {
 
-//读取一系列字节并存储到一个数组buffer，返回实际读取的字节数，如果读取前已到输入流的末尾返回-1。 
-int read(byte[] buffer)；
+    //读取一个字节并以整数的形式返回(0~255),如果返回-1已到输入流的末尾。 
+    int read();
+    
+    //读取一系列字节并存储到一个数组buffer，返回实际读取的字节数，如果读取前已到输入流的末尾返回-1。 
+    int read(byte[] buffer);
+    
+    //读取length个字节并存储到一个字节数组buffer，从off位置开始存,最多len，返回实际读取的字节数，如果读取前以到输入流的末尾返回-1。 
+    int read(byte[] buffer, int off, int len);
+}
 
-//读取length个字节并存储到一个字节数组buffer，从off位置开始存,最多len，返回实际读取的字节数，如果读取前以到输入流的末尾返回-1。 
-int read(byte[] buffer, int off, int len) ；
-```
-
-在执行完流操作后，要调用`close()`方法来显式地关闭输入流，因为程序里打开的IO资源不属于内存资源，垃圾回收机制无法回收该资源，所以应该显式关闭文件IO资源。
-
-21212
-
-* FileInputStream：
-* FilterInputStream：
-* PipedInputStream：
-* SequenceInputStream：将多个输入流合并成一个输入流，通过该类包装后形成新的一个总的输入流。在拷贝多个文件到一个目标文件的时候是非常有用的。可用使用很少的代码实现
-* StringBufferInputStream
-* ByteArrayInputStream
-
-**OutputStream**
-
-* FileOutputStream
-* FilterOutputStream
-* PipedOutputStream
-* ObjectOutputStream
-* ByteArrayOutputStream
-
-## 基于字符的 I/O 操作接口
-
----
-
-不管是磁盘还是网络传输，最小的存储单元都是字节，而不是字符，所以 I/O 操作的都是字节而不是字符，但是为啥有操作字符的 I/O 接口呢？这是因为我们的程序中通常操作的数据都是以字符形式，为了操作方便当然要提供一个直接写字符的 I/O 接口，如此而已。我们知道字符到字节必须要经过编码转换，而这个编码又非常耗时，而且还会经常出现乱码问题，所以 I/O 的编码问题经常是让人头疼的问题。
-
-**Reader**
-
-Reader 是所有的输入字符流的父类，它是一个抽象类，主要包含三个方法（与InputStream所提供的方法类似，只不过读取的数据单元变为了字符）：
-
-```java
-//读取一个字符并以整数的形式返回(0~255),如果返回-1已到输入流的末尾。 
-int read()； 
-
-//读取一系列字符并存储到一个数组buffer，返回实际读取的字符数，如果读取前已到输入流的末尾返回-1。 
-int read(char[] cbuf)； 
-
-//读取length个字符,并存储到一个数组buffer，从off位置开始存,最多读取len，返回实际读取的字符数，如果读取前以到输入流的末尾返回-1。 
-int read(char[] cbuf, int off, int len)
-```
-
-* InputStreamReader
-  * FileReader
-* BufferedReader
-  * LineNumberReader
-* CharArrayReader
-* StringReader
-* FilterReader
-  * PushBackReader
-* PipedReader
-
-**Writer**
-
-Writer 类提供了一个抽象方法 write\(char cbuf\[\], int off, int len\) 由子类去实现。
-
-* OutputStreamWriter
-  * FileWriter）
-* CharArrayWriter
-* StringWriter
-* PipedWriter
-* BufferedWriter
-* PrintWriter
-* FilterWriter
-
-不管是 Writer 还是 Reader 类，它们都只定义了读取或写入的数据字符的方式，也就是怎么写或读，但是并没有规定数据要写到哪去，或者从哪里读取。
-
-## 字节与字符的转化接口
-
----
-
-磁盘存取或网络传输都是以字节进行的，所以必须要有字节到字符或者字符到字节的转化。
-
-**字节到字符**
-
-InputStreamReader是字节到字符的转化桥梁，InputStream 到 Reader 的过程要指定编码字符集，否则将采用操作系统默认字符集，很可能会出现乱码问题。StreamDecoder 正是完成字节到字符的解码的实现类。
-
-也就是当你用如下方式读取一个文件时，FileReader 类就是按照上面的工作方式读取文件的，FileReader 是继承了 InputStreamReader类，实际上是读取文件流，然后通过 StreamDecoder 解码成 char，只不过这里的解码字符集是默认字符集。
-
-```java
-try { 
-    StringBuffer str = new StringBuffer(); 
-    char[] buf = new char[1024]; 
-    FileReader f = new FileReader("file"); 
-    while(f.read(buf)>0){ 
-        str.append(buf); 
-    } 
-    str.toString(); 
-} catch (IOException e) {
+public abstract class Reader implements Readable, Closeable {
+    
+    //读取一个字符并以整数的形式返回(0~255),如果返回-1已到输入流的末尾。 
+    int read(); 
+    
+    //读取一系列字符并存储到一个数组buffer，返回实际读取的字符数，如果读取前已到输入流的末尾返回-1。 
+    int read(char[] cbuf);
+    
+    //读取length个字符,并存储到一个数组buffer，从off位置开始存,最多读取len，返回实际读取的字符数，如果读取前以到输入流的末尾返回-1。 
+    int read(char[] cbuf, int off, int len);
 }
 ```
 
-**字符到字节**
+**InputStream实现类**
 
-Writer的写入过程与之类似：通过 OutputStreamWriter 类完成，字符到字节的编码过程，由 StreamEncoder 完成编码过程。
+* FileInputStream：从文件获取输入流，实现对文件的读取
+* FilterInputStream：过滤流，一般是对原来的输入流进行功能增强
+* * BufferedInputStream：提供缓冲功能
+  * DataInputStream： 包装为Java中的基本数据类型的流
+  * PushbackInputStream：
+* PipedInputStream：用于进程间通信
+* SequenceInputStream：把多个输入聚合成一个输入流
+* StringBufferInputStream：将字符串转换为输入流
+* ByteArrayInputStream：将字节数组转换为输入流
+
+**Reader实现类**
+
+* InputStreamReader：将字节流转换为字符流
+* * FileReader：与FileInputStream对应，用来读取文件
+
+* BufferedReader：对原输入流提供缓冲
+  * LineNumberReader：对原输入流提供按行读取的功能
+* CharArrayReader：将字符数组转换为输入流
+* StringReader：将字符串转换为输入流
+* FilterReader：对原字符流进行过滤
+  * PushbackReader：
+* PipedReader：
+
+## 输出流
+
+---
+
+OutputStream是所有的输出字节流的父类，Writer 是所有的输出字符流的父类，这两个基类的功能基本一样，都是从将流写入到某处，但是操作的数据单元不同。 
+
+```java
+public abstract class OutputStream implements Closeable, Flushable {
+    //向输出流中写入一个字节数据,该字节数据为参数b的低8位。 
+    void write(int b) ; 
+    
+    //将一个字节类型的数组中的数据写入输出流。 
+    void write(byte[] b); 
+    
+    //将一个字节类型的数组中的从指定位置（off）开始的,len个字节写入到输出流。 
+    void write(byte[] b, int off, int len); 
+    
+    //将输出流中缓冲的数据全部写出到目的地。 
+    void flush();
+}
+
+public abstract class Writer implements Appendable, Closeable, Flushable {
+    //向输出流中写入一个字符数据,该字节数据为参数b的低16位。 
+    void write(int c); 
+    
+    //将一个字符类型的数组中的数据写入输出流， 
+    void write(char[] cbuf) 
+    
+    //将一个字符类型的数组中的从指定位置（offset）开始的,length个字符写入到输出流。 
+    void write(char[] cbuf, int offset, int length);
+     
+    //将一个字符串中的字符写入到输出流。 
+    void write(String string); 
+    
+    //将一个字符串从offset开始的length个字符写入到输出流。 
+    void write(String string, int offset, int length); 
+    //将输出流中缓冲的数据全部写出到目的地。 
+    
+    void flush()
+}
+```
+
+**OutputStream实现类**
+
+* FileOutputStream：将数据写入文件中
+* FilterOutputStream：对输出流进行过滤
+* * BufferedOutputStream：提供缓冲功能
+  * DataOutputStream：将数据写入到Java基本类型中
+  * PrintStream：提供打印功能，即将数据写入到控制台
+* PipedOutputStream：todo
+* ObjectOutputStream：将数据写入到一个Java对象中
+* ByteArrayOutputStream：将数据写入到内存中的字节数组中
+
+**Writer实现类**
+
+* OutputStreamWriter：从字符到字节的转换
+* * FileWriter：将数据写入到文件中
+
+* CharArrayWriter：将数据写入到内存中的字符数组中
+* StringWriter：将数组写入到一个字符串中
+* PipedWriter：todo
+* BufferedWriter：对输出流提供缓冲功能
+* PrintWriter：将数据写入到控制台，即提供打印功能
+* FilterWriter：对输出流进行过滤
+
+
+
+## 总结
+
+---
+
+对于Java的I/O诸多实现类的命名，如果将实现类的名字分为前后两部分，则可以从名字中获取这样的信息：
+
+* 前半部分
+* * 流的数据源
+  * * 以File开头的，说明操作的是文件
+    * 以String开头的，说明操作的是字符串
+    * 以Char开头的，说明操作的是字符
+    * 以Byte开头的，说明操作的是字节
+    * 以Data开头的，说明操作的Java中的基本数据类型的数据
+    * 以Object开头的，说明操作的是Java中的对象
+  * 流的功能
+  * * 以Buffered开头的，说明该类是对另外一个流提供缓冲功能（输入流/输出流）
+    * 以Print开头的，说明该类将数据写入到控制台，即提供打印功能（输出流）
+* 后半部分
+* * 以Input/Reader结束的，说明是输入流
+  * 以Output/Writer结束的，说明是输出流
+
+
+
+
+
+
 
 **Java I/O类库的设计是装饰模式应用的经典**。即不同的输入/输出流，可以被具有不同功能的类进行装饰，实现功能增强，如下：
 
@@ -168,4 +204,15 @@ OutputStream out = new BufferedOutputStream(new ObjectOutputStream(new FileOutpu
 [深入分析 Java I/O 的工作机制](https://www.ibm.com/developerworks/cn/java/j-lo-javaio/index.html)
 
 [Java IO流详解（二）——IO流的框架体系](http://lruheng.com/2017/02/22/Java-IO流详解（二）——IO流的框架体系/)
+
+[Java IO详解](https://segmentfault.com/a/1190000007120335)
+
+[Java IO教程](http://ifeve.com/java-io/)：是名副其实的教程，对每个类介绍的都很详细
+
+[Java输入输出流](https://blog.csdn.net/hguisu/article/details/7418161)
+
+  
+
+
+
 
