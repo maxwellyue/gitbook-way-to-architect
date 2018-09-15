@@ -18,7 +18,7 @@ Java 的 I/O 操作类在包 java.io 下，大概有将近 80 个类，但是这
 
 * 字符流：Reader/Writer
 
-除了这种划分，[深入分析 Java I/O 的工作机制](https://www.ibm.com/developerworks/cn/java/j-lo-javaio/index.html)中提供了另外一种粒度的划分方式：
+除了这种划分，[深入分析 Java I/O 的工作机制](https://www.ibm.com/developerworks/cn/java/j-lo-javaio/index.html) 中提供了另外一种粒度的划分方式：
 
 * 基于字节操作的 I/O 接口：InputStream 和 OutputStream
 * 基于字符操作的 I/O 接口：Writer 和 Reader
@@ -30,15 +30,13 @@ Java 的 I/O 操作类在包 java.io 下，大概有将近 80 个类，但是这
 * 节点流：直接从指定的位置（如磁盘文件或内存区域）读或写
 * * 文 件：FileInputStream、FileOutputStrean、FileReade、FileWriter 文件进行处理的节点流
   * 字符串：StringReader、StringWriter 对字符串进行处理的节点流
-  * 数组 ：ByteArrayInputStream、ByteArrayOutputStreamCharArrayReader CharArrayWriter 对数组进行处理的节点流\(对应的不再是文件，而是内存中的一个数组\)。
-  * 管 道 ：PipedInputStream PipedOutputStream PipedReaderPipedWriter对管道进行处理的节点流。
+  * 数组 ：ByteArrayInputStream、ByteArrayOutputStreamCharArrayReader、CharArrayWriter 对数组进行处理的节点流\(对应的不再是文件，而是内存中的一个数组\)。
+  * 管 道 ：PipedInputStream、PipedOutputStream、PipedReaderPipedWriter对管道进行处理的节点流。
   * 父 类： InputStream 、OutputStream、Reader、Writer
 * 处理流（又叫过滤流）：以其它输入流/输出流作为它的输入源/输出位置，经过过滤或处理后再以新的输入流/输出流的形式提供给用户
 * * 缓冲流：BufferedInputStream、BufferedOutputStream、BufferedReader、BufferedWriter等，增加缓冲功能，避免频繁读写硬盘。
   * 转换流：InputStreamReader、OutputStreamReader等，实现字节流和字符流之间的转换。
   * 数据流 DataInputStream、DataOutputStream 等，提供将基础数据类型写入到文件中或者读取文件。
-
-
 
 ## 基于字节的 I/O 操作接口
 
@@ -141,8 +139,6 @@ try {
 **字符到字节**
 
 Writer的写入过程与之类似：通过 OutputStreamWriter 类完成，字符到字节的编码过程，由 StreamEncoder 完成编码过程。
-
-
 
 内容来源：[深入分析 Java I/O 的工作机制](https://www.ibm.com/developerworks/cn/java/j-lo-javaio/index.html)，略有改动。
 
