@@ -74,6 +74,7 @@
     * [fork/join的理解](java-yu-yan/xian-cheng/forkjoin-de-li-jie.md)
   * [I/O](java-yu-yan/java-guan-jian-zi/io.md)
     * [I/O概述](java-yu-yan/java-guan-jian-zi/io/iofen-lei.md)
+      * [输入流和输出流的使用示例](java-yu-yan/java-guan-jian-zi/io/iofen-lei/shu-ru-liu-he-shu-chu-liu-de-shi-yong-shi-li.md)
     * [I/O常用的接口和类](java-yu-yan/java-guan-jian-zi/io/iochang-yong-de-lei.md)
       * [Serailizable](java-yu-yan/java-guan-jian-zi/io/iochang-yong-de-lei/serailizable.md)
       * [File](java-yu-yan/java-guan-jian-zi/io/iochang-yong-de-lei/file.md)
