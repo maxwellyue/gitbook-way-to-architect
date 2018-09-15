@@ -1,21 +1,44 @@
-# I/O
+## 概述
 
 ---
 
-I/O 问题是任何编程语言都无法回避的问题，因为 I/O 是机器获取和交换信息的主要渠道。
+Java 的 I/O 操作类在包 java.io 下，大概有将近 80 个类，但是这些类可以从不同的角度进行划分。
 
-Java 的 I/O 操作类在包 java.io 下，大概有将近 80 个类，但是这些类大概可以分成四组，分别是：
+#### 按照流的流向划分
 
-1. 基于字节操作的 I/O 接口：InputStream 和 OutputStream
-2. 基于字符操作的 I/O 接口：Writer 和 Reader
-3. 基于磁盘操作的 I/O 接口：File
-4. 基于网络操作的 I/O 接口：Socket
+* 输入流：以InputStream结尾的以及其子类
 
-前两组主要是根据传输数据的数据格式，后两组主要是根据传输数据的方式。虽然 Socket 类并不在 java.io 包下，但是我仍然把它们划分在一起，因为我个人认为 I/O 的核心问题要么是数据格式影响 I/O 操作，要么是传输方式影响 I/O 操作，也就是将什么样的数据写到什么地方的问题，I/O 只是人与机器或者机器与机器交互的手段，除了在它们能够完成这个交互功能外，我们关注的就是如何提高它的运行效率了，而数据格式和传输方式是影响效率最关键的因素了。
+* 输出流：以OutputStream结尾的的以及其子类
 
-**概念：输入还是输出？**
+**输入还是输出：**谈这个概念是要有对象的，也就是说是谁的输入流、谁的输出流。对于一个java程序，往外发出信息，就要用输出流。而要从别的地方读取数据，就要用输入流。对于一个文件，别人发来信息我要接受，就要用输入流来读取，而要让A来读取它的内容，那么A就要用输入来读取。总之，两点：一个是具体对象，一个是数据的流向。理解这两个概念就可以明白到底是用输入流还是输出流。这里的输入输出，都是针对java程序而言的，程序从文件中读取数据就用输入流，程序往文件中写数据就要用输出流。
 
-谈这个概念是要有对象的，也就是说是谁的输入流、谁的输出流。对于一个java程序，往外发出信息，就要用输出流。而要从别的地方读取数据，就要用输入流。对于一个文件，别人发来信息我要接受，就要用输入流来读取，而要让A来读取它的内容，那么A就要用输入来读取。总之，两点：一个是具体对象，一个是数据的流向。理解这两个概念就可以明白到底是用输入流还是输出流。这里的输入输出，都是针对java程序而言的，程序从文件中读取数据就用输入流，程序往文件中写数据就要用输出流。
+#### 按照操作单元划分
+
+* 字节流：xxxStream
+
+* 字符流：Reader/Writer
+
+除了这种划分，[深入分析 Java I/O 的工作机制](https://www.ibm.com/developerworks/cn/java/j-lo-javaio/index.html)中提供了另外一种粒度的划分方式：
+
+* 基于字节操作的 I/O 接口：InputStream 和 OutputStream
+* 基于字符操作的 I/O 接口：Writer 和 Reader
+* 基于磁盘操作的 I/O 接口：File
+* 基于网络操作的 I/O 接口：Socket
+
+#### 按照流的角色划分
+
+* 节点流：直接从指定的位置（如磁盘文件或内存区域）读或写
+* * 文 件：FileInputStream、FileOutputStrean、FileReade、FileWriter 文件进行处理的节点流
+  * 字符串：StringReader、StringWriter 对字符串进行处理的节点流
+  * 数组 ：ByteArrayInputStream、ByteArrayOutputStreamCharArrayReader CharArrayWriter 对数组进行处理的节点流\(对应的不再是文件，而是内存中的一个数组\)。
+  * 管 道 ：PipedInputStream PipedOutputStream PipedReaderPipedWriter对管道进行处理的节点流。
+  * 父 类： InputStream 、OutputStream、Reader、Writer
+* 处理流（又叫过滤流）：以其它输入流/输出流作为它的输入源/输出位置，经过过滤或处理后再以新的输入流/输出流的形式提供给用户
+* * 缓冲流：BufferedInputStream、BufferedOutputStream、BufferedReader、BufferedWriter等，增加缓冲功能，避免频繁读写硬盘。
+  * 转换流：InputStreamReader、OutputStreamReader等，实现字节流和字符流之间的转换。
+  * 数据流 DataInputStream、DataOutputStream 等，提供将基础数据类型写入到文件中或者读取文件。
+
+
 
 ## 基于字节的 I/O 操作接口
 
@@ -121,14 +144,5 @@ Writer的写入过程与之类似：通过 OutputStreamWriter 类完成，字符
 
 
 
-
-
-内容来源：[深入分析 Java I/O 的工作机制](https://www.ibm.com/developerworks/cn/java/j-lo-javaio/index.html)
-
-  
-
-
-
-
-
+内容来源：[深入分析 Java I/O 的工作机制](https://www.ibm.com/developerworks/cn/java/j-lo-javaio/index.html)，略有改动。
 
