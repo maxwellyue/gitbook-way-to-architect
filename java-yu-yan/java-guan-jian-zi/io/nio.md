@@ -88,12 +88,23 @@ Buffer 可以简单的理解为一组基本数据类型的元素列表，它通�
 
 还有一点需要说明，通过 Channel 获取的 I/O 数据首先要经过操作系统的 Socket 缓冲区再将数据复制到 Buffer 中，这个的操作系统缓冲区就是底层的 TCP 协议关联的 RecvQ 或者 SendQ 队列，从操作系统缓冲区到用户缓冲区复制数据比较耗性能，Buffer 提供了另外一种直接操作操作系统缓冲区的的方式即 ByteBuffer.allocateDirector\(size\)，这个方法返回的 byteBuffer 就是与底层存储空间关联的缓冲区，它的操作方式与 linux2.4 内核的 sendfile 操作方式类似。
 
+**总结**
 
+**Selector和Channel**
 
+一个Selector管理多个Channel（一个Channel代表一个通信通道或简单的说是连接）：将Channel注册到Selector，并声明需要让Selector监听这个Channel中的事件类型。事件类型如下：
 
+* **connect**：客户端连接服务端事件，对应值为SelectionKey.OPCONNECT\(8\) 
 
+* **accept**：服务端接收客户端连接事件，对应值为SelectionKey.OPACCEPT\(16\) 
 
+* **read**：读事件，对应值为SelectionKey.OPREAD\(1\) 
 
+* **write**：写事件，对应值为SelectionKey.OPWRITE\(4\)
+
+**ByteBuffer**
+
+数据的读取与写入均在这个Buffer中，它有3个重要的位置信息：capacity/limit/position。写入的时候，首先clear\(\)，position=0，limit=capacity，写完数据后，position为写入数据的最后一位的下一位；读取的时候，flip\(\) 一下，position回到0，limit为buffer中数据的最后一位。  
 
 
 
@@ -105,4 +116,9 @@ Buffer 可以简单的理解为一组基本数据类型的元素列表，它通�
 
 
 内容来源：[深入分析 Java I/O 的工作机制](https://www.ibm.com/developerworks/cn/java/j-lo-javaio/index.html)
+
+参考内容：[深入浅出NIO之Selector实现原理](https://juejin.im/entry/5a422b75f265da430e4f6b99)
+
+  
+
 
