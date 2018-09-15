@@ -46,7 +46,7 @@ Java 的 I/O 操作类在包 java.io 下，大概有将近 80 个类，但是这
 
 ---
 
-基于字节的 I/O 操作接口输入和输出分别是：InputStream 和 OutputStream。
+基于字节的 I/O 操作接口输入流为InputStream， 基于字符的 I/O 操作接口输入流为Reader。它们的作用都是从某处读取或获取流。
 
 **InputStream**
 
