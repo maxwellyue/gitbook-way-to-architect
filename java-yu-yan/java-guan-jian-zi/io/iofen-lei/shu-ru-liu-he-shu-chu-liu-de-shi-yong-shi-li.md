@@ -116,17 +116,99 @@ public void testBufferedStream() {
 }
 ```
 
+## Java对象/基本类型
+
+**基本类型**
+
+```java
+@Test
+public void testDataStream() {
+    try (
+            DataOutputStream dos = new DataOutputStream(new FileOutputStream("test.txt"));
+            DataInputStream dis = new DataInputStream(new BufferedInputStream(new FileInputStream("test.txt")));
+    ) {
+        dos.writeChars("abc");
+        dos.writeBoolean(Boolean.TRUE);
+        dos.writeInt(123);
+
+        System.out.println(dis.readChar());
+        System.out.println(dis.readChar());
+        System.out.println(dis.readChar());
+        System.out.println(dis.readBoolean());
+        System.out.println(dis.readInt());
+    } catch (FileNotFoundException e) {
+        e.printStackTrace();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+//输出如下a
+b
+c
+true
+123
+```
+
+**对象：**类必须实现Serializable接口
+
+```java
+public class Person implements Serializable {
+
+    private String name;
+
+    private int age;
+
+    public Person(String name, int age){
+        this.name = name;
+        this.age = age;
+    }
+
+    //省略setter/getter
+
+    @Override
+    public String toString() {
+        return String.format("%s: %d", this.name, this.age);
+    }
+}
 
 
+@Test
+public void testObjectStream() {
+    //写入
+    try (
+            ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("object.ar")));
+    ) {
+        Person person1 = new Person("xiaohong", 12);
+        Person person2 = new Person("xiaoming", 12);
 
+        oos.writeObject(person1);
+        oos.writeObject(person2);
+        oos.flush();
+    } catch (FileNotFoundException e) {
+        e.printStackTrace();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    //读取
+    try (
+            ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream("object.ar")));
+    ) {
+        Person xiaohong = (Person) ois.readObject();
+        Person xiaoming = (Person) ois.readObject();
 
+        System.out.println(xiaohong);
+        System.out.println(xiaoming);
+    } catch (FileNotFoundException e) {
+        e.printStackTrace();
+    } catch (IOException e) {
+        e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+    }
+}
+```
 
-
-
-
-
+参考
 
 [Using flush\(\) before close\(\)](https://stackoverflow.com/questions/9858495/using-flush-before-close)
-
-
 
