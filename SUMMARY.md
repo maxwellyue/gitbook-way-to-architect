@@ -78,7 +78,7 @@
       * [输入流和输出流的使用示例](java-yu-yan/java-guan-jian-zi/io/iofen-lei/shu-ru-liu-he-shu-chu-liu-de-shi-yong-shi-li.md)
       * [BufferdxxxxStream](java-yu-yan/java-guan-jian-zi/io/iofen-lei/1212.md)
       * [Serailizable](java-yu-yan/java-guan-jian-zi/io/iochang-yong-de-lei/serailizable.md)
-      * [File](java-yu-yan/java-guan-jian-zi/io/iochang-yong-de-lei/file.md)
+      * [File常用方法](java-yu-yan/java-guan-jian-zi/io/filelei-chang-yong-fang-fa.md)
       * [RandomAccessFile](java-yu-yan/java-guan-jian-zi/io/iochang-yong-de-lei/randomaccessfile.md)
     * [NIO基础](java-yu-yan/java-guan-jian-zi/io/nio/nioji-chu.md)
     * [NIO2](java-yu-yan/java-guan-jian-zi/io/nio2.md)
