@@ -11,6 +11,7 @@
       * [Iterator原理及实现](java-yu-yan/ji-he/iteratoryuan-li.md)
       * [fast-fail机制](java-yu-yan/ji-he/fast-failji-zhi.md)
       * [比较器Comparator](java-yu-yan/ji-he/bi-jiao-qi-comparator.md)
+      * [Collections工具类](java-yu-yan/ji-he/collectionsgong-ju-lei.md)
     * [List](java-yu-yan/ji-he/list.md)
       * [List综述](java-yu-yan/ji-he/listzong-shu.md)
       * [ArrayList原理分析](java-yu-yan/ji-he/arraylistyuan-li-fen-xi.md)
