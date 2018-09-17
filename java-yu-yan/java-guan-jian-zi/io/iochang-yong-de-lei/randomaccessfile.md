@@ -17,6 +17,17 @@ public class RandomAccessFile implements DataOutput, DataInput, Closeable {}
 
 而随机访问文件的含义是指，给定一个文件，可以从文件的任意一个位置进行读取/写入。比如我们要给一个4G的大文件追加一行内容，不可能将其全部加载到内存，而只是需要找到文件的末尾，然后在末尾进行追加。
 
+**打开文件的模式**
+
+RandomAccessFile共有4种模式："r", "rw", "rws"和"rwd"。
+
+* "r" ：以只读方式打开。调用结果对象的任何 write 方法都将导致抛出 IOException
+* "rw" ：打开以便读取和写入
+* "rws"： 打开以便读取和写入。相对于 "rw"，"rws" 还要求对“文件的内容”或“元数据”的每个更新都同步写入到基础存储设备
+* "rwd"：打开以便读取和写入，相对于 "rw"，"rwd" 还要求对“文件的内容”的每个更新都同步写入到基础存储设备
+
+**如何随机访问**
+
 RandomAccessFile内部有一个文件指针，指向当前读写的位置，各种read/write操作都会自动更新该指针，与流不同的是，RandomAccessFile可以获取该指针，也可以更改该指针，相关方法是：
 
 ```java
@@ -53,7 +64,7 @@ public native void setLength(long newLength) throws IOException;
 
 ```java
 public final void writeBytes(String s) throws IOException
-public final String readLine() throws IOException 
+public final String readLine() throws IOException
 ```
 
 看上去，writeBytes可以直接写入字符串，而readLine可以按行读入字符串，实际上，这两个方法都是有问题的，它们都没有编码的概念，都假定一个字节就代表一个字符，这对于中文显然是不成立的，所以，应避免使用这两个方法。
@@ -89,16 +100,15 @@ b
 
 TODO
 
-## 打开文件的模式
+## 
 
-RandomAccessFile共有4种模式："r", "rw", "rws"和"rwd"。
 
-* "r" ：以只读方式打开。调用结果对象的任何 write 方法都将导致抛出 IOException
-* "rw" ：打开以便读取和写入
-* "rws"： 打开以便读取和写入。相对于 "rw"，"rws" 还要求对“文件的内容”或“元数据”的每个更新都同步写入到基础存储设备
-* "rwd"：打开以便读取和写入，相对于 "rw"，"rwd" 还要求对“文件的内容”的每个更新都同步写入到基础存储设备
 
 参考
 
+[计算机程序的思维逻辑 \(60\) - 随机读写文件及其应用](https://juejin.im/post/586267d761ff4b006cf136d9)
+
 [java io系列26之 RandomAccessFile](https://www.cnblogs.com/skywang12345/p/io_26.html)
+
+
 
