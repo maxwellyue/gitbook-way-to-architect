@@ -82,7 +82,7 @@
       * [File常用方法](java-yu-yan/java-guan-jian-zi/io/filelei-chang-yong-fang-fa.md)
       * [Files和Path](java-yu-yan/java-guan-jian-zi/io/fileshe-paths.md)
       * [RandomAccessFile](java-yu-yan/java-guan-jian-zi/io/iochang-yong-de-lei/randomaccessfile.md)
-      * [内存映射](java-yu-yan/java-guan-jian-zi/io/nei-cun-ying-she.md)
+      * [内存映射文件](java-yu-yan/java-guan-jian-zi/io/nei-cun-ying-she.md)
     * [NIO基础](java-yu-yan/java-guan-jian-zi/io/nio/nioji-chu.md)
     * [NIO2](java-yu-yan/java-guan-jian-zi/io/nio2.md)
     * [Netty](java-yu-yan/java-guan-jian-zi/io/netty.md)
