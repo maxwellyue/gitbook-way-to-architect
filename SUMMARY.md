@@ -86,6 +86,7 @@
       * [Files和Path](java-yu-yan/java-guan-jian-zi/io/fileshe-paths.md)
       * [RandomAccessFile](java-yu-yan/java-guan-jian-zi/io/iochang-yong-de-lei/randomaccessfile.md)
       * [通过零拷贝实现有效数据传输](java-yu-yan/java-guan-jian-zi/io/tong-guo-ling-kao-bei-shi-xian-you-xiao-shu-ju-chuan-shu.md)
+      * [正确地处理文件](java-yu-yan/java-guan-jian-zi/io/zheng-que-di-chu-li-wen-jian.md)
     * [NIO基础](java-yu-yan/java-guan-jian-zi/io/nio/nioji-chu.md)
     * [NIO2](java-yu-yan/java-guan-jian-zi/io/nio2.md)
     * [Netty](java-yu-yan/java-guan-jian-zi/io/netty.md)
