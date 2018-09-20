@@ -14,7 +14,7 @@ Java的反射框架主要提供以下功能：**关键词是运行时（而非�
 
 * 1.在运行时判断任意一个对象所属的类；
 * 2.在运行时构造任意一个类的对象；
-* 3.在运行时判断任意一个类所具有的成员变量和方法（通过反射甚至可以调用private方法）；
+* 3.在运行时判断任意一个类所具有的成员变量和方法
 * 4.在运行时调用任意一个对象的方法；
 
 ## 应用场景
@@ -30,6 +30,8 @@ Java的反射框架主要提供以下功能：**关键词是运行时（而非�
 ## 基本用法
 
 反射可以用于判断任意对象所属的类，获得Class对象，构造任意一个对象以及调用一个对象。这里我们介绍一下基本反射功能的实现\(反射相关的类一般都在java.lang.relfect包里\)。
+
+为了操作方便，Java除抽象出Class来表示类之外，还提供了Method/Field/Constructor来分别表示方法/字段/构造器。
 
 #### **获取Class对象**
 
@@ -157,8 +159,52 @@ for (Field field : fields){
 * getMethod\(String name, Class&lt;?&gt;... parameterTypes\)：第一个参数为方法名称，后面的参数为方法的参数对应的Class对象
 * getDeclaredMethod\(String name, Class&lt;?&gt;... parameterTypes\)：可以获取到私有的，但不能获取到父类的
 
+#### 调用方法 {#7、调用方法}
+
+当我们从类中获取了一个方法后，我们就可以用invoke\(\)方法来调用这个方法：
+
+```java
+public Object invoke(Object obj, Object... args)
+```
+
+使用示例
+
+```java
+public class Calculator {
+    public int add(int a, int b) {
+        return a + b;
+    }
+}
+@Test
+public void testInvokeMethod() throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException, NoSuchFieldException {
+    Calculator calculator = new Calculator();
+    Class<? extends Calculator> calculatorClass = calculator.getClass();
+    Method method = calculatorClass.getMethod("add", int.class, int.class);
+    int res = (int)method.invoke(calculator, 1, 2);
+    System.out.println(res);
+}
+//输出如下
+3
+```
+
+#### 总结
+
+我们可以发现这样的规则：
+
+* **getDeclaredXxxx：获取到自身的方法/变量/构造器等，包括public/protected/private，但不包含父类的**
+* **getXxxx：获取自己及父类的方法/变量/构造器等，但只能是public的。**
+
+对于私有构造器/字段/方法，即使通过**getDeclaredXxxx**方法获取到，但在使用之前，也需要使用setAccessible\(true\)来设置访问权限。
 
 
+
+#### 参考
+
+[深入解析Java反射（1） - 基础](https://www.sczyh30.com/posts/Java/java-reflection-1/)：文字部分大多来源于此，略有改动
+
+[Reflections中的getDeclared\*\*与get\*\*的区别](https://jishusuishouji.github.io/2017/05/02/Reflections%E4%B8%AD%E7%9A%84getDeclared-%E4%B8%8Eget-%E7%9A%84%E5%8C%BA%E5%88%AB.md/Reflections%E4%B8%AD%E7%9A%84getDeclared__%E4%B8%8Eget__%E7%9A%84%E5%8C%BA%E5%88%AB_/)
+
+  
 
 
 
