@@ -217,9 +217,39 @@ ddd
 
 对于私有构造器/字段/方法，即使通过**getDeclaredXxxx**方法获取到，但在使用之前，也需要使用setAccessible\(true\)来设置访问权限。
 
+**反射到底慢在哪**
+
+反射所花费的时间大约是正常情况下的2倍（只是某种测试用例下，没办法下这种结论，只是有这么一种概念）。那么到底慢在哪里呢？
+
+使用反射，则在运行时会停下来做类加载\(包含很多步\)，加载可以缓存，但是有可能引发雪崩，方法调用还会多步寻址，虽然寻址后还是可以缓存，但这些过程jit没法插手，你可以认为java变成了php。
+
+> TODO：翻译
+>
+> Reflection is slow for a few obvious reasons:
+>
+> 1. The compiler can do no optimization whatsoever as it can have no real idea about what you are doing. This probably goes for the`JIT`as well
+> 2. Everything being invoked/created has to be _discovered_\(i.e. classes looked up by name, methods looked at for matches etc\)
+> 3. Arguments need to be dressed up via boxing/unboxing, packing into arrays,`Exceptions`wrapped in
+>    `InvocationTargetException`s and re-thrown etc.
+> 4. All the processing that
+>    [_Jon Skeet_mentions here](https://stackoverflow.com/questions/1392351/java-reflection-why-is-it-so-bad/1392379#1392379)
+>    .
+>
+> Just because something is 100x slower _does not mean it is too slow for you _assuming that reflection is the "right way" for you to design your program. For example, I imagine that IDEs make heavy use of reflection and my IDE is mostly OK from a performance perspective.
+>
+> After all, the **overhead of reflection **is likely to **pale into insignificance **when **compared with**, say, parsing XML or **accessing a database**!
+>
+> Another point to remember is that _micro-benchmarks are a notoriously flawed mechanism for determining how fast something is in practice_. As well as[_Tim Bender's_remarks](https://stackoverflow.com/questions/1392351/java-reflection-why-is-it-so-bad/1392412#1392412), the JVM takes time to "warm up", the JIT can re-optimize code hotspots on-the-fly etc.
+
 #### 参考
 
 [深入解析Java反射（1） - 基础](https://www.sczyh30.com/posts/Java/java-reflection-1/)：文字部分大多来源于此，略有改动
 
 [Reflections中的getDeclared\*\*与get\*\*的区别](https://jishusuishouji.github.io/2017/05/02/Reflections中的getDeclared-与get-的区别.md/Reflections中的getDeclared__与get__的区别_/)
+
+[Java 反射到底慢在哪里？](https://www.zhihu.com/question/19826278)
+
+[Java Reflection: Why is it so slow?](https://stackoverflow.com/questions/1392351/java-reflection-why-is-it-so-slow)
+
+
 

@@ -106,8 +106,8 @@
   * [注解](java-yu-yan/zhu-jie.md)
   * [反射](java-yu-yan/fan-she/README.md)
     * [概述](java-yu-yan/fan-she/gai-shu.md)
-    * [常见用法](java-yu-yan/fan-she/chang-jian-yong-fa.md)
-    * [适用场景](java-yu-yan/fan-she/shi-yong-chang-jing.md)
+    * [内部类的反射](java-yu-yan/fan-she/shi-yong-chang-jing.md)
+    * 反射中需要注意的地方
   * [流程控制](java-yu-yan/liu-cheng-kong-zhi/README.md)
     * [switch case without break](java-yu-yan/liu-cheng-kong-zhi/switch-case-without-break.md)
     * [Java: for\(;;\) vs. while\(true\)](java-yu-yan/liu-cheng-kong-zhi/java-for-vs.-while-true.md)
