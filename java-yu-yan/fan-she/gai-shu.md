@@ -187,6 +187,27 @@ public void testInvokeMethod() throws IllegalAccessException, InstantiationExcep
 3
 ```
 
+#### 利用反射创建数组 {#8、利用反射创建数组}
+
+数组在Java里是比较特殊的一种类型，可以使用`java.lang.reflect.Array`来进行创建。
+
+```java
+@Test
+public void testArray() throws ClassNotFoundException {
+    Class<?> clazz = Class.forName("java.lang.String");
+    Object array = Array.newInstance(clazz,25);
+    Array.set(array,0,"aaa");
+    Array.set(array,1,"bbb");
+    Array.set(array,2,"ccc");
+    Array.set(array,3,"ddd");
+    Array.set(array,4,"eee");
+    String  res = (String)Array.get(array, 3);
+    System.out.println(res);
+}
+//输出如下
+ddd
+```
+
 #### 总结
 
 我们可以发现这样的规则：
@@ -196,20 +217,9 @@ public void testInvokeMethod() throws IllegalAccessException, InstantiationExcep
 
 对于私有构造器/字段/方法，即使通过**getDeclaredXxxx**方法获取到，但在使用之前，也需要使用setAccessible\(true\)来设置访问权限。
 
-
-
 #### 参考
 
 [深入解析Java反射（1） - 基础](https://www.sczyh30.com/posts/Java/java-reflection-1/)：文字部分大多来源于此，略有改动
 
-[Reflections中的getDeclared\*\*与get\*\*的区别](https://jishusuishouji.github.io/2017/05/02/Reflections%E4%B8%AD%E7%9A%84getDeclared-%E4%B8%8Eget-%E7%9A%84%E5%8C%BA%E5%88%AB.md/Reflections%E4%B8%AD%E7%9A%84getDeclared__%E4%B8%8Eget__%E7%9A%84%E5%8C%BA%E5%88%AB_/)
-
-  
-
-
-
-
-
-
-
+[Reflections中的getDeclared\*\*与get\*\*的区别](https://jishusuishouji.github.io/2017/05/02/Reflections中的getDeclared-与get-的区别.md/Reflections中的getDeclared__与get__的区别_/)
 
