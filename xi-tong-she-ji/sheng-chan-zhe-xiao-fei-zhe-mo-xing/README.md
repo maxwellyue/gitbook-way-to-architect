@@ -17,5 +17,15 @@
 * 使用`JDK`自带的阻塞队列
 * 使用管道流
 
+## 参考
+
+[Java 实现生产者 – 消费者模型](https://link.jianshu.com/?t=http%3A%2F%2Fwww.importnew.com%2F27063.html)：各种实现方式的性能  
+[高性能的生产者-消费者：无锁的实现](https://link.jianshu.com/?t=http%3A%2F%2Ffrobisher.me%2F2017%2F05%2F26%2Fjava-producer-consumer-disruptor%2F)：无锁实现  
+[Java生产者和消费者模型的5种实现方式](https://link.jianshu.com/?t=http%3A%2F%2Fcdn2.jianshu.io%2Fp%2F66e8b5ab27f6)  
+[生产者/消费者问题的多种Java实现方式](https://link.jianshu.com/?t=http%3A%2F%2Fblog.csdn.net%2Fmonkey_d_meng%2Farticle%2Fdetails%2F6251879)  
+[Java阻塞队列ArrayBlockingQueue和LinkedBlockingQueue实现原理分析](https://link.jianshu.com/?t=https%3A%2F%2Ffangjian0423.github.io%2F2016%2F05%2F10%2Fjava-arrayblockingqueue-linkedblockingqueue-analysis%2F)：两种常用阻塞队列的区别
+
+[完整代码示例在此](https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fmaxwellyue%2FJavaLanguage%2Ftree%2Fmaster%2Fsrc%2Fmain%2Fjava%2Fproducerandconsumer)
+
 
 
