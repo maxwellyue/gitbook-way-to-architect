@@ -10,60 +10,69 @@
 
 所以，在这里，要选用`put()`和`take()`这两个会阻塞的方法。
 
-参考代码如下：
+**参考代码**
+
+生产者
 
 ```java
-public class ProducerConsumer3 {
+class Producer extends Thread {
+    private String threadName;
+    private BlockingQueue<Goods> queue;
 
-    class Producer extends Thread {
-        private String threadName;
-        private BlockingQueue<Goods> queue;
+    public Producer(String threadName, BlockingQueue<Goods> queue) {
+        this.threadName = threadName;
+        this.queue = queue;
+    }
 
-        public Producer(String threadName, BlockingQueue<Goods> queue) {
-            this.threadName = threadName;
-            this.queue = queue;
-        }
-
-        @Override
-        public void run() {
-            while (true){
-                Goods goods = new Goods();
-                try {
-                    //模拟生产过程中的耗时操作
-                    Thread.sleep(new Random().nextInt(100));
-                    queue.put(goods);
-                    System.out.println("【" + threadName + "】生产了一个商品：【" + goods.toString() + "】，目前商品数量：" + queue.size());
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+    @Override
+    public void run() {
+        while (true){
+            Goods goods = new Goods();
+            try {
+                //模拟生产过程中的耗时操作
+                Thread.sleep(new Random().nextInt(100));
+                queue.put(goods);
+                System.out.println("【" + threadName + "】生产了一个商品：【" + goods.toString() + "】，目前商品数量：" + queue.size());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
+}
+```
 
-    class Consumer extends Thread {
-        private String threadName;
-        private BlockingQueue<Goods> queue;
+消费者
 
-        public Consumer(String threadName, BlockingQueue<Goods> queue) {
-            this.threadName = threadName;
-            this.queue = queue;
-        }
+```java
+class Consumer extends Thread {
+    private String threadName;
+    private BlockingQueue<Goods> queue;
 
-        @Override
-        public void run() {
-            while (true){
-                try {
-                    Goods goods = queue.take();
-                    System.out.println("【" + threadName + "】消费了一个商品：【" + goods.toString() + "】，目前商品数量：" + queue.size());
-                    //模拟消费过程中的耗时操作
-                    Thread.sleep(new Random().nextInt(100));
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+    public Consumer(String threadName, BlockingQueue<Goods> queue) {
+        this.threadName = threadName;
+        this.queue = queue;
+    }
+
+    @Override
+    public void run() {
+        while (true){
+            try {
+                Goods goods = queue.take();
+                System.out.println("【" + threadName + "】消费了一个商品：【" + goods.toString() + "】，目前商品数量：" + queue.size());
+                //模拟消费过程中的耗时操作
+                Thread.sleep(new Random().nextInt(100));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
+}
+```
 
+测试
+
+```java
+public class ProducerConsumer {
     @Test
     public void test() {
 
@@ -90,7 +99,10 @@ public class ProducerConsumer3 {
 }
 ```
 
-> 要注意的地方：  
->   
-> 如果使用LinkedBlockingQueue作为队列实现，则可以实现：在同一时刻，既可以放入又可以取出，因为LinkedBlockingQueue内部使用了两个重入锁，分别控制取出和放入。  
-> 如果使用ArrayBlockingQueue作为队列实现，则在同一时刻只能放入或取出，因为ArrayBlockingQueue内部只使用了一个重入锁来控制并发修改操作。
+要注意的地方：  
+  
+如果使用LinkedBlockingQueue作为队列实现，则可以实现：在同一时刻，既可以放入又可以取出，因为LinkedBlockingQueue内部使用了两个重入锁，分别控制取出和放入。  
+如果使用ArrayBlockingQueue作为队列实现，则在同一时刻只能放入或取出，因为ArrayBlockingQueue内部只使用了一个重入锁来控制并发修改操作。
+
+
+
