@@ -18,3 +18,9 @@
 
 
 
+扩展阅读
+
+[What's the meaning of an object's monitor in Java? Why use this word?](https://stackoverflow.com/questions/9848616/whats-the-meaning-of-an-objects-monitor-in-java-why-use-this-word)
+
+
+
