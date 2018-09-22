@@ -3,7 +3,23 @@
 前提是要熟悉`Lock`接口以及常用实现类`ReentrantLock`，以及`Condition`的两个常用方法：
 
 * `await()`:等待Condition的满足，会释放锁
-* `signal()`:唤醒其他正在等待该`Condition`的线程 参考代码如下：
+* `signal()`:唤醒其他正在等待该`Condition`的线程 
+
+**参考代码**
+
+生产者
+
+```
+
+```
+
+消费者
+
+
+
+
+
+测试
 
 ```java
 public class ProducerConsumer2 {
@@ -141,4 +157,6 @@ public class ProducerConsumer2 {
 > 要注意的地方：  
 >   
 > 放入和取出操作均是用的同一个锁，所以在同一时刻，要么在放入，要么在取出，两者不能同时进行。因此，与使用wait\(\)和notify\(\)实现类似，这种方式的实现并不能最大限度地利用缓冲区（即例子中的队列）。如果要实现同一时刻，既可以放入又可以取出，则要使用两个重入锁，分别控制放入和取出的操作，具体实现可以参考`LinkedBlockingQueue`。
+
+
 
