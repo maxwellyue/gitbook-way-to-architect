@@ -72,35 +72,14 @@ public ThreadPoolExecutor(int corePoolSize,
 
 调用线程池的两个方法来关闭shutdown\(\)或者shutdownNow\(\)：遍历线程池中的工作线程，然后逐个调用线程的interupt\(\)方法中断线程，所以无法响应中断的任务可能永远无法终止。
 
-* shutdownNow\(\) 不允许添加新的任务。立刻关闭线程池。不管池中是否还存在正在运行的任务。关闭顺序是先尝试关闭当前正在运行的任务。然后返回待完成任务的清单。已经运行的任务则不返回。（首先将线程池的状态设置为STOP，然后尝试终止所有的线程（包括正在执行任务或暂停任务的），并返回等待执行任务的列表；）
-* shutdown\(\) 不允许添加新的任务，等池中所有的任务执行完毕之后再关闭线程池。 （只是将线程池的状态设置为SHUTDOWN，然后中断所有没有正在执行任务的线程。）
+* **shutdown\(\)** ：不允许添加新的任务，等池中所有的任务执行完毕之后再关闭线程池。 （只是将线程池的状态设置为SHUTDOWN，然后中断所有没有正在执行任务的线程。）
+* **shutdownNow\(\) **：在shundown\(\)的基础上，会将所有的线程（无论有没有在执行任务）都进行中断。（首先将线程池的状态设置为STOP，然后尝试终止所有的线程（包括正在执行任务或暂停任务的），并返回等待执行任务的列表）
 
-_//todo 有待验证shutdown\(\)和shutdownNow\(\)的区别_
+## 参考
 
+[Difference between shutdown and shutdownNow of Executor Service](https://stackoverflow.com/questions/11520189/difference-between-shutdown-and-shutdownnow-of-executor-service)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
 
 
 
