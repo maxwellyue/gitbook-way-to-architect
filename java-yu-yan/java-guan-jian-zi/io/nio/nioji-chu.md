@@ -115,6 +115,8 @@ return this;
 
 ---
 
+通道Channel作为NIO中的核心概念，在设计上比之前的流要好不少。通道相关的很多实现都是接口而不是抽象类。通道本身的抽象层次也更加合理。通道表示的是对支持I/O操作的实体的一个连接。一旦通道被打开之后，就可以执行读取和写入操作，而不需要像流那样由输入流或输出流来分别进行处理。与流相比，通道的操作使用的是Buffer而不是数组，使用更加方便灵活。通道的引入提升了I/O操作的灵活性和性能，主要体现在文件操作和网络操作上。
+
 `Channel`是一个通道，网络数据通过`Channel`读取和写入。
 
 `Channel`是双向的，可以用于读、写或读写同时进行，即`Channel`是全双工的。（流则是单向的，只能读或写）
@@ -164,4 +166,8 @@ Selector监听Channel中的事件类型如下：
 [深入分析 Java I/O 的工作机制](https://www.ibm.com/developerworks/cn/java/j-lo-javaio/index.html)  
 《Netty权威指南》  
 [深入浅出NIO之Selector实现原理](https://juejin.im/entry/5a422b75f265da430e4f6b99)
+
+[Java深度历险（八）——Java I/O](http://www.infoq.com/cn/articles/cf-java-i-o/)
+
+
 
