@@ -34,7 +34,7 @@ public E get(int index) {
 
 **适用场景**
 
-读多写少
+读多写少，比如黑名单，白名单，商品类目的访问和更新等。
 
 **问题**
 
@@ -65,8 +65,9 @@ public E get(int index) {
   * 迭代器不会反应出该迭代器创建之后对应list的所有增加、移除、修改等操作。
   * 迭代器自身的元素改变方法，如`remove`、`set`和`add`都是不支持的。
 
-  
-  
+# 参考
+
+[JAVA中的COPYONWRITE容器](https://coolshell.cn/articles/11175.html)
 
 
 
