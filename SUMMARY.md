@@ -208,6 +208,7 @@
   * [MySQL](shu-ju-ku/mysql/README.md)
     * [基本配置](shu-ju-ku/mysql/ji-ben-pei-zhi.md)
     * [MySQL数据类型](shu-ju-ku/mysql/mysqlzhong-de-shu-ju-lei-xing.md)
+    * [MySQL查询过程](shu-ju-ku/mysql/mysqlcha-xun-guo-cheng.md)
     * [SQL语句调优](shu-ju-ku/mysql/sql-yu-ju-tiao-you.md)
     * [索引](shu-ju-ku/mysql/suo-yin.md)
     * [分组内排序](shu-ju-ku/mysql/fen-zu-nei-pai-xu.md)
