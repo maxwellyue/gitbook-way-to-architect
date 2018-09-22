@@ -8,7 +8,7 @@ MySQL中数字类型可分为两类：
 
 * 整型：TINYINT\(1字节\)，SMALLINT\(2字节\)，MEDIUNINT\(3字节\)，INT\(4字节\)，BIGINT\(8字节\)；
 
-* 非整形：FLOAT\(4字节\)，DOUBLE\(8字节\)，DECIMAL\(M,D\)—— m:总个数，d:小数位；
+* 非整形：FLOAT\(4字节\)，DOUBLE\(8字节\)，DECIMAL\(M,D\)—— m:总个数，d:小数位；
 
 **使用建议**
 
@@ -33,18 +33,6 @@ CREATE TABLE `domain_name` (
 
 * * float和double在存储的时候，存在精度损失的问题，很可能在值的比较时，得到不正确的结果。
   * 如果存储的数据范围超过decimal的范围，建议将数据拆成整数和小数分开存储
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## 日期类型
 
@@ -98,11 +86,9 @@ MySQL中字符串类型有以下几种：CHAR，VARCHAR，TEXT，ENUM和SET，�
 
 （3）慎用ENUM
 
-* * 要么是数字，要么是字符串，要么是时间，ENUM里面是什么？ENUM更像业务数据的特征信息，不是数据类型
+* * 要么是数字，要么是字符串，要么是时间，ENUM里面是什么？ENUM更像业务数据的特征信息，不是数据类型（ENUM实际存储的是数字，而非字符串）
   * 更改ENUM的代价大，不如使用TINYINT或者CHAR灵活，在海量数据下，假如后来发现ENUM需要增加一种枚举值，则需要ALTER TABLE，而使用TINYINT或者CHAR，则无需如此。
   * ENUM类型不是SQL标准，属于MySQL，而其他DBMS不一定有原生的支持。
-
-
 
 ## 参考
 
@@ -117,6 +103,4 @@ MySQL中字符串类型有以下几种：CHAR，VARCHAR，TEXT，ENUM和SET，�
 [8 Reasons Why MySQL's ENUM Data Type Is Evil](http://komlenic.com/244/8-reasons-why-mysqls-enum-data-type-is-evil/)
 
 《阿里巴巴Java开发手册v1.2》
-
-
 
