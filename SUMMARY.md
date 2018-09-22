@@ -73,6 +73,7 @@
       * [CAS](java-yu-yan/xian-cheng/tong-bu-yu-suo/cas-de-li-jie/README.md)
         * [CAS的理解](java-yu-yan/xian-cheng/tong-bu-yu-suo/cas-de-li-jie/casde-li-jie.md)
         * [Java中原子操作类](java-yu-yan/xian-cheng/tong-bu-yu-suo/cas-de-li-jie/javazhong-yuan-zi-cao-zuo-lei.md)
+      * [3个经典同步问题](java-yu-yan/xian-cheng/tong-bu-yu-suo/3ge-jing-dian-tong-bu-wen-ti.md)
     * [fork/join的理解](java-yu-yan/xian-cheng/forkjoin-de-li-jie.md)
   * [I/O](java-yu-yan/java-guan-jian-zi/io.md)
     * [I/O概述](java-yu-yan/java-guan-jian-zi/io/iofen-lei.md)
