@@ -26,9 +26,11 @@ Java提供了5种元注解，专门负责新注解的创建工作，其中@Repea
 |@Inherited |允许子类继承父类中的注解<br>即假如类A添加了某注解，且该注解为@Inherited的，则类A的子类也会自动添加该注解|
 |@Repeatable|表示该注解在同一元素上，可以重复使用<br>假设某个注解的含义为标识某个类为|
 
-#### 注解的成员变量
+#### 注解的属性
+
 注解的属性也叫做成员变量。注解只有成员变量，没有方法。注解的成员变量在注解的定义中以“无形参的方法”形式来声明，其方法名定义了该成员变量的名字，其返回值定义了该成员变量的类型。
 
+使用时，采用“@注解名(属性1=value,属性2=value2)”的形式对属性进行赋值，如果某注解只有一个属性，在使用时，可以直接使用“@注解名(value)”的形式，而不必显式指明属性名。
 
 
 
@@ -38,11 +40,29 @@ Java提供了5种元注解，专门负责新注解的创建工作，其中@Repea
 
 
 
+此外，可以使用default关键字来为属性设置默认值。没有默认值的属性，在使用时，必须指定值，有默认值的属性，则可以不设置，使用默认值。
 
-  
+
+```java
+//定义MyAnnotation注解，它包含id和msg两个属性
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MyAnnotation {
+    int id() default 0;
+    String msg();
+}
+
+//使用：“属性=属性值”的形式
+@MyAnnotation(id=5,msg="hello")
+public class Xxxxx {}
+
+//使用：“属性=属性值”的形式，因为id有默认值，如果不关心，可以省略
+@MyAnnotation(msg="hello")
+public class Xxxxx {}
+
+```
 
 
-## 
 
 
 
