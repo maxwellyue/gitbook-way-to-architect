@@ -14,6 +14,21 @@ Java中内置了3个标准注解：
 
 ## 定义注解
 
+要定义一个注解，有3个要素
+* 注解叫什么名字
+* 注解有哪些特性：可以用在什么地方（类还是方法还是变量）等
+* 注解有哪些属性：可以为元素增加哪些注释
+
+
+注解叫什么名字，是通过`@interface`关键字进行定义，如下：
+
+```java
+public @interface MyAnnotation {
+}
+```
+
+下面介绍注解的特性和属性的定义。
+
 #### 元注解
 
 Java提供了5种元注解，专门负责新注解的创建工作，其中@Repeatable是Java 1.8新增的元注解，如下表所示：
@@ -54,26 +69,163 @@ public class Xxxxx {}
 
 ```
 
-#### 注解的继承
-TODO
-
 
 ## 编写注解处理器
-当我们为类/方法/变量等添加了一个注解后，相当于给它们增加了一个注释。但是增加注释往往不是我们的目的，我们还要根据这个注释来对他们做一些处理。这就是注解处理器。
+当我们为类/方法/变量等添加了一个注解后，相当于给它们增加了一个注释。但是增加注释往往不是我们的目的，我们还要根据这个注释来对他们做一些处理，这就是注解处理器。
 
 要编写注解处理器，就必须知道哪些元素（类还是方法还是变量等）上添加了什么注解，这些信息需要使用反射API来获取。获取之后，还要根据注解信息，为元素做一些处理，这个处理过程，也需要使用反射API来完成。
 
 与注解相关的反射API如下，只要注解可以出现的元素（Class/Method/Constructor等），都可以通过对应的下述方法来获取：
 
 ```java
-//
+//判断元素是否有annotationClass这个注解
 public boolean isAnnotationPresent(Class<? extends Annotation> annotationClass) {}
 
- public <A extends Annotation> A getAnnotation(Class<A> annotationClass) {}
+//获取元素上添加的annotationClass这个注解
+public <A extends Annotation> A getAnnotation(Class<A> annotationClass) {}
 
+//获取元素上所有的注解
 public Annotation[] getAnnotations() {}
-
 ```
+
+获取到某注解后，可以通过“_注解.属性_”这种形式来获取注解的某个属性的值。
+
+**示例1**
+
+假如有如下自定义注解：
+
+```java
+@Target({ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Log {
+
+    String type() default "";
+}
+```
+然后将注解添加到Operation类的方法上：
+
+
+```java
+public class Operation {
+
+    @Log(type = "添加")
+    public void add(Book book) {
+        System.out.println("add book:" + book.getName());
+    }
+
+    @Log(type = "删除")
+    public void delete(Book book) {
+        System.out.println("delete book:" + book.getName());
+    }
+
+    static class Book {
+        private String name;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+}
+```
+
+下面，来编写Log注解的处理器，它要做的事情是：在Operation每个操作之前，将操作的类型打印出来：
+
+
+```java
+public class AnnotationsExample {
+
+    public static void main(String[] args) throws InvocationTargetException, IllegalAccessException {
+
+        Operation.Book book  = new Operation.Book();
+        book.setName("way-to-architect");
+
+        Operation operation = new Operation();
+        Class<? extends Operation> operationClass = operation.getClass();
+        Method[] methods = operationClass.getMethods();
+        for (Method method : methods){
+            if(method.isAnnotationPresent(Log.class)){
+                Log logAnnotation = method.getAnnotation(Log.class);
+                String type = logAnnotation.type();
+                System.out.println("操作的类型：" + type);
+                method.invoke(operation,book);
+            }
+        }
+    }
+}
+//输出如下
+操作的类型：添加
+add book:way-to-architect
+操作的类型：删除
+delete book:way-to-architect
+```
+
+**示例2**
+假如有以下注解，用于给类的成员变量添加一个标签，然后根据这个标签，将类的成员变量进行格式化输出：
+
+
+
+```java
+//注解@Label
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Label {
+    String value() default "";
+}
+//注解处理器
+public class Formatter {
+
+    public static String format(Object object) throws IllegalAccessException {
+        StringBuilder res = new StringBuilder();
+        Class<?> clazz = object.getClass();
+        Field[] fields = clazz.getDeclaredFields();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            if (field.isAnnotationPresent(Label.class)) {
+                Label label = field.getAnnotation(Label.class);
+                res.append(label.value()).append(":").append(field.get(object)).append(System.getProperty("line.separator"));
+            }
+        }
+        if (res.length() > 0) {
+            int separatorLength = System.getProperty("line.separator").length();
+            res.delete(res.length() - separatorLength, res.length());
+        }
+        return res.toString();
+    }
+}
+//使用
+static class User {
+
+    @Label("名字")
+    private String name;
+
+    @Label("年龄")
+    private int age;
+
+    public User(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    //省略getter和setter方法
+}
+//测试
+@Test
+public void testFormatter() throws IllegalAccessException {
+    User user = new User("xiaoming", 18);
+    String format = Formatter.format(user);
+    System.out.println(format);
+}
+//输出如下
+名字:xiaoming
+年龄:18
+```
+
+
+
+
 
 
 
@@ -92,9 +244,13 @@ public Annotation[] getAnnotations() {}
 ## 参考
 
 《Java编程思想》
+
 [秒懂，Java 注解 （Annotation）你可以这样学
 ](https://blog.csdn.net/briblue/article/details/73824058)
 
+[深入理解Java：注解](http://www.cnblogs.com/ITtangtang/p/3974531.html)
+
+《Java编程的逻辑》
 
 
 
