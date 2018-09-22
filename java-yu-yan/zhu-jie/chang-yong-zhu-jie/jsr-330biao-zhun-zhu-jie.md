@@ -25,10 +25,12 @@ JSR-330中的标准注解与Spring中的注解的对应关系如下：
 | @Lazy | - | 不等价 |
 | ObjectFactory | Provider | javax.inject.Provider是SpringObjectFactory的另一个选择，通过get\(\)方法来代理，Provider可以和Spring的@Autowired组合使用 |
 
-为什么要使用JSR-330提供的标准注解：JSR-330相当于接口，而Spring是一种实现，在编程中一般面向接口，而不依赖具体实现。
+**为什么要使用JSR-330提供的标准注解**
+
+JSR-330相当于接口，而Spring是一种实现，在编程中一般面向接口，而不依赖具体实现。
 
 ## 参考
 
-[Spring核心技术（十）——JSR-330标准注解  
+[Spring核心技术（十）——JSR-330标准注解    
 ](https://blog.csdn.net/EthanWhite/article/details/51879871)[Java 依赖注入标准（JSR-330）简介](https://blog.csdn.net/DL88250/article/details/4838803)
 
