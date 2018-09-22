@@ -30,15 +30,7 @@ Java提供了5种元注解，专门负责新注解的创建工作，其中@Repea
 
 注解的属性也叫做成员变量。注解只有成员变量，没有方法。注解的成员变量在注解的定义中以“无形参的方法”形式来声明，其方法名定义了该成员变量的名字，其返回值定义了该成员变量的类型。
 
-使用时，采用“@注解名(属性1=value,属性2=value2)”的形式对属性进行赋值，如果某注解只有一个属性，在使用时，可以直接使用“@注解名(value)”的形式，而不必显式指明属性名。
-
-
-
-
-
-
-
-
+使用时，采用“_@注解名(属性1=value,属性2=value2)_”的形式对属性进行赋值，如果某注解只有一个属性，在使用时，可以直接使用“_@注解名(value)_”的形式，而不必显式指明属性名。
 
 此外，可以使用default关键字来为属性设置默认值。没有默认值的属性，在使用时，必须指定值，有默认值的属性，则可以不设置，使用默认值。
 
@@ -62,6 +54,35 @@ public class Xxxxx {}
 
 ```
 
+#### 注解的继承
+TODO
+
+
+## 编写注解处理器
+当我们为类/方法/变量等添加了一个注解后，相当于给它们增加了一个注释。但是增加注释往往不是我们的目的，我们还要根据这个注释来对他们做一些处理。这就是注解处理器。
+
+要编写注解处理器，就必须知道哪些元素（类还是方法还是变量等）上添加了什么注解，这些信息需要使用反射API来获取。获取之后，还要根据注解信息，为元素做一些处理，这个处理过程，也需要使用反射API来完成。
+
+与注解相关的反射API如下，只要注解可以出现的元素（Class/Method/Constructor等），都可以通过对应的下述方法来获取：
+
+```java
+//
+public boolean isAnnotationPresent(Class<? extends Annotation> annotationClass) {}
+
+ public <A extends Annotation> A getAnnotation(Class<A> annotationClass) {}
+
+public Annotation[] getAnnotations() {}
+
+```
+
+
+
+
+
+
+
+
+
 
 
 
@@ -71,7 +92,8 @@ public class Xxxxx {}
 ## 参考
 
 《Java编程思想》
-
+[秒懂，Java 注解 （Annotation）你可以这样学
+](https://blog.csdn.net/briblue/article/details/73824058)
 
 
 
