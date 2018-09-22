@@ -256,6 +256,11 @@
     * [Java的不同实现](xi-tong-she-ji/sheng-chan-zhe-xiao-fei-zhe-mo-xing/java-de-bu-tong-shi-xian.md)
     * [双缓冲队列](xi-tong-she-ji/sheng-chan-zhe-xiao-fei-zhe-mo-xing/huan-chong-dui-lie.md)
     * [无锁队列Disruptor](xi-tong-she-ji/sheng-chan-zhe-xiao-fei-zhe-mo-xing/wu-suo-dui-lie-disruptor.md)
+    * 使用notify/wait方式
+    * 使用阻塞队列实现
+    * 使用信号量实现
+    * 使用管道流实现
+    * 使用await/signal实现
 * [版本控制](ban-ben-kong-zhi/README.md)
   * [Git](ban-ben-kong-zhi/git/README.md)
     * [Git常用命令](ban-ben-kong-zhi/git/git-chang-yong-ming-ling.md)
