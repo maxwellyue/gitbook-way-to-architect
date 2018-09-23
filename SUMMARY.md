@@ -212,6 +212,7 @@
       * [MySQL中的索引类型](shu-ju-ku/mysql/mysqlzhong-de-suo-yin-lei-xing.md)
       * [MySQL中的B+Tree索引](shu-ju-ku/mysql/mysqlzhong-deb-+-tree-suo-yin.md)
       * [MySQL查询过程](shu-ju-ku/mysql/mysqlcha-xun-guo-cheng.md)
+      * MySQL查询优化
     * [SQL语句调优](shu-ju-ku/mysql/sql-yu-ju-tiao-you.md)
     * [索引](shu-ju-ku/mysql/suo-yin.md)
     * [分组内排序](shu-ju-ku/mysql/fen-zu-nei-pai-xu.md)
