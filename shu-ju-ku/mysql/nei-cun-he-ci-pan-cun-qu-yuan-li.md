@@ -124,8 +124,6 @@ B+树的删除操作同样必须保证删除后叶子节点中的记录依然排
 | Yes | No | 合并叶子节点和它的兄弟节点，同时更新Index Page |
 | Yes | Yes | 1）合并叶子节点和它的兄弟节点 2）更新Index Page 3）合并Index Page和它的兄弟节点 |
 
-
-
 ## 内容来源
 
 ---
@@ -137,6 +135,8 @@ B+树的删除操作同样必须保证删除后叶子节点中的记录依然排
 [B-Tree算法分析与实现](https://www.cnblogs.com/chobits/p/4813368.html)
 
 [MySQL InnoDB索引与算法介绍](http://www.ywnds.com/?p=5300)：B+Tree操作部分的内容来源
+
+[InnoDB备忘录 - 数据页结构](http://zhongmingmao.me/2017/05/09/innodb-table-page-structure/)：详细介绍了数据页的结构
 
 
 
