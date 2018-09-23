@@ -213,9 +213,8 @@
       * [B-Tree/B+Tree概述](suan-fa/b-treeb+treegai-shu.md)
       * [为什么使用B+Tree](shu-ju-ku/mysql/nei-cun-he-ci-pan-cun-qu-yuan-li.md)
       * [MySQL中的B+Tree索引](shu-ju-ku/mysql/mysqlzhong-deb-+-tree-suo-yin.md)
-      * [索引的维护代价](shu-ju-ku/mysql/suo-yin-de-wei-hu-dai-jia.md)
+      * [MySQL高性能索引策略](shu-ju-ku/mysql/mysqlcha-xun-you-hua.md)
       * [MySQL查询过程](shu-ju-ku/mysql/mysqlcha-xun-guo-cheng.md)
-      * MySQL查询优化
     * [SQL语句调优](shu-ju-ku/mysql/sql-yu-ju-tiao-you.md)
     * [索引](shu-ju-ku/mysql/suo-yin.md)
     * [分组内排序](shu-ju-ku/mysql/fen-zu-nei-pai-xu.md)
