@@ -41,8 +41,6 @@
 
 该部分内容见：[《MySQL查询过程》](/shu-ju-ku/mysql/mysqlcha-xun-guo-cheng.md)
 
-MySQL执行关联查询的方式——嵌套循环关联：即MySQL先在一个表中循环取出单条数据，然后再嵌套循环到下一个表中寻找匹配的行，依次下去，直到找到所有表中匹配的行为止。然后根据各个表匹配的行，返回查询中需要的各个列。MySQL会尝试在最后一个关联表中找到所有匹配的行，如果最后一个关联表无法找到更多的行以后， MySQL返回到上一层次关联表， 看是否能够找到更多的匹配记录， 依此类推迭代执行。
-
 ## 优化特定类型的查询
 
 ---
@@ -56,8 +54,87 @@ MySQL执行关联查询的方式——嵌套循环关联：即MySQL先在一个�
 
 **优化关联查询**
 
-* 确保ON或者USING子句中的列上有索引。在创建索引的时候就要考虑到关联的顺序。当表A和表B用列c关联的时候， 如果优化器的关联顺序是B、A， 那么就不需要在 B表的对应列上建上索引。 没有用到的索引只会带来额外的负担。 一般来说，除非有其他理由， 否则只需要在关联顺序中的第二个表的相应列上创建索引。
-* 确保GROUP BY和ORDER BY中的表达式只涉及到一个表中的列， 这样MySQL才有可能使用索引来优化这个过程。
+MySQL执行关联查询的方式是**嵌套循环关联（**Nested Loop Join**）**：即MySQL先在一个表中循环取出单条数据，然后再嵌套循环到下一个表中寻找匹配的行，依次下去，直到找到所有表中匹配的行为止。然后根据各个表匹配的行，返回查询中需要的各个列。MySQL会尝试在最后一个关联表中找到所有匹配的行，如果最后一个关联表无法找到更多的行以后， MySQL返回到上一层次关联表， 看是否能够找到更多的匹配记录， 依此类推迭代执行。
+
+举个例子
+
+```sql
+# 查询语句
+SELECT tbl1.col1, tbl2.col2
+FROM tbl1 INNER JOIN tbl2 USING(col3)
+WHERE tbl1.col1 IN(5, 6)
+
+# 查询过程用伪代码表示如下
+outer_iter = iterator over tbl1 where col1 IN(5, 6)                
+outer_row = outer_iter.next
+while outer_row
+    inner_iter = iterator over tbl32 where col3 = outer_row.col3
+    inner_row = inner2_iter.next
+    while inner_row
+        output [outer_row.col1, inner_row.clo2]
+        inner_row = inner_iter.next
+    end
+    outer_row = outer_iter.next
+end
+```
+
+根据先获取tbl1中的数据，并以tbl1为基础，循环tbl2，这里，tbl1称为驱动表，tbl2称为被驱动表；显而易见，外层循环次数越少，查询就会越快，所以在进行连接查询的时候，**应该尽可能的使用小表做为驱动表；**此外，循环体中tbl2查询时，使用了关联字段等值条件，如果tbl2中的col3字段有索引，则查询速度就会很快，所以在进行连接查询的时候，要求关联字段必须有索引，但并不是说tbl1和tbl2上的col3都需要建索引，上面例子中，关联顺序为（tab1, tbl2），那么只需要在tbl2的col3字段上创建索引即可： 一般来说，除非有其他理由， 否则**只需要在关联顺序中的第二个表的相应列上创建索引**。
+
+如果将上面的INNER JOIN改为LEFT JOIN，执行过程仍是适用的：
+
+```sql
+# 查询语句
+SELECT tbl1.col1, tbl2.col2
+FROM tbl1 LEFT JOIN tbl2 USING(col3)
+WHERE tbl1.col1 IN(5, 6)
+
+# 查询过程用伪代码表示如下
+outer_iter = iterator over tbl1 where col1 IN(5, 6)                
+outer_row = outer_iter.next
+while outer_row
+    inner_iter = iterator over tbl32 where col3 = outer_row.col3
+    inner_row = inner2_iter.next
+    if inner_row
+        while inner_row
+            output [outer_row.col1, inner_row.clo2]
+            inner_row = inner_iter.next
+        end
+    else
+        output [outer_row.col1, NULL]
+    outer_row = outer_iter.next
+end
+```
+
+理解了这两个执行过程，也能对INNER JOIN和OUTER JOIN的区别有更深一层的认识。
+
+对应RIGHT JOIN，MySQL会将其改写为等价的LEFT JOIN。
+
+此外，优化关联查询还有重要的一条：确保GROUP BY和ORDER BY中的表达式只涉及到第一个表中的列， 这样MySQL才有可能使用索引来优化这个过程。下面会详细介绍。
+
+**优化排序**
+
+MySQL的排序方式有两种：索引排序和文件排序。
+
+MySQL会在以下情况使用**索引排序**：
+
+* * ORDER BY col，且col上有单列索引
+  * ORDER BY col1,  col2,  col3 ，且col1, col2, col3上有多列索引，且顺序为col1, col2, col3；
+  * 对于关联查询还需要有一个额外的条件：ORDER BY后面的字段必须全部为关联查询中第一个表（驱动表）的字段。
+
+当MySQL不能使用索引排序时，就会进行**文件排序（filesort）**:
+
+* * 数据量小，直接在内存中进行排序（但也叫filesort）
+  * 数据量大，则需要借助磁盘：先将数据分块，对每个独立的块进行排序，并将各个块的排序结果放在磁盘上，最后将各个排好序的块进行合并，返回排序结果
+
+对于关联查询的文件排序，有以下规则：
+
+* * 如果ORDER BY后面所有的字段都来自第一个表（驱动表），则在关联处理第一个表的时候就进行文件排序（此时，EXPLAIN的Extra字段会有"Using filesort"信息）
+  * 除此之外的所有情况，MySQL都会先将关联的结果存放到一个临时表中，然后在所有的关联都结束后，再进行文件排序。（此时，EXPLAIN结果的Extra字段可以看到"Using temporaya, Using filesort"信息）
+
+对于ORDER BY和LIMIT同时出现的查询：
+
+* * MySQL5.6版本之前：LIMIT会在排序之后应用，所以即使需要返回较少的数据，临时表和需要排序的数据量仍然会非常大。
+  * MySQL5.6及更新版本：会根据实际情况，选择抛弃不满足条件的结果，然后再进行排序。
 
 **优化子查询**
 
