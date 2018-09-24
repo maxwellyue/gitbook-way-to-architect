@@ -217,9 +217,14 @@
     * [MySQL查询](shu-ju-ku/mysql/mysqlcha-xun.md)
       * [MySQL查询过程](shu-ju-ku/mysql/mysqlcha-xun-guo-cheng.md)
       * [MySQL查询性能优化](shu-ju-ku/mysql/mysqlcha-xun-xing-neng-you-hua.md)
-    * [SQL语句调优](shu-ju-ku/mysql/sql-yu-ju-tiao-you.md)
-    * [分组内排序](shu-ju-ku/mysql/fen-zu-nei-pai-xu.md)
-    * [常见查询场景](shu-ju-ku/mysql/chang-yong-cha-xun-chang-jing.md)
+      * [使用EXPLAIN](shu-ju-ku/mysql/shi-yong-explain.md)
+    * [MySQL锁](shu-ju-ku/mysql/mysqlsuo.md)
+      * MySQL中锁的分类
+      * 各种SQL语句的锁
+    * [MySQL实战](shu-ju-ku/mysql/mysqlshi-zhan.md)
+      * MySQL分区/分库/分表
+      * [SQL语句调优](shu-ju-ku/mysql/sql-yu-ju-tiao-you.md)
+      * [常见查询场景](shu-ju-ku/mysql/chang-yong-cha-xun-chang-jing.md)
   * [Redis](shu-ju-ku/redis.md)
   * [Hbase](shu-ju-ku/hbase.md)
   * [OpenTSDB](shu-ju-ku/opentsdb.md)
