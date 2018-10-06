@@ -224,7 +224,7 @@
       * [使用EXPLAIN](shu-ju-ku/mysql/shi-yong-explain.md)
     * [MySQL锁](shu-ju-ku/mysql/mysqlsuo.md)
       * [MySQL中锁的分类](shu-ju-ku/mysql/mysqlsuo/mysqlzhong-suo-de-fen-lei.md)
-      * 各种SQL语句的锁
+      * [各种SQL语句的锁](shu-ju-ku/mysql/mysqlsuo/ge-zhong-sql-yu-ju-de-suo.md)
     * [MySQL实战](shu-ju-ku/mysql/mysqlshi-zhan.md)
       * MySQL分区/分库/分表
       * [SQL语句调优](shu-ju-ku/mysql/sql-yu-ju-tiao-you.md)
