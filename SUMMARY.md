@@ -223,7 +223,7 @@
       * [MySQL查询性能优化](shu-ju-ku/mysql/mysqlcha-xun-xing-neng-you-hua.md)
       * [使用EXPLAIN](shu-ju-ku/mysql/shi-yong-explain.md)
     * [MySQL锁](shu-ju-ku/mysql/mysqlsuo.md)
-      * MySQL中锁的分类
+      * [MySQL中锁的分类](shu-ju-ku/mysql/mysqlsuo/mysqlzhong-suo-de-fen-lei.md)
       * 各种SQL语句的锁
     * [MySQL实战](shu-ju-ku/mysql/mysqlshi-zhan.md)
       * MySQL分区/分库/分表
