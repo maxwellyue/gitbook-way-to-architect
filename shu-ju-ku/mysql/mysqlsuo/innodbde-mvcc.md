@@ -89,6 +89,10 @@ _对于delete/update操作，undo日志记录旧数据row，回滚时直接恢�
 * `DB_ROW_ID`
 * * 当由innodb自动产生聚集索引时，聚集索引包括这个DB\_ROW\_ID的值，否则聚集索引中不包括这个值，这个用于索引当中。如果我们的表中有主键或合适的唯一索引，也就是无法生成聚簇索引的时候, InnoDB会帮我们自动生成聚集索引, 但聚簇索引会使用DB\_ROW\_ID的值来作为主键; 如果我们有自己的主键或者合适的唯一索引, 那么聚簇索引中也就不会包含 DB\_ROW\_ID 了 。
 
+**修改操作**
+
+在InnoDB中，事务以排他锁的形式修改原始数据，把修改前的数据存放于undo日志，并通过回滚指针与主数据关联，修改成功时什么都不做，失败则恢复undo日志中的数据（rollback）。
+
 **快照读**（Snapshot Read）
 
 回滚段里的数据，其实是历史数据的快照（snapshot），这些数据是不会被修改，select可以肆无忌惮的并发读取他们，这就是快照度。快照读这种一致性不加锁的读，就是InnoDB并发如此之高的核心原因之一。
@@ -119,4 +123,9 @@ TODO
 [InnoDB存储引擎MVCC实现原理](https://liuzhengyang.github.io/2017/04/18/innodb-mvcc/)
 
 [InnoDB并发如此高，原因竟然在这？](http://chuansong.me/n/2487104646019)
+
+[数据库事务特征、数据库隔离级别，各级别数据库加锁情况\(含实操\)--read committed && MVCC](https://www.jianshu.com/p/fd51cb8dc03b)
+
+  
+
 
