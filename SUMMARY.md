@@ -226,7 +226,7 @@
       * [MySQL中锁概述](shu-ju-ku/mysql/mysqlsuo/mysqlzhong-suo-de-fen-lei.md)
       * [InnoDB的并发控制](shu-ju-ku/mysql/mysqlsuo/innodbde-mvcc.md)
     * [MySQL实战](shu-ju-ku/mysql/mysqlshi-zhan.md)
-      * MySQL分区/分库/分表
+      * [MySQL分区/分库/分表](shu-ju-ku/mysql/mysqlfen-533a-fen-5e93-fen-biao.md)
       * [SQL语句调优](shu-ju-ku/mysql/sql-yu-ju-tiao-you.md)
       * [常见查询场景](shu-ju-ku/mysql/chang-yong-cha-xun-chang-jing.md)
   * [Redis](shu-ju-ku/redis.md)
