@@ -126,6 +126,7 @@ TODO
 
 [数据库事务特征、数据库隔离级别，各级别数据库加锁情况\(含实操\)--read committed && MVCC](https://www.jianshu.com/p/fd51cb8dc03b)
 
-  
+[【mysql】关于innodb中MVCC的一些理解](https://www.cnblogs.com/chenpingzhao/p/5065316.html)
+
 
 
