@@ -40,7 +40,7 @@ select message-id/ \(order by message-id\)/limit 100
 
 #### **使用数据库的auto\_increment**
 
-使用MySQL数据库自带的 auto\_increment 特性来生成全局唯一递增ID，可以保证唯一性、递增性。
+使用MySQL数据库自带的 auto\_increment 特性来生成全局唯一递增ID，可以保证唯一性、递增性。
 
 但是有单点风险（主库挂掉就无法提供服务），且性能存在上限（依赖单库的写入速度），难以扩展。
 
@@ -133,7 +133,7 @@ snowflake是twitter开源的分布式ID生成算法，其使用一个long型（8
 
 （4）将毫秒数放在最高位，保证生成的ID是趋势递增的
 
-snowflake算法解决并发的问题仍然是使用序列号，依赖时间，因此每台服务器分配的ID是虽然是绝对递增的，但从全局看，生成的ID只是趋势递增的（有些服务器的时间早，有些服务器的时间晚，TODO）。如果发生时钟回拨，可能会导致可能生成重复id，可以采取“时钟回退后，拒绝生成ID”的策略回避该问题。
+snowflake算法解决并发的问题仍然是使用序列号，依赖时间，因此每台服务器分配的ID是虽然是绝对递增的，但从全局看，生成的ID只是趋势递增的（有些服务器的时间早，有些服务器的时间晚，TODO，使用NTP解决？）。如果发生时钟回拨，可能会导致可能生成重复id，可以采取“时钟回退后，拒绝生成ID”的策略回避该问题。
 
 **最后一个容易忽略的问题**：
 
@@ -141,16 +141,12 @@ snowflake算法解决并发的问题仍然是使用序列号，依赖时间，�
 
 在snowflake中，跨毫秒时序列号总是从0开始，会使得序列号为0的ID比较多，导致生成的ID取模后不均匀。解决方法是，序列号不是每次都从0开始，而是从一个0到9的随机数。
 
-
-
 内容来源：
 
 [细聊分布式ID生成方法](https://mp.weixin.qq.com/s/0H-GEXlFnM1z-THI8ZGV2Q)
 
 [分布式唯一id：snowflake算法思考](https://juejin.im/post/5a7f9176f265da4e721c73a8)
 
-[twitter-archive**snowflake**/  
+[twitter-archive**snowflake**/    
 ](https://github.com/twitter-archive/snowflake/tree/snowflake-2010)
-
-
 
