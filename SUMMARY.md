@@ -229,6 +229,7 @@
       * [分库/分表](shu-ju-ku/mysql/mysqlzhong-de-sharding/gai-nian-ff1a-fen-5e93-fen-8868-fen-qu.md)
       * [跨库JOIN](shu-ju-ku/mysql/mysqlzhong-de-sharding/fen-ku-fen-biao-de-wen-ti.md)
       * [跨库分页](shu-ju-ku/mysql/mysqlzhong-de-sharding/kua-ku-fen-ye.md)
+      * [分库分表后的平滑扩容](shu-ju-ku/mysql/mysqlzhong-de-sharding/fen-ku-fen-biao-hou-de-ping-hua-kuo-rong.md)
       * [分区表](shu-ju-ku/mysql/mysqlzhong-de-sharding/fen-qu-biao.md)
       * 分布式ID生成方法
     * [MySQL实战](shu-ju-ku/mysql/mysqlshi-zhan.md)
