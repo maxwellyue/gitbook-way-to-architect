@@ -2,7 +2,7 @@
 
 ---
 
-数据库架构演进过程：![](/assets/屏幕快照 2018-10-08 下午11.37.03.png)
+数据库架构演进过程：![](/assets/屏幕快照 2018-10-10 下午11.03.43.png)
 
 其中，双Master方案：当主库挂掉的时候，虚ip自动漂移到另一个主库，整个过程对调用方透明，可以保证数据库的高可用。
 
@@ -91,5 +91,5 @@ d）删除掉冗余数据（对应上图，就是user0-master1中删除%4=2的�
 
 内容来源：
 
-[数据库秒级平滑扩容架构方案](https://www.w3cschool.cn/architectroad/architectroad-database-smooth-expansion.html)，略有调整。
+[数据库秒级平滑扩容架构方案](https://www.w3cschool.cn/architectroad/architectroad-database-smooth-expansion.html)，略有调整，重画了图。
 
