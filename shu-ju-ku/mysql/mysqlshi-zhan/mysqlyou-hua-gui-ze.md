@@ -57,7 +57,7 @@ MySQL的优化，其实是一个非常大的话题。因为，MySQL的性能的�
 
 **避免使用SWAP分区**：对于频繁进行读写操作的系统而言，数据看似在内存而实际上在磁盘是非常糟糕的，响应时间的增长很可能直接拖垮整个系统。而Linux不会因为MySQL很重要就避免将分配给MySQL的地址空间映射到swap上，所以直接不使用swap分区。
 
-**IO调度策略调整为Deadline模式：**目前主流Linux发行版本使用三种I/O调度器：DeadLine、CFQ、NOOP，通常来说Deadline适用于大多数环境,特别是写入较多的文件服务器，从原理上看，DeadLine是一种以提高机械硬盘吞吐量为思考出发点的调度算法，尽量保证在有I/O请求达到最终期限的时候进行调度，非常适合业务比较单一并且I/O压力比较重的业务，比如Web服务器，数据库应用等。CFQ 为所有进程分配等量的带宽,适用于有大量进程的多用户系统，CFQ是一种比较通用的调度算法，它是一种以进程为出发点考虑的调度算法，保证大家尽量公平,为所有进程分配等量的带宽,适合于桌面多任务及多媒体应用。NOOP 对于闪存设备和嵌入式系统是最好的选择。对于固态硬盘来说使用NOOP是最好的，DeadLine次之，而CFQ效率最低。
+**IO调度策略调整为Deadline模式：**目前主流Linux发行版本使用三种I/O调度器：DeadLine、CFQ、NOOP，通常来说Deadline适用于大多数环境,特别是写入较多的文件服务器，从原理上看，DeadLine是一种以提高机械硬盘吞吐量为思考出发点的调度算法，尽量保证在有I/O请求达到最终期限的时候进行调度，非常适合业务比较单一并且I/O压力比较重的业务，比如Web服务器，数据库应用等。CFQ 为所有进程分配等量的带宽,适用于有大量进程的多用户系统，CFQ是一种比较通用的调度算法，它是一种以进程为出发点考虑的调度算法，保证大家尽量公平，为所有进程分配等量的带宽,适合于桌面多任务及多媒体应用。NOOP 对于闪存设备和嵌入式系统是最好的选择。对于固态硬盘来说使用NOOP是最好的，DeadLine次之，而CFQ效率最低。
 
 ## MySQL配置
 
@@ -81,9 +81,7 @@ max_binlog_size               # 可以不设置
 innodb_additional_mem_pool_size    #小于2G内存的机器，推荐值是20M。32G内存以上100M
 ```
 
-
-
-
+具体解释请参考：[基本配置](/shu-ju-ku/mysql/ji-ben-pei-zhi.md)
 
 ## 优化工具
 
@@ -139,36 +137,6 @@ workbench               管理、备份、监控、分析、优化工具（比�
 
 4、调整索引或语句本身。
 
-### 系统层面
-
-cpu
-
-```bash
-vmstat 
-sar top
-htop
-nmon
-mpstat
-```
-
-内存
-
-```
-free
-ps -aux
-```
-
-IO设备（磁盘、网络）
-
-```
-iostat
-ss
-netstat
-iptraf
-iftop
-lsof
-```
-
 问题一：cpu负载高，IO负载低
 
 内存不够；磁盘性能差；SQL问题；IO出问题了（磁盘到临界了、raid设计不好、raid降级、锁、在单位时间内tps过高）；tps过高，大量的小数据IO；大量的全表扫描
@@ -197,8 +165,6 @@ SQL优化方向：
 
 高可用架构、高性能架构、分库分表
 
-
-
 连接层（基础优化）
 
 设置合理的连接客户和连接方式
@@ -213,35 +179,9 @@ SQL优化方向：
     back_log                  # 可以在堆栈中的连接数量
 ```
 
-SQL层（基础优化）
 
-```
-查询缓存   
 
-  OLAP类型数据库,需要重点加大此内存缓存，
-                                        但是一般不会超过GB
-                                        对于经常被修改的数据，缓存会立马失效。
-                                        我们可以实用内存数据库（redis、memecache），替代他的功能。
-```
-
-### 1.6.2 存储引擎层（innodb基础优化参数）
-
-```
-default-storage-engine
-innodb_buffer_pool_size       # 没有固定大小，50%测试值，看看情况再微调。但是尽量设置不要超过物理内存70%
-innodb_file_per_table=(1,0)
-innodb_flush_log_at_trx_commit=(0,1,2) # 1是最安全的，0是性能最高，2折中
-binlog_sync
-Innodb_flush_method=(O_DIRECT, fdatasync)
-innodb_log_buffer_size        # 100M以下
-innodb_log_file_size          # 100M 以下
-innodb_log_files_in_group     # 5个成员以下,一般2-3个够用（iblogfile0-N）
-innodb_max_dirty_pages_pct   # 达到百分之75的时候刷写 内存脏页到磁盘。
-log_bin
-max_binlog_cache_size         # 可以不设置
-max_binlog_size               # 可以不设置
-innodb_additional_mem_pool_size    #小于2G内存的机器，推荐值是20M。32G内存以上100M
-```
+### 
 
 ## 参考
 
@@ -256,9 +196,4 @@ innodb_additional_mem_pool_size    #小于2G内存的机器，推荐值是20M。
 [MySQL如何避免使用swap](https://blog.csdn.net/John_Chang11/article/details/52043830)
 
 [调整 Linux I/O 调度器优化系统性能](https://www.ibm.com/developerworks/cn/linux/l-lo-io-scheduler-optimize-performance/index.html)
-
-  
-
-
-
 
