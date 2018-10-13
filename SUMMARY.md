@@ -237,6 +237,7 @@
       * [MySQL优化规则](shu-ju-ku/mysql/mysqlshi-zhan/mysqlyou-hua-gui-ze.md)
       * [MySQL问题排查](shu-ju-ku/mysql/mysqlshi-zhan/mysqlwen-ti-pai-cha.md)
       * [常见查询场景](shu-ju-ku/mysql/mysqlshi-zhan/chang-jian-cha-xun-chang-jing.md)
+      * [MySQL乐观锁](shu-ju-ku/mysql/mysqlshi-zhan/mysqlle-guan-suo.md)
   * [Redis](shu-ju-ku/redis.md)
   * [Hbase](shu-ju-ku/hbase.md)
   * [OpenTSDB](shu-ju-ku/opentsdb.md)
