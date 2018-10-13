@@ -74,6 +74,10 @@ void registerBeanDefinitions(List<BeanDefinition> beanDefinitions)
 
 这就是Spring中的BeanDefinitionReader，它负责从Resource获取BeanDefinition，并将BeanDefinition注册到Ioc容器中。
 
+那么，实际Spring中Ioc容器到底是什么样子，BeanDefinitionReader将获取的BeanDefinition到底放在哪里了？
+
+
+
 ## **Bean的加载**
 
 ---
