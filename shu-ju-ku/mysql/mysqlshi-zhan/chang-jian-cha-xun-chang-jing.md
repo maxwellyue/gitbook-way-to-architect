@@ -364,6 +364,8 @@ WHERE s.row_number <= 2
 
 ## 参考
 
+---
+
 [Rank function in MySQL](https://stackoverflow.com/questions/3333665/rank-function-in-mysql)
 
 [MySQL获取分组后的TOP 1和TOP N记录](http://sangei.iteye.com/blog/2359584)
