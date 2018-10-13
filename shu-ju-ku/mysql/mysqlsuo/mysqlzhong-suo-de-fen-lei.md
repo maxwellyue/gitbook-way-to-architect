@@ -126,10 +126,14 @@ SELECT * FROM table_name WHERE ... FOR UPDATE
 [MySQL中的锁（表锁、行锁）](http://www.cnblogs.com/chenqionghe/p/4845693.html)  
 [MySQL优化系列（八）--锁机制超详细解析（锁分类、事务并发、引擎并发控制）](http://blog.csdn.net/jack__frost/article/details/73347688)  
 [MySQL innodb中各种SQL语句加锁分析](http://www.fordba.com/locks-set-by-different-sql-statements-in-innodb.html)  
-[MySQL锁详解](http://www.cnblogs.com/luyucheng/p/6297752.html)
+[MySQL锁详解](http://www.cnblogs.com/luyucheng/p/6297752.html)  
 [挖坑，InnoDB的七种锁](https://mp.weixin.qq.com/s/IE31GSDP0Ndjzc8kFj4Ukw)
 
- 
+**扩展阅读**
+
+[MySQL 加锁处理分析](http://hedengcheng.com/?p=771)
+
+[MySQL中的锁（表锁、行锁，共享锁，排它锁，间隙锁）](https://blog.csdn.net/soonfly/article/details/70238902)
 
 
 
