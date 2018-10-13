@@ -1,5 +1,7 @@
 # 索引的分类
 
+---
+
 **从数据结构角度**
 
 * **B+树索引**：
@@ -42,6 +44,16 @@
 * **覆盖索引**
 * * 覆盖索引只是一种查询的效果，指一个查询语句的执行只需要从辅助索引中就可以得到查询记录，而不需要查询聚集索引中的记录，也称为实现了索引覆盖。
   * 如果EXPLAIN中的Extra中出现Using index，则表示该SQL实现了覆盖索引；
+
+**扩展阅读**
+
+[MySQL 覆盖索引](https://yq.aliyun.com/articles/62419)
+
+[mysql 聚簇索引 和聚簇索引 （二级索引）的 那些事](https://blog.csdn.net/bigtree_3721/article/details/51335479)
+
+  
+[  
+](https://yq.aliyun.com/users/1107161910979982)
 
 
 
