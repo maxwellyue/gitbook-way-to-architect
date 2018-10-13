@@ -4,6 +4,10 @@
 
 Ioc，即Inversion of Control，控制反转，在没有引入IOC容器之前，假如对象A依赖于对象B，那么对象A在初始化或者运行到某一点的时候，自己必须主动去创建对象B或者使用已经创建的对象B。无论是创建还是使用对象B，控制权都在自己手上。在引入IOC容器之后，对象A与对象B之间失去了直接联系，所以，当对象A运行到需要对象B的时候，IOC容器会主动创建一个对象B注入到对象A需要的地方。
 
+## 基本概念
+
+---
+
 下面，我们就从最简单的概念入手，一步一步看Spring是如何实现Ioc容器的。
 
 **Map数据结构**
@@ -38,6 +42,29 @@ BeanFactory要想获取对象，首先需要将对象创建出来，然后才能
 
 到这一步，我们知道，BeanDefinition就是我们应用中的某个类的包装，记录了类名，是否单例，是否懒加载，依赖哪些类等信息。
 
+## **Bean的加载**
+
+---
+
+通过前面的内容可以，BeanFactory负责创建对象或者从中获取对象。或者，从最根本的说起，Ioc容器负责管理对象。但是它要管理哪些对象呢，BeanFactory又要创建哪些对象呢？我们必须通过一定的方式来告诉它，你可能已经想到了，对的，就是XML配置和注解。
+
+XML方式
+
+```xml
+<bean id="userService" class="com.maxwell.example.UserServiceImpl">
+```
+
+注解方式
+
+```java
+@Service
+public class UserServiceImpl implements UserService{}
+```
+
+
+
+
+
 
 
 
@@ -52,21 +79,7 @@ BeanFactory要想获取对象，首先需要将对象创建出来，然后才能
 
 [1000行代码读懂Spring（一）- 实现一个基本的IoC容器](https://my.oschina.net/flashsword/blog/192551)
 
+[Spring IOC 容器源码分析](https://javadoop.com/post/spring-ioc)
+
 [深入理解Spring系列之二：BeanDefinition解析](https://www.jianshu.com/p/8d92147653c0)
-
-
-
-
-
-  
-
-
-  
-
-
-
-
-
-
-
 
