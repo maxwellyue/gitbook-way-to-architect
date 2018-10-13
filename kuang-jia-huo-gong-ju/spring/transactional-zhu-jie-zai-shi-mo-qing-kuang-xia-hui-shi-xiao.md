@@ -1,8 +1,8 @@
-# @transactional注解在什么情况下会失效
+# @Transactional注解在什么情况下会失效
 
-## @transactional注解在什么情况下会失效？
+## @Transactional注解在什么情况下会失效？
 
-以下情况下，@transactional注解会失效：
+以下情况下，@Transactional注解会失效：
 
 * @Transactional 注解只能应用到 public 可见度的方法上。 如果应用在protected、private或者 package可见度的方法上，也不会报错，不过事务设置不会起作用。
 * 在 Spring 的 AOP 代理下，只有目标方法由外部调用，目标方法才由 Spring 生成的代理对象来管理，这会造成自调用问题。若同一类中的其他没有@Transactional 注解的方法内部调用有@Transactional 注解的方法，有@Transactional 注解的方法的事务被忽略，不会发生回滚。

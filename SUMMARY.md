@@ -182,7 +182,7 @@
       * [动态规划](suan-fa/chang-jian-suan-fa/dong-tai-gui-hua.md)
 * [框架或工具](kuang-jia-huo-gong-ju/README.md)
   * [Spring](kuang-jia-huo-gong-ju/spring/README.md)
-    * [@transactional注解在什么情况下会失效](kuang-jia-huo-gong-ju/spring/transactional-zhu-jie-zai-shi-mo-qing-kuang-xia-hui-shi-xiao.md)
+    * [@Transactional注解在什么情况下会失效](kuang-jia-huo-gong-ju/spring/transactional-zhu-jie-zai-shi-mo-qing-kuang-xia-hui-shi-xiao.md)
     * [AOP动态代理的两种方式，以及区别](kuang-jia-huo-gong-ju/spring/aop-dong-tai-dai-li-de-liang-zhong-fang-shi-yi-ji-qu-bie.md)
     * [Spring中定时任务的原理](kuang-jia-huo-gong-ju/spring/spring-zhong-ding-shi-ren-wu-de-yuan-li.md)
     * [Spring中的设计模式](kuang-jia-huo-gong-ju/spring/spring-zhong-de-she-ji-mo-shi.md)
