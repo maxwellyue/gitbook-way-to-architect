@@ -24,7 +24,7 @@
 update(){
     # res表示更新语句影响的行数
     int res = 0;
-    
+
     # 无限循环更新
     for(;;){
         # 查询出当前的version， 假设结果为v1
@@ -92,6 +92,89 @@ tryUpdate(int times){
 ```
 
 在实际应用中，一般表中都会含有update\_time字段来表示记录的最后一次更新的时间，直接使用该字段来进行版本控制实现乐观锁即可。
+
+**实际场景分析**
+
+以上这两种方式，我们都是为表增加业务无关的字段来表示数据的版本，在真实的场景中，有些业务字段本身就具有版本的意义，且往往要仅需要安全地更新该字段，此时，无需额外增加字段，直接使用该字段也可以实现乐观锁这种思想。
+
+举一个例子：两张表：host\(id, disk\_size\)，disk\(id, host\_id, size\)，其中，host表中有disk\_size字段来表示机器的总磁盘大小，disk表中有size表示某个磁盘的大小，host和disk为一对多的关系。
+
+假如我们不加乐观锁控制，直接更新，伪代码如下：
+
+```sql
+updateDisk(){
+    UPDATE disk SET size = ? WHERE id = 1;                                           --- ①      
+    updateHost();
+}
+updateHost(){
+    int size = SELECT SUM(size) FROM disk WHERE host_id = 1;                            --- ②
+    UPDATE host SET disk_size=size  WHERE id=1;
+}
+
+# 初始数据     
+disk(1, 1, 1500)   
+disk(2, 1, 500)
+host(1, 2000)
+```
+
+updateDisk为并发操作，且加了事务控制。假设现在要事务A和事务B去执行updateDisk\(\)操作：
+
+```sql
+事务A：disk(1, 1, 1500) 》 disk(1, 1, 2000)
+事务B：disk(2, 1, 500)  》 disk(2, 1, 1500)
+```
+
+假设A和B同时执行完了②，则A获取的size为500+2000=2500，B获取的size为1500+1500=3000；如果事务A先拿到host\(id=1\)的行锁，即按照A&gt;B的顺序执行update host，则最终host\(1, 2000\)会被更新为host\(1, 3000\)，如果事务B先拿到host\(id=1\)的行锁，即按照B&gt;A的顺序执行update host，则最终host\(1, 2000\)会被更新为host\(1, 2500\)。这两种情况，最终都不会将host\(1, 2000\)更新为我们想要的host\(1,3500\)。
+
+现在，我们以host中的disk\_size作为实现乐观锁的数据版本字段，改写updateDisk，伪代码如下
+
+```sql
+updateDisk(){
+    UPDATE disk SET size = ? WHERE id = 1;                                            --- ①
+    updateHost();
+}
+updateHost(){
+    # 首先查出host的当前磁盘大小
+    int size = SELECT SUM(size) FROM disk WHERE host_id = 1;                          --- ②
+    int initSize = SELECT disk_size FROM host WHERE id = 1;                           --- ③
+    # 尝试更新
+    for(;;){
+        int count = UPDATE host SET disk_size=size WHERE id=1 AND disk_size=initSize; --- ④
+        if(count == 1){
+            break;
+        }
+    }
+}
+
+# 初始数据     
+disk(1, 1, 1500)   
+disk(2, 1, 500)
+host(1, 2000)
+```
+
+updateDisk为并发操作，且加了事务控制。同样现在要事务A和事务B去执行updateDisk\(\)操作：
+
+```sql
+事务A：disk(1, 1, 1500) 》 disk(1, 1, 2000)
+事务B：disk(2, 1, 500)  》 disk(2, 1, 1500)
+```
+
+假设事务A，B同时执行到④，则A获取的initSize为500+2000=2500，B获取的initSize为1500+1500=3000；假设A先拿到id=1的行锁，则执行更新，count=1，A从updateDisk返回，将disk\_size更新为了2500；此时，B由于A释放了id=1的行锁而拿到行锁，执行④，但是此时的disk\_size已经被A更新为2500，不再是3000，所以count=0，会继续尝试，下次尝试获取的initSize为2500，即可成功将disk\_size更新为了3500。
+
+假如不适用乐观锁，而是使用悲观锁，上述伪代码可以改写为：
+
+```sql
+updateDisk(){
+    UPDATE disk SET size = ? WHERE id = 1; 
+    updateHost();
+}
+updateHost(){
+    int size = SELECT SUM(size) FROM disk WHERE host_id = 1 FOR UPDATE; 
+    UPDATE host SET disk_size=size  WHERE id=1;
+}
+```
+
+这样，disk中\(host\_id=1\)的数据就会被加上排它锁，阻止其他事务的任何对这些记录的
 
 
 
