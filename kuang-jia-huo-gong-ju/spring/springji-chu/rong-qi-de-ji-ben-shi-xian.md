@@ -42,25 +42,80 @@ BeanFactory要想获取对象，首先需要将对象创建出来，然后才能
 
 到这一步，我们知道，BeanDefinition就是我们应用中的某个类的包装，记录了类名，是否单例，是否懒加载，依赖哪些类等信息。
 
+**Resource和EncodedResource**
+
+BeanFactory负责创建对象或者从中获取对象。或者，从最根本的说起，Ioc容器负责管理对象。但它要管理哪些对象，BeanFactory又要创建哪些对象？我们必须通过一定的方式来告诉它，最常见的是写在XML文件中，然后让BeanFactory通过某种方式去将我们定义在XML中的Bean创建出来。但是假如这些Bean是定义在某个远程服务器上，需要我们通过url去读取，再或者假如这些Bean就是一些jar文件（虽然只有类，但是如名字、是否懒加载等信息可以采用默认值的方式形成BeanDefinition），所以，需要一个对底层不同来源的资源的封装，这就是Spring中的Resource。对于不同来源的资源，Resource有不同的实现，如文件（FileSystemResource）、ClassPath资源（ClassPathResource）、URL资源（UrlResource）、InputStream资源（InputStreamResource），Byte数组（ByteArrayResource）等。
+
+由于这些不同来源的资源可能存在编码问题，因此需要一个处理编码的工具，这就是Spring中的EncodedResource。
+
+到这一步，我们知道，Resource是对所有资源文件进行统一处理，不仅是Bean的定义这些资源，其他的资源如配置文件等也可以通过Resource来处理。而EncodedResource则是来处理这些资源的编码问题的工具类。
+
+**Profile**
+
+
+
+
+
+
+
+**BeanDefinitionReader**
+
+现在，有了Bean的定义所在的资源Resource，那么，如何将这些不同来源的Resource转换为BeanDefinition呢？
+
+即我们需要一个从Resource中获取BeanDefinition的方法：
+
+```java
+List<BeanDefinition> loadBeanDefinitions(Resource resource)
+```
+
+获取到Bean之后，还需要把它交给Ioc容器，因此还需要一个传递给Ioc容器的方法：
+
+```java
+void registerBeanDefinitions(List<BeanDefinition> beanDefinitions)
+```
+
+这就是Spring中的BeanDefinitionReader，它负责从Resource获取BeanDefinition，并将BeanDefinition注册到Ioc容器中。
+
+
+
+
+
+
+
+
+
 ## **Bean的加载**
 
 ---
 
 通过前面的内容可以，BeanFactory负责创建对象或者从中获取对象。或者，从最根本的说起，Ioc容器负责管理对象。但是它要管理哪些对象呢，BeanFactory又要创建哪些对象呢？我们必须通过一定的方式来告诉它，你可能已经想到了，对的，就是XML配置和注解。
 
-XML方式
+我们先来看XML这种方式。新建一个spring.xml文件，然后在里面写上我们想要交给Ioc容器管理的对象，如下所示：
 
 ```xml
 <bean id="userService" class="com.maxwell.example.UserServiceImpl">
 ```
 
-注解方式
+然后就可以通过如下方式启动我们的应用了：
 
 ```java
-@Service
-public class UserServiceImpl implements UserService{}
+public static void main(String[] args) {
+    BeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource("spring.xml"));
+    CountDownLatch latch = new CountDownLatch(1);
+    try {
+        latch.await();
+    } catch (InterruptedException ignored) {
+    }
+}
 ```
 
+> 实际生产环境中，非Web的Java程序，就是这么启动的；只不过使用的并非XmlBeanFactory，而是功能更为强大的ClassPathXmlApplicationContext
+
+从名字上我们可以猜测XmlBeanFactory是BeanFactory的一个实现类，而Spring中的BeanFactory是一个接口（实际上正是如此）。看起来非常简单：BeanFactory去读取我们定义的XML文件，并按照定义将非懒加载的Bean实例化。
+
+**Resource**
+
+上面的例子中，我们将Bean的定义写在XML文件中，但是，假如有些Bean的定义是
 
 
 
@@ -72,6 +127,9 @@ public class UserServiceImpl implements UserService{}
 
 
 
+
+
+11212
 
 ## 参考
 
