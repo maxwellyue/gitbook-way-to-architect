@@ -42,6 +42,12 @@ BeanFactory要想获取对象，首先需要将对象创建出来，然后才能
 
 到这一步，我们知道，BeanDefinition就是我们应用中的某个类的包装，记录了类名，是否单例，是否懒加载，依赖哪些类等信息。
 
+**Profile**
+
+一般而言，我们的应用程序都是区分环境的，比如生产/预发/测试/开发等。假如我们想要某些对象只在某种特定的环境下进行加载，或者在不同的环境中我们希望同一个类的实例在某些属性上可以配置不同的值，这就是Spring中的Profile，用来区分在不同的情况下的BeanDefinition的配置，相当于给BeanDefinition进行了分组，在不同的情况下让Spring去加载不同分组的BeanDefinition。
+
+到这一步，我们知道，Profile就是我们对BeanDefinition进行分组，以便在不同情况下（通常是不同环境）下加载不同的Bean。
+
 **Resource和EncodedResource**
 
 BeanFactory负责创建对象或者从中获取对象。或者，从最根本的说起，Ioc容器负责管理对象。但它要管理哪些对象，BeanFactory又要创建哪些对象？我们必须通过一定的方式来告诉它，最常见的是写在XML文件中，然后让BeanFactory通过某种方式去将我们定义在XML中的Bean创建出来。但是假如这些Bean是定义在某个远程服务器上，需要我们通过url去读取，再或者假如这些Bean就是一些jar文件（虽然只有类，但是如名字、是否懒加载等信息可以采用默认值的方式形成BeanDefinition），所以，需要一个对底层不同来源的资源的封装，这就是Spring中的Resource。对于不同来源的资源，Resource有不同的实现，如文件（FileSystemResource）、ClassPath资源（ClassPathResource）、URL资源（UrlResource）、InputStream资源（InputStreamResource），Byte数组（ByteArrayResource）等。
@@ -49,14 +55,6 @@ BeanFactory负责创建对象或者从中获取对象。或者，从最根本的
 由于这些不同来源的资源可能存在编码问题，因此需要一个处理编码的工具，这就是Spring中的EncodedResource。
 
 到这一步，我们知道，Resource是对所有资源文件进行统一处理，不仅是Bean的定义这些资源，其他的资源如配置文件等也可以通过Resource来处理。而EncodedResource则是来处理这些资源的编码问题的工具类。
-
-**Profile**
-
-
-
-
-
-
 
 **BeanDefinitionReader**
 
@@ -75,14 +73,6 @@ void registerBeanDefinitions(List<BeanDefinition> beanDefinitions)
 ```
 
 这就是Spring中的BeanDefinitionReader，它负责从Resource获取BeanDefinition，并将BeanDefinition注册到Ioc容器中。
-
-
-
-
-
-
-
-
 
 ## **Bean的加载**
 
@@ -116,18 +106,6 @@ public static void main(String[] args) {
 **Resource**
 
 上面的例子中，我们将Bean的定义写在XML文件中，但是，假如有些Bean的定义是
-
-
-
-
-
-
-
-
-
-
-
-
 
 11212
 
