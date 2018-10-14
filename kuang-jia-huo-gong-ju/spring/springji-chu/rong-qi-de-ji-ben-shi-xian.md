@@ -98,9 +98,11 @@ public class B {
 
 要解决这个问题，其实有这样一个思路：先执行a = new A\(\)、b = new B\(\)，拿到两个实例，再将实例a和b分别赋给各自的属性。要实现这样的效果，还需要一个Map来存放最初刚刚new出来但是还没set属性的实例。仅仅这样还不够，我们还需要一个Map来存放用来new实例的ObjectFactory。
 
-最终我们需要3个Map来解决循环依赖的问题（Map的key为bean name）：
+最终我们需要3个Map来解决循环依赖的问题：（实际Spring中singletonFactories为ConcurrentHashMap）
 
 ```java
+//Map的key为bean name
+
 //用来new实例的ObjectFactory
 Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>();
 //new出来还没有set属性的Bean
@@ -111,33 +113,9 @@ Map<String, Object> singletonObjects = new HashMap<>();
 
 假设第一次执行BeanFactory.getBean\("A"\)，则整个流程如下：![](/assets/屏幕快照 2018-10-14 下午9.37.07.png)到这一步，我们知道，Spring中的BeanFactory为了解决循环依赖的问题，在创建阶段，借助了另外两个Map来存储不同时期的Bean。
 
+TODO 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-**Bean的加载**
-
----
-
-（1）如果Bean为单例，则尝试从缓存即Map中获取单例（因为有可能之前已经加载过了）
-
-
-
-
-
-
-
-11212
 
 ## 参考
 
@@ -154,7 +132,4 @@ Map<String, Object> singletonObjects = new HashMap<>();
 [详解Spring中的Profile](https://www.jianshu.com/p/948c303b2253)
 
 [Spring IOC 容器源码分析 - 循环依赖的解决办法](https://segmentfault.com/a/1190000015221968)
-
-  
-
 
