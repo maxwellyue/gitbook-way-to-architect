@@ -72,44 +72,70 @@ List<BeanDefinition> loadBeanDefinitions(Resource resource)
 void registerBeanDefinitions(List<BeanDefinition> beanDefinitions)
 ```
 
-这就是Spring中的BeanDefinitionReader，它负责从Resource获取BeanDefinition，并将BeanDefinition注册到Ioc容器中。
+这就是Spring中的BeanDefinitionReader，它负责从Resource获取BeanDefinition，并将BeanDefinition放在Map&lt;String, Object&gt;这个数据结构中。
 
-那么，实际Spring中Ioc容器到底是什么样子，BeanDefinitionReader将获取的BeanDefinition到底放在哪里了？
+**ObjectFactory**
 
+前面说到，当我们调用BeanFactory.getBean\("bean name"\)的时候，就可以得到一个对象的实例化对象。但是getBean\(\)需要做的事情实在太多了：如果是已经创建的单例Bean，那么getBean\(\)只需要从Map中取出来就可以了；如果是未创建的单例Bean，则需要去真正的new实例；如果这个Bean还有很多依赖，又要去加载它的依赖Bean。getBean\(\)需要一个助手来完成“真正地new实例”这个操作，如果是单例，只需要执行一次就足够，如果是prototype，则每次都要执行，而ObjectFactory就是这个助手，它是某个普通对象的工厂，负责生产一个具体的实例，它仅仅包含一个方法：`T getObject()` ，这里的getObject中的“get”通常的语义为“create”，即创建一个类的实例。
 
+**不止一个Map**
 
-## **Bean的加载**
+那么，上面提到的这个Map到底在哪呢？上面说到，BeanFactory负责生产Bean，当应用程序需要某个Bean的时候，或者某个Bean需要另外一个Bean的时候，都去找BeanFactory去要，因此，这个Map让BeanFactory来持有，是非常合理的。在Spring中，也正是BeanFactory实际持有这个Map。
 
----
-
-通过前面的内容可以，BeanFactory负责创建对象或者从中获取对象。或者，从最根本的说起，Ioc容器负责管理对象。但是它要管理哪些对象呢，BeanFactory又要创建哪些对象呢？我们必须通过一定的方式来告诉它，你可能已经想到了，对的，就是XML配置和注解。
-
-我们先来看XML这种方式。新建一个spring.xml文件，然后在里面写上我们想要交给Ioc容器管理的对象，如下所示：
-
-```xml
-<bean id="userService" class="com.maxwell.example.UserServiceImpl">
-```
-
-然后就可以通过如下方式启动我们的应用了：
+现在来看这样一种情况：假如我们程序中写了两个类A，B，且A依赖B，B依赖A，代码看起来是这样的，且Spring已经获取到了A和B对应的ABeanDefinition和BBeanDefinition，知道了A和B是循环依赖的关系，且A和B都只需要单例即可。
 
 ```java
-public static void main(String[] args) {
-    BeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource("spring.xml"));
-    CountDownLatch latch = new CountDownLatch(1);
-    try {
-        latch.await();
-    } catch (InterruptedException ignored) {
-    }
+public class A {
+    private B b; //由Ioc容器注入B的实例
+}
+
+public class B {
+    private A a; //由Ioc容器注入A的实例
 }
 ```
 
-> 实际生产环境中，非Web的Java程序，就是这么启动的；只不过使用的并非XmlBeanFactory，而是功能更为强大的ClassPathXmlApplicationContext
+这个时候，假设第一次执行BeanFactory.getBean\("A"\)，发现需要注入B，BeanFactory又去getBean\("B"\)，但是此时发现，B又需要注入A。这好像是一个无法停止的过程。
 
-从名字上我们可以猜测XmlBeanFactory是BeanFactory的一个实现类，而Spring中的BeanFactory是一个接口（实际上正是如此）。看起来非常简单：BeanFactory去读取我们定义的XML文件，并按照定义将非懒加载的Bean实例化。
+要解决这个问题，其实有这样一个思路：先执行a = new A\(\)、b = new B\(\)，拿到两个实例，再将实例a和b分别赋给各自的属性。要实现这样的效果，还需要一个Map来存放最初刚刚new出来但是还没set属性的实例。仅仅这样还不够，我们还需要一个Map来存放用来new实例的ObjectFactory。
 
-**Resource**
+最终我们需要3个Map来解决循环依赖的问题（Map的key为bean name）：
 
-上面的例子中，我们将Bean的定义写在XML文件中，但是，假如有些Bean的定义是
+```java
+//用来new实例的ObjectFactory
+Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>();
+//new出来还没有set属性的Bean
+Map<String, Object> earlySingletonObjects = new HashMap<>();
+//已经set属性的Bean
+Map<String, Object> singletonObjects = new HashMap<>();
+```
+
+假设第一次执行BeanFactory.getBean\("A"\)，则整个流程如下：![](/assets/屏幕快照 2018-10-14 下午9.37.07.png)到这一步，我们知道，Spring中的BeanFactory为了解决循环依赖的问题，在创建阶段，借助了另外两个Map来存储不同时期的Bean。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**Bean的加载**
+
+---
+
+（1）如果Bean为单例，则尝试从缓存即Map中获取单例（因为有可能之前已经加载过了）
+
+
+
+
+
+
 
 11212
 
@@ -119,7 +145,16 @@ public static void main(String[] args) {
 
 [1000行代码读懂Spring（一）- 实现一个基本的IoC容器](https://my.oschina.net/flashsword/blog/192551)
 
+[BeanFactory和FactoryBean区别](https://my.oschina.net/wenbo123/blog/1590892)
+
 [Spring IOC 容器源码分析](https://javadoop.com/post/spring-ioc)
 
 [深入理解Spring系列之二：BeanDefinition解析](https://www.jianshu.com/p/8d92147653c0)
+
+[详解Spring中的Profile](https://www.jianshu.com/p/948c303b2253)
+
+[Spring IOC 容器源码分析 - 循环依赖的解决办法](https://segmentfault.com/a/1190000015221968)
+
+  
+
 
