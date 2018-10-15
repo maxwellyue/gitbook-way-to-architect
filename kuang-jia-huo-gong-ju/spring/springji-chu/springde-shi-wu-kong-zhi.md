@@ -109,3 +109,6 @@ checked：除了上面说的，都是checked异常
 a.让checked例外也回滚：在整个方法前加上 @Transactional(rollbackFor=Exception.class)
 b.让unchecked例外不回滚： @Transactional(notRollbackFor=RunTimeException.class)
 c.不需要事务管理的(只查询的)方法：@Transactional(propagation=Propagation.NOT_SUPPORTED)
+
+
+## 嵌套事务的回滚
