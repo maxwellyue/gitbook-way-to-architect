@@ -96,11 +96,11 @@ ServiceA {
          ServiceB.methodB();   
      }   
 }   
-  
+
 ServiceB {   
      @Transactional（propagation = Propagation.REQUIRED）
      void methodB() {  
-      
+
      }   
 }  
 
@@ -108,7 +108,7 @@ public class Controller(){
      public void methodC(){
           ServiceA.methodA();   
      }
-}    
+}
 ```
 
 这种情况下：methodA会开启新的事务，methodB会加入这个事务之中。无论在何时何处发生异常，两者都会回滚。
@@ -124,11 +124,11 @@ ServiceA {
          ServiceB.methodB();   
      }   
 }   
-  
+
 ServiceB {   
      @Transactional（propagation = Propagation.PROPAGATION_REQUIRES_NEW）
      void methodB() {  
-      
+
      }   
 }  
 
@@ -136,7 +136,7 @@ public class Controller(){
      public void methodC(){
           ServiceA.methodA();   
      }
-}    
+}
 ```
 
 这种情况下：methodA会开启新的事务，当执行到methodB的时候，methodA所在的事务就会被挂起，methodB会开启一个新的事务，等待methodB的事务提交以后，methodA才继续执行。
@@ -162,9 +162,7 @@ Spring的文档是这么说的
 >
 > In general, use`PROPAGATION_SUPPORTS`with care! In particular, do not rely on`PROPAGATION_REQUIRED`or`PROPAGATION_REQUIRES_NEW`withina`PROPAGATION_SUPPORTS`scope \(which may lead to synchronization conflicts at runtime\). If such nesting is unavoidable, make sure to configure your transaction manager appropriately \(typically switching to "synchronization on actual transaction"\).
 
-一般不需要设置显式这个传播属性，采用默认值即可。
-
-##### 2.3 isolation
+###  事务隔离级别（isolation）
 
 事务隔离级别，有以下几种取值：
 
@@ -176,7 +174,7 @@ Spring的文档是这么说的
 | Isolation.REPEATABLE\_READ | 可重复读\(会出现幻读\) |
 | Isolation.SERIALIZABLE | 串行化 |
 
-一般不需要设置显式这个属性，采用默认值即可。事务隔离级别用于处理多事务并发的情况，通常使用数据库的默认隔离级别即可，基本不需要进行设置
+一般不需要设置显式这个属性，采用默认值即可。
 
 ### 回滚（rollbackFor和noRollbackFor）
 
@@ -188,11 +186,15 @@ Spring的文档是这么说的
 > checked：除了上面说的，都是checked异常
 
 如何改变默认规则：  
-a.让checked例外也回滚：在整个方法前加上 @Transactional\(rollbackFor=Exception.class\)  
-b.让unchecked例外不回滚： @Transactional\(notRollbackFor=RunTimeException.class\)  
-c.不需要事务管理的\(只查询的\)方法：@Transactional\(propagation=Propagation.NOT\_SUPPORTED\)
+a.让checked异常也回滚：设置@Transactional\(rollbackFor=Exception.class\)  
+b.让unchecked异常不回滚： 设置@Transactional\(notRollbackFor=RunTimeException.class\)  
 
-## 嵌套事务的回滚
+
+
+
+## 
+
+## 
 
 ## 参考
 
@@ -202,6 +204,4 @@ c.不需要事务管理的\(只查询的\)方法：@Transactional\(propagation=P
 [MySQL学习笔记（二）：事务管理](http://www.jianshu.com/p/0d0981f4be62)
 
 [使用@Transactional\(propagation = Propagation.SUPPORTS\)和不加@Transactional 有什么区别？](https://miaoxinguo.github.io/spring/2016/05/03/spring.tx.supposts.html)
-
-
 
