@@ -162,7 +162,7 @@ Spring的文档是这么说的
 >
 > In general, use`PROPAGATION_SUPPORTS`with care! In particular, do not rely on`PROPAGATION_REQUIRED`or`PROPAGATION_REQUIRES_NEW`withina`PROPAGATION_SUPPORTS`scope \(which may lead to synchronization conflicts at runtime\). If such nesting is unavoidable, make sure to configure your transaction manager appropriately \(typically switching to "synchronization on actual transaction"\).
 
-###  事务隔离级别（isolation）
+### 事务隔离级别（isolation）
 
 事务隔离级别，有以下几种取值：
 
@@ -174,7 +174,7 @@ Spring的文档是这么说的
 | Isolation.REPEATABLE\_READ | 可重复读\(会出现幻读\) |
 | Isolation.SERIALIZABLE | 串行化 |
 
-一般不需要设置显式这个属性，采用默认值即可。
+除非有特殊需求一般不需要设置显式这个属性，即采用默认值，让Spring使用数据库设置的事务隔离级别。
 
 ### 回滚（rollbackFor和noRollbackFor）
 
@@ -187,10 +187,7 @@ Spring的文档是这么说的
 
 如何改变默认规则：  
 a.让checked异常也回滚：设置@Transactional\(rollbackFor=Exception.class\)  
-b.让unchecked异常不回滚： 设置@Transactional\(notRollbackFor=RunTimeException.class\)  
-
-
-
+b.让unchecked异常不回滚： 设置@Transactional\(notRollbackFor=RunTimeException.class\)
 
 ## 
 
