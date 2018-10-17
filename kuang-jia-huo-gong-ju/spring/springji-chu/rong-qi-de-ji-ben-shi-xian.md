@@ -78,6 +78,16 @@ void registerBeanDefinitions(List<BeanDefinition> beanDefinitions)
 
 前面说到，当我们调用BeanFactory.getBean\("bean name"\)的时候，就可以得到一个对象的实例化对象。但是getBean\(\)需要做的事情实在太多了：如果是已经创建的单例Bean，那么getBean\(\)只需要从Map中取出来就可以了；如果是未创建的单例Bean，则需要去真正的new实例；如果这个Bean还有很多依赖，又要去加载它的依赖Bean。getBean\(\)需要一个助手来完成“真正地new实例”这个操作，如果是单例，只需要执行一次就足够，如果是prototype，则每次都要执行，而ObjectFactory就是这个助手，它是某个普通对象的工厂，负责生产一个具体的实例，它仅仅包含一个方法：`T getObject()` ，这里的getObject中的“get”通常的语义为“create”，即创建一个类的实例。
 
+**InitializingBean、init-method**
+
+现在，假如程序中有一个PropertyReader的类，负责读取配置文件，它需要在new之后，先去执行加载配置文件的逻辑，然后才能让其他对象使用它。此时，我们就需要一个init这样的方法，让BeanFactory在getBean\(\)的最后，去执行这个init方法，执行完之后，再从getBean\(\)中返回。
+
+Spring中提供了多种方式来达到这种效果：①为bean指定init-method方法；②让bean实现InitializingBean接口，并实现afterPropertiesSet方法；（如果都配置了，则先执行InitializingBean的afterPropertiesSet，后执行init-method）
+
+**DisposableBean、destroy**
+
+同样，我们可能还有在销毁一些对象时要做一些逻辑处理的需求，这时候我们就需要一个destroy这样的方法。与InitializingBean、init-method类似，Spring中提供了DisposableBean接口和Bean的destroy属性，如果都配置了，则先执行DisposableBean的destroy方法，再执行通过destroy属性为bean指定的方法。
+
 **不止一个Map**
 
 那么，上面提到的这个Map到底在哪呢？上面说到，BeanFactory负责生产Bean，当应用程序需要某个Bean的时候，或者某个Bean需要另外一个Bean的时候，都去找BeanFactory去要，因此，这个Map让BeanFactory来持有，是非常合理的。在Spring中，也正是BeanFactory实际持有这个Map。
@@ -113,9 +123,7 @@ Map<String, Object> singletonObjects = new HashMap<>();
 
 假设第一次执行BeanFactory.getBean\("A"\)，则整个流程如下：![](/assets/屏幕快照 2018-10-14 下午9.37.07.png)到这一步，我们知道，Spring中的BeanFactory为了解决循环依赖的问题，在创建阶段，借助了另外两个Map来存储不同时期的Bean。
 
-TODO 
-
-
+TODO
 
 ## 参考
 
@@ -132,4 +140,8 @@ TODO
 [详解Spring中的Profile](https://www.jianshu.com/p/948c303b2253)
 
 [Spring IOC 容器源码分析 - 循环依赖的解决办法](https://segmentfault.com/a/1190000015221968)
+
+[简单比较init-method，afterPropertiesSet和BeanPostProcessor](https://www.jianshu.com/p/890446a3d477)
+
+
 
