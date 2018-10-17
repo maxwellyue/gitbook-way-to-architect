@@ -184,7 +184,7 @@
   * [Spring](kuang-jia-huo-gong-ju/spring/README.md)
     * [Spring基础](kuang-jia-huo-gong-ju/spring/springji-chu.md)
       * [Spring整体架构](kuang-jia-huo-gong-ju/spring/springji-chu/springzheng-ti-jia-gou.md)
-      * [什么是Ioc](kuang-jia-huo-gong-ju/spring/springji-chu/shi-yao-shi-ioc.md)
+      * [什么是IoC](kuang-jia-huo-gong-ju/spring/springji-chu/shi-yao-shi-ioc.md)
       * [Ioc容器的基本实现](kuang-jia-huo-gong-ju/spring/springji-chu/rong-qi-de-ji-ben-shi-xian.md)
       * [Bean的生命周期](kuang-jia-huo-gong-ju/spring/springji-chu/beande-sheng-ming-zhou-qi.md)
       * [什么是AOP](kuang-jia-huo-gong-ju/spring/springji-chu/shi-yao-shi-aop.md)
