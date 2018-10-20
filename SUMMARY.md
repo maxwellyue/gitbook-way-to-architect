@@ -186,12 +186,13 @@
       * [Spring整体架构](kuang-jia-huo-gong-ju/spring/springji-chu/springzheng-ti-jia-gou.md)
       * [什么是IoC](kuang-jia-huo-gong-ju/spring/springji-chu/shi-yao-shi-ioc.md)
       * [Ioc容器的基本实现](kuang-jia-huo-gong-ju/spring/springji-chu/rong-qi-de-ji-ben-shi-xian.md)
+      * [IoC实现中的主要类图](kuang-jia-huo-gong-ju/spring/springji-chu/iocshi-xian-zhong-de-zhu-yao-lei-tu.md)
       * [Bean的生命周期](kuang-jia-huo-gong-ju/spring/springji-chu/beande-sheng-ming-zhou-qi.md)
       * [什么是AOP](kuang-jia-huo-gong-ju/spring/springji-chu/shi-yao-shi-aop.md)
       * [Spring中AOP的实现](kuang-jia-huo-gong-ju/spring/springji-chu/springzhong-aop-de-shi-xian.md)
       * [AOP动态代理的两种方式，以及区别](kuang-jia-huo-gong-ju/spring/aop-dong-tai-dai-li-de-liang-zhong-fang-shi-yi-ji-qu-bie.md)
       * [Spring中的设计模式](kuang-jia-huo-gong-ju/spring/spring-zhong-de-she-ji-mo-shi.md)
-      * Spring Aware
+      * IoC实现中的主要类图
     * [Spring应用](kuang-jia-huo-gong-ju/spring/springying-yong.md)
       * [Spring的事务控制](kuang-jia-huo-gong-ju/spring/springji-chu/springde-shi-wu-kong-zhi.md)
       * [@Transactional注解在什么情况下会失效](kuang-jia-huo-gong-ju/spring/transactional-zhu-jie-zai-shi-mo-qing-kuang-xia-hui-shi-xiao.md)
