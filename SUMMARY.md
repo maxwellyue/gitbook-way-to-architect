@@ -187,6 +187,7 @@
       * [什么是IoC](kuang-jia-huo-gong-ju/spring/springji-chu/shi-yao-shi-ioc.md)
       * [Ioc容器的基本实现](kuang-jia-huo-gong-ju/spring/springji-chu/rong-qi-de-ji-ben-shi-xian.md)
       * [IoC实现中的主要类图](kuang-jia-huo-gong-ju/spring/springji-chu/iocshi-xian-zhong-de-zhu-yao-lei-tu.md)
+        * [IoC实现中的主要类图2](kuang-jia-huo-gong-ju/spring/springji-chu/iocshi-xian-zhong-de-zhu-yao-lei-tu/iocshi-xian-zhong-de-zhu-yao-lei-tu-2.md)
       * [Bean的生命周期](kuang-jia-huo-gong-ju/spring/springji-chu/beande-sheng-ming-zhou-qi.md)
       * [什么是AOP](kuang-jia-huo-gong-ju/spring/springji-chu/shi-yao-shi-aop.md)
       * [Spring中AOP的实现](kuang-jia-huo-gong-ju/spring/springji-chu/springzhong-aop-de-shi-xian.md)
