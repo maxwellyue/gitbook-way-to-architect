@@ -151,6 +151,7 @@
       * [其他事项](java-yu-yan/xin-te-xing/liu-de-gai-nian-you-shi-ji-shi-yong/qi-ta-shi-xiang.md)
     * [lambda表达式](java-yu-yan/xin-te-xing/lambda-biao-da-shi.md)
     * [默认方法（Default Methods）](java-yu-yan/xin-te-xing/mo-ren-fang-fa-default-methods.md)
+    * [@FunctionalInterface注解](java-yu-yan/xin-te-xing/liu-de-gai-nian-you-shi-ji-shi-yong/functionalinterfacezhu-jie.md)
   * [SPI](java-yu-yan/spi/README.md)
     * [理解SPI](java-yu-yan/spi/spi-shi-shi-mo.md)
   * [字节码](java-yu-yan/zi-jie-ma/README.md)
