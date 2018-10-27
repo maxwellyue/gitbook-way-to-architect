@@ -2,5 +2,5 @@
 
 ---
 
-![](/assets/Bean加载流程.png)
+
 
