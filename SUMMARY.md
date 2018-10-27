@@ -191,6 +191,7 @@
         * [IoC实现中的主要类图2](kuang-jia-huo-gong-ju/spring/springji-chu/iocshi-xian-zhong-de-zhu-yao-lei-tu/iocshi-xian-zhong-de-zhu-yao-lei-tu-2.md)
         * [IoC实现中的主要类图3](kuang-jia-huo-gong-ju/spring/springji-chu/iocshi-xian-zhong-de-zhu-yao-lei-tu/iocshi-xian-zhong-de-zhu-yao-lei-tu-3.md)
         * [IoC实现中的主要类图4](kuang-jia-huo-gong-ju/spring/springji-chu/iocshi-xian-zhong-de-zhu-yao-lei-tu/iocshi-xian-zhong-de-zhu-yao-lei-tu-4.md)
+        * [IoC实现中的主要类图5](kuang-jia-huo-gong-ju/spring/springji-chu/iocshi-xian-zhong-de-zhu-yao-lei-tu/iocshi-xian-zhong-de-zhu-yao-lei-tu-5.md)
       * [Bean的生命周期](kuang-jia-huo-gong-ju/spring/springji-chu/beande-sheng-ming-zhou-qi.md)
       * [IoC容器之ApplicationContext](kuang-jia-huo-gong-ju/spring/springji-chu/iocrong-qi-zhi-applicationcontext.md)
       * [什么是AOP](kuang-jia-huo-gong-ju/spring/springji-chu/shi-yao-shi-aop.md)
