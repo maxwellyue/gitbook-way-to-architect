@@ -200,6 +200,7 @@
         * [Xml格式的应用启动5](kuang-jia-huo-gong-ju/spring/springji-chu/beande-sheng-ming-zhou-qi/xmlge-shi-de-ying-yong-qi-dong-5.md)
         * [Xml格式的应用启动6](kuang-jia-huo-gong-ju/spring/springji-chu/beande-sheng-ming-zhou-qi/xmlge-shi-de-ying-yong-qi-dong-6.md)
         * [Xml格式的应用启动7](kuang-jia-huo-gong-ju/spring/springji-chu/beande-sheng-ming-zhou-qi/xmlge-shi-de-ying-yong-qi-dong-7.md)
+        * ApplicaitonContext启动流程
       * [注解格式的Bean的加载](kuang-jia-huo-gong-ju/spring/springji-chu/zhu-jiege-shi-de-bean-de-jia-zai.md)
       * [什么是AOP](kuang-jia-huo-gong-ju/spring/springji-chu/shi-yao-shi-aop.md)
       * [Spring中AOP的实现](kuang-jia-huo-gong-ju/spring/springji-chu/springzhong-aop-de-shi-xian.md)
