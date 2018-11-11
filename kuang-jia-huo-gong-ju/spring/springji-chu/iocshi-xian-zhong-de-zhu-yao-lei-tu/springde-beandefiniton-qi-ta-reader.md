@@ -113,5 +113,7 @@ public void applyDefaults(BeanDefinitionDefaults defaults) {
 
 （3）processCommonDefinitionAnnotations是进一步对类的其他注解进行解析，设置BeanDefinition的其他属性：①是否标记了@Lazy，设置是否懒加载；②是否标记了@Primary，设置是否为优先使用；③是否有@DependsOn，如果有，则设置BeanDefinition的dependsOn属性；④是否标记了@Role注解，设置BeanDefinition的role属性；⑤是否标记了@Description，设置BeanDefinition的description属性。
 
+
+
 参考：[Spring类注册笔记](https://fangjian0423.github.io/2017/06/15/spring-bean-register-note/)
 

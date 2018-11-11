@@ -198,6 +198,7 @@
         * [Spring的BeanDefinition](kuang-jia-huo-gong-ju/spring/springji-chu/iocshi-xian-zhong-de-zhu-yao-lei-tu/iocshi-xian-zhong-de-zhu-yao-lei-tu-2.md)
         * [Spring的BeanDefinitionReader](kuang-jia-huo-gong-ju/spring/springji-chu/iocshi-xian-zhong-de-zhu-yao-lei-tu/springde-beandefinitionreader.md)
         * [Spring的BeanDefiniton其他Reader](kuang-jia-huo-gong-ju/spring/springji-chu/iocshi-xian-zhong-de-zhu-yao-lei-tu/springde-beandefiniton-qi-ta-reader.md)
+        * [Spring的BeanDefinition其他Reader2](kuang-jia-huo-gong-ju/spring/springji-chu/springde-beandefinition-qi-ta-reader2.md)
         * [Spring的Aware](kuang-jia-huo-gong-ju/spring/springji-chu/iocshi-xian-zhong-de-zhu-yao-lei-tu/springde-aware.md)
       * [Xml格式的Bean的加载](kuang-jia-huo-gong-ju/spring/springji-chu/beande-sheng-ming-zhou-qi.md)
         * [Xml格式的应用启动2](kuang-jia-huo-gong-ju/spring/springji-chu/beande-sheng-ming-zhou-qi/xmlge-shi-de-ying-yong-qi-dong-de-guo-cheng.md)
