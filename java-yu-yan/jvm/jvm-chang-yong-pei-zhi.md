@@ -47,5 +47,23 @@
 
 ## JVM参数一览
 
-可以使用`java -XX:+PrintFlagsFinal`来查看所有 XX 参数和值。
+1、使用`java -XX:+PrintFlagsFinal`来查看所有 XX 参数和值。
+
+2、查看进程24684的参数
+
+```bash
+$ jcmd 24684 VM.flags
+  24684:
+  -XX:InitialHeapSize=98566144 -XX:MaxHeapSize=1547698176 \
+  -XX:MaxNewSize=515899392 -XX:MinHeapDeltaBytes=524288 \
+  -XX:NewSize=1572864 -XX:OldSize=96993280 \
+  -XX:+UseCompressedClassPointers \
+  -XX:+UseCompressedOops -XX:+UseParallelGC 
+```
+
+
+
+
+
+
 
